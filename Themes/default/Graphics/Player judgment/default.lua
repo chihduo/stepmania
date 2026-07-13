@@ -60,7 +60,7 @@ for column = 1, GAMESTATE:GetCurrentStyle():ColumnsPerPlayer() do
 	laneTiming[#laneTiming+1] = LoadFont("Common Condensed") .. {
 		Name = "TimingOffset" .. column;
 		Text = "";
-		InitCommand=cmd(visible,false;zoom,0.55;shadowlength,1;strokecolor,Color("Outline");maxwidth,58);
+		InitCommand=cmd(visible,false;zoom,1;shadowlength,2;strokecolor,Color("Outline");maxwidth,90);
 	};
 end
 
@@ -85,7 +85,7 @@ local function PositionLaneTiming(root, actor, column)
 	actor:x((receptorX - root:GetX()) / rootZoomX);
 	-- Keep the baseline outside the 64-pixel receptor so the glyphs do not
 	-- overlap the arrow artwork and become unreadable.
-	actor:y((receptorMiddle + receptorY + 42 - root:GetY()) / rootZoomY);
+	actor:y((receptorMiddle + receptorY + 52 - root:GetY()) / rootZoomY);
 end
 
 local t = Def.ActorFrame {};
@@ -236,12 +236,12 @@ t[#t+1] = Def.ActorFrame {
 				PositionLaneTiming(self:GetParent(), laneOffset, column);
 				laneOffset:settext(TimingStats.FormatOffset(signedMs));
 				laneOffset:diffuse(TimingStats.GetDirectionColor(signedMs));
-				(cmd(finishtweening;visible,true;diffusealpha,1;zoom,0.6;decelerate,0.05;zoom,0.55;sleep,0.55;linear,0.15;diffusealpha,0))(laneOffset);
+				(cmd(finishtweening;visible,true;diffusealpha,1;zoom,1.1;decelerate,0.05;zoom,1;sleep,0.55;linear,0.15;diffusealpha,0))(laneOffset);
 			end
 
 			c.ProtimingAverage:settext(TimingStats.FormatAverage(rollingMs));
 			c.ProtimingAverage:diffuse(TimingStats.GetDirectionColor(rollingMs));
-			(cmd(finishtweening;diffusealpha,1;zoom,0.6;decelerate,0.05;zoom,0.55;sleep,0.55;linear,0.15;diffusealpha,0))(c.ProtimingAverage);
+			(cmd(finishtweening;diffusealpha,1;zoom,1.1;decelerate,0.05;zoom,1;sleep,0.55;linear,0.15;diffusealpha,0))(c.ProtimingAverage);
 
 			MESSAGEMAN:Broadcast("TimingStatsUpdated", { Player = player });
 		end;
