@@ -160,6 +160,37 @@ for ip, p in ipairs(GAMESTATE:GetHumanPlayers()) do
 			self:sleep(0.1):decelerate(0.3):diffusealpha(0)
 		end;
 	}
+
+	eval_parts[#eval_parts+1] = Def.BitmapText {
+		Font = "Common Condensed",
+		InitCommand=cmd(horizalign,center;x,_screen.cx + grade_parts_offs;y,_screen.cy-15;zoom,0.55;shadowlength,1;strokecolor,Color("Outline");maxwidth,170),
+		OnCommand=function(self)
+			local hasTiming = TimingStats.IsEnabled(p) and TimingStats.GetCount(p) > 0
+			self:visible(hasTiming)
+			if hasTiming then
+				local average = TimingStats.GetMeanOffsetMs(p)
+				self:settext(TimingStats.FormatAverage(average))
+				self:diffuse(TimingStats.GetDirectionColor(average))
+				self:diffusealpha(0):sleep(0.7):decelerate(0.3):diffusealpha(1)
+			end
+		end,
+		OffCommand=cmd(decelerate,0.3;diffusealpha,0),
+	}
+
+	eval_parts[#eval_parts+1] = Def.BitmapText {
+		Font = "Common Condensed",
+		InitCommand=cmd(horizalign,center;x,_screen.cx + grade_parts_offs;y,_screen.cy;zoom,0.55;shadowlength,1;strokecolor,Color("Outline");maxwidth,170),
+		OnCommand=function(self)
+			local hasTiming = TimingStats.IsEnabled(p) and TimingStats.GetCount(p) > 0
+			self:visible(hasTiming)
+			if hasTiming then
+				self:settext(TimingStats.FormatAccuracy(TimingStats.GetAccuracyPercent(p)))
+				self:diffuse(ColorDarkTone(PlayerColor(p)))
+				self:diffusealpha(0):sleep(0.8):decelerate(0.3):diffusealpha(1)
+			end
+		end,
+		OffCommand=cmd(decelerate,0.3;diffusealpha,0),
+	}
 end
 
 t[#t+1] = eval_parts

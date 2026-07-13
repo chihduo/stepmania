@@ -228,6 +228,38 @@ t.InitCommand=cmd(SetUpdateFunction,UpdateTime);
 		};
 	};
 	
+	-- Persistent whole-song timing accuracy, positioned beneath each score.
+	for pn in ivalues(GAMESTATE:GetHumanPlayers()) do
+		local timingPlayer = pn
+		local playerName = ToEnumShortString(timingPlayer)
+		t[#t+1] = Def.BitmapText {
+			Name = "TimingAccuracy" .. playerName,
+			Font = "Common Condensed",
+			InitCommand = function(self)
+				self:x(THEME:GetMetric("ScreenGameplay", "Score" .. playerName .. "X"))
+				self:y(THEME:GetMetric("ScreenGameplay", "Score" .. playerName .. "Y") + 24)
+				self:zoom(0.55):shadowlength(1):strokecolor(Color("Outline"))
+				self:diffuse(ColorLightTone(PlayerColor(timingPlayer))):visible(false)
+			end,
+			OnCommand = cmd(playcommand,"Update"),
+			UpdateCommand = function(self)
+				local hasTiming = TimingStats.IsEnabled(timingPlayer)
+					and TimingStats.GetCount(timingPlayer) > 0
+				self:visible(hasTiming)
+				if hasTiming then
+					self:settext(TimingStats.FormatAccuracy(
+						TimingStats.GetAccuracyPercent(timingPlayer)))
+				end
+			end,
+			TimingStatsUpdatedMessageCommand = function(self, param)
+				if param and param.Player == timingPlayer then
+					self:playcommand("Update")
+				end
+			end,
+			OffCommand = cmd(linear,0.2;diffusealpha,0),
+		}
+	end
+
 	for pn in ivalues(GAMESTATE:GetHumanPlayers()) do
 		t[#t+1] = LoadActor("_fcsplash", pn) .. {
 		};

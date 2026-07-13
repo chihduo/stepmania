@@ -131,6 +131,7 @@ t[#t+1] = Def.ActorFrame {
 	};
 	InitCommand = function(self)
 		c = self:GetChildren();
+		TimingStats.Reset(player);
 	end;
 
 	JudgmentMessageCommand=function(self, param)
@@ -176,21 +177,34 @@ t[#t+1] = Def.ActorFrame {
 		
 		self:playcommand("Reset");
 
-		c.Judgment:visible( not bShowProtiming );
+		c.Judgment:visible( true );
 		c.Judgment:setstate( iFrame );
 		JudgeCmds[param.TapNoteScore](c.Judgment);
 		
-		c.ProtimingDisplay:visible( bShowProtiming );
-		c.ProtimingDisplay:settextf("%i",fTapNoteOffset * 1000);
-		ProtimingCmds[param.TapNoteScore](c.ProtimingDisplay);
+		local showMeasuredTiming = bShowProtiming
+			and param.TapNoteScore ~= 'TapNoteScore_Miss'
+			and param.TapNoteOffset ~= nil;
+		c.ProtimingDisplay:visible( showMeasuredTiming );
+		c.ProtimingAverage:visible( showMeasuredTiming );
+		c.TextDisplay:visible( false );
+
+		if showMeasuredTiming then
+			local signedMs = TimingStats.AddOffset(player, param.TapNoteOffset, param.Early);
+			local rollingMs = TimingStats.GetRollingAverageMs(player);
+			c.ProtimingDisplay:settext(TimingStats.FormatOffset(signedMs));
+			c.ProtimingDisplay:diffuse(TimingStats.GetDirectionColor(signedMs));
+			(cmd(finishtweening;diffusealpha,1;zoom,0.6;decelerate,0.05;zoom,0.55;sleep,0.55;linear,0.15;diffusealpha,0))(c.ProtimingDisplay);
+
+			c.ProtimingAverage:settext(TimingStats.FormatAverage(rollingMs));
+			c.ProtimingAverage:diffuse(TimingStats.GetDirectionColor(rollingMs));
+			(cmd(finishtweening;diffusealpha,1;zoom,0.6;decelerate,0.05;zoom,0.55;sleep,0.55;linear,0.15;diffusealpha,0))(c.ProtimingAverage);
+
+			MESSAGEMAN:Broadcast("TimingStatsUpdated", { Player = player });
+		end;
 		
-		c.ProtimingAverage:visible( bShowProtiming );
-		c.ProtimingAverage:settextf("%.2f%%",clamp(100 - MakeAverage( tTotalJudgments ) * 1000 ,0,100));
-		AverageCmds['Pulse'](c.ProtimingAverage);
 		
-		c.TextDisplay:visible( bShowProtiming );
-		TextCmds['Pulse'](c.TextDisplay);
 		
+		if false then -- The compact text feedback replaces the old timing graph.
 		c.ProtimingGraphBG:visible( bShowProtiming );
 		c.ProtimingGraphUnderlay:visible( bShowProtiming );
 		c.ProtimingGraphWindowW3:visible( bShowProtiming );
@@ -225,6 +239,7 @@ t[#t+1] = Def.ActorFrame {
 		(cmd(sleep,2;linear,0.5;diffusealpha,0))(c.ProtimingGraphFill);
 		(cmd(sleep,2;linear,0.5;diffusealpha,0))(c.ProtimingGraphAverage);
 		(cmd(sleep,2;linear,0.5;diffusealpha,0))(c.ProtimingGraphCenter);
+		end;
 	end;
 
 };
