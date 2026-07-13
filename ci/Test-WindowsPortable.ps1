@@ -135,9 +135,17 @@ try {
     }
 
     [xml] $luaDocument = Get-Content -LiteralPath $smokeXmlPath -Raw
-    $versionNode = $luaDocument.SelectSingleNode("//Version")
-    if ($null -eq $versionNode -or [string]::IsNullOrWhiteSpace($versionNode.InnerText)) {
-        throw "The generated Lua.xml has no populated Version element."
+    $namespaceUri = "http://www.stepmania.com"
+    $namespaceManager = [System.Xml.XmlNamespaceManager]::new($luaDocument.NameTable)
+    $namespaceManager.AddNamespace("sm", $namespaceUri)
+    $versionNode = $luaDocument.SelectSingleNode("/sm:Lua/sm:Version", $namespaceManager)
+    if (
+        $luaDocument.DocumentElement.LocalName -ne "Lua" `
+        -or $luaDocument.DocumentElement.NamespaceURI -ne $namespaceUri `
+        -or $null -eq $versionNode `
+        -or [string]::IsNullOrWhiteSpace($versionNode.InnerText)
+    ) {
+        throw "The generated Lua.xml has an unexpected schema or no populated Version element."
     }
 
     Write-Host "Runtime smoke test passed: $($versionNode.InnerText)"
