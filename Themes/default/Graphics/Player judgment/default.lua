@@ -52,8 +52,43 @@ local TNSFrames = {
 	TapNoteScore_W5 = 4;
 	TapNoteScore_Miss = 5;
 };
+
+local laneTiming = Def.ActorFrame {
+	Name = "LaneTiming";
+};
+for column = 1, GAMESTATE:GetCurrentStyle():ColumnsPerPlayer() do
+	laneTiming[#laneTiming+1] = LoadFont("Common Condensed") .. {
+		Name = "TimingOffset" .. column;
+		Text = "";
+		InitCommand=cmd(visible,false;zoom,0.55;shadowlength,1;strokecolor,Color("Outline");maxwidth,58);
+	};
+end
+
+local function PositionLaneTiming(root, actor, column)
+	local playerState = GAMESTATE:GetPlayerState(player);
+	local playerOptions = playerState:GetPlayerOptions("ModsLevel_Current");
+	local mini = playerOptions:Mini();
+	local fieldZoom = 1 - mini * 0.5;
+	local rootZoomX = root:GetZoomX();
+	local rootZoomY = root:GetZoomY();
+	if math.abs(rootZoomX) < 0.001 then rootZoomX = 1 end
+	if math.abs(rootZoomY) < 0.001 then rootZoomY = 1 end
+
+	-- ArrowEffects follows per-column transforms and style spacing.  Convert its
+	-- player-relative receptor position into the judgment actor's local space.
+	local receptorX = ArrowEffects.GetXPos(playerState, column, 0) * fieldZoom;
+	local receptorY = ArrowEffects.GetYPos(playerState, column, 0) * fieldZoom;
+	local standardY = THEME:GetMetric("Player", "ReceptorArrowsYStandard");
+	local reverseY = THEME:GetMetric("Player", "ReceptorArrowsYReverse");
+	local receptorMiddle = (standardY + reverseY) / 2;
+
+	actor:x((receptorX - root:GetX()) / rootZoomX);
+	actor:y((receptorMiddle + receptorY + 38 - root:GetY()) / rootZoomY);
+end
+
 local t = Def.ActorFrame {};
 t[#t+1] = Def.ActorFrame {
+	laneTiming;
 	LoadActor(THEME:GetPathG("Judgment","Normal")) .. {
 		Name="Judgment";
 		InitCommand=cmd(pause;visible,false);
@@ -183,17 +218,23 @@ t[#t+1] = Def.ActorFrame {
 		
 		local showMeasuredTiming = bShowProtiming
 			and param.TapNoteScore ~= 'TapNoteScore_Miss'
-			and param.TapNoteOffset ~= nil;
-		c.ProtimingDisplay:visible( showMeasuredTiming );
+			and param.TapNoteOffset ~= nil
+			and param.FirstTrack ~= nil;
+		c.ProtimingDisplay:visible( false );
 		c.ProtimingAverage:visible( showMeasuredTiming );
 		c.TextDisplay:visible( false );
 
 		if showMeasuredTiming then
 			local signedMs = TimingStats.AddOffset(player, param.TapNoteOffset, param.Early);
 			local rollingMs = TimingStats.GetRollingAverageMs(player);
-			c.ProtimingDisplay:settext(TimingStats.FormatOffset(signedMs));
-			c.ProtimingDisplay:diffuse(TimingStats.GetDirectionColor(signedMs));
-			(cmd(finishtweening;diffusealpha,1;zoom,0.6;decelerate,0.05;zoom,0.55;sleep,0.55;linear,0.15;diffusealpha,0))(c.ProtimingDisplay);
+			local column = param.FirstTrack + 1;
+			local laneOffset = c.LaneTiming:GetChild("TimingOffset" .. column);
+			if laneOffset then
+				PositionLaneTiming(self, laneOffset, column);
+				laneOffset:settext(TimingStats.FormatOffset(signedMs));
+				laneOffset:diffuse(TimingStats.GetDirectionColor(signedMs));
+				(cmd(finishtweening;visible,true;diffusealpha,1;zoom,0.6;decelerate,0.05;zoom,0.55;sleep,0.55;linear,0.15;diffusealpha,0))(laneOffset);
+			end
 
 			c.ProtimingAverage:settext(TimingStats.FormatAverage(rollingMs));
 			c.ProtimingAverage:diffuse(TimingStats.GetDirectionColor(rollingMs));
