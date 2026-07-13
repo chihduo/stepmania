@@ -83,7 +83,9 @@ local function PositionLaneTiming(root, actor, column)
 	local receptorMiddle = (standardY + reverseY) / 2;
 
 	actor:x((receptorX - root:GetX()) / rootZoomX);
-	actor:y((receptorMiddle + receptorY + 38 - root:GetY()) / rootZoomY);
+	-- Keep the baseline outside the 64-pixel receptor so the glyphs do not
+	-- overlap the arrow artwork and become unreadable.
+	actor:y((receptorMiddle + receptorY + 42 - root:GetY()) / rootZoomY);
 end
 
 local t = Def.ActorFrame {};
@@ -95,7 +97,7 @@ t[#t+1] = Def.ActorFrame {
 		OnCommand=THEME:GetMetric("Judgment","JudgmentOnCommand");
 		ResetCommand=cmd(finishtweening;stopeffect;visible,false);
 	};
-	LoadFont("Combo Numbers") .. {
+	LoadFont("Common Condensed") .. {
 		Name="ProtimingDisplay";
 		Text="";
 		InitCommand=cmd(visible,false);
@@ -230,7 +232,8 @@ t[#t+1] = Def.ActorFrame {
 			local column = param.FirstTrack + 1;
 			local laneOffset = c.LaneTiming:GetChild("TimingOffset" .. column);
 			if laneOffset then
-				PositionLaneTiming(self, laneOffset, column);
+				-- The engine applies the judgment transform to this frame's parent.
+				PositionLaneTiming(self:GetParent(), laneOffset, column);
 				laneOffset:settext(TimingStats.FormatOffset(signedMs));
 				laneOffset:diffuse(TimingStats.GetDirectionColor(signedMs));
 				(cmd(finishtweening;visible,true;diffusealpha,1;zoom,0.6;decelerate,0.05;zoom,0.55;sleep,0.55;linear,0.15;diffusealpha,0))(laneOffset);
