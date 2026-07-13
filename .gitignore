@@ -4,6 +4,8 @@
 *.a
 
 # CMake Files/Directories
+/build/
+/out/
 CMakeFiles/
 CMakeCache.txt
 CMakeScripts/
