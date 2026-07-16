@@ -20,9 +20,10 @@ function GetTapPosition( sType )
 	return tNotePos[bCategory]
 end
 
--- combo under field is another thing that doesn't always need to be custom
+-- Keep the combo readable by drawing it after the note field.  Do not honor an
+-- older saved ComboUnderField preference for this theme.
 function ComboUnderField()
-	return ThemePrefs.Get("ComboUnderField")
+	return false
 end
 
 -- The "boss song" threshold is controlled entirely by a theme preference.

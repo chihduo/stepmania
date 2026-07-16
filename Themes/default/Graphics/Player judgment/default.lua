@@ -223,12 +223,11 @@ t[#t+1] = Def.ActorFrame {
 			and param.TapNoteOffset ~= nil
 			and param.FirstTrack ~= nil;
 		c.ProtimingDisplay:visible( false );
-		c.ProtimingAverage:visible( showMeasuredTiming );
+		c.ProtimingAverage:visible( false );
 		c.TextDisplay:visible( false );
 
 		if showMeasuredTiming then
 			local signedMs = TimingStats.AddOffset(player, param.TapNoteOffset, param.Early);
-			local rollingMs = TimingStats.GetRollingAverageMs(player);
 			local column = param.FirstTrack + 1;
 			local laneOffset = c.LaneTiming:GetChild("TimingOffset" .. column);
 			if laneOffset then
@@ -238,10 +237,6 @@ t[#t+1] = Def.ActorFrame {
 				laneOffset:diffuse(TimingStats.GetDirectionColor(signedMs));
 				(cmd(finishtweening;visible,true;diffusealpha,1;zoom,1.1;decelerate,0.05;zoom,1;sleep,0.55;linear,0.15;diffusealpha,0))(laneOffset);
 			end
-
-			c.ProtimingAverage:settext(TimingStats.FormatAverage(rollingMs));
-			c.ProtimingAverage:diffuse(TimingStats.GetDirectionColor(rollingMs));
-			(cmd(finishtweening;diffusealpha,1;zoom,1.1;decelerate,0.05;zoom,1;sleep,0.55;linear,0.15;diffusealpha,0))(c.ProtimingAverage);
 
 			MESSAGEMAN:Broadcast("TimingStatsUpdated", { Player = player });
 		end;
