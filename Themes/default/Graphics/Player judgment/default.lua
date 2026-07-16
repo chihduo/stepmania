@@ -81,11 +81,12 @@ local function PositionLaneTiming(root, actor, column)
 	local standardY = THEME:GetMetric("Player", "ReceptorArrowsYStandard");
 	local reverseY = THEME:GetMetric("Player", "ReceptorArrowsYReverse");
 	local receptorMiddle = (standardY + reverseY) / 2;
+	local reversePercent = playerOptions:GetReversePercentForColumn(column - 1);
+	local outsideOffset = reversePercent > 0.5 and 52 or -52;
 
 	actor:x((receptorX - root:GetX()) / rootZoomX);
-	-- Keep the baseline outside the 64-pixel receptor so the glyphs do not
-	-- overlap the arrow artwork and become unreadable.
-	actor:y((receptorMiddle + receptorY + 52 - root:GetY()) / rootZoomY);
+	-- Put the baseline beyond the receptor, opposite the incoming note stream.
+	actor:y((receptorMiddle + receptorY + outsideOffset - root:GetY()) / rootZoomY);
 end
 
 local t = Def.ActorFrame {};
