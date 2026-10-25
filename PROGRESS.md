@@ -2,7 +2,7 @@
 
 ## Status
 
-Implemented and committed in three checkpoints. Automated checks and the validation application build pass. Interactive audio/video verification remains pending.
+Implemented and committed. Automated regression checks, the Linux validation build, and the Windows x64 Release build pass. The Windows portable ZIP has been downloaded and verified. Interactive audio/video verification remains pending.
 
 ## Checkpoints
 
@@ -13,13 +13,14 @@ Implemented and committed in three checkpoints. Automated checks and the validat
 - [x] Implement synchronized scrolling/animation behavior and rate feedback.
 - [x] Build the application and run focused and engine-level regression checks.
 - [x] Review and commit the completed revision.
+- [x] Build, smoke-test, download, and verify the Windows x64 portable ZIP.
 - [ ] Verify an actual song with audio/video, including every exit/retry path, in an interactive game session.
 
 ## Commit ledger
 
 1. `7ec3f6389f` — `docs: plan live gameplay speed controls`.
 2. `47acb9a9ee` — `feat: add temporary Shift-arrow gameplay rate controls`.
-3. The commit containing this update — `feat: synchronize live rate visuals and verify gameplay controls`.
+3. `f5e98c70a4` — `feat: synchronize live rate visuals and verify gameplay controls`.
 
 Baseline: `b3561fc60e` on `5_1-new`. The working tree was clean before this task. No repository `AGENTS.md` files were found.
 
@@ -51,3 +52,24 @@ The build is under `build/live-rate`, using GCC 13, Unix Makefiles, Debug, ALSA,
 The headless test harness uses a temporary filesystem, opens no game window, and does not save user preferences or mappings. It is separate from the sanitizer-enabled standalone tests.
 
 Interactive audio/video playback was not tested. Before shipping, play a video-backed song at 0.8x, 1.0x, and 1.2x; check alignment, holds/mines/lifts, pause/resume, failure/back/retry/course transitions, and any custom scripts that explicitly use independent real-time clocks. These checks are documented, not claimed as passed.
+
+## Windows x64 delivery checkpoint
+
+The feature revision was pushed to `chihduo/stepmania`, branch `5_1-new`, and built by the existing Windows portable workflow.
+
+- Source revision: `f5e98c70a49833710044027b098784bdb5743df3`.
+- [Successful Windows build and smoke test](https://github.com/chihduo/stepmania/actions/runs/40217217284): MSVC 2022, x64, Release, static C/C++ runtime.
+- [Download artifact `StepMania-windows-x64-8.1`](https://github.com/chihduo/stepmania/actions/runs/40217217284/artifacts/12607404103). GitHub currently retains this artifact until 2026-11-24.
+- Local ZIP: `out/github-actions/live-rate-40217217284/StepMania-5.1-windows-x64-portable.zip` (73,454,816 bytes).
+- The checksum file, build logs, and `verification.json` are saved alongside the ZIP in the ignored output directory.
+- Windows portable-layout and x64 PE checks passed. The runtime Lua export smoke test reported `StepMania5.1-git-f5e98c7`.
+- The downloaded ZIP's SHA-256 matches both the accompanying checksum file and the CI log. ZIP CRC checks passed for all 3,546 files.
+- The package contains the expected executable version, the new live-rate message, media DLLs, themes, noteskins, scripts, and song assets. It has no saved preferences or logs from the smoke test.
+
+SHA-256 of the inner portable ZIP:
+
+```text
+c7deb5fe8704c865203075286fb0e2fe9c0ab402a7a33e461026a6e27af06d0e
+```
+
+Extract the GitHub artifact, then extract its inner portable ZIP and run `StepMania/Program/StepMania.exe`. Keep the complete `StepMania` folder together. This Windows package includes the media dependencies omitted from the earlier Linux validation build. In-game notes/music/video synchronization still requires the manual checks in `Docs/LiveGameplayRate.md`.
