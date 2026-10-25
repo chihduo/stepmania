@@ -1151,6 +1151,14 @@ bool GameState::ChangeGameplayRate(int direction)
 	return true;
 }
 
+bool GameState::SetGameplayRate(float rate)
+{
+	if(!m_GameplayRate.Set(m_SongOptions.GetCurrent().m_fMusicRate, rate))
+		return false;
+	ApplyGameplayRate();
+	return true;
+}
+
 void GameState::ApplyGameplayRate()
 {
 	if(!m_GameplayRate.IsActive())

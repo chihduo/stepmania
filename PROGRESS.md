@@ -2,7 +2,7 @@
 
 ## Status
 
-The first Windows build was delivered, and the user reports that speed tuning works. The requested 0.1x steps, opposite-arrow reset chords, and bottom playback message are now being implemented. No new Windows ZIP or workflow will be started until requested; the user plans further changes.
+The first Windows build was delivered, and the user reports that speed tuning works. The requested 0.1x steps, opposite-arrow reset chords, and bottom playback message are implemented and verified by local build and regression checks. This follow-up is committed locally. No new Windows ZIP has been built and no follow-up commits have been pushed, as requested.
 
 ## Checkpoints
 
@@ -26,13 +26,14 @@ Baseline: `b3561fc60e` on `5_1-new`. The working tree was clean before this task
 
 ## Implemented behavior
 
-- Either Shift + Up/Right increases playback rate by 0.2x; either Shift + Down/Left decreases it by 0.2x. Each arrow press changes the rate once. New rates are limited to 0.2x through 3.0x. Existing out-of-range options cannot make a shortcut change speed in the opposite direction.
+- Either Shift + Up/Right increases playback rate by 0.1x; either Shift + Down/Left decreases it by 0.1x. Each arrow press changes the rate once. New rates are limited to 0.2x through 3.0x. Existing out-of-range options cannot make a shortcut change speed in the opposite direction.
+- Holding either Shift with Up+Down or Left+Right resets the current play to 1.0x when the second arrow is pressed. Both press orders work. Physical key snapshots prevent stale captures from causing a false reset; repeats and releases make no additional changes. The original song rate and practice status remain preserved.
 - Shortcuts are intercepted before input-code queues and normal dispatch. Captured keys remain excluded from press, held-duration, and analog-level queries until release, including when Shift is released first. Other mapped devices remain usable.
 - Only current song options receive the temporary override. Preferred, stage, and song targets remain intact. The override survives normal modifier updates and clears on song end, reload, screen exit, or destruction. Persistent screens and lesson-page input routing are covered.
 - Manual control temporarily takes precedence over Haste and suspends autosync sampling. Normal song targets resume afterward.
 - CMod/MMod retain their original spacing while the song clock accelerates. Saved scrolling settings are untouched.
 - Standard video effects already use the music clock. Timer-based background/foreground animations follow song time while live control is active. Videos receive no additional rate multiplier.
-- A localized message displays the new rate and identifies practice play.
+- A localized message displays the new rate and identifies practice play. Playback messages appear at the bottom in both bundled themes; ordinary system messages use their normal placement.
 - A stage-level practice flag survives restoring the original rate and statistics aggregation. It blocks normal high scores, replay files, Padmiss score exports, and upload files. Activity totals still accumulate.
 - User instructions and test commands are in `Docs/LiveGameplayRate.md`.
 
@@ -78,10 +79,23 @@ Extract the GitHub artifact, then extract its inner portable ZIP and run `StepMa
 
 - [x] Record the user's successful gameplay feedback and the three requested changes.
 - [x] Inspect the input snapshot, temporary rate state, and bundled system-message overlays.
-- [ ] Implement 0.1x steps and reset-to-1x chords in both orders.
-- [ ] Move playback feedback to the bottom in both bundled themes.
-- [ ] Extend and run rate/input regression checks and rebuild the local validation executable.
-- [ ] Review and commit the revision locally.
+- [x] Implement 0.1x steps and reset-to-1x chords in both orders.
+- [x] Move playback feedback to the bottom in both bundled themes.
+- [x] Extend and run rate/input regression checks and rebuild the local validation executable.
+- [x] Review and commit the revision locally.
 - Windows ZIP rebuilding and publishing are deferred at the user's request.
 
 The user's report confirms the existing speed controls work in gameplay. It does not establish that every previously listed exit, timing, and custom-script check has been completed.
+
+Follow-up checkpoint commits:
+
+- `7f194902cf` — plan and progress checkpoint.
+- The commit containing this entry — `feat: refine live playback controls and feedback`.
+
+Follow-up validation:
+
+- **PASS:** focused rate/input checks with AddressSanitizer and UndefinedBehaviorSanitizer. Covered 0.1x arithmetic, bounds and repeated adjustments, reset-to-1x from slower/faster/nonstandard starting rates, both opposite pairs, both press/release orders, repeat suppression, stale captures, and preserving ordinary held notes.
+- **PASS:** tests linked against the real engine. Covered both physical Shift keys and all ordered pairs of distinct arrows; only opposite pairs reset. Captured arrows remain excluded from note polling while separately mapped controllers work. Resetting to 1.0x retains original song options, Haste/autosync restoration, and practice-score behavior.
+- **PASS:** local CMake Debug application compilation and link, with the existing validation build configuration. Logs are in `build/live-rate/followup-build.log` and `build/live-rate/followup-engine-tests.log`.
+- **PASS:** diff whitespace check and source review of both bundled message overlays. Playback messages move the entire 30-pixel bar to the bottom, and ordinary messages reset its placement.
+- **PENDING:** visual confirmation of the bottom bar and interactive Windows testing of the new controls. Windows build, ZIP packaging, and publishing remain deferred at the user's request.

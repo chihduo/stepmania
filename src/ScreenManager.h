@@ -43,7 +43,7 @@ public:
 	bool IsScreenNameValid(RString const& name) const;
 
 	// System messages
-	void SystemMessage( const RString &sMessage );
+	void SystemMessage( const RString &sMessage, bool atBottom = false );
 	void SystemMessageNoAnimate( const RString &sMessage );
 	void HideSystemMessage();
 

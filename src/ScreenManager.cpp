@@ -838,12 +838,13 @@ void ScreenManager::SendMessageToTopScreen( ScreenMessage SM )
 }
 
 
-void ScreenManager::SystemMessage( const RString &sMessage )
+void ScreenManager::SystemMessage( const RString &sMessage, bool atBottom )
 {
 	LOG->Trace( "%s", sMessage.c_str() );
 	Message msg( "SystemMessage" );
 	msg.SetParam( "Message", sMessage );
 	msg.SetParam( "NoAnimate", false );
+	msg.SetParam( "AtBottom", atBottom );
 	MESSAGEMAN->Broadcast( msg );
 }
 

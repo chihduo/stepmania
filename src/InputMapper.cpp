@@ -972,13 +972,16 @@ GameplayRateInput::Result InputMapper::FilterGameplayRateInput(const InputEventP
 {
 	const auto arrow = GameplayRateArrow(input.DeviceI);
 	if(arrow == GameplayRateInput::NotArrow)
-		return {false, 0};
+		return {false, GameplayRateInput::NoChange};
 	const bool shift = INPUTFILTER->IsBeingPressed(
 		DeviceInput(DEVICE_KEYBOARD, KEY_LSHIFT), &input.InputList) ||
 		INPUTFILTER->IsBeingPressed(DeviceInput(DEVICE_KEYBOARD, KEY_RSHIFT), &input.InputList);
 	const auto event = input.type == IET_FIRST_PRESS ? GameplayRateInput::Press :
 		input.type == IET_RELEASE ? GameplayRateInput::Release : GameplayRateInput::Repeat;
-	return m_GameplayRateInput.Handle(arrow, event, shift, enabled);
+	const DeviceButton opposite[] = {KEY_DOWN, KEY_LEFT, KEY_UP, KEY_RIGHT};
+	const bool oppositeDown = INPUTFILTER->IsBeingPressed(
+		DeviceInput(DEVICE_KEYBOARD, opposite[arrow]), &input.InputList);
+	return m_GameplayRateInput.Handle(arrow, event, shift, enabled, oppositeDown);
 }
 
 bool InputMapper::IsGameplayRateInputSuppressed(const DeviceInput &input) const

@@ -4,10 +4,13 @@ Hold either Shift key and press an arrow:
 
 | Shortcut | Playback-rate change |
 | --- | --- |
-| Shift + Up or Shift + Right | +0.2x |
-| Shift + Down or Shift + Left | -0.2x |
+| Shift + Up or Shift + Right | +0.1x |
+| Shift + Down or Shift + Left | -0.1x |
+| Shift + Up + Down or Shift + Left + Right | Set to 1.0x |
 
-For example, Up, Down, Down while holding Shift changes 1.0x to 1.2x, then 1.0x, then 0.8x. Each new arrow press changes the rate once. Holding an arrow does not repeat the adjustment. The rate is limited to 0.2x through 3.0x, and a message shows the new rate.
+For example, tapping and releasing Up, Down, Down while holding Shift changes 1.0x to 1.1x, then 1.0x, then 0.9x. Each new arrow press changes the rate once. Holding an arrow does not repeat the adjustment. The rate is limited to 0.2x through 3.0x. In the bundled themes, a message bar at the bottom shows the new rate.
+
+To reset, hold either Shift and press both arrows in an opposite pair. The reset takes effect when the second arrow is pressed, in either order. Holding or releasing the pair makes no further changes. This sets the current play to exactly 1.0x even if its original rate was different; the original setting still returns when the play ends.
 
 Release Shift to continue playing at the selected rate. Arrows pressed without Shift remain normal note inputs. An arrow used for a shortcut remains excluded from note inputs until it is released, even if Shift is released first. Dance pads and other separately mapped keys continue to work.
 
@@ -32,6 +35,6 @@ After building with the Unix Makefiles generator and `CMAKE_EXPORT_COMPILE_COMMA
 python3 src/tests/run_gameplay_rate_engine.py build/live-rate
 ```
 
-These checks use a temporary filesystem and verify modifier restoration, both Shift keys, each arrow, controller inputs sharing a column, and practice-score aggregation. They do not open a game window or change saved user settings.
+These checks use a temporary filesystem and verify modifier restoration, both Shift keys, each arrow, both reset pairs in either order, controller inputs sharing a column, original-rate restoration after a reset, and practice-score aggregation. They do not open a game window or change saved user settings.
 
-Also check an actual song with a video. Verify audio/video alignment while switching between 0.8x, 1.0x, and 1.2x; ordinary arrows, holds, mines, and lifts; both Shift keys and release orders; XMod/CMod/MMod; and resetting on each exit/retry/course path. Custom song scripts that explicitly use their own real-time clocks need separate verification.
+Also check an actual song with a video. Verify audio/video alignment while switching between 0.9x, 1.0x, and 1.1x and resetting to 1.0x from either direction; ordinary arrows, holds, mines, and lifts; both Shift keys and release orders; XMod/CMod/MMod; and resetting on each exit/retry/course path. Custom song scripts that explicitly use their own real-time clocks need separate verification.

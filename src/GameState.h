@@ -314,6 +314,7 @@ public:
 	ModsGroup<SongOptions>	m_SongOptions;
 	GameplayRate m_GameplayRate;
 	bool ChangeGameplayRate(int direction);
+	bool SetGameplayRate(float rate);
 	void ApplyGameplayRate();
 	void ResetGameplayRate();
 

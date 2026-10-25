@@ -7,27 +7,33 @@ class GameplayRateInput
 public:
 	enum Arrow { Up, Right, Down, Left, NumArrows, NotArrow };
 	enum Event { Press, Repeat, Release };
+	enum Action { NoChange, Faster, Slower, ResetToNormal };
 	struct Result
 	{
 		bool handled;
-		int direction;
+		Action action;
 	};
 
-	Result Handle(Arrow arrow, Event event, bool shift, bool enabled)
+	Result Handle(Arrow arrow, Event event, bool shift, bool enabled,
+		bool oppositeDown = false)
 	{
 		if(arrow < Up || arrow >= NumArrows)
-			return {false, 0};
+			return {false, NoChange};
 		if(event == Press)
 		{
 			// A fresh press also recovers from a release lost during focus changes.
 			m_Captured[arrow] = enabled && shift;
-			return {m_Captured[arrow], m_Captured[arrow] ?
-				(arrow == Up || arrow == Right ? 1 : -1) : 0};
+			if(!m_Captured[arrow])
+				return {false, NoChange};
+			// Use the event's physical snapshot, not a possibly stale capture flag.
+			if(oppositeDown)
+				return {true, ResetToNormal};
+			return {true, arrow == Up || arrow == Right ? Faster : Slower};
 		}
 		const bool captured = m_Captured[arrow];
 		if(event == Release)
 			m_Captured[arrow] = false;
-		return {captured, 0};
+		return {captured, NoChange};
 	}
 
 	bool IsCaptured(Arrow arrow) const

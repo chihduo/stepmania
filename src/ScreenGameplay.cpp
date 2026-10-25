@@ -2465,7 +2465,15 @@ bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
 	const auto result = INPUTMAPPER->FilterGameplayRateInput(input, enabled);
 	if(!result.handled)
 		return false;
-	if(result.direction != 0 && GAMESTATE->ChangeGameplayRate(result.direction))
+	bool changed = false;
+	switch(result.action)
+	{
+		case GameplayRateInput::Faster: changed = GAMESTATE->ChangeGameplayRate(1); break;
+		case GameplayRateInput::Slower: changed = GAMESTATE->ChangeGameplayRate(-1); break;
+		case GameplayRateInput::ResetToNormal: changed = GAMESTATE->SetGameplayRate(1.0f); break;
+		case GameplayRateInput::NoChange: break;
+	}
+	if(changed)
 	{
 		STATSMAN->m_CurStageStats.m_bUsedGameplayRate = true;
 		FOREACH_EnabledPlayerInfo(m_vPlayerInfo, pi)
@@ -2475,7 +2483,7 @@ bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
 		m_pSoundMusic->SetParams(params);
 		m_textSongOptions.SetText(GAMESTATE->m_SongOptions.GetCurrent().GetLocalizedString());
 		static LocalizedString LIVE_PLAYBACK_RATE("ScreenGameplay", "LivePlaybackRate");
-		SCREENMAN->SystemMessage(ssprintf(LIVE_PLAYBACK_RATE.GetValue().c_str(), params.m_fSpeed));
+		SCREENMAN->SystemMessage(ssprintf(LIVE_PLAYBACK_RATE.GetValue().c_str(), params.m_fSpeed), true);
 	}
 	return true;
 }
