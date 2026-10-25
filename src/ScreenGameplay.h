@@ -147,6 +147,7 @@ public:
 	virtual void BeginScreen();
 
 	virtual void Update( float fDeltaTime );
+	virtual bool InputShortcut(const InputEventPlus &input);
 	virtual bool Input( const InputEventPlus &input );
 	virtual void HandleScreenMessage( const ScreenMessage SM );
 	virtual void HandleMessage( const Message &msg );

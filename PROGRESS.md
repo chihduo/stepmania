@@ -2,15 +2,15 @@
 
 ## Status
 
-Planning checkpoint complete. Implementing gameplay controls and per-song lifetime.
+Gameplay controls and lifetime implemented. Finishing synchronized presentation and build validation.
 
 ## Checkpoints
 
 - [x] Investigate playback, video clocks, modifier lifetime, input routing, and score handling.
 - [x] Write the edit plan and progress file.
 - [x] Commit planning checkpoint (`docs: plan live gameplay speed controls`).
-- [ ] Implement Shift+arrow controls and suppress shortcut note inputs.
-- [ ] Implement temporary rate lifetime and practice score/replay handling.
+- [x] Implement Shift+arrow controls and suppress shortcut note inputs.
+- [x] Implement temporary rate lifetime and practice score/replay handling.
 - [ ] Implement synchronized scrolling/video behavior and rate feedback.
 - [ ] Build and run focused regression checks.
 - [ ] Review and commit the completed revision.
@@ -27,8 +27,19 @@ Planning checkpoint complete. Implementing gameplay controls and per-song lifeti
 
 ## Validation log
 
-- Source inspection only so far. No implementation or in-game verification has occurred.
+- Planning commit: `7ec3f6389f`.
+- Standalone C++ regression checks pass with GCC 13, `-Wall -Wextra -Werror -pedantic`, AddressSanitizer, and UndefinedBehaviorSanitizer. Coverage includes the requested rate sequence, bounds, 10,000 increase/decrease cycles, non-1x starts, reset, all arrow aliases, repeats, both release orders, pre-existing holds, concurrent arrows, and recovery after a lost release.
+- `git diff --check` passes.
+- Initial CMake configuration stopped at the missing libmad dependency. CMake was installed under `/tmp`; development headers are being downloaded into the ignored build directory to attempt a build without changing system packages. No in-game check has been performed.
+
+## Implementation checkpoint
+
+- Shortcuts are intercepted before input-code queues and normal dispatch. Captured keys stay excluded from press, held-duration, and analog-level queries; other mapped devices remain available.
+- The override is applied only to current song options and reapplied after normal option updates. Preferred, stage, and song targets remain intact. Song end, reload, and screen destruction clear the override.
+- Manual control temporarily takes precedence over Haste and suspends autosync sampling. These settings return to the normal song targets afterward.
+- A stage-level practice flag survives restoring the original rate and statistics aggregation. It blocks normal high scores, replay files, Padmiss score exports, and upload files.
+- This checkpoint is `feat: add temporary Shift-arrow gameplay rate controls`. Fixed-scroll compensation, feedback, and broader validation follow in the next checkpoint.
 
 ## Remaining work
 
-Follow `EDIT_PLAN.md`, updating this file at each implementation checkpoint. Identify the available build toolchain and document any runtime verification limitations.
+Finish CMod/MMod compensation, video/animation timing review, rate feedback, build validation, and user documentation. Record any interactive checks that remain unavailable.

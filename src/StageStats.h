@@ -46,6 +46,8 @@ public:
 	bool	m_bGaveUp;
 	/** @brief Did the PLayer use Autoplay at any point during gameplay? */
 	bool	m_bUsedAutoplay;
+	/** @brief Live playback-rate changes make this stage practice-only. */
+	bool	m_bUsedGameplayRate;
 
 	// TODO: These are updated in ScreenGameplay::Update based on fDelta.  
 	// They should be made more accurate.

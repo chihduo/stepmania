@@ -1589,6 +1589,11 @@ void HandleInputEvents(float fDeltaTime)
 			input.pn = INPUTMAPPER->ControllerToPlayerNumber( input.GameI.controller );
 		}
 
+		// Captured shortcut releases/repeats stay consumed across screen changes.
+		if(INPUTMAPPER->FilterGameplayRateInput(input, false).handled ||
+			SCREENMAN->GetTopScreen()->InputShortcut(input))
+			continue;
+
 		INPUTQUEUE->RememberInput( input );
 
 		// When a GameButton is pressed, stop repeating other keys on the same controller.

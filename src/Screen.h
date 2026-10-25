@@ -59,6 +59,8 @@ public:
 	virtual void EndScreen();
 
 	virtual void Update( float fDeltaTime );
+	// Called before inputs enter game-code queues or normal screen dispatch.
+	virtual bool InputShortcut(const InputEventPlus & /* input */) { return false; }
 	virtual bool Input( const InputEventPlus &input );
 	virtual void HandleScreenMessage( const ScreenMessage SM );
 	void SetLockInputSecs( float f ) { m_fLockInputSecs = f; }

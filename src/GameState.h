@@ -4,6 +4,7 @@
 #include "Attack.h"
 #include "Difficulty.h"
 #include "GameConstantsAndTypes.h"
+#include "GameplayRate.h"
 #include "Grade.h"
 #include "MessageManager.h"
 #include "ModsGroup.h"
@@ -311,6 +312,10 @@ public:
 
 	// Options stuff
 	ModsGroup<SongOptions>	m_SongOptions;
+	GameplayRate m_GameplayRate;
+	bool ChangeGameplayRate(int direction);
+	void ApplyGameplayRate();
+	void ResetGameplayRate();
 
 	/**
 	 * @brief Did the current game mode change the default Noteskin?

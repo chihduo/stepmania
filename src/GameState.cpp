@@ -330,6 +330,7 @@ void GameState::Reset()
 		m_pMultiPlayerState[p]->Reset();
 
 	m_SongOptions.Init();
+	m_GameplayRate.Reset();
 
 	m_paused= false;
 	ResetMusicStatistics();
@@ -1142,9 +1143,42 @@ void GameState::ForceOtherPlayersToCompatibleSteps(PlayerNumber main)
 	}
 }
 
+bool GameState::ChangeGameplayRate(int direction)
+{
+	if(!m_GameplayRate.Change(m_SongOptions.GetCurrent().m_fMusicRate, direction))
+		return false;
+	ApplyGameplayRate();
+	return true;
+}
+
+void GameState::ApplyGameplayRate()
+{
+	if(!m_GameplayRate.IsActive())
+		return;
+	SongOptions &current = m_SongOptions.GetCurrent();
+	current.m_fMusicRate = m_GameplayRate.GetRate();
+	// The manual rate is absolute. Do not compound it with Haste, or collect
+	// calibration samples across a live rate change.
+	current.m_fHaste = 0;
+	current.m_AutosyncType = AutosyncType_Off;
+}
+
+void GameState::ResetGameplayRate()
+{
+	if(!m_GameplayRate.IsActive())
+		return;
+	m_GameplayRate.Reset();
+	SongOptions &current = m_SongOptions.GetCurrent();
+	const SongOptions &song = m_SongOptions.GetSong();
+	current.m_fMusicRate = song.m_fMusicRate;
+	current.m_fHaste = song.m_fHaste;
+	current.m_AutosyncType = song.m_AutosyncType;
+}
+
 void GameState::Update( float fDelta )
 {
 	m_SongOptions.Update( fDelta );
+	ApplyGameplayRate();
 
 	FOREACH_PlayerNumber( p )
 	{

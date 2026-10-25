@@ -4,6 +4,7 @@
 #include "MessageManager.h"
 #include "RageLog.h"
 #include "InputFilter.h"
+#include "InputEventPlus.h"
 #include "RageUtil.h"
 #include "PrefsManager.h"
 #include "RageInput.h"
@@ -953,6 +954,38 @@ void InputMapper::MenuToGame( GameButton MenuI, PlayerNumber pn, vector<GameInpu
 }
 
 
+static GameplayRateInput::Arrow GameplayRateArrow(const DeviceInput &input)
+{
+	if(input.device != DEVICE_KEYBOARD)
+		return GameplayRateInput::NotArrow;
+	switch(input.button)
+	{
+		case KEY_UP: return GameplayRateInput::Up;
+		case KEY_RIGHT: return GameplayRateInput::Right;
+		case KEY_DOWN: return GameplayRateInput::Down;
+		case KEY_LEFT: return GameplayRateInput::Left;
+		default: return GameplayRateInput::NotArrow;
+	}
+}
+
+GameplayRateInput::Result InputMapper::FilterGameplayRateInput(const InputEventPlus &input, bool enabled)
+{
+	const auto arrow = GameplayRateArrow(input.DeviceI);
+	if(arrow == GameplayRateInput::NotArrow)
+		return {false, 0};
+	const bool shift = INPUTFILTER->IsBeingPressed(
+		DeviceInput(DEVICE_KEYBOARD, KEY_LSHIFT), &input.InputList) ||
+		INPUTFILTER->IsBeingPressed(DeviceInput(DEVICE_KEYBOARD, KEY_RSHIFT), &input.InputList);
+	const auto event = input.type == IET_FIRST_PRESS ? GameplayRateInput::Press :
+		input.type == IET_RELEASE ? GameplayRateInput::Release : GameplayRateInput::Repeat;
+	return m_GameplayRateInput.Handle(arrow, event, shift, enabled);
+}
+
+bool InputMapper::IsGameplayRateInputSuppressed(const DeviceInput &input) const
+{
+	return m_GameplayRateInput.IsCaptured(GameplayRateArrow(input));
+}
+
 bool InputMapper::IsBeingPressed( const GameInput &GameI, MultiPlayer mp, const DeviceInputList *pButtonState ) const
 {
 	if(GameI.button == GameButton_Invalid)
@@ -967,7 +1000,7 @@ bool InputMapper::IsBeingPressed( const GameInput &GameI, MultiPlayer mp, const 
 		{
 			if( mp != MultiPlayer_Invalid )
 				DeviceI.device = MultiPlayerToInputDevice(mp);
-			if( INPUTFILTER->IsBeingPressed(DeviceI, pButtonState) )
+			if( !IsGameplayRateInputSuppressed(DeviceI) && INPUTFILTER->IsBeingPressed(DeviceI, pButtonState) )
 				return true;
 		}
 	}
@@ -1042,7 +1075,8 @@ float InputMapper::GetSecsHeld( const GameInput &GameI, MultiPlayer mp ) const
 		{
 			if( mp != MultiPlayer_Invalid )
 				DeviceI.device = MultiPlayerToInputDevice(mp);
-			fMaxSecsHeld = max( fMaxSecsHeld, INPUTFILTER->GetSecsHeld(DeviceI) );
+			if( !IsGameplayRateInputSuppressed(DeviceI) )
+				fMaxSecsHeld = max( fMaxSecsHeld, INPUTFILTER->GetSecsHeld(DeviceI) );
 		}
 	}
 
@@ -1102,7 +1136,7 @@ float InputMapper::GetLevel( const GameInput &GameI ) const
 	{
 		DeviceInput DeviceI;
 
-		if( GameToDevice( GameI, i, DeviceI ) )
+		if( GameToDevice( GameI, i, DeviceI ) && !IsGameplayRateInputSuppressed(DeviceI) )
 			fLevel = max( fLevel, INPUTFILTER->GetLevel(DeviceI) );
 	}
 	return fLevel;

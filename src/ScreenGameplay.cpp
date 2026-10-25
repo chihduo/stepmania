@@ -1044,6 +1044,7 @@ ScreenGameplay::~ScreenGameplay()
 		m_pSoundMusic->StopPlaying();
 
 	m_GameplayAssist.StopPlaying();
+	GAMESTATE->ResetGameplayRate();
 
 	if( !m_bForceNoNetwork )
 		NSMAN->ReportSongOver();
@@ -1168,6 +1169,7 @@ void ScreenGameplay::ReloadCurrentSong()
 
 void ScreenGameplay::LoadNextSong()
 {
+	GAMESTATE->ResetGameplayRate();
 	GAMESTATE->ResetMusicStatistics();
 
 	FOREACH_EnabledPlayerInfo( m_vPlayerInfo, pi )
@@ -2445,6 +2447,27 @@ void ScreenGameplay::ResetGiveUpTimers(bool show_text)
 }
 
 
+bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
+{
+	const bool enabled = GetScreenType() == gameplay &&
+		!GAMESTATE->m_bDemonstrationOrJukebox && !GAMESTATE->m_bInStepEditor &&
+		!NSMAN->useSMserver && !m_bPaused && m_DancingState == STATE_DANCING &&
+		!m_Cancel.IsTransitioning();
+	const auto result = INPUTMAPPER->FilterGameplayRateInput(input, enabled);
+	if(!result.handled)
+		return false;
+	if(result.direction != 0 && GAMESTATE->ChangeGameplayRate(result.direction))
+	{
+		STATSMAN->m_CurStageStats.m_bUsedGameplayRate = true;
+		FOREACH_EnabledPlayerInfo(m_vPlayerInfo, pi)
+			pi->GetPlayerStageStats()->m_bDisqualified = true;
+		RageSoundParams params = m_pSoundMusic->GetParams();
+		params.m_fSpeed = GAMESTATE->m_GameplayRate.GetRate();
+		m_pSoundMusic->SetParams(params);
+	}
+	return true;
+}
+
 bool ScreenGameplay::Input( const InputEventPlus &input )
 {
 	//LOG->Trace( "ScreenGameplay::Input()" );
@@ -2662,6 +2685,7 @@ void ScreenGameplay::SongFinished()
 	/* Extremely important: if we don't remove attacks before moving on to the next
 	 * screen, they'll still be turned on eventually. */
 	GAMESTATE->RemoveAllActiveAttacks();
+	GAMESTATE->ResetGameplayRate();
 	FOREACH_VisiblePlayerInfo( m_vPlayerInfo, pi )
 		pi->m_pActiveAttackList->Refresh();
 }
@@ -2696,7 +2720,7 @@ void ScreenGameplay::StageFinished( bool bBackedOut )
 	}
 
 	FOREACH_HumanPlayer( pn )
-		STATSMAN->m_CurStageStats.m_player[pn].CalcAwards( pn, STATSMAN->m_CurStageStats.m_bGaveUp, STATSMAN->m_CurStageStats.m_bUsedAutoplay );
+		STATSMAN->m_CurStageStats.m_player[pn].CalcAwards( pn, STATSMAN->m_CurStageStats.m_bGaveUp, STATSMAN->m_CurStageStats.m_bUsedAutoplay || STATSMAN->m_CurStageStats.m_bUsedGameplayRate );
 	STATSMAN->m_CurStageStats.FinalizeScores( false );
 
 	GAMESTATE->CommitStageStats();
@@ -3175,6 +3199,9 @@ PlayerInfo *ScreenGameplay::GetDummyPlayerInfo( int iDummyIndex )
 
 void ScreenGameplay::SaveReplay()
 {
+	if(STATSMAN->m_CurStageStats.m_bUsedGameplayRate)
+		return; // Replays do not record a variable playback-rate timeline.
+
 	/* Replay data TODO:
 	 * Add more player information (?)
 	 * Add AutoGen flag if steps were autogen?

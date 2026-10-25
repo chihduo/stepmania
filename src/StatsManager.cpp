@@ -235,7 +235,7 @@ void StatsManager::CommitStatsToProfiles( const StageStats *pSS )
 			}
 
 			// No marathons etc for now...
-			if ( g_PadmissEnabled.Get() && pSS->m_playMode == PLAY_MODE_REGULAR )
+			if ( !pSS->m_bUsedGameplayRate && g_PadmissEnabled.Get() && pSS->m_playMode == PLAY_MODE_REGULAR )
 				SavePadmissScore( pSS, pn );
 		}
 	}
@@ -243,7 +243,7 @@ void StatsManager::CommitStatsToProfiles( const StageStats *pSS )
 	// Not sure what the Save/Upload folder was originally for, but the files
 	// in it just accumulate uselessly, wasting several seconds when finishing
 	// a song.  So this pref disables it. -Kyz
-	if(!PREFSMAN->m_DisableUploadDir)
+	if(!pSS->m_bUsedGameplayRate && !PREFSMAN->m_DisableUploadDir)
 		SaveUploadFile( pSS );
 
 	//FileCopy( "Data/TempTestGroups.xml", "Save/Upload/data.xml" );

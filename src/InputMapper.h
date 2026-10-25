@@ -1,6 +1,7 @@
 #ifndef INPUT_MAPPER_H
 #define INPUT_MAPPER_H
 
+#include "GameplayRateInput.h"
 #include "RageInputDevice.h"
 #include "GameInput.h"
 #include "PlayerNumber.h"
@@ -139,6 +140,8 @@ public:
 	bool ClearFromInputMap( const GameInput &GameI, int iSlotIndex );
 };
 /** @brief Holds user-chosen input preferences and saves it between sessions. */
+class InputEventPlus;
+
 class InputMapper
 {
 public:
@@ -166,6 +169,9 @@ public:
 	bool CheckForChangedInputDevicesAndRemap( RString &sMessageOut );
 
 	bool IsMapped( const DeviceInput &DeviceI ) const;
+
+	GameplayRateInput::Result FilterGameplayRateInput(const InputEventPlus &input, bool enabled);
+	bool IsGameplayRateInputSuppressed(const DeviceInput &input) const;
 
 	bool DeviceToGame( const DeviceInput &DeviceI, GameInput& GameI ) const;	// return true if there is a mapping from device to pad
 	bool GameToDevice( const GameInput &GameI, int iSlotNum, DeviceInput& DeviceI ) const;	// return true if there is a mapping from pad to device
@@ -198,6 +204,7 @@ public:
 
 protected:
 	InputMappings m_mappings;
+	GameplayRateInput m_GameplayRateInput;
 
 	void UpdateTempDItoGI();
 	const InputScheme *m_pInputScheme;

@@ -24,6 +24,7 @@ StageStats::StageStats()
 	m_EarnedExtraStage = EarnedExtraStage_No;
 	m_bGaveUp = false;
 	m_bUsedAutoplay = false;
+	m_bUsedGameplayRate = false;
 	m_fGameplaySeconds = 0;
 	m_fStepsSeconds = 0;
 	m_fMusicRate = 1;
@@ -99,6 +100,7 @@ void StageStats::AddStats( const StageStats& other )
 
 	m_bGaveUp |= other.m_bGaveUp;
 	m_bUsedAutoplay |= other.m_bUsedAutoplay;
+	m_bUsedGameplayRate |= other.m_bUsedGameplayRate;
 
 	m_fGameplaySeconds += other.m_fGameplaySeconds;
 	m_fStepsSeconds += other.m_fStepsSeconds;
@@ -189,7 +191,7 @@ void StageStats::FinalizeScores( bool bSummary )
 	}
 
 	// don't save scores if the player chose not to
-	if( !GAMESTATE->m_SongOptions.GetCurrent().m_bSaveScore )
+	if( m_bUsedGameplayRate || !GAMESTATE->m_SongOptions.GetCurrent().m_bSaveScore )
 		return;
 
 	LOG->Trace( "saving stats and high scores" );
@@ -300,6 +302,9 @@ void StageStats::FinalizeScores( bool bSummary )
 
 bool StageStats::PlayerHasHighScore( PlayerNumber pn ) const
 {
+	if(m_bUsedGameplayRate)
+		return false;
+
 	const Song *pSong = m_vpPlayedSongs[0];
 	const Steps *pSteps = m_player[pn].m_vpPossibleSteps[0];
 	const Course *pCourse = GAMESTATE->m_pCurCourse;
