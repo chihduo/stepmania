@@ -2,7 +2,7 @@
 
 ## Status
 
-The 0.1x steps, opposite-arrow resets, and themed bottom-left speed popup are implemented and committed locally. Local compilation and Lua syntax checks pass. Windows ZIP builds and publishing remain deferred at the user's request; the popup still needs visual confirmation in gameplay.
+The playback-control and themed-popup changes are committed locally. The single-player life-history graph is now being restored for default-theme gameplay and evaluation. Windows ZIP builds and publishing remain deferred.
 
 ## Checkpoints
 
@@ -109,7 +109,7 @@ Follow-up validation:
 
 The FLAWLESS word is a sprite. The changing multiplier uses the default theme's bold italic font with its W1 color, outline, and existing FLAWLESS animation. The display is scoped to gameplay and resets with the current song.
 
-Display checkpoint: the commit containing this entry, `feat: show playback speed with themed judgment animation`.
+Display checkpoint: `29f73a9876`, `feat: show playback speed with themed judgment animation`.
 
 Display validation:
 
@@ -118,3 +118,14 @@ Display validation:
 - **PASS:** source review of actor command propagation, default/fallback font redirects and glyph textures, W1 color/animation references, stable bottom-left anchoring, rapid-change tween replacement, and song/screen cleanup paths.
 - **PASS:** diff whitespace check. No rate arithmetic, keyboard handling, synchronization, or score behavior changed in this display revision.
 - **PENDING:** interactive appearance and animation verification. The selected default is a pop-and-fade indicator like FLAWLESS; no Windows ZIP or remote build was produced.
+
+## Follow-up: single-player life-history graph
+
+- [x] Inspect the linked screenshot and identify the life/health history plot.
+- [x] Inspect the legacy assets, life-record clock, evaluation statistics, and current layouts.
+- [x] Record the implementation and validation plan.
+- [ ] Add the shared live/evaluation graph with single-player gating and bottom-right placement.
+- [ ] Validate time ranges, geometry, live updates, evaluation selection, and local compilation.
+- [ ] Review and commit locally; leave ZIP packaging and publishing deferred.
+
+Reference: https://perfectpotato.wordpress.com/wp-content/uploads/2016/02/screen-shot-2016-02-25-at-11-07-58-am.png . The image shows the life graph, not timing-offset or note-density data. The legacy graphics remain in the repository. The live widget will sample the engine's existing records and preserve their elapsed-play time scale.
