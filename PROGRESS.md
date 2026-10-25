@@ -2,7 +2,7 @@
 
 ## Status
 
-Implemented and committed. Automated regression checks, the Linux validation build, and the Windows x64 Release build pass. The Windows portable ZIP has been downloaded and verified. Interactive audio/video verification remains pending.
+The first Windows build was delivered, and the user reports that speed tuning works. The requested 0.1x steps, opposite-arrow reset chords, and bottom playback message are now being implemented. No new Windows ZIP or workflow will be started until requested; the user plans further changes.
 
 ## Checkpoints
 
@@ -73,3 +73,15 @@ c7deb5fe8704c865203075286fb0e2fe9c0ab402a7a33e461026a6e27af06d0e
 ```
 
 Extract the GitHub artifact, then extract its inner portable ZIP and run `StepMania/Program/StepMania.exe`. Keep the complete `StepMania` folder together. This Windows package includes the media dependencies omitted from the earlier Linux validation build. In-game notes/music/video synchronization still requires the manual checks in `Docs/LiveGameplayRate.md`.
+
+## Follow-up revision progress
+
+- [x] Record the user's successful gameplay feedback and the three requested changes.
+- [x] Inspect the input snapshot, temporary rate state, and bundled system-message overlays.
+- [ ] Implement 0.1x steps and reset-to-1x chords in both orders.
+- [ ] Move playback feedback to the bottom in both bundled themes.
+- [ ] Extend and run rate/input regression checks and rebuild the local validation executable.
+- [ ] Review and commit the revision locally.
+- Windows ZIP rebuilding and publishing are deferred at the user's request.
+
+The user's report confirms the existing speed controls work in gameplay. It does not establish that every previously listed exit, timing, and custom-script check has been completed.

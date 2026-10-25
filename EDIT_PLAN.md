@@ -34,3 +34,15 @@ Checkpoint boundaries may be combined or refined if compilation dependencies req
 - Verify note movement for XMod, CMod, and MMod and the music-clock video path without double scaling.
 - Run focused regression tests for the stateful behavior. Record any interactive audio/video checks that cannot be performed in this environment rather than claiming they passed.
 - Review the final diff and working tree; commit only files belonging to this feature.
+
+## Follow-up revision: finer control, reset chords, and bottom feedback
+
+The user reports that the Windows speed controls work and requests these changes:
+
+1. Change each increase/decrease to 0.1x; keep the 0.2x–3.0x limits.
+2. With either Shift held, Up+Down or Left+Right sets the current play to exactly 1.0x. Detect the reset when the second arrow is pressed, in either order, using the event's physical key snapshot. Continue consuming captured presses/repeats/releases. Keep existing ordinary held notes intact.
+3. Place the playback-rate notification bar at the bottom in both bundled themes, using an explicit message placement flag. Other system messages retain their normal placement.
+
+Resetting to 1.0x must preserve the original saved rate for cleanup and the existing practice flag. Holding or releasing a reset chord must not change speed again. Tests will cover 0.1x arithmetic and bounds, both reset pairs/orderings/Shift keys, key snapshots, held-key suppression, and restoring non-1x song settings after a reset.
+
+Commit the plan/progress checkpoint, implement and verify locally, then commit the revision. The user explicitly requested no Windows ZIP build yet because more changes are coming. Do not push commits or trigger the Windows workflow during this revision.
