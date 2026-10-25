@@ -280,6 +280,7 @@ protected:
 	CombinedLifeMeter*	m_pCombinedLifeMeter;
 
 	BitmapText		m_textSongOptions;
+	AutoActor		m_PlaybackRateDisplay;
 	BitmapText		m_Scoreboard[NUM_NSScoreBoardColumn];	// for NSMAN, so we can have a scoreboard
 
 	bool			m_bShowScoreboard;

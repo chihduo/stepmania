@@ -79,7 +79,6 @@ t[#t+1] = Def.ActorFrame {
 		OffCommand=cmd(sleep,3;linear,0.5;diffusealpha,0;);
 	};
 	SystemMessageMessageCommand = function(self, params)
-		self:y(params.AtBottom and (SCREEN_BOTTOM - SCREEN_TOP - 30) or 0);
 		self:GetChild("Text"):settext( params.Message );
 		self:playcommand( "On" );
 		if params.NoAnimate then

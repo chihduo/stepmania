@@ -793,6 +793,11 @@ void ScreenGameplay::Init()
 	m_textSongOptions.SetText( GAMESTATE->m_SongOptions.GetStage().GetLocalizedString() );
 	this->AddChild( &m_textSongOptions );
 
+	m_PlaybackRateDisplay.Load(THEME->GetPathG(m_sName, "playback rate"));
+	m_PlaybackRateDisplay->SetName("PlaybackRate");
+	m_PlaybackRateDisplay->SetDrawOrder(DRAW_ORDER_TRANSITIONS-1);
+	this->AddChild(m_PlaybackRateDisplay);
+
 	FOREACH_VisiblePlayerInfo( m_vPlayerInfo, pi )
 	{
 		ASSERT( pi->m_pActiveAttackList == nullptr );
@@ -1055,6 +1060,8 @@ void ScreenGameplay::EndScreen()
 	ScreenWithMenuElements::EndScreen();
 	// Persistent screens may leave gameplay without being destroyed.
 	GAMESTATE->ResetGameplayRate();
+	if(m_PlaybackRateDisplay.IsLoaded())
+		m_PlaybackRateDisplay->PlayCommand("Reset");
 }
 
 bool ScreenGameplay::IsLastSong()
@@ -1177,6 +1184,8 @@ void ScreenGameplay::ReloadCurrentSong()
 void ScreenGameplay::LoadNextSong()
 {
 	GAMESTATE->ResetGameplayRate();
+	if(m_PlaybackRateDisplay.IsLoaded())
+		m_PlaybackRateDisplay->PlayCommand("Reset");
 	GAMESTATE->ResetMusicStatistics();
 
 	FOREACH_EnabledPlayerInfo( m_vPlayerInfo, pi )
@@ -2482,8 +2491,9 @@ bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
 		params.m_fSpeed = GAMESTATE->m_GameplayRate.GetRate();
 		m_pSoundMusic->SetParams(params);
 		m_textSongOptions.SetText(GAMESTATE->m_SongOptions.GetCurrent().GetLocalizedString());
-		static LocalizedString LIVE_PLAYBACK_RATE("ScreenGameplay", "LivePlaybackRate");
-		SCREENMAN->SystemMessage(ssprintf(LIVE_PLAYBACK_RATE.GetValue().c_str(), params.m_fSpeed), true);
+		Message feedback("RateChanged");
+		feedback.SetParam("Rate", params.m_fSpeed);
+		m_PlaybackRateDisplay->HandleMessage(feedback);
 	}
 	return true;
 }
@@ -2706,6 +2716,8 @@ void ScreenGameplay::SongFinished()
 	 * screen, they'll still be turned on eventually. */
 	GAMESTATE->RemoveAllActiveAttacks();
 	GAMESTATE->ResetGameplayRate();
+	if(m_PlaybackRateDisplay.IsLoaded())
+		m_PlaybackRateDisplay->PlayCommand("Reset");
 	FOREACH_VisiblePlayerInfo( m_vPlayerInfo, pi )
 		pi->m_pActiveAttackList->Refresh();
 }

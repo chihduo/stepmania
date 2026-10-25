@@ -2,7 +2,7 @@
 
 ## Status
 
-The first Windows build was delivered, and the user reports that speed tuning works. The requested 0.1x steps, opposite-arrow reset chords, and bottom playback message are implemented and verified by local build and regression checks. This follow-up is committed locally. No new Windows ZIP has been built and no follow-up commits have been pushed, as requested.
+The 0.1x steps, opposite-arrow resets, and themed bottom-left speed popup are implemented and committed locally. Local compilation and Lua syntax checks pass. Windows ZIP builds and publishing remain deferred at the user's request; the popup still needs visual confirmation in gameplay.
 
 ## Checkpoints
 
@@ -33,7 +33,7 @@ Baseline: `b3561fc60e` on `5_1-new`. The working tree was clean before this task
 - Manual control temporarily takes precedence over Haste and suspends autosync sampling. Normal song targets resume afterward.
 - CMod/MMod retain their original spacing while the song clock accelerates. Saved scrolling settings are untouched.
 - Standard video effects already use the music clock. Timer-based background/foreground animations follow song time while live control is active. Videos receive no additional rate multiplier.
-- A localized message displays the new rate and identifies practice play. Playback messages appear at the bottom in both bundled themes; ordinary system messages use their normal placement.
+- A compact multiplier such as `1.1x` appears at the bottom-left after each change. It uses the default theme's bold italic font, the W1 color/outline, and the existing FLAWLESS pop/glow/fade command. Repeated adjustments replace its value immediately. The display clears on song completion, retry/course advance, and screen exit. Practice-score handling remains unchanged.
 - A stage-level practice flag survives restoring the original rate and statistics aggregation. It blocks normal high scores, replay files, Padmiss score exports, and upload files. Activity totals still accumulate.
 - User instructions and test commands are in `Docs/LiveGameplayRate.md`.
 
@@ -90,7 +90,7 @@ The user's report confirms the existing speed controls work in gameplay. It does
 Follow-up checkpoint commits:
 
 - `7f194902cf` — plan and progress checkpoint.
-- The commit containing this entry — `feat: refine live playback controls and feedback`.
+- `eefff0def8` — `feat: refine live playback controls and feedback`.
 
 Follow-up validation:
 
@@ -99,3 +99,22 @@ Follow-up validation:
 - **PASS:** local CMake Debug application compilation and link, with the existing validation build configuration. Logs are in `build/live-rate/followup-build.log` and `build/live-rate/followup-engine-tests.log`.
 - **PASS:** diff whitespace check and source review of both bundled message overlays. Playback messages move the entire 30-pixel bar to the bottom, and ordinary messages reset its placement.
 - **PENDING:** visual confirmation of the bottom bar and interactive Windows testing of the new controls. Windows build, ZIP packaging, and publishing remain deferred at the user's request.
+
+## Follow-up: judgment-style speed display
+
+- [x] Inspect the FLAWLESS sprite, theme fonts, W1 animation, and gameplay actor lifecycle.
+- [x] Replace the playback message bar with the themed bottom-left multiplier.
+- [x] Verify Lua syntax, local compilation, and display cleanup; update documentation.
+- [x] Commit locally, keeping ZIP packaging and publishing deferred.
+
+The FLAWLESS word is a sprite. The changing multiplier uses the default theme's bold italic font with its W1 color, outline, and existing FLAWLESS animation. The display is scoped to gameplay and resets with the current song.
+
+Display checkpoint: the commit containing this entry, `feat: show playback speed with themed judgment animation`.
+
+Display validation:
+
+- **PASS:** the new actor parses with the repository's bundled Lua 5.1 runtime.
+- **PASS:** local CMake Debug application compilation and link; log is in `build/live-rate/speed-display-build.log`.
+- **PASS:** source review of actor command propagation, default/fallback font redirects and glyph textures, W1 color/animation references, stable bottom-left anchoring, rapid-change tween replacement, and song/screen cleanup paths.
+- **PASS:** diff whitespace check. No rate arithmetic, keyboard handling, synchronization, or score behavior changed in this display revision.
+- **PENDING:** interactive appearance and animation verification. The selected default is a pop-and-fade indicator like FLAWLESS; no Windows ZIP or remote build was produced.
