@@ -2,44 +2,52 @@
 
 ## Status
 
-Gameplay controls and lifetime implemented. Finishing synchronized presentation and build validation.
+Implemented and committed in three checkpoints. Automated checks and the validation application build pass. Interactive audio/video verification remains pending.
 
 ## Checkpoints
 
 - [x] Investigate playback, video clocks, modifier lifetime, input routing, and score handling.
-- [x] Write the edit plan and progress file.
-- [x] Commit planning checkpoint (`docs: plan live gameplay speed controls`).
+- [x] Create and commit `EDIT_PLAN.md` and this progress file.
 - [x] Implement Shift+arrow controls and suppress shortcut note inputs.
 - [x] Implement temporary rate lifetime and practice score/replay handling.
-- [ ] Implement synchronized scrolling/video behavior and rate feedback.
-- [ ] Build and run focused regression checks.
-- [ ] Review and commit the completed revision.
+- [x] Implement synchronized scrolling/animation behavior and rate feedback.
+- [x] Build the application and run focused and engine-level regression checks.
+- [x] Review and commit the completed revision.
+- [ ] Verify an actual song with audio/video, including every exit/retry path, in an interactive game session.
 
-## Evidence and findings
+## Commit ledger
 
-- Baseline: `b3561fc60e` on `5_1-new`; the working tree was clean before this task.
-- `ScreenGameplay::Update` already applies the current music rate to audio. Song position comes from the audio playback position.
-- Standard background-video effects use `effectclock("music")`, and movie decoding advances from that clock.
-- CMod/MMod compensate for music rate by design, so live controls need separate temporary compensation to make visible note speed change proportionally.
-- Theme callbacks run after gameplay input. Held-note checks also poll `InputMapper`, so consuming a screen event alone is insufficient.
-- Existing slowdown disqualification checks preferred options; a temporary change needs a persistent practice marker for this play.
-- No repository `AGENTS.md` files were found. The command sandbox cannot initialize in this environment; repository commands require the managed escalation path.
+1. `7ec3f6389f` — `docs: plan live gameplay speed controls`.
+2. `47acb9a9ee` — `feat: add temporary Shift-arrow gameplay rate controls`.
+3. The commit containing this update — `feat: synchronize live rate visuals and verify gameplay controls`.
 
-## Validation log
+Baseline: `b3561fc60e` on `5_1-new`. The working tree was clean before this task. No repository `AGENTS.md` files were found.
 
-- Planning commit: `7ec3f6389f`.
-- Standalone C++ regression checks pass with GCC 13, `-Wall -Wextra -Werror -pedantic`, AddressSanitizer, and UndefinedBehaviorSanitizer. Coverage includes the requested rate sequence, bounds, 10,000 increase/decrease cycles, non-1x starts, reset, all arrow aliases, repeats, both release orders, pre-existing holds, concurrent arrows, and recovery after a lost release.
-- `git diff --check` passes.
-- Initial CMake configuration stopped at the missing libmad dependency. CMake was installed under `/tmp`; development headers are being downloaded into the ignored build directory to attempt a build without changing system packages. No in-game check has been performed.
+## Implemented behavior
 
-## Implementation checkpoint
+- Either Shift + Up/Right increases playback rate by 0.2x; either Shift + Down/Left decreases it by 0.2x. Each arrow press changes the rate once. New rates are limited to 0.2x through 3.0x. Existing out-of-range options cannot make a shortcut change speed in the opposite direction.
+- Shortcuts are intercepted before input-code queues and normal dispatch. Captured keys remain excluded from press, held-duration, and analog-level queries until release, including when Shift is released first. Other mapped devices remain usable.
+- Only current song options receive the temporary override. Preferred, stage, and song targets remain intact. The override survives normal modifier updates and clears on song end, reload, screen exit, or destruction. Persistent screens and lesson-page input routing are covered.
+- Manual control temporarily takes precedence over Haste and suspends autosync sampling. Normal song targets resume afterward.
+- CMod/MMod retain their original spacing while the song clock accelerates. Saved scrolling settings are untouched.
+- Standard video effects already use the music clock. Timer-based background/foreground animations follow song time while live control is active. Videos receive no additional rate multiplier.
+- A localized message displays the new rate and identifies practice play.
+- A stage-level practice flag survives restoring the original rate and statistics aggregation. It blocks normal high scores, replay files, Padmiss score exports, and upload files. Activity totals still accumulate.
+- User instructions and test commands are in `Docs/LiveGameplayRate.md`.
 
-- Shortcuts are intercepted before input-code queues and normal dispatch. Captured keys stay excluded from press, held-duration, and analog-level queries; other mapped devices remain available.
-- The override is applied only to current song options and reapplied after normal option updates. Preferred, stage, and song targets remain intact. Song end, reload, and screen destruction clear the override.
-- Manual control temporarily takes precedence over Haste and suspends autosync sampling. These settings return to the normal song targets afterward.
-- A stage-level practice flag survives restoring the original rate and statistics aggregation. It blocks normal high scores, replay files, Padmiss score exports, and upload files.
-- This checkpoint is `feat: add temporary Shift-arrow gameplay rate controls`. Fixed-scroll compensation, feedback, and broader validation follow in the next checkpoint.
+## Validation results
 
-## Remaining work
+- **PASS:** standalone regression checks with GCC 13, `-Wall -Wextra -Werror -pedantic`, AddressSanitizer, and UndefinedBehaviorSanitizer. Cases include the requested sequence, bounds, 10,000 increase/decrease cycles, non-1x starts, reset, scroll continuity, arrow aliases, repeat suppression, release ordering, pre-existing holds, concurrent arrows, and recovery after a lost release.
+- **PASS:** headless checks linked against the actual engine objects. Both physical Shift keys and all four arrows were exercised. Captured arrows do not satisfy note polling, but a pad mapped to the same column does. Preferred/stage/song options remain unchanged; current options, Haste, and autosync restore correctly. Practice status survives aggregation and prevents high-score handling even with normal disqualification disabled.
+- **PASS:** CMake Debug application compilation and link, producing the ignored `stepmania-debug` binary. All changed translation units compile.
+- **PASS:** final diff whitespace check and review of input routing, cleanup, statistics, and video clock behavior.
 
-Finish CMod/MMod compensation, video/animation timing review, rate feedback, build validation, and user documentation. Record any interactive checks that remain unavailable.
+## Build environment and limits
+
+The command sandbox failed to initialize, so repository commands used the managed escalation path. CMake 3.31.10 was installed under `/tmp/stepmania-live-rate-tools`; missing development headers were extracted under ignored `build/live-rate-deps`. No system packages were installed.
+
+The build is under `build/live-rate`, using GCC 13, Unix Makefiles, Debug, ALSA, X11/Xrandr, and system JPEG/GLEW. MP3, OGG, FFmpeg, GTK3, PulseAudio, Xinerama, Xtst, and GLES2 were disabled for this validation build. Missing development headers, a bundled/system JPEG header mismatch, and an Xrandr link configuration issue were resolved without unrelated source edits. Existing deprecated-library warnings remain.
+
+The headless test harness uses a temporary filesystem, opens no game window, and does not save user preferences or mappings. It is separate from the sanitizer-enabled standalone tests.
+
+Interactive audio/video playback was not tested. Before shipping, play a video-backed song at 0.8x, 1.0x, and 1.2x; check alignment, holds/mines/lifts, pause/resume, failure/back/retry/course transitions, and any custom scripts that explicitly use independent real-time clocks. These checks are documented, not claimed as passed.

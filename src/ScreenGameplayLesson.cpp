@@ -64,6 +64,11 @@ void ScreenGameplayLesson::Init()
 		pi->GetPlayerState()->m_PlayerController = PC_AUTOPLAY;
 }
 
+bool ScreenGameplayLesson::InputShortcut(const InputEventPlus &input)
+{
+	return m_iCurrentPageIndex == -1 && ScreenGameplay::InputShortcut(input);
+}
+
 bool ScreenGameplayLesson::Input( const InputEventPlus &input )
 {
 	//LOG->Trace( "ScreenGameplayLesson::Input()" );

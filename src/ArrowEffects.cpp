@@ -486,13 +486,17 @@ float ArrowEffects::GetYOffset( const PlayerState* pPlayerState, int iCol, float
 		fYOffset *= 1 - curr_options->m_fTimeSpacing;
 	}
 
+	// Live rate control changes visible note speed as well as hit timing.
+	// Keep CMod/MMod's denominator at the rate before the first live change.
+	const float fScrollSpeedRate = GAMESTATE->m_GameplayRate.GetScrollSpeedRate(
+		GAMESTATE->m_SongOptions.GetCurrent().m_fMusicRate);
 	if( curr_options->m_fTimeSpacing != 0.0f )
 	{
 		float fSongSeconds = GAMESTATE->m_Position.m_fMusicSecondsVisible;
 		float fNoteSeconds = pCurSteps->GetTimingData()->GetElapsedTimeFromBeat(fNoteBeat);
 		float fSecondsUntilStep = fNoteSeconds - fSongSeconds;
 		float fBPM = curr_options->m_fScrollBPM;
-		float fBPS = fBPM/60.f / GAMESTATE->m_SongOptions.GetCurrent().m_fMusicRate;
+		float fBPS = fBPM/60.f / fScrollSpeedRate;
 		float fYOffsetTimeSpacing = fSecondsUntilStep * fBPS;
 		fYOffset += fYOffsetTimeSpacing * curr_options->m_fTimeSpacing;
 	}
@@ -506,7 +510,7 @@ float ArrowEffects::GetYOffset( const PlayerState* pPlayerState, int iCol, float
 	if(curr_options->m_fMaxScrollBPM != 0)
 	{
 		fScrollSpeed= curr_options->m_fMaxScrollBPM /
-			(pPlayerState->m_fReadBPM * GAMESTATE->m_SongOptions.GetCurrent().m_fMusicRate);
+			(pPlayerState->m_fReadBPM * fScrollSpeedRate);
 	}
 	
 	// don't mess with the arrows after they've crossed 0

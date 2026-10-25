@@ -1050,6 +1050,13 @@ ScreenGameplay::~ScreenGameplay()
 		NSMAN->ReportSongOver();
 }
 
+void ScreenGameplay::EndScreen()
+{
+	ScreenWithMenuElements::EndScreen();
+	// Persistent screens may leave gameplay without being destroyed.
+	GAMESTATE->ResetGameplayRate();
+}
+
 bool ScreenGameplay::IsLastSong()
 {
 	if( GAMESTATE->m_pCurCourse )
@@ -2452,6 +2459,8 @@ bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
 	const bool enabled = GetScreenType() == gameplay &&
 		!GAMESTATE->m_bDemonstrationOrJukebox && !GAMESTATE->m_bInStepEditor &&
 		!NSMAN->useSMserver && !m_bPaused && m_DancingState == STATE_DANCING &&
+		!GAMESTATE->m_bLoadingNextSong && m_pSoundMusic && m_pSoundMusic->IsPlaying() &&
+		m_fLockInputSecs <= 0 && !SCREENMAN->get_input_redirected(input.pn) &&
 		!m_Cancel.IsTransitioning();
 	const auto result = INPUTMAPPER->FilterGameplayRateInput(input, enabled);
 	if(!result.handled)
@@ -2464,6 +2473,9 @@ bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
 		RageSoundParams params = m_pSoundMusic->GetParams();
 		params.m_fSpeed = GAMESTATE->m_GameplayRate.GetRate();
 		m_pSoundMusic->SetParams(params);
+		m_textSongOptions.SetText(GAMESTATE->m_SongOptions.GetCurrent().GetLocalizedString());
+		static LocalizedString LIVE_PLAYBACK_RATE("ScreenGameplay", "LivePlaybackRate");
+		SCREENMAN->SystemMessage(ssprintf(LIVE_PLAYBACK_RATE.GetValue().c_str(), params.m_fSpeed));
 	}
 	return true;
 }

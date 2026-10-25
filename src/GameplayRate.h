@@ -18,7 +18,8 @@ public:
 		// Keep three decimal places, including nonstandard starting rates.
 		const float next = std::max(0.2f, std::min(3.0f,
 			std::round((previous + direction * 0.2f) * 1000.0f) / 1000.0f));
-		if(std::fabs(next - previous) < 0.0001f)
+		// A pre-existing out-of-range option must not reverse the shortcut.
+		if(direction * (next - previous) < 0.0001f)
 			return false;
 		if(!m_Active)
 			m_OriginalRate = currentRate;

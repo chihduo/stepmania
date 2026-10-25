@@ -11,6 +11,7 @@ public:
 	ScreenGameplayLesson();
 	virtual void Init();
 
+	virtual bool InputShortcut(const InputEventPlus &input);
 	virtual bool Input( const InputEventPlus &input );
 	virtual void HandleScreenMessage( const ScreenMessage SM );
 

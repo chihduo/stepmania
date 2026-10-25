@@ -36,6 +36,9 @@ int main()
 	assert(!rate.IsActive());
 	assert(!rate.Change(3.0f, 1));
 	assert(!rate.IsActive()); // A bound-only shortcut is not a rate change.
+	assert(!rate.Change(0.1f, -1));
+	assert(!rate.Change(3.2f, 1));
+	assert(!rate.IsActive());
 	assert(!rate.Change(0, 1));
 	assert(!rate.Change(std::numeric_limits<float>::infinity(), 1));
 	assert(!rate.Change(std::numeric_limits<float>::quiet_NaN(), 1));
@@ -47,6 +50,19 @@ int main()
 	Equal(rate.GetScrollSpeedRate(0.8f), 0.8f);
 	assert(rate.Change(0.8f, 1)); Equal(rate.GetRate(), 1.0f);
 	Equal(rate.GetScrollSpeedRate(1.0f), 0.8f);
+
+	// CMod 300 at a starting 1.25x: a note one song-second away has unchanged
+	// spacing at the change boundary, then travels 1.45/1.25 times as fast.
+	rate.Reset();
+	const float originalSpacing = 300.0f / 60.0f / rate.GetScrollSpeedRate(1.25f);
+	assert(rate.Change(1.25f, 1));
+	const float changedSpacing = 300.0f / 60.0f / rate.GetScrollSpeedRate(1.45f);
+	Equal(changedSpacing, originalSpacing);
+	Equal(changedSpacing * rate.GetRate(), 5.8f);
+	// MMod uses the same denominator; XMod follows song time directly.
+	Equal(300.0f / (150.0f * rate.GetScrollSpeedRate(1.45f)), 1.6f);
+	rate.Reset();
+	Equal(rate.GetScrollSpeedRate(1.25f), 1.25f);
 
 	using Keys = GameplayRateInput;
 	Keys keys;

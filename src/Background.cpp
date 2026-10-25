@@ -729,8 +729,10 @@ void BackgroundImpl::Layer::UpdateCurBGChange( const Song *pSong, float fLastMus
 	beat_info.elapsed_time= fCurrentTime;
 	pSong->m_SongTiming.GetBeatAndBPSFromElapsedTime(beat_info);
 
-	// Calls to Update() should *not* be scaled by music rate unless RateModsAffectFGChanges is enabled; fCurrentTime is. Undo it.
-	const float fRate = PREFSMAN->m_bRateModsAffectTweens ? 1.0f : GAMESTATE->m_SongOptions.GetCurrent().m_fMusicRate;
+	// During live rate control, timer-based song animations also follow song
+	// time. Music-clock video sprites already do so and ignore this delta.
+	const float fRate = (PREFSMAN->m_bRateModsAffectTweens || GAMESTATE->m_GameplayRate.IsActive()) ?
+		1.0f : GAMESTATE->m_SongOptions.GetCurrent().m_fMusicRate;
 
 	// Find the BGSegment we're in
 	const int i = FindBGSegmentForBeat(beat_info.beat);
@@ -810,13 +812,13 @@ void BackgroundImpl::Layer::UpdateCurBGChange( const Song *pSong, float fLastMus
 			m_pFadingBGA = nullptr;
 	}
 
-	/* This is unaffected by the music rate. */
-	float fDeltaTimeNoMusicRate = max( fDeltaTime / fRate, 0 );
+	/* Respect the animation clock selected above. */
+	float fAnimationDelta = max( fDeltaTime / fRate, 0 );
 
 	if( m_pCurrentBGA )
-		m_pCurrentBGA->Update( fDeltaTimeNoMusicRate );
+		m_pCurrentBGA->Update( fAnimationDelta );
 	if( m_pFadingBGA )
-		m_pFadingBGA->Update( fDeltaTimeNoMusicRate );
+		m_pFadingBGA->Update( fAnimationDelta );
 }
 
 void BackgroundImpl::Update( float fDeltaTime )
