@@ -179,5 +179,7 @@ end
 
 t[#t+1] = eval_parts
 
+t[#t+1] = LoadActor(THEME:GetPathG("LifeHistory", "graph"), false)
+
 return t;
 

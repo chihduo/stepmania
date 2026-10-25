@@ -325,10 +325,11 @@ for ip, p in ipairs(GAMESTATE:GetHumanPlayers()) do
 		};
 	end;
 	
-	-- Options
+	-- Keep single-player modifiers clear of the life graph on the right.
+	local options_offset = LifeHistoryGraph.GetPlayer() and -320 or grade_parts_offs
 	eval_parts[#eval_parts+1] = Def.BitmapText {
 		Font = "Common Condensed",
-		InitCommand=cmd(horizalign,center;vertalign,top;x,_screen.cx + (grade_parts_offs);y,(_screen.cy+196+43);wrapwidthpixels,240;diffuse,ColorDarkTone(PlayerColor(p));zoom,0.75;shadowlength,1),
+		InitCommand=cmd(horizalign,center;vertalign,top;x,_screen.cx + options_offset;y,(_screen.cy+196+43);wrapwidthpixels,240;diffuse,ColorDarkTone(PlayerColor(p));zoom,0.75;shadowlength,1),
 		OnCommand=function(self)
 			self:settext(GAMESTATE:GetPlayerState(p):GetPlayerOptionsString(0))
 			self:diffusealpha(0):sleep(0.8):decelerate(0.6):diffusealpha(1)

@@ -466,6 +466,11 @@ void PlayerStageStats::GetLifeRecord( float *fLifeOut, int iNumSamples, float fS
 	}
 }
 
+float PlayerStageStats::GetLifeRecordLastSecond() const
+{
+	return m_fLifeRecord.empty() ? 0.0f : m_fLifeRecord.rbegin()->first;
+}
+
 float PlayerStageStats::GetCurrentLife() const
 {
 	if( m_fLifeRecord.empty() )
@@ -743,6 +748,7 @@ public:
 	DEFINE_METHOD( FullComboOfScore,			FullComboOfScore( Enum::Check<TapNoteScore>(L, 1) ) )
 	DEFINE_METHOD( MaxCombo,					GetMaxCombo().m_cnt )
 	DEFINE_METHOD( GetCurrentLife,				GetCurrentLife() )
+	DEFINE_METHOD( GetLifeRecordLastSecond, GetLifeRecordLastSecond() )
 	DEFINE_METHOD( GetGrade,					GetGrade() )
 	DEFINE_METHOD( GetActualDancePoints,		m_iActualDancePoints )
 	DEFINE_METHOD( GetPossibleDancePoints,		m_iPossibleDancePoints )
@@ -904,6 +910,7 @@ public:
 		ADD_METHOD( FullComboOfScore );
 		ADD_METHOD( MaxCombo );
 		ADD_METHOD( GetCurrentLife );
+		ADD_METHOD( GetLifeRecordLastSecond );
 		ADD_METHOD( GetGrade );
 		ADD_METHOD( GetHighScore );
 		ADD_METHOD( GetActualDancePoints );

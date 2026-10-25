@@ -124,8 +124,26 @@ Display validation:
 - [x] Inspect the linked screenshot and identify the life/health history plot.
 - [x] Inspect the legacy assets, life-record clock, evaluation statistics, and current layouts.
 - [x] Record the implementation and validation plan.
-- [ ] Add the shared live/evaluation graph with single-player gating and bottom-right placement.
-- [ ] Validate time ranges, geometry, live updates, evaluation selection, and local compilation.
-- [ ] Review and commit locally; leave ZIP packaging and publishing deferred.
+- [x] Add the shared live/evaluation graph with single-player gating and bottom-right placement.
+- [x] Validate time ranges, geometry, live updates, evaluation selection, and local compilation.
+- [x] Review and commit locally; leave ZIP packaging and publishing deferred.
 
 Reference: https://perfectpotato.wordpress.com/wp-content/uploads/2016/02/screen-shot-2016-02-25-at-11-07-58-am.png . The image shows the life graph, not timing-offset or note-density data. The legacy graphics remain in the repository. The live widget will sample the engine's existing records and preserve their elapsed-play time scale.
+
+
+Life-history checkpoints:
+
+- `e86bc185b8` — plan and progress checkpoint.
+- Implementation checkpoint — `feat: restore single-player life-history graphs` (this commit).
+
+The shared default-theme actor now renders live gameplay, evaluation, and evaluation summary. It uses the original legacy grid and fill assets, samples 128 life values, and updates existing geometry on life-record events and elapsed-time changes. The graph reads evaluation's selected StageStats and includes the last life-record timestamp, covering failure tails and summary gaps. The engine's existing history and scoring behavior remain unchanged.
+
+The preferred plot is 200 by 64 theme pixels, 16 pixels from the right and 56 pixels above the bottom. During gameplay its width adapts to the ordinary note field's right edge; captions shrink with narrow panels. Single-player P2 modifier text moves left on evaluation. Two-player, demonstration, and endless sessions do not show the added graph. The screen-owned updater stops on exit. See `Docs/LifeHistoryGraph.md` for behavior and the manual verification checklist.
+
+Life-history validation:
+
+- **PASS:** focused tests with the bundled Lua 5.1 runtime. Covered P1/P2 eligibility, two-player/demo/endless exclusion, life clamping and geometry endpoints, empty geometry and zero-duration stage handling, failure/summary time ranges, immediate same-time life changes, paused/unchanged update caching, 1,000 updates with fixed vertex counts, fresh-stage/next-song refresh, exit cleanup, evaluation data selection, and narrow P2 corner placement.
+- **PASS:** real-engine checks. Covered empty history, last-record timestamps, a final zero-life record, the one-second aggregation gap, the new Lua accessor, and an inclusive 128-sample endpoint. Existing rate, option-restoration, input-suppression, and practice-score tests also passed. Log: `build/live-rate/life-history-engine-tests.log`.
+- **PASS:** local CMake Debug application compilation and link. Log: `build/live-rate/life-history-build.log`. The existing Linux validation configuration and its previously documented media limitations are unchanged.
+- **PASS:** legacy asset byte comparison, diff whitespace check, and source review of draw modes/vertex format, Lua APIs, screen lifecycle, summary wiring, and layout anchors.
+- **PENDING:** interactive Windows appearance and gameplay checks, including narrow panels, reverse/custom note modifiers, failure, retry, and finite courses. No rendered-screen test was performed. No Windows ZIP, push, or remote workflow was produced; these remain deferred at the user's request.

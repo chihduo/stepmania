@@ -265,4 +265,6 @@ t.InitCommand=cmd(SetUpdateFunction,UpdateTime);
 		};
 	end;
 
+t[#t+1] = LoadActor(THEME:GetPathG("LifeHistory", "graph"), true)
+
 return t

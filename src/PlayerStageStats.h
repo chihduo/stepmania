@@ -104,6 +104,7 @@ public:
 	float	GetLifeRecordAt( float fStepsSecond ) const;
 	float	GetLifeRecordLerpAt( float fStepsSecond ) const;
 	float	GetCurrentLife() const;
+	float	GetLifeRecordLastSecond() const;
 
 	struct Combo_t
 	{

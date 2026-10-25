@@ -227,7 +227,39 @@ int main(int argc, char **argv)
 	assert(summary.m_bUsedGameplayRate);
 	assert(!normal.m_bUsedGameplayRate);
 
-	std::cout << "Engine rate, modifier restoration, input suppression, and practice-score checks passed.\n";
+	// The graph uses the recorded time domain, including failure and summary tails.
+	PlayerStageStats history;
+	history.Init(PLAYER_1);
+	Equal(history.GetLifeRecordLastSecond(), 0.0f);
+	history.SetLifeRecordAt(0.5f, 0.0f);
+	history.SetLifeRecordAt(1.0f, 10.0f);
+	history.SetLifeRecordAt(0.0f, 15.0f);
+	Equal(history.GetLifeRecordLastSecond(), 15.0f);
+	Equal(history.GetCurrentLife(), 0.0f);
+	PlayerStageStats nextHistory;
+	nextHistory.Init(PLAYER_1);
+	nextHistory.SetLifeRecordAt(0.5f, 0.0f);
+	nextHistory.SetLifeRecordAt(0.75f, 4.0f);
+	history.AddStats(nextHistory);
+	Equal(history.GetLifeRecordLastSecond(), 20.0f); // Includes the 1s gap.
+
+	Lua *L = LUA->Get();
+	history.PushSelf(L);
+	lua_setglobal(L, "LifeHistoryTestStats");
+	RString luaError;
+	const bool lifeLuaOK = LuaHelpers::RunScript(L,
+		"local s = LifeHistoryTestStats; "
+		"assert(s:GetLifeRecordLastSecond() == 20); "
+		"local values = s:GetLifeRecord(s:GetLifeRecordLastSecond(), 128); "
+		"assert(#values == 128 and values[1] == 0.5 and values[128] == 0.75); "
+		"assert(s:GetCurrentLife() == values[128]); "
+		"LifeHistoryTestStats = nil",
+		"life-history-test", luaError);
+	if(!lifeLuaOK) std::cerr << luaError << "\n";
+	assert(lifeLuaOK);
+	LUA->Release(L);
+
+	std::cout << "Engine rate, modifier restoration, input suppression, practice-score, and life-history checks passed.\n";
 	// Leave the managers alive: normal shutdown writes preferences/mappings and
 	// is outside this test. All filesystem access was mounted in the fixture.
 	return 0;

@@ -75,4 +75,6 @@ if GAMESTATE:HasEarnedExtraStage() then
 	}
 end;
 
+t[#t+1] = LoadActor(THEME:GetPathG("LifeHistory", "graph"), false)
+
 return t;

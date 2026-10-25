@@ -4342,6 +4342,10 @@ prev_note_name, succeeded = options:NoteSkin("cel")
 		'samples' determines the size of the table.  'samples' defaults to 100
 		if not specified.
 	</Function>
+	<Function name='GetLifeRecordLastSecond' return='float' arguments=''>
+		Returns the elapsed-play timestamp of the last life-history record, or 0 for an empty history.
+		This can extend past StageStats:GetStepsSeconds() for failures and accumulated stages.
+	</Function>
 	<Function name='GetLifeRemainingSeconds' return='float' arguments=''>
 		Returns the player's life remaining seconds.
 	</Function>
