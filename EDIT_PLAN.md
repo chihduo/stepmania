@@ -87,3 +87,14 @@ Record the plan checkpoint, make the theme changes, run Lua syntax and the exist
 The user requested packaging of revision `1f3b21c9c9`, including the persistent speed number and enlarged, raised life-history graph. Use the existing Windows portable workflow, verify the downloaded ZIP against the build's checksum and source revision, and check that its bundled theme files include the new default/fallback animation commands and graph layout. Record the download and verification results in `PROGRESS.md`, then commit the delivery record without starting another build.
 
 Presentation follow-up delivery complete: source `1f3b21c9c9` passed the Windows pipeline and downloaded-archive checks. The artifact link and SHA-256 are recorded in `PROGRESS.md`.
+
+
+## Follow-up revision: bottom-left graph beneath gameplay information
+
+Move the life-history graph to the bottom-left in gameplay, evaluation, and evaluation summary. Preserve the existing transparency, as clarified by the user; do not apply the initially proposed 60% opacity. Keep the 400 by 128 preferred dimensions and 71-pixel bottom margin.
+
+Use the actual screen underlay for gameplay, after its background filter and before notes, judgments, life meters, overlays, and messages. Give evaluation's graph a lower sibling draw order than its statistics. Use a 96-pixel left inset: the existing left life-meter frame is centered at 40 and extends to 72, leaving a 24-pixel gap. Keep the graph at its preferred width now that notes draw above it. Preserve existing life-bar positions and the bottom-left persistent speed number.
+
+Mirror the evaluation layout clearance around the left-side plot: place lower single-player details on the available right side, keep judgment rows above the graph when needed, and fit song titles beside it. Keep two-player layouts and scoring unchanged.
+
+Commit this plan checkpoint, make the theme changes, update the existing focused graph checks for position/layering/life-bar clearance and unchanged opacity, and review the lifecycle and screen wiring. Update documentation and commit locally. Do not create a new Windows ZIP or push until requested.

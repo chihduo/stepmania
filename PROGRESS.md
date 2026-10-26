@@ -243,3 +243,15 @@ SHA-256 of the inner portable ZIP:
 Extract the GitHub artifact and then its inner portable ZIP. For an existing installation of these portable builds, close StepMania and merge the new `Program`, `Scripts`, and `Themes` folders into the existing game folder, replacing matching files; `Docs` is optional. Preserve the existing `Save`, `Songs`, `Logs`, `Screenshots`, and `Portable.ini`. Back up historical logs separately before launching because normal startup rewrites standard log files. Launch `StepMania/Program/StepMania.exe` with its full folder intact.
 
 This ZIP supersedes the previous `2613625a1d` package and includes the persistent speed number and enlarged graph. Interactive gameplay and appearance checks remain pending; automated packaging checks do not render gameplay.
+
+
+## Follow-up: bottom-left graph beneath gameplay information
+
+- [x] Inspect screen draw order, existing underlays, graph opacity, and life-bar bounds.
+- [x] Record the user's clarification to preserve the current transparency.
+- [x] Record the placement, layering, and validation plan.
+- [ ] Move the graph to the bottom-left underlay with life-bar clearance.
+- [ ] Adjust evaluation layout and verify position, layer order, unchanged opacity, and existing live behavior.
+- [ ] Update documentation and commit locally.
+
+Keep the existing transparency. The latest delivered Windows ZIP remains the `1f3b21c9c9` build until this follow-up is packaged separately.
