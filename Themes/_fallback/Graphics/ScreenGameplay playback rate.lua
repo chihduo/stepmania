@@ -1,4 +1,4 @@
-local flawless = THEME:GetMetric("Judgment", "JudgmentW1Command")
+local showRate = THEME:GetMetric("GameplayRateDisplay", "ChangedCommand")
 
 local function HideRate(self)
 	self:finishtweening():stopeffect():diffusealpha(0):visible(false)
@@ -21,8 +21,8 @@ return Def.ActorFrame {
 			self:finishtweening():stopeffect():visible(true):settext(rate .. "x")
 			self:diffuse(JudgmentLineToColor("JudgmentLine_W1"))
 			self:strokecolor(JudgmentLineToStrokeColor("JudgmentLine_W1"))
-			-- Animate the child so judgment commands cannot move the corner anchor.
-			flawless(self)
+			-- Keep the pop and glow on the child, with no fade-out during this song.
+			showRate(self)
 		end,
 		ResetCommand = HideRate,
 		OffCommand = HideRate,

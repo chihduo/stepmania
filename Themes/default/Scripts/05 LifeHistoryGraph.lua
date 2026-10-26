@@ -44,3 +44,26 @@ function LifeHistoryGraph.MakeVertices(values, width, height)
 	end
 	return body, line
 end
+
+-- Keep evaluation text above/beside the enlarged graph on narrow screens.
+function LifeHistoryGraph.GetEvaluationLayout(rows)
+	local layout = {spacing = 38, scale = 1, titleX = SCREEN_CENTER_X, titleWidth = 375}
+	if not LifeHistoryGraph.GetPlayer() then return layout end
+	local graphLeft = SCREEN_RIGHT - THEME:GetMetric("LifeHistory", "MarginRight")
+		- THEME:GetMetric("LifeHistory", "Width")
+	local graphTop = SCREEN_BOTTOM - THEME:GetMetric("LifeHistory", "MarginBottom")
+		- THEME:GetMetric("LifeHistory", "Height")
+	if graphLeft < SCREEN_CENTER_X + 200 then
+		layout.spacing = math.min(38, math.max(1,
+			math.floor((graphTop - 40 - SCREEN_CENTER_Y / 1.48) / rows)))
+		layout.scale = layout.spacing / 38
+	end
+	local titleRight = graphLeft - 12
+	if titleRight < SCREEN_CENTER_X + layout.titleWidth / 2 then
+		-- The single-player radar/details column occupies center - 320 +/- 95.
+		local titleLeft = SCREEN_CENTER_X - 320 + 95 + 12
+		layout.titleX = (titleLeft + titleRight) / 2
+		layout.titleWidth = math.max(1, titleRight - titleLeft)
+	end
+	return layout
+end

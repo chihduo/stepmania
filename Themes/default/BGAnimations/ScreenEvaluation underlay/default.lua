@@ -15,6 +15,8 @@ local eval_radar = {
 	Types = { 'Holds', 'Rolls', 'Hands', 'Mines', 'Lifts' },
 }
 
+local graphLayout = LifeHistoryGraph.GetEvaluationLayout(#eval_lines)
+
 local grade_area_offset = 16
 local fade_out_speed = 0.3
 local fade_out_pause = 0.08
@@ -77,7 +79,7 @@ if not GAMESTATE:IsCourseMode() then
 	mid_pane[#mid_pane+1] = Def.BitmapText {
 		Font="Common Fallback",
 		InitCommand=function(self)
-			self:x(_screen.cx):y(_screen.cy+188-6):diffuse(color("#512232")):shadowlength(1):zoom(0.75):maxwidth(500)
+			self:x(graphLayout.titleX):y(_screen.cy+188-6):diffuse(color("#512232")):shadowlength(1):zoom(0.75):maxwidth(math.min(500,graphLayout.titleWidth/0.75))
 		end;
 		OnCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong();
@@ -93,7 +95,7 @@ if not GAMESTATE:IsCourseMode() then
 	mid_pane[#mid_pane+1] = Def.BitmapText {
 		Font="Common Fallback",
 		InitCommand=function(self)
-			self:x(_screen.cx):y(_screen.cy+188+22-6):diffuse(color("#512232")):shadowlength(1):zoom(0.6):maxwidth(500)
+			self:x(graphLayout.titleX):y(_screen.cy+188+22-6):diffuse(color("#512232")):shadowlength(1):zoom(0.6):maxwidth(math.min(500,graphLayout.titleWidth/0.6))
 		end;
 		OnCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong();
@@ -110,7 +112,7 @@ else
 	mid_pane[#mid_pane+1] = Def.BitmapText {
 		Font="Common Fallback",
 		InitCommand=function(self)
-			self:x(_screen.cx):y(_screen.cy+188-6):diffuse(color("#512232")):shadowlength(1):zoom(0.75):maxwidth(500)
+			self:x(graphLayout.titleX):y(_screen.cy+188-6):diffuse(color("#512232")):shadowlength(1):zoom(0.75):maxwidth(math.min(500,graphLayout.titleWidth/0.75))
 		end;
 		OnCommand=function(self)
 			local course = GAMESTATE:GetCurrentCourse()
@@ -123,13 +125,13 @@ end
 
 -- Each line's text, and associated decorations.
 for i, v in ipairs(eval_lines) do
-	local spacing = 38*i
+	local spacing = graphLayout.spacing*i
 	local cur_line = "JudgmentLine_" .. v
 	
 	mid_pane[#mid_pane+1] = Def.ActorFrame{
 		InitCommand=cmd(x,_screen.cx;y,(_screen.cy/1.48)+(spacing)),
 		Def.Quad {
-			InitCommand=cmd(zoomto,400,36;diffuse,JudgmentLineToColor(cur_line);fadeleft,0.5;faderight,0.5);
+			InitCommand=cmd(zoomto,400,36*graphLayout.scale;diffuse,JudgmentLineToColor(cur_line);fadeleft,0.5;faderight,0.5);
 			OnCommand=function(self)			
 				self:diffusealpha(0):sleep(0.1 * i):decelerate(0.6):diffusealpha(1)
 			end;
@@ -140,7 +142,7 @@ for i, v in ipairs(eval_lines) do
 	
 		Def.BitmapText {
 			Font = "_roboto condensed Bold 48px",
-			InitCommand=cmd(zoom,0.6;diffuse,color("#000000");settext,string.upper(JudgmentLineToLocalizedString(cur_line)));
+			InitCommand=cmd(zoom,0.6*graphLayout.scale;diffuse,color("#000000");settext,string.upper(JudgmentLineToLocalizedString(cur_line)));
 			OnCommand=function(self)			
 				self:diffusealpha(0):sleep(0.1 * i):decelerate(0.6):diffusealpha(0.8)
 			end;
@@ -162,14 +164,15 @@ for ip, p in ipairs(GAMESTATE:GetHumanPlayers()) do
 	-- Some things to help positioning
 	local step_count_offs = string.find(p, "P1") and -140 or 140
 	local grade_parts_offs = string.find(p, "P1") and -320 or 320
+	local details_offset = LifeHistoryGraph.GetPlayer() and -320 or grade_parts_offs
 	local p_grade = STATSMAN:GetCurStageStats():GetPlayerStageStats(p):GetGrade()
 	
 	-- Step counts.
 	for i, v in ipairs(eval_lines) do
-		local spacing = 38*i
+		local spacing = graphLayout.spacing*i
 		eval_parts[#eval_parts+1] = Def.BitmapText {
 			Font = "_overpass 36px",
-			InitCommand=cmd(x,_screen.cx + step_count_offs;y,(_screen.cy/1.48)+(spacing);diffuse,ColorDarkTone(PlayerColor(p));zoom,0.75;diffusealpha,1.0;shadowlength,1;maxwidth,120),
+			InitCommand=cmd(x,_screen.cx + step_count_offs;y,(_screen.cy/1.48)+(spacing);diffuse,ColorDarkTone(PlayerColor(p));zoom,0.75*graphLayout.scale;diffusealpha,1.0;shadowlength,1;maxwidth,120),
 			OnCommand=function(self)
 				self:settext(GetJLineValue(v, p))
 				if string.find(p, "P1") then
@@ -296,7 +299,7 @@ for ip, p in ipairs(GAMESTATE:GetHumanPlayers()) do
 	
 		eval_parts[#eval_parts+1] = Def.ActorFrame {
 			InitCommand=function(self)
-				self:x(_screen.cx + (grade_parts_offs))
+				self:x(_screen.cx + details_offset)
 				self:y((_screen.cy + 104 - 32) + (i-1)*32)
 			end;
 			OnCommand=function(self)			
@@ -325,11 +328,10 @@ for ip, p in ipairs(GAMESTATE:GetHumanPlayers()) do
 		};
 	end;
 	
-	-- Keep single-player modifiers clear of the life graph on the right.
-	local options_offset = LifeHistoryGraph.GetPlayer() and -320 or grade_parts_offs
+	-- Keep single-player details clear of the life graph on the right.
 	eval_parts[#eval_parts+1] = Def.BitmapText {
 		Font = "Common Condensed",
-		InitCommand=cmd(horizalign,center;vertalign,top;x,_screen.cx + options_offset;y,(_screen.cy+196+43);wrapwidthpixels,240;diffuse,ColorDarkTone(PlayerColor(p));zoom,0.75;shadowlength,1),
+		InitCommand=cmd(horizalign,center;vertalign,top;x,_screen.cx + details_offset;y,(_screen.cy+196+43);wrapwidthpixels,240;diffuse,ColorDarkTone(PlayerColor(p));zoom,0.75;shadowlength,1),
 		OnCommand=function(self)
 			self:settext(GAMESTATE:GetPlayerState(p):GetPlayerOptionsString(0))
 			self:diffusealpha(0):sleep(0.8):decelerate(0.6):diffusealpha(1)

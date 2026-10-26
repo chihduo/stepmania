@@ -186,8 +186,25 @@ Extract the downloaded GitHub artifact, then extract its inner portable ZIP and 
 
 - [x] Inspect the speed fade-out, graph dimensions, and nearby gameplay/evaluation layout.
 - [x] Record the requested changes and validation plan.
-- [ ] Keep the latest speed visible through the current song.
-- [ ] Double the graph's preferred width/height and raise its bottom edge by 15 pixels, keeping nearby information readable.
-- [ ] Run focused checks, update documentation, and commit locally.
+- [x] Keep the latest speed visible through the current song.
+- [x] Double the graph's preferred width/height and raise its bottom edge by 15 pixels, keeping nearby information readable.
+- [x] Run focused checks, update documentation, and commit locally.
 
 The earlier Windows ZIP remains the delivered build of `2613625a1d`; this follow-up will be a separate local revision.
+
+
+Presentation follow-up checkpoints:
+
+- `fa0c693ec9` — plan and progress checkpoint.
+- Implementation checkpoint — `feat: keep playback speed visible and enlarge life history` (this commit).
+
+The speed display now uses a dedicated `GameplayRateDisplay/ChangedCommand` in the default and fallback themes. It preserves the W1-style pop, color, font, and glow, with no scheduled fade-out. Existing reset/exit commands still clear it on song completion, retry, course advance, and screen exit.
+
+The graph's preferred dimensions are now 400 by 128 theme pixels, and its bottom margin is 71 instead of 56. The existing gameplay width limit still prevents ordinary note-lane overlap in tight layouts. Evaluation uses the preferred width; narrow evaluation layouts compact the judgment rows and fit the song title beside the graph. P2-only life meters and lower evaluation details use the otherwise unused left area to avoid the enlarged plot. Two-player layouts are unchanged.
+
+Presentation validation:
+
+- **PASS:** bundled Lua 5.1 syntax checks for the speed-display actor, graph actor, and shared graph/layout helper.
+- **PASS:** the existing focused life-history checks with the new dimensions. Covered live updates, pause caching, screen cleanup, evaluation statistics selection, narrow P2 gameplay, and clearance between the enlarged graph and evaluation rows/song titles. Widescreen and two-player evaluation spacing remain unchanged.
+- **PASS:** source review of the default/fallback persistent animation commands, rapid-value replacement, existing song/screen reset paths, P2 life-meter/frame positions and entrance/exit direction, and diff whitespace checks.
+- **PENDING:** interactive appearance, persistent speed visibility, and the larger graph in Windows gameplay/evaluation. This revision changes theme code/configuration and documentation only; no executable rebuild, Windows ZIP, push, or remote workflow was performed.

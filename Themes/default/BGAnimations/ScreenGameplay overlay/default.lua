@@ -54,9 +54,9 @@ t.InitCommand=cmd(SetUpdateFunction,UpdateTime);
 		end;
 		
 		for ip, pn in ipairs(GAMESTATE:GetEnabledPlayers()) do
-				local life_x_position = string.find(pn, "P1") and SCREEN_LEFT+40 or SCREEN_RIGHT-40
-				local life_tween = string.find(pn, "P1") and -1 or 1
-				local second_tween = string.find(pn, "P1") and 1 or -1
+				local life_x_position = THEME:GetMetric(Var "LoadingScreen", "LifeMeterBar" .. ToEnumShortString(pn) .. "X")
+				local life_tween = life_x_position < SCREEN_CENTER_X and -1 or 1
+				local second_tween = -life_tween
 				t[#t+1] = Def.ActorFrame {
 					InitCommand=cmd(x,life_x_position;y,SCREEN_CENTER_Y;rotationz,-90);
 					OnCommand=cmd(addx,100*life_tween;sleep,0.25;decelerate,0.9;addx,100*second_tween);

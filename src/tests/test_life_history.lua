@@ -42,8 +42,9 @@ LoadActor = function() return setmetatable({}, concat) end
 LoadFont = LoadActor
 ToEnumShortString = function(p) return p:sub(-2) end
 SCREEN_RIGHT, SCREEN_BOTTOM = 1280, 720
+SCREEN_CENTER_X, SCREEN_CENTER_Y = 640, 360
 THEME = {
-	GetMetric = function(_, _, key) return ({Width=200, Height=64, MarginRight=16, MarginBottom=56})[key] end,
+	GetMetric = function(_, _, key) return ({Width=400, Height=128, MarginRight=16, MarginBottom=71})[key] end,
 	GetString = function() return 'LIFE' end,
 	GetPathG = function(_, group, element) return group .. ' ' .. element end,
 }
@@ -96,7 +97,7 @@ local function Widget(live)
 	return Instantiate(def), def
 end
 local actor, def = Widget(true)
-assert(actor.xyArgs[1] == 1064 and actor.xyArgs[2] == 600)
+assert(actor.xyArgs[1] == 864 and actor.xyArgs[2] == 521)
 def.OnCommand(actor)
 assert(actor.update and current.stats.last == 10 and evaluated.stats.samples == 0)
 assert(actor:GetChild('Value').text == '75%')
@@ -110,7 +111,7 @@ assert(current.stats.samples == sampled + 1 and current.stats.last == 10.1)
 current.stats.life = 0.4 -- A life change at the same time updates immediately.
 def.LifeMeterChangedP1MessageCommand(actor)
 assert(actor:GetChild('Value').text == '40%')
-assert(math.abs(actor:GetChild('Line').vertices[128][1][2] - 38.4) < 0.001)
+assert(math.abs(actor:GetChild('Line').vertices[128][1][2] - 76.8) < 0.001)
 for i=1,1000 do
 	current.seconds = 10.1 + i / 60
 	actor.update(actor)
@@ -145,7 +146,7 @@ assert(def.LifeMeterChangedP2MessageCommand and not def.LifeMeterChangedP1Messag
 def.OnCommand(actor)
 assert(actor:GetChild('Value').text == '50%')
 -- At 4:3, the P2 note lane can leave only a narrow corner for the plot.
-SCREEN_RIGHT = 960
+SCREEN_RIGHT, SCREEN_CENTER_X = 960, 480
 field = {GetX = function() return 688 end, GetZoomX = function() return 1.5 end}
 actor, def = Widget(true)
 def.OnCommand(actor)
@@ -155,8 +156,22 @@ assert(actor:GetChild('Line').vertices[128][1][1] == 52)
 -- Evaluation retains the normal width because it has no note lane.
 actor, def = Widget(false)
 def.OnCommand(actor)
-assert(actor:GetChild('Backing').zoomtoArgs[1] == 200)
+assert(actor:GetChild('Backing').zoomtoArgs[1] == 400)
+-- The graph must not cover the last evaluation row or the song title.
+for _, rows in ipairs({7, 8}) do
+	local layout = G.GetEvaluationLayout(rows)
+	local rowBottom = SCREEN_CENTER_Y / 1.48 + rows * layout.spacing + 18 * layout.scale
+	assert(rowBottom < 521 - 24) -- Leave space for the graph's title above its body.
+	assert(layout.titleX + layout.titleWidth / 2 <= 544 - 12)
+	assert(layout.titleX - layout.titleWidth / 2 >= SCREEN_CENTER_X - 320 + 95 + 12)
+end
+SCREEN_RIGHT, SCREEN_CENTER_X = 1280, 640
+local layout = G.GetEvaluationLayout(8)
+assert(layout.spacing == 38 and layout.scale == 1 and layout.titleX == 640)
 humans, enabled = {'PlayerNumber_P1', 'PlayerNumber_P2'}, {'PlayerNumber_P1', 'PlayerNumber_P2'}
 actor, def = Widget(true)
 assert(#def == 0 and def.OnCommand == nil)
+SCREEN_RIGHT, SCREEN_CENTER_X = 960, 480
+layout = G.GetEvaluationLayout(8)
+assert(layout.spacing == 38 and layout.scale == 1 and layout.titleX == 480)
 print('Life-history eligibility, geometry, live updates, cleanup, and evaluation checks passed.')
