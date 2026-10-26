@@ -77,6 +77,7 @@ local t = Def.ActorFrame {
 	Def.ActorMultiVertex {
 		Name = "Line",
 		InitCommand = function(self)
+			self:diffusealpha(0.8)
 			self:SetDrawState{Mode = "DrawMode_LineStrip"}
 			self:SetLineWidth(2)
 		end,
@@ -84,6 +85,7 @@ local t = Def.ActorFrame {
 	LoadFont("Common Condensed") .. {
 		Name = "Title",
 		InitCommand = function(self)
+			self:diffusealpha(0.8)
 			self:xy(0, -12):halign(0):zoom(0.6):shadowlength(1)
 			self:settext(THEME:GetString("LifeHistory", "Title"))
 		end,
@@ -91,6 +93,7 @@ local t = Def.ActorFrame {
 	LoadFont("Common Condensed") .. {
 		Name = "Value",
 		InitCommand = function(self)
+			self:diffusealpha(0.8)
 			self:xy(width, -12):halign(1):zoom(0.6):shadowlength(1)
 		end,
 	},
@@ -98,12 +101,14 @@ local t = Def.ActorFrame {
 		Name = "StartTime",
 		Text = "0:00",
 		InitCommand = function(self)
+			self:diffusealpha(0.8)
 			self:xy(0, height + 10):halign(0):zoom(0.5):shadowlength(1)
 		end,
 	},
 	LoadFont("Common Condensed") .. {
 		Name = "EndTime",
 		InitCommand = function(self)
+			self:diffusealpha(0.8)
 			self:xy(width, height + 10):halign(1):zoom(0.5):shadowlength(1)
 		end,
 	},

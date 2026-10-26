@@ -260,7 +260,7 @@ Keep the existing transparency. The latest delivered Windows ZIP remains the `1f
 Bottom-left graph checkpoints:
 
 - `3695588aad` — plan and progress checkpoint.
-- Implementation checkpoint — `feat: draw life history beneath gameplay at bottom left` (this commit).
+- `ac7b31a225` — `feat: draw life history beneath gameplay at bottom left`.
 
 The graph now loads in the gameplay underlay instead of the overlay. Its local draw order puts it above the screen filter, while the screen underlay itself remains below notes, judgments, life meters, messages, and the persistent speed display. Evaluation and summary use a lower graph draw order than their statistics. The normal evaluation graph was moved from the overlay into the underlay.
 
@@ -274,3 +274,10 @@ Bottom-left graph validation:
 - **PASS:** existing focused graph checks, updated for bottom-left placement and full width for P1/P2 at 4:3 and 16:9, life-bar clearance, gameplay/evaluation sibling draw order, unchanged opacity, evaluation row/title clearance, live changes, pause caching, fresh-stage refresh, and exit cleanup.
 - **PASS:** source review of screen draw order (`background -200`, `underlay -100`, ordinary notes/decorations `0`, overlay `100`), actor-frame sorting, evaluation/summary wiring, and removal of old overlay graph instances. Diff whitespace checks passed.
 - **PENDING:** interactive Windows appearance and layering checks with actual notes, judgments, messages, backgrounds, and life bars. This is a theme revision; no executable rebuild, Windows ZIP, push, or remote workflow was performed.
+
+
+## Follow-up: line and label opacity
+
+The user now requests 80% opacity for the graph's white line and labels. Added `self:diffusealpha(0.8)` to the `Line`, `Title`, `Value`, `StartTime`, and `EndTime` InitCommands. This shared actor applies the change during gameplay and evaluation. Backing/fill opacity, position, draw order, and live-update behavior remain unchanged.
+
+Validation **PASS**: bundled Lua 5.1 syntax check, existing focused life-history checks, and diff whitespace review. Local checkpoint: `style: soften life-history line and labels`. No new tests, executable rebuild, ZIP, push, or workflow is needed for this small theme edit; visual verification remains pending.

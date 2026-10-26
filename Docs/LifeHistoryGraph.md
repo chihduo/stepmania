@@ -1,6 +1,6 @@
 # Single-player life-history graph
 
-The default theme displays the life/health history at the bottom-left during gameplay and on evaluation. It uses the older theme's grid and green/yellow/red fill, with a white line showing life from empty to full. The percentage above the plot is the latest recorded life. The preferred plot size is 400 by 128 theme pixels, with its lower edge 71 pixels above the screen bottom. Its left edge is inset by 96 pixels, leaving a 24-pixel gap beyond the left life-meter frame. The existing transparency is unchanged.
+The default theme displays the life/health history at the bottom-left during gameplay and on evaluation. It uses the older theme's grid and green/yellow/red fill, with a white line showing life from empty to full. The percentage above the plot is the latest recorded life. The preferred plot size is 400 by 128 theme pixels, with its lower edge 71 pixels above the screen bottom. Its left edge is inset by 96 pixels, leaving a 24-pixel gap beyond the left life-meter frame. The white line and all graph labels use 80% opacity. The backing and colored fill retain their existing transparency.
 
 During gameplay, recorded life changes update the plot immediately. Its horizontal range grows from the start of play to the current elapsed play time. The entire history stays in view, so earlier events move closer together as the song progresses. Evaluation shows the completed history; evaluation summary uses the statistics selected by that screen.
 

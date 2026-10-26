@@ -98,3 +98,8 @@ Use the actual screen underlay for gameplay, after its background filter and bef
 Mirror the evaluation layout clearance around the left-side plot: place lower single-player details on the available right side, keep judgment rows above the graph when needed, and fit song titles beside it. Keep two-player layouts and scoring unchanged.
 
 Commit this plan checkpoint, make the theme changes, update the existing focused graph checks for position/layering/life-bar clearance and unchanged opacity, and review the lifecycle and screen wiring. Update documentation and commit locally. Do not create a new Windows ZIP or push until requested.
+
+
+## Follow-up revision: line and label opacity
+
+Set `self:diffusealpha(0.8)` in the shared graph's `Line`, `Title`, `Value`, `StartTime`, and `EndTime` InitCommands. Preserve the backing, fill, placement, and draw order. Check Lua syntax and the existing focused graph checks, update the documentation, and commit locally; no recompilation or ZIP build is needed for this theme edit.
