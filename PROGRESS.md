@@ -288,9 +288,35 @@ Validation **PASS**: bundled Lua 5.1 syntax check, existing focused life-history
 - [x] Inspect the Left+Right handler, wheel movement, Artist grouping, and screen-message timing.
 - [x] Identify a stale-preference path: the wheel changes sort before the pending song-change notification updates `m_pPreferredSong`.
 - [x] Record the implementation and regression plan.
-- [ ] Reproduce the selection loss using the real engine code.
-- [ ] Preserve the highlighted song across sorts, retaining existing fallbacks.
-- [ ] Build, run focused regression checks, and review the diff.
-- [ ] Record validation and commit the fix locally.
+- [x] Reproduce the selection loss using the real engine code.
+- [x] Preserve the highlighted song across sorts, retaining existing fallbacks.
+- [x] Build, run focused regression checks, and review the diff.
+- [x] Record validation and commit the fix locally.
 
 Artist sorting uses the existing artist metadata; the suspected fault is selection restoration shared by all sorts. No new Windows ZIP has been requested for this follow-up.
+
+
+Confirmed cause: `Screen::Update` updates the wheel before delivering queued `SM_SongChanged` messages. When the two arrows arrive in adjacent frames, the first arrow can update the preferred song to a neighbor. The second arrow returns the wheel to the original song, but the old sort-restoration code chooses that stale preference before the return notification is handled. This affects all song sorts; Artist makes the mismatch easier to notice.
+
+`MusicWheel::UpdateSwitch` now tries the highlighted song's identity in the new sort first. If that song is missing, or the selected item is a section heading, it retains the existing preferred/current/first-song-or-course fallback. The sort sequence, shortcut definitions, ordinary arrow navigation, and mode-menu branch are unchanged.
+
+Validation:
+
+- **REPRODUCED before the fix:** the headless regression expected `Target / Artist M` after BPM -> Artist but selected `Before / Artist Z`. The fixture emulates the screen's arrow-handling and notification order through the real engine's wheel methods; it supplies cached song lists and minimal actors without loading a renderer or touching real user data.
+- **PASS after the fix:** both arrow orders, same-frame and split-frame handling, two complete sort cycles per case, direct sort changes with stale preferred/current songs, section-heading fallback, and preferred/current/first-available fallback when the original song is absent. The checks cover 62 sort transitions.
+- **PASS:** complete local Linux Debug application build. Existing `StdString` deprecation warnings remain unrelated to this change.
+- **PASS:** existing gameplay-rate, option restoration, input suppression, practice-score, and life-history engine regression checks. The shared runner still accepts its original arguments and now also accepts an optional test source.
+- **PASS:** diff/whitespace review and preservation of the production file's CRLF line endings.
+- **PENDING:** physical keyboard and rendered Windows verification. No Windows ZIP, remote push, or workflow was performed for this revision.
+
+Commands:
+
+```text
+/tmp/stepmania-live-rate-tools/cmake/data/bin/cmake --build build/live-rate --parallel 4
+python3 src/tests/run_gameplay_rate_engine.py build/live-rate src/tests/test_music_wheel_sort.cpp
+python3 src/tests/run_gameplay_rate_engine.py build/live-rate
+```
+
+For the next Windows build, highlight a song and note its title and artist. Release both arrows between Left+Right chords and cycle through Artist and back to the starting sort; verify that the title and artist stay the same. Repeat with Right pressed slightly before Left, then verify that ordinary individual arrow presses still change songs. This C++ fix requires an updated executable; editing Lua or metrics alone will not apply it.
+
+Checkpoints: `888acf1876` records the plan; the implementation checkpoint is `fix: preserve highlighted song when changing sort`.

@@ -7,10 +7,11 @@ import subprocess
 import sys
 import tempfile
 
-if len(sys.argv) != 2:
-    sys.exit("Usage: run_gameplay_rate_engine.py <cmake-build-directory>")
+if len(sys.argv) not in (2, 3):
+    sys.exit("Usage: run_gameplay_rate_engine.py <cmake-build-directory> [test-source.cpp]")
 build = Path(sys.argv[1]).resolve()
-source = Path(__file__).with_name("test_gameplay_rate_engine.cpp").resolve()
+source = (Path(sys.argv[2]) if len(sys.argv) == 3 else
+          Path(__file__).with_name("test_gameplay_rate_engine.cpp")).resolve()
 commands = json.loads((build / "compile_commands.json").read_text())
 entry = next(item for item in commands if Path(item["file"]).name == "Main.cpp")
 link_file = build / "src/CMakeFiles/StepMania.dir/link.txt"

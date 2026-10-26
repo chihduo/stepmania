@@ -1116,8 +1116,11 @@ void MusicWheel::UpdateSwitch()
 			switch( GAMESTATE->m_SortOrder )
 			{
 			default:
-				// Look for the last selected song or course
-				SelectSongOrCourse();
+				// The highlighted song can be newer than m_pPreferredSong: the
+				// screen processes queued SM_SongChanged messages after this update.
+				// Keep that song when possible, then use the normal fallback.
+				if( !SelectSong(pPrevSelectedSong) )
+					SelectSongOrCourse();
 				break;
 			case SORT_MODE_MENU:
 				SelectModeMenuItem();
