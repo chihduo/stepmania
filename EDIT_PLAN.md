@@ -80,3 +80,10 @@ Keep the playback multiplier visible after its first adjustment for the rest of 
 Double the graph's preferred dimensions from 200 by 64 to 400 by 128 theme pixels and increase its bottom margin from 56 to 71, moving its lower edge upward by 15 pixels. Preserve automatic narrowing beside gameplay note lanes unless the user chooses the full-size alternative. Keep evaluation's larger graph clear of the score rows, song title, and P2-only details; use the unused left-side area for the P2-only life meter and lower evaluation details where needed. Two-player layouts stay as they are.
 
 Record the plan checkpoint, make the theme changes, run Lua syntax and the existing focused graph checks, review the persistent display's cleanup and narrow evaluation layouts, and commit locally. These are theme changes; a new executable or Windows ZIP is not required for local validation and has not been requested in this turn.
+
+
+## Windows x64 delivery of the presentation follow-up
+
+The user requested packaging of revision `1f3b21c9c9`, including the persistent speed number and enlarged, raised life-history graph. Use the existing Windows portable workflow, verify the downloaded ZIP against the build's checksum and source revision, and check that its bundled theme files include the new default/fallback animation commands and graph layout. Record the download and verification results in `PROGRESS.md`, then commit the delivery record without starting another build.
+
+Presentation follow-up delivery complete: source `1f3b21c9c9` passed the Windows pipeline and downloaded-archive checks. The artifact link and SHA-256 are recorded in `PROGRESS.md`.

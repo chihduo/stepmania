@@ -196,7 +196,7 @@ The earlier Windows ZIP remains the delivered build of `2613625a1d`; this follow
 Presentation follow-up checkpoints:
 
 - `fa0c693ec9` — plan and progress checkpoint.
-- Implementation checkpoint — `feat: keep playback speed visible and enlarge life history` (this commit).
+- `1f3b21c9c9` — `feat: keep playback speed visible and enlarge life history`.
 
 The speed display now uses a dedicated `GameplayRateDisplay/ChangedCommand` in the default and fallback themes. It preserves the W1-style pop, color, font, and glow, with no scheduled fade-out. Existing reset/exit commands still clear it on song completion, retry, course advance, and screen exit.
 
@@ -208,3 +208,38 @@ Presentation validation:
 - **PASS:** the existing focused life-history checks with the new dimensions. Covered live updates, pause caching, screen cleanup, evaluation statistics selection, narrow P2 gameplay, and clearance between the enlarged graph and evaluation rows/song titles. Widescreen and two-player evaluation spacing remain unchanged.
 - **PASS:** source review of the default/fallback persistent animation commands, rapid-value replacement, existing song/screen reset paths, P2 life-meter/frame positions and entrance/exit direction, and diff whitespace checks.
 - **PENDING:** interactive appearance, persistent speed visibility, and the larger graph in Windows gameplay/evaluation. This revision changes theme code/configuration and documentation only; no executable rebuild, Windows ZIP, push, or remote workflow was performed.
+
+
+## Windows x64 delivery: persistent speed and larger life history
+
+The user requested packaging of the latest revision.
+
+- Source revision: `1f3b21c9c9878d9b7edf80ee8e85eed867df0384`.
+- [Windows build](https://github.com/chihduo/stepmania/actions/runs/40283970563).
+- [x] Push the completed source revision to the fork's `5_1-new` branch.
+- [x] Complete the Windows Release build, portable-layout checks, and startup smoke test.
+- [x] Download and verify the ZIP, checksum, executable version, and latest theme files.
+- [x] Record the delivery and commit the documentation checkpoint.
+
+This delivery includes persistent speed feedback, the 400 by 128 preferred life-history graph raised by 15 pixels, the surrounding layout adjustments, and all previously completed controls and graph behavior. Interactive gameplay and visual verification remain separate from the packaging checks.
+
+
+Latest delivery results:
+
+- **PASS:** MSVC 2022 x64 Release build with static C/C++ runtime; [workflow run](https://github.com/chihduo/stepmania/actions/runs/40283970563).
+- **PASS:** Windows portable-layout and x64 PE checks; startup Lua-export smoke test reported `StepMania5.1-git-1f3b21c`.
+- **PASS:** downloaded SHA-256 matches the checksum file and CI log; ZIP CRC checks passed for all 3,554 files.
+- **PASS:** executable version and life-history API are present. Bundled default/fallback metrics, persistent speed-display actor/fonts, enlarged graph helper/textures/layouts, and feature documentation match revision `1f3b21c9c9`. Required media DLLs and game assets are present; generated settings, profiles, caches, logs, and smoke-test state are absent.
+- [Download artifact `StepMania-windows-x64-10.1`](https://github.com/chihduo/stepmania/actions/runs/40283970563/artifacts/12633815670). GitHub currently retains it until 2026-11-25.
+- Local ZIP: `out/github-actions/persistent-display-40283970563/StepMania-5.1-windows-x64-portable.zip` (73,463,393 bytes).
+- The checksum file, build logs, metadata, verification script, and `verification.json` are saved beside the ZIP in the ignored output directory.
+
+SHA-256 of the inner portable ZIP:
+
+```text
+741df7fdd49915d78745764d5af9f1ba67d32b642a44a0d737f7949779cc4035
+```
+
+Extract the GitHub artifact and then its inner portable ZIP. For an existing installation of these portable builds, close StepMania and merge the new `Program`, `Scripts`, and `Themes` folders into the existing game folder, replacing matching files; `Docs` is optional. Preserve the existing `Save`, `Songs`, `Logs`, `Screenshots`, and `Portable.ini`. Back up historical logs separately before launching because normal startup rewrites standard log files. Launch `StepMania/Program/StepMania.exe` with its full folder intact.
+
+This ZIP supersedes the previous `2613625a1d` package and includes the persistent speed number and enlarged graph. Interactive gameplay and appearance checks remain pending; automated packaging checks do not render gameplay.
