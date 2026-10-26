@@ -134,7 +134,7 @@ Reference: https://perfectpotato.wordpress.com/wp-content/uploads/2016/02/screen
 Life-history checkpoints:
 
 - `e86bc185b8` — plan and progress checkpoint.
-- Implementation checkpoint — `feat: restore single-player life-history graphs` (this commit).
+- `2613625a1d` — `feat: restore single-player life-history graphs`.
 
 The shared default-theme actor now renders live gameplay, evaluation, and evaluation summary. It uses the original legacy grid and fill assets, samples 128 life values, and updates existing geometry on life-record events and elapsed-time changes. The graph reads evaluation's selected StageStats and includes the last life-record timestamp, covering failure tails and summary gaps. The engine's existing history and scoring behavior remain unchanged.
 
@@ -147,3 +147,36 @@ Life-history validation:
 - **PASS:** local CMake Debug application compilation and link. Log: `build/live-rate/life-history-build.log`. The existing Linux validation configuration and its previously documented media limitations are unchanged.
 - **PASS:** legacy asset byte comparison, diff whitespace check, and source review of draw modes/vertex format, Lua APIs, screen lifecycle, summary wiring, and layout anchors.
 - **PENDING:** interactive Windows appearance and gameplay checks, including narrow panels, reverse/custom note modifiers, failure, retry, and finite courses. No rendered-screen test was performed. No Windows ZIP, push, or remote workflow was produced; these remain deferred at the user's request.
+
+
+## Windows x64 delivery: speed refinements and life history
+
+The user requested a new ZIP after the life-history implementation, authorizing packaging of the completed changes.
+
+- Source revision: `2613625a1d968a4a001349e75f38fe310919aeb2`.
+- [Windows build](https://github.com/chihduo/stepmania/actions/runs/40266781474).
+- [x] Push the completed source to the fork's `5_1-new` branch.
+- [x] Complete the Windows Release build, portable-layout checks, and startup smoke test.
+- [x] Download and verify the artifact, checksum, executable, and bundled feature assets.
+- [x] Record the delivery and commit the documentation checkpoint.
+
+This package includes 0.1x speed adjustments, opposite-arrow reset chords, the bottom-left themed speed display, and the single-player bottom-right life-history graph. Interactive gameplay and visual checks remain separate from the automated packaging checks.
+
+
+Delivery results:
+
+- **PASS:** MSVC 2022 x64 Release build with static C/C++ runtime; [workflow run](https://github.com/chihduo/stepmania/actions/runs/40266781474).
+- **PASS:** Windows portable-layout and x64 PE checks; startup Lua-export smoke test reported `StepMania5.1-git-2613625`.
+- **PASS:** downloaded SHA-256 matches the accompanying checksum file and CI log; ZIP CRC checks passed for all 3,554 files.
+- **PASS:** executable version and the new life-history API are present. Bundled speed-display Lua/fonts, life-history Lua/textures, screen wiring, metrics, language strings, and feature documentation match the committed source. Media DLLs and other required assets are present; runtime preferences, caches, logs, and smoke-test state are absent.
+- [Download artifact `StepMania-windows-x64-9.1`](https://github.com/chihduo/stepmania/actions/runs/40266781474/artifacts/12626746745). GitHub currently retains it until 2026-11-25.
+- Local ZIP: `out/github-actions/life-history-40266781474/StepMania-5.1-windows-x64-portable.zip` (73,462,569 bytes).
+- The checksum file, build logs, metadata, verification script, and `verification.json` are saved beside the ZIP in the ignored output directory.
+
+SHA-256 of the inner portable ZIP:
+
+```text
+c03eea6cec759376a1759970d6d472d110d290fee4d6167989fda41a93fced9a
+```
+
+Extract the downloaded GitHub artifact, then extract its inner portable ZIP and run `StepMania/Program/StepMania.exe`. Keep the full extracted folder together. This delivery includes all completed speed-control, speed-display, and life-history changes. Interactive appearance and gameplay verification remain pending; use `Docs/LiveGameplayRate.md` and `Docs/LifeHistoryGraph.md` for the manual checks.
