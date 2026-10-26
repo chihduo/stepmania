@@ -41,10 +41,10 @@ Def = {ActorFrame = function(t) return t end, ActorMultiVertex = function(t) ret
 LoadActor = function() return setmetatable({}, concat) end
 LoadFont = LoadActor
 ToEnumShortString = function(p) return p:sub(-2) end
-SCREEN_RIGHT, SCREEN_BOTTOM = 1280, 720
+SCREEN_LEFT, SCREEN_RIGHT, SCREEN_BOTTOM = 0, 1280, 720
 SCREEN_CENTER_X, SCREEN_CENTER_Y = 640, 360
 THEME = {
-	GetMetric = function(_, _, key) return ({Width=400, Height=128, MarginRight=16, MarginBottom=71})[key] end,
+	GetMetric = function(_, _, key) return ({Width=400, Height=128, MarginLeft=96, MarginBottom=71})[key] end,
 	GetString = function() return 'LIFE' end,
 	GetPathG = function(_, group, element) return group .. ' ' .. element end,
 }
@@ -66,18 +66,15 @@ local function Stage(seconds, tail, life)
 end
 local current, evaluated = Stage(10, 8, 0.75), Stage(30, 33, 0.25)
 STATSMAN = {GetCurStageStats = function() return current end}
-local field
-GAMESTATE.GetCurrentStyle = function() return {GetWidth = function() return 256 end} end
 SCREENMAN = {GetTopScreen = function() return {
 	GetStageStats = function() return evaluated end,
-	GetChild = function() return field end,
 } end}
 assert(G.GetEndSecond(current, current.stats) == 10)
 assert(G.GetEndSecond(evaluated, evaluated.stats) == 33)
 local function Instantiate(def)
 	local actor = {def=def, children={}}
 	for _, name in ipairs({'xy','x','halign','valign','zoomto','zoom','shadowlength','stoptweening',
-		'diffusealpha','linear','SetDrawState','SetLineWidth'}) do
+		'diffusealpha','linear','SetDrawState','SetLineWidth','draworder'}) do
 		actor[name] = function(self, ...) self[name .. 'Args'] = {...}; return self end
 	end
 	function actor:visible(v) self.shown = v; return self end
@@ -97,9 +94,13 @@ local function Widget(live)
 	return Instantiate(def), def
 end
 local actor, def = Widget(true)
-assert(actor.xyArgs[1] == 864 and actor.xyArgs[2] == 521)
+assert(actor.xyArgs[1] == 96 and actor.xyArgs[2] == 521)
+assert(actor.draworderArgs[1] > 0) -- Above the underlay's screen filter.
+assert(actor:GetChild('Backing').diffusealphaArgs[1] == 0.8)
+assert(actor:GetChild('Body').diffusealphaArgs[1] == 0.9)
 def.OnCommand(actor)
 assert(actor.update and current.stats.last == 10 and evaluated.stats.samples == 0)
+assert(actor.diffusealphaArgs[1] == 1) -- Preserve existing opacity.
 assert(actor:GetChild('Value').text == '75%')
 assert(actor:GetChild('EndTime').text == '0:10')
 local sampled = current.stats.samples
@@ -135,6 +136,7 @@ assert(actor.update == nil and current.stats.samples == sampled)
 actor, def = Widget(false)
 def.OnCommand(actor)
 assert(actor.update == nil and evaluated.stats.last == 33)
+assert(actor.draworderArgs[1] < 0) -- Below the evaluation statistics.
 assert(actor:GetChild('Value').text == '25%' and actor:GetChild('EndTime').text == '0:33')
 sampled = evaluated.stats.samples
 def.LifeMeterChangedP1MessageCommand(actor)
@@ -145,29 +147,37 @@ actor, def = Widget(true)
 assert(def.LifeMeterChangedP2MessageCommand and not def.LifeMeterChangedP1MessageCommand)
 def.OnCommand(actor)
 assert(actor:GetChild('Value').text == '50%')
--- At 4:3, the P2 note lane can leave only a narrow corner for the plot.
-SCREEN_RIGHT, SCREEN_CENTER_X = 960, 480
-field = {GetX = function() return 688 end, GetZoomX = function() return 1.5 end}
-actor, def = Widget(true)
-def.OnCommand(actor)
-assert(actor.xyArgs[1] == 892)
-assert(actor:GetChild('Backing').zoomtoArgs[1] == 52)
-assert(actor:GetChild('Line').vertices[128][1][1] == 52)
--- Evaluation retains the normal width because it has no note lane.
+-- Both single-player sides retain the full graph beside the life-bar frame,
+-- even on 4:3 screens; notes are in a higher screen layer.
+for _, p in ipairs({'PlayerNumber_P1', 'PlayerNumber_P2'}) do
+	humans, enabled = {p}, {p}
+	for _, screenWidth in ipairs({960, 1280}) do
+		SCREEN_RIGHT, SCREEN_CENTER_X = screenWidth, screenWidth / 2
+		actor, def = Widget(true)
+		def.OnCommand(actor)
+		assert(actor.xyArgs[1] >= SCREEN_LEFT + 40 + 64 / 2 + 24)
+		assert(actor:GetChild('Backing').zoomtoArgs[1] == 400)
+		assert(actor:GetChild('Line').vertices[128][1][1] == 400)
+		assert(actor.xyArgs[2] + 128 == SCREEN_BOTTOM - 71)
+	end
+end
 actor, def = Widget(false)
 def.OnCommand(actor)
 assert(actor:GetChild('Backing').zoomtoArgs[1] == 400)
--- The graph must not cover the last evaluation row or the song title.
-for _, rows in ipairs({7, 8}) do
-	local layout = G.GetEvaluationLayout(rows)
-	local rowBottom = SCREEN_CENTER_Y / 1.48 + rows * layout.spacing + 18 * layout.scale
-	assert(rowBottom < 521 - 24) -- Leave space for the graph's title above its body.
-	assert(layout.titleX + layout.titleWidth / 2 <= 544 - 12)
-	assert(layout.titleX - layout.titleWidth / 2 >= SCREEN_CENTER_X - 320 + 95 + 12)
+-- The last evaluation row and song title remain clear of the left-side graph.
+for _, screenWidth in ipairs({960, 1280}) do
+	SCREEN_RIGHT, SCREEN_CENTER_X = screenWidth, screenWidth / 2
+	for _, rows in ipairs({7, 8}) do
+		local layout = G.GetEvaluationLayout(rows)
+		local rowBottom = SCREEN_CENTER_Y / 1.48 + rows * layout.spacing + 18 * layout.scale
+		assert(rowBottom < 521 - 24)
+		assert(layout.titleX - layout.titleWidth / 2 >= 96 + 400 + 12)
+		assert(layout.titleX + layout.titleWidth / 2 <= SCREEN_CENTER_X + 320 - 95 - 12)
+	end
 end
-SCREEN_RIGHT, SCREEN_CENTER_X = 1280, 640
+SCREEN_RIGHT, SCREEN_CENTER_X = 1920, 960
 local layout = G.GetEvaluationLayout(8)
-assert(layout.spacing == 38 and layout.scale == 1 and layout.titleX == 640)
+assert(layout.spacing == 38 and layout.scale == 1 and layout.titleX == 960)
 humans, enabled = {'PlayerNumber_P1', 'PlayerNumber_P2'}, {'PlayerNumber_P1', 'PlayerNumber_P2'}
 actor, def = Widget(true)
 assert(#def == 0 and def.OnCommand == nil)

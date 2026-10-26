@@ -250,8 +250,27 @@ This ZIP supersedes the previous `2613625a1d` package and includes the persisten
 - [x] Inspect screen draw order, existing underlays, graph opacity, and life-bar bounds.
 - [x] Record the user's clarification to preserve the current transparency.
 - [x] Record the placement, layering, and validation plan.
-- [ ] Move the graph to the bottom-left underlay with life-bar clearance.
-- [ ] Adjust evaluation layout and verify position, layer order, unchanged opacity, and existing live behavior.
-- [ ] Update documentation and commit locally.
+- [x] Move the graph to the bottom-left underlay with life-bar clearance.
+- [x] Adjust evaluation layout and verify position, layer order, unchanged opacity, and existing live behavior.
+- [x] Update documentation and commit locally.
 
 Keep the existing transparency. The latest delivered Windows ZIP remains the `1f3b21c9c9` build until this follow-up is packaged separately.
+
+
+Bottom-left graph checkpoints:
+
+- `3695588aad` — plan and progress checkpoint.
+- Implementation checkpoint — `feat: draw life history beneath gameplay at bottom left` (this commit).
+
+The graph now loads in the gameplay underlay instead of the overlay. Its local draw order puts it above the screen filter, while the screen underlay itself remains below notes, judgments, life meters, messages, and the persistent speed display. Evaluation and summary use a lower graph draw order than their statistics. The normal evaluation graph was moved from the overlay into the underlay.
+
+The graph starts 96 theme pixels from the left, leaving 24 pixels beyond the existing left life-meter frame. It retains its 400 by 128 preferred dimensions and 71-pixel bottom margin. It no longer narrows around note lanes because those lanes now draw above it. Single-player evaluation details move to the right, and row/title clearance follows the left-side plot. Life-bar positions and two-player layouts remain unchanged.
+
+The user's transparency clarification is applied: the backing, body, line, and text opacity settings remain unchanged. No additional 60% opacity multiplier was added.
+
+Bottom-left graph validation:
+
+- **PASS:** bundled Lua 5.1 syntax checks for the shared actor, helper, and gameplay underlay.
+- **PASS:** existing focused graph checks, updated for bottom-left placement and full width for P1/P2 at 4:3 and 16:9, life-bar clearance, gameplay/evaluation sibling draw order, unchanged opacity, evaluation row/title clearance, live changes, pause caching, fresh-stage refresh, and exit cleanup.
+- **PASS:** source review of screen draw order (`background -200`, `underlay -100`, ordinary notes/decorations `0`, overlay `100`), actor-frame sorting, evaluation/summary wiring, and removal of old overlay graph instances. Diff whitespace checks passed.
+- **PENDING:** interactive Windows appearance and layering checks with actual notes, judgments, messages, backgrounds, and life bars. This is a theme revision; no executable rebuild, Windows ZIP, push, or remote workflow was performed.

@@ -2,10 +2,9 @@ local live = ...
 local player = LifeHistoryGraph.GetPlayer()
 if not player then return Def.ActorFrame {} end
 
-local preferredWidth = THEME:GetMetric("LifeHistory", "Width")
-local width = preferredWidth
+local width = THEME:GetMetric("LifeHistory", "Width")
 local height = THEME:GetMetric("LifeHistory", "Height")
-local marginRight = THEME:GetMetric("LifeHistory", "MarginRight")
+local marginLeft = THEME:GetMetric("LifeHistory", "MarginLeft")
 local marginBottom = THEME:GetMetric("LifeHistory", "MarginBottom")
 local active = false
 local lastStage, lastSecond, lastLife
@@ -43,28 +42,12 @@ end
 local t = Def.ActorFrame {
 	Name = "LifeHistory",
 	InitCommand = function(self)
-		self:xy(SCREEN_RIGHT - marginRight - width, SCREEN_BOTTOM - marginBottom - height)
+		self:xy(SCREEN_LEFT + marginLeft, SCREEN_BOTTOM - marginBottom - height)
+		-- Within the underlay: above the gameplay filter, below evaluation stats.
+		self:draworder(live and 1 or -1)
 	end,
 	OnCommand = function(self)
 		active = true
-		width = preferredWidth
-		if live then
-			-- Leave the ordinary note lanes clear, including uncentered P2 play.
-			local screen = SCREENMAN:GetTopScreen()
-			local field = screen and screen:GetChild("Player" .. ToEnumShortString(player))
-			if field then
-				local style = GAMESTATE:GetCurrentStyle(player)
-				local fieldRight = field:GetX() + style:GetWidth(player) * field:GetZoomX() / 2
-				width = math.max(1, math.min(width, SCREEN_RIGHT - marginRight - fieldRight - 12))
-			end
-		end
-		self:xy(SCREEN_RIGHT - marginRight - width, SCREEN_BOTTOM - marginBottom - height)
-		self:GetChild("Backing"):zoomto(width, height)
-		local captionScale = math.min(1, width / 100)
-		self:GetChild("Title"):zoom(0.6 * captionScale)
-		self:GetChild("Value"):x(width):zoom(0.6 * captionScale)
-		self:GetChild("StartTime"):zoom(0.5 * captionScale)
-		self:GetChild("EndTime"):x(width):zoom(0.5 * captionScale)
 		self:stoptweening():diffusealpha(1)
 		Refresh(self, true)
 		if live then self:SetUpdateFunction(function(actor) Refresh(actor, false) end) end

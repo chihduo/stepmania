@@ -164,7 +164,7 @@ for ip, p in ipairs(GAMESTATE:GetHumanPlayers()) do
 	-- Some things to help positioning
 	local step_count_offs = string.find(p, "P1") and -140 or 140
 	local grade_parts_offs = string.find(p, "P1") and -320 or 320
-	local details_offset = LifeHistoryGraph.GetPlayer() and -320 or grade_parts_offs
+	local details_offset = LifeHistoryGraph.GetPlayer() and 320 or grade_parts_offs
 	local p_grade = STATSMAN:GetCurStageStats():GetPlayerStageStats(p):GetGrade()
 	
 	-- Step counts.
@@ -328,7 +328,7 @@ for ip, p in ipairs(GAMESTATE:GetHumanPlayers()) do
 		};
 	end;
 	
-	-- Keep single-player details clear of the life graph on the right.
+	-- Keep single-player details clear of the life graph on the left.
 	eval_parts[#eval_parts+1] = Def.BitmapText {
 		Font = "Common Condensed",
 		InitCommand=cmd(horizalign,center;vertalign,top;x,_screen.cx + details_offset;y,(_screen.cy+196+43);wrapwidthpixels,240;diffuse,ColorDarkTone(PlayerColor(p));zoom,0.75;shadowlength,1),
@@ -437,5 +437,7 @@ if gameplay_pause_count > 0 then
 		OffCommand=cmd(sleep,0.2;decelerate,0.3;diffusealpha,0);
 	}
 end
+
+t[#t+1] = LoadActor(THEME:GetPathG("LifeHistory", "graph"), false)
 
 return t;
