@@ -281,3 +281,16 @@ Bottom-left graph validation:
 The user now requests 80% opacity for the graph's white line and labels. Added `self:diffusealpha(0.8)` to the `Line`, `Title`, `Value`, `StartTime`, and `EndTime` InitCommands. This shared actor applies the change during gameplay and evaluation. Backing/fill opacity, position, draw order, and live-update behavior remain unchanged.
 
 Validation **PASS**: bundled Lua 5.1 syntax check, existing focused life-history checks, and diff whitespace review. Local checkpoint: `style: soften life-history line and labels`. No new tests, executable rebuild, ZIP, push, or workflow is needed for this small theme edit; visual verification remains pending.
+
+
+## Follow-up: song changes unexpectedly while cycling sorts
+
+- [x] Inspect the Left+Right handler, wheel movement, Artist grouping, and screen-message timing.
+- [x] Identify a stale-preference path: the wheel changes sort before the pending song-change notification updates `m_pPreferredSong`.
+- [x] Record the implementation and regression plan.
+- [ ] Reproduce the selection loss using the real engine code.
+- [ ] Preserve the highlighted song across sorts, retaining existing fallbacks.
+- [ ] Build, run focused regression checks, and review the diff.
+- [ ] Record validation and commit the fix locally.
+
+Artist sorting uses the existing artist metadata; the suspected fault is selection restoration shared by all sorts. No new Windows ZIP has been requested for this follow-up.

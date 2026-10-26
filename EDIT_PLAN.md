@@ -103,3 +103,12 @@ Commit this plan checkpoint, make the theme changes, update the existing focused
 ## Follow-up revision: line and label opacity
 
 Set `self:diffusealpha(0.8)` in the shared graph's `Line`, `Title`, `Value`, `StartTime`, and `EndTime` InitCommands. Preserve the backing, fill, placement, and draw order. Check Lua syntax and the existing focused graph checks, update the documentation, and commit locally; no recompilation or ZIP build is needed for this theme edit.
+
+
+## Follow-up revision: preserve the highlighted song when changing sort
+
+Investigate the reported song/artist jump while cycling sorts with Left+Right. The wheel currently restores `m_pPreferredSong` at the end of a sort transition, even when the highlighted song is newer than that preference. The two arrows can land in adjacent frames: the first arrow updates the preference to a neighbor, the second returns the highlight to the original song, and the wheel changes sort before the screen processes that return notification.
+
+Add a focused headless regression that reproduces this timing through the engine's actual wheel movement and sort-transition code. Preserve the highlighted song by identity when it is present in the new sort; retain the existing preferred/current/first-song fallback for section headings or songs absent from the new list. Check both arrow orders, same-frame and split-frame processing, repeated sort cycling through Artist, and fallback behavior. Keep ordinary navigation and the existing shortcut definitions unchanged.
+
+Commit this plan checkpoint, reproduce the failure, make the smallest engine fix, build and run the focused checks, then record the results and commit locally. A Windows executable rebuild will be required to deliver this C++ fix; do not package or push a new ZIP until requested.
