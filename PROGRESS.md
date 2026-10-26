@@ -180,3 +180,14 @@ c03eea6cec759376a1759970d6d472d110d290fee4d6167989fda41a93fced9a
 ```
 
 Extract the downloaded GitHub artifact, then extract its inner portable ZIP and run `StepMania/Program/StepMania.exe`. Keep the full extracted folder together. This delivery includes all completed speed-control, speed-display, and life-history changes. Interactive appearance and gameplay verification remain pending; use `Docs/LiveGameplayRate.md` and `Docs/LifeHistoryGraph.md` for the manual checks.
+
+
+## Follow-up: persistent speed and larger life history
+
+- [x] Inspect the speed fade-out, graph dimensions, and nearby gameplay/evaluation layout.
+- [x] Record the requested changes and validation plan.
+- [ ] Keep the latest speed visible through the current song.
+- [ ] Double the graph's preferred width/height and raise its bottom edge by 15 pixels, keeping nearby information readable.
+- [ ] Run focused checks, update documentation, and commit locally.
+
+The earlier Windows ZIP remains the delivered build of `2613625a1d`; this follow-up will be a separate local revision.
