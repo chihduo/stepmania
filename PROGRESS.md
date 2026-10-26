@@ -320,3 +320,38 @@ python3 src/tests/run_gameplay_rate_engine.py build/live-rate
 For the next Windows build, highlight a song and note its title and artist. Release both arrows between Left+Right chords and cycle through Artist and back to the starting sort; verify that the title and artist stay the same. Repeat with Right pressed slightly before Left, then verify that ordinary individual arrow presses still change songs. This C++ fix requires an updated executable; editing Lua or metrics alone will not apply it.
 
 Checkpoints: `888acf1876` records the plan; the implementation checkpoint is `fix: preserve highlighted song when changing sort`.
+
+
+## Windows x64 delivery: song-sort fix and latest graph presentation
+
+The user requested a new portable ZIP from source `00e67ffb848e78b5ac275a5e511bb7af324b2e88`.
+
+- [x] Push the completed source and identify its Windows workflow run.
+- [x] Complete the Windows Release build, portable-layout validation, and startup smoke test.
+- [x] Download and verify the ZIP, checksum, source revision, and current theme assets.
+- [x] Record the download and validation results; commit and push the delivery documentation.
+
+This delivery includes the sort-selection fix, bottom-left life-history underlay, 80% white-line/label opacity, persistent playback-rate display, and previous speed controls. Interactive Windows gameplay and visual verification remain pending.
+
+[Windows workflow run 40327867336](https://github.com/chihduo/stepmania/actions/runs/40327867336) builds source `00e67ffb848e78b5ac275a5e511bb7af324b2e88`.
+
+
+Delivery results:
+
+- **PASS:** MSVC 2022 x64 Release build with static C/C++ runtime, portable-layout validation, and Windows startup Lua-export smoke test. Executable version: `StepMania5.1-git-00e67ff`.
+- **PASS:** downloaded SHA-256 matches the checksum file and CI log. ZIP CRC checks passed for all 3,554 files.
+- **PASS:** x64 PE architecture and executable version match source `00e67ffb848e78b5ac275a5e511bb7af324b2e88`. The bundled default/fallback theme files, bottom-left gameplay/evaluation underlays, 80% line/label opacity, graph helper/textures, persistent speed display, and feature documentation match the committed source.
+- **PASS:** required media DLLs and game assets are present. Generated preferences, profiles, logs, caches, screenshots, and smoke-test output are absent.
+- [Download artifact `StepMania-windows-x64-12.1`](https://github.com/chihduo/stepmania/actions/runs/40327867336/artifacts/12653640995). GitHub currently retains this artifact until 2026-11-25.
+- Local ZIP: `out/github-actions/song-sort-40327867336/StepMania-5.1-windows-x64-portable.zip` (73,463,335 bytes).
+- Build metadata, logs, checksum file, `verify_archive.py`, and `verification.json` are saved beside the archive in the ignored output directory.
+
+SHA-256 of the inner portable ZIP:
+
+```text
+da4a14d543c09e5c4555f3862e472051b58c83aa13c476dfd1e504b451b7d3ca
+```
+
+Extract the GitHub artifact, then its inner portable ZIP. To update the existing portable installation, close StepMania and merge the new `Program`, `Scripts`, and `Themes` folders into the game folder, replacing matching files; `Docs` is optional. Preserve `Save`, `Songs`, `Logs`, `Screenshots`, and `Portable.ini`, and retain a separate copy of historical logs before launching because startup rewrites standard log files. Personal theme/script edits at matching paths will be replaced.
+
+This delivery supersedes the recorded `1f3b21c9c9` ZIP and includes all revisions through `00e67ffb84`. Interactive Windows checks remain pending, particularly preserving the highlighted song while cycling sorts and the graph's visual layering. Automated build, startup, and archive checks do not render gameplay.

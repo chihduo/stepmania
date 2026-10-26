@@ -114,3 +114,12 @@ Add a focused headless regression that reproduces this timing through the engine
 Commit this plan checkpoint, reproduce the failure, make the smallest engine fix, build and run the focused checks, then record the results and commit locally. A Windows executable rebuild will be required to deliver this C++ fix; do not package or push a new ZIP until requested.
 
 Completed: reproduced the stale-preference failure, preserved the highlighted song before falling back, passed the local build and focused engine regressions, and recorded the remaining Windows verification in `PROGRESS.md`.
+
+
+## Windows x64 delivery: song-sort fix and latest graph presentation
+
+The user requests a new ZIP. Build committed revision `00e67ffb848e78b5ac275a5e511bb7af324b2e88` with the existing Windows portable workflow. This delivery includes the song-selection preservation fix, the life-history graph beneath gameplay at the bottom-left, the 80% white-line/label opacity, and all earlier playback-rate and graph changes.
+
+Push the completed source, verify the Windows Release build and startup smoke test, then download the archive and check its SHA-256, ZIP integrity, x64 executable/source revision, bundled theme files, required media DLLs, and absence of generated user data. Record the run and artifact links and commit the delivery documentation without triggering another build. Interactive Windows gameplay remains a separate verification step.
+
+Delivery complete: source `00e67ffb84` passed the Windows build/startup pipeline and downloaded-archive checks. The artifact link, checksum, and remaining in-game verification are recorded in `PROGRESS.md`.
