@@ -363,8 +363,36 @@ The user requests that live speed changes count as normal gameplay. This superse
 
 - [x] Trace score, award, replay, export, and disqualification restrictions.
 - [x] Record the revised behavior and implementation plan.
-- [ ] Remove live-rate-specific restrictions and the obsolete stage flag.
-- [ ] Verify normal score recording, reset/cleanup, summaries, and existing unrelated eligibility rules.
-- [ ] Build locally, update documentation, and commit the completed revision.
+- [x] Remove live-rate-specific restrictions and the obsolete stage flag.
+- [x] Verify normal score recording, reset/cleanup, summaries, and existing unrelated eligibility rules.
+- [x] Build locally, update documentation, and commit the completed revision.
 
 The latest delivered ZIP still contains the old scoring restriction until this revision is packaged. No new ZIP has been requested in this follow-up.
+
+
+Removed the `m_bUsedGameplayRate` stage flag and all associated restrictions. The live shortcut no longer sets player disqualification. Score finalization, high-score recognition, awards, replay saving, Padmiss exports, and upload-file generation now follow their ordinary paths and existing settings. Normal autoplay, give-up, disqualification, and save-score rules remain in place. Course and summary aggregation no longer carries a live-rate practice state.
+
+Updated `Docs/LiveGameplayRate.md` to describe normal scoring. Replay exports retain the existing format, which does not encode a timeline of playback-rate changes; this revision restores the normal save path without adding a replay format.
+
+Validation:
+
+- **PASS:** complete local Linux Debug application build after removing the stage field and score gates.
+- **PASS:** new headless score checks linked to the actual engine. Rates 0.2x, 0.8x, 1.1x, and 3.0x each cover an active override, reset to 1.0x, and song-end option restoration. `StageStats::FinalizeScores` records normal personal scores in all 12 cases. These finalization cases use failed-play fixtures, which normally save personal scores without requiring a graphical theme's grading configuration.
+- **PASS:** successful-score fixtures enter both normal personal and machine lists through `ProfileManager::AddStepsScore`, and the engine recognizes the machine high score while a live override is active. Personal and machine song-score XML survives a real save/read/reload round trip in the temporary filesystem.
+- **PASS:** save-score disabled, autoplay, and ordinary disqualification still prevent score insertion; summary aggregation preserves score totals without introducing disqualification.
+- **PASS:** existing engine checks for rate arithmetic, input suppression, option restoration, and life history, plus the song-selection sort regression.
+- **PASS:** source review of shortcut disqualification, award, replay, and export paths; no `m_bUsedGameplayRate` references or practice-only guards remain in source. Diff whitespace and original line endings were checked.
+- **PENDING:** an end-to-end Windows play, evaluation/award display, and replay/export output with these changes. The tests exercise engine scoring and persistence with fixtures, not physical keyboard input or rendered gameplay.
+
+Commands:
+
+```text
+/tmp/stepmania-live-rate-tools/cmake/data/bin/cmake --build build/live-rate --parallel 4
+python3 src/tests/run_gameplay_rate_engine.py build/live-rate src/tests/test_gameplay_rate_scores.cpp
+python3 src/tests/run_gameplay_rate_engine.py build/live-rate
+python3 src/tests/run_gameplay_rate_engine.py build/live-rate src/tests/test_music_wheel_sort.cpp
+```
+
+On the next Windows build, finish a song after changing speed and verify its normal score record after restarting the game. Repeat after resetting to 1.0x and with a result that beats the previous best. The existing profile/save settings still apply. The most recently delivered `00e67ffb84` ZIP remains unchanged; this C++ revision needs a new executable before Windows gameplay uses the new behavior.
+
+Checkpoints: `183653c22b` records the revised policy; the implementation checkpoint is `fix: score live-rate gameplay normally`. No Windows ZIP, remote push, or workflow was performed for this follow-up.

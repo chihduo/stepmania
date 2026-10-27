@@ -2484,9 +2484,6 @@ bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
 	}
 	if(changed)
 	{
-		STATSMAN->m_CurStageStats.m_bUsedGameplayRate = true;
-		FOREACH_EnabledPlayerInfo(m_vPlayerInfo, pi)
-			pi->GetPlayerStageStats()->m_bDisqualified = true;
 		RageSoundParams params = m_pSoundMusic->GetParams();
 		params.m_fSpeed = GAMESTATE->m_GameplayRate.GetRate();
 		m_pSoundMusic->SetParams(params);
@@ -2752,7 +2749,7 @@ void ScreenGameplay::StageFinished( bool bBackedOut )
 	}
 
 	FOREACH_HumanPlayer( pn )
-		STATSMAN->m_CurStageStats.m_player[pn].CalcAwards( pn, STATSMAN->m_CurStageStats.m_bGaveUp, STATSMAN->m_CurStageStats.m_bUsedAutoplay || STATSMAN->m_CurStageStats.m_bUsedGameplayRate );
+		STATSMAN->m_CurStageStats.m_player[pn].CalcAwards( pn, STATSMAN->m_CurStageStats.m_bGaveUp, STATSMAN->m_CurStageStats.m_bUsedAutoplay );
 	STATSMAN->m_CurStageStats.FinalizeScores( false );
 
 	GAMESTATE->CommitStageStats();
@@ -3231,9 +3228,6 @@ PlayerInfo *ScreenGameplay::GetDummyPlayerInfo( int iDummyIndex )
 
 void ScreenGameplay::SaveReplay()
 {
-	if(STATSMAN->m_CurStageStats.m_bUsedGameplayRate)
-		return; // Replays do not record a variable playback-rate timeline.
-
 	/* Replay data TODO:
 	 * Add more player information (?)
 	 * Add AutoGen flag if steps were autogen?

@@ -212,21 +212,6 @@ int main(int argc, char **argv)
 	assert(!mapper->FilterGameplayRateInput(stale, false).handled);
 	assert(mapper->FilterGameplayRateInput(down, false).handled);
 
-	StageStats practice;
-	practice.m_bUsedGameplayRate = true;
-	practice.m_vpPlayedSongs.push_back(nullptr); // Aggregation copies this pointer only.
-	StageStats summary;
-	summary.AddStats(practice);
-	assert(summary.m_bUsedGameplayRate);
-	assert(!summary.PlayerHasHighScore(PLAYER_1));
-	PREFSMAN->m_bDisqualification.Set(false);
-	summary.FinalizeScores(true); // Must return before touching profiles/songs.
-	StageStats normal;
-	normal.m_vpPlayedSongs.push_back(nullptr);
-	summary.AddStats(normal);
-	assert(summary.m_bUsedGameplayRate);
-	assert(!normal.m_bUsedGameplayRate);
-
 	// The graph uses the recorded time domain, including failure and summary tails.
 	PlayerStageStats history;
 	history.Init(PLAYER_1);
@@ -259,7 +244,7 @@ int main(int argc, char **argv)
 	assert(lifeLuaOK);
 	LUA->Release(L);
 
-	std::cout << "Engine rate, modifier restoration, input suppression, practice-score, and life-history checks passed.\n";
+	std::cout << "Engine rate, modifier restoration, input suppression, and life-history checks passed.\n";
 	// Leave the managers alive: normal shutdown writes preferences/mappings and
 	// is outside this test. All filesystem access was mounted in the fixture.
 	return 0;
