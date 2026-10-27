@@ -355,3 +355,16 @@ da4a14d543c09e5c4555f3862e472051b58c83aa13c476dfd1e504b451b7d3ca
 Extract the GitHub artifact, then its inner portable ZIP. To update the existing portable installation, close StepMania and merge the new `Program`, `Scripts`, and `Themes` folders into the game folder, replacing matching files; `Docs` is optional. Preserve `Save`, `Songs`, `Logs`, `Screenshots`, and `Portable.ini`, and retain a separate copy of historical logs before launching because startup rewrites standard log files. Personal theme/script edits at matching paths will be replaced.
 
 This delivery supersedes the recorded `1f3b21c9c9` ZIP and includes all revisions through `00e67ffb84`. Interactive Windows checks remain pending, particularly preserving the highlighted song while cycling sorts and the graph's visual layering. Automated build, startup, and archive checks do not render gameplay.
+
+
+## Follow-up: normal gameplay regardless of live speed changes
+
+The user requests that live speed changes count as normal gameplay. This supersedes the earlier practice-only behavior and its historical validation results.
+
+- [x] Trace score, award, replay, export, and disqualification restrictions.
+- [x] Record the revised behavior and implementation plan.
+- [ ] Remove live-rate-specific restrictions and the obsolete stage flag.
+- [ ] Verify normal score recording, reset/cleanup, summaries, and existing unrelated eligibility rules.
+- [ ] Build locally, update documentation, and commit the completed revision.
+
+The latest delivered ZIP still contains the old scoring restriction until this revision is packaged. No new ZIP has been requested in this follow-up.

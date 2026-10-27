@@ -13,7 +13,7 @@ During a song, hold either Shift key and press Up or Right to increase the playb
 - Make visible note movement scale with the live rate even when CMod/MMod is selected. Preserve the player's original scrolling settings.
 - Keep standard music-clock video playback synchronized without applying the rate twice. Inspect background/foreground animation timing for paths using elapsed real time.
 - Show the latest playback multiplier at the bottom-left after a change, using the theme font, W1 color, and FLAWLESS animation.
-- Mark any play using live changes as practice: do not save normal high scores or replays, even after returning to the starting rate. Preserve this status in course/summary statistics.
+- Treat live speed changes as normal gameplay: use the ordinary score, award, replay, and export rules, including after a reset or in courses/summaries.
 - Enable controls for local gameplay, excluding editor, demonstration, calibration, and network sessions where independent rate changes are inappropriate.
 
 ## Commit checkpoints
@@ -30,7 +30,7 @@ Checkpoint boundaries may be combined or refined if compilation dependencies req
 - Exercise both Shift keys and all four arrows, ordinary arrows, repeats, Shift-first release, arrow-first release, pre-existing holds, and a separately mapped controller.
 - Check 1.0 -> 1.1 -> 1.0 -> 0.9, bounds, repeated adjustments, and non-1.0 starting rates. Verify reset-to-1.0x shortcuts in both key orders without losing the original rate.
 - Check reset on completion, back/cancel, failure, retry, course advance, and destruction; preferred options must remain unchanged.
-- Check practice status remains set after restoring 1.0x and survives course/statistics aggregation.
+- Check live speed changes do not suppress normal score recording, awards, replays, or exports, including after restoring 1.0x and in course/summary statistics.
 - Verify note movement for XMod, CMod, and MMod and the music-clock video path without double scaling.
 - Run focused regression tests for the stateful behavior. Record any interactive audio/video checks that cannot be performed in this environment rather than claiming they passed.
 - Review the final diff and working tree; commit only files belonging to this feature.
@@ -123,3 +123,12 @@ The user requests a new ZIP. Build committed revision `00e67ffb848e78b5ac275a5e5
 Push the completed source, verify the Windows Release build and startup smoke test, then download the archive and check its SHA-256, ZIP integrity, x64 executable/source revision, bundled theme files, required media DLLs, and absence of generated user data. Record the run and artifact links and commit the delivery documentation without triggering another build. Interactive Windows gameplay remains a separate verification step.
 
 Delivery complete: source `00e67ffb84` passed the Windows build/startup pipeline and downloaded-archive checks. The artifact link, checksum, and remaining in-game verification are recorded in `PROGRESS.md`.
+
+
+## Follow-up revision: normal scoring after live speed changes
+
+The user explicitly requests normal gameplay regardless of speed changes. This supersedes all earlier practice-only scoring decisions in this plan and the historical progress entries.
+
+Remove the live-rate practice flag and its score/high-score, award, replay, and export restrictions. Stop marking players disqualified merely because a live rate change occurred. Preserve the game's existing unrelated eligibility rules, user save/replay/export settings, synchronized timing, input handling, and per-song option restoration. Replays continue using the existing export format; this change does not introduce a playback-rate timeline into that format.
+
+Replace the practice-only regression with checks that rate-adjusted plays enter the normal score lists and that normal save-score, autoplay, and disqualification settings still behave as before. Verify reset-to-1.0x and song-option cleanup do not prevent saving, and cover summary aggregation. Run the existing engine checks and a local build, update the gameplay documentation, and commit at the plan and implementation checkpoints. Do not create or publish another Windows ZIP until requested.
