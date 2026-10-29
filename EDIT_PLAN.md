@@ -134,3 +134,12 @@ Remove the live-rate practice flag and its score/high-score, award, replay, and 
 Replace the practice-only regression with checks that rate-adjusted plays enter the normal score lists and that normal save-score, autoplay, and disqualification settings still behave as before. Verify reset-to-1.0x and song-option cleanup do not prevent saving, and cover summary aggregation. Run the existing engine checks and a local build, update the gameplay documentation, and commit at the plan and implementation checkpoints. Do not create or publish another Windows ZIP until requested.
 
 Completed: removed live-rate practice/disqualification gates, verified normal profile recording and XML persistence plus existing eligibility rules, passed the local build and engine regressions, and documented the remaining Windows checks in `PROGRESS.md`.
+
+
+## Windows x64 delivery: normal scoring after live speed changes
+
+The user requests a ZIP of the latest build. Package source `0535f3e9d9b5ae3470d43d6b5d3ed4d778133e63` with the existing Windows portable workflow, including the change that lets live speed adjustments follow normal scoring and saving rules. All earlier speed controls, graph presentation, and song-sort fixes are included.
+
+Push the completed source, verify the Windows Release build and startup smoke test, download the portable archive, and check its checksum, ZIP integrity, x64 executable/source revision, bundled feature assets and documentation, and clean portable layout. Record the run, artifact, checksum, and validation limits in `PROGRESS.md`; commit and push the delivery record without triggering another build.
+
+Delivery complete: source `0535f3e9d9` passed the Windows build/startup pipeline and downloaded-archive checks. The download link, checksum, and remaining in-game scoring verification are recorded in `PROGRESS.md`.

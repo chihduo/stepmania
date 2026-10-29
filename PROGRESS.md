@@ -396,3 +396,40 @@ python3 src/tests/run_gameplay_rate_engine.py build/live-rate src/tests/test_mus
 On the next Windows build, finish a song after changing speed and verify its normal score record after restarting the game. Repeat after resetting to 1.0x and with a result that beats the previous best. The existing profile/save settings still apply. The most recently delivered `00e67ffb84` ZIP remains unchanged; this C++ revision needs a new executable before Windows gameplay uses the new behavior.
 
 Checkpoints: `183653c22b` records the revised policy; the implementation checkpoint is `fix: score live-rate gameplay normally`. No Windows ZIP, remote push, or workflow was performed for this follow-up.
+
+
+## Windows x64 delivery: normal scoring after live speed changes
+
+The user requests the latest portable ZIP from source `0535f3e9d9b5ae3470d43d6b5d3ed4d778133e63`. This delivery includes normal scoring after live speed changes and all previously implemented controls, graph presentation, and song-sort fixes.
+
+- [x] Push the completed source and identify its Windows workflow run.
+- [x] Complete the Windows Release build, portable-layout validation, and startup smoke test.
+- [x] Download and verify the ZIP, checksum, source revision, and bundled feature files.
+- [x] Record download and validation results; commit and push the delivery documentation.
+
+Existing local build and regression results for this source are recorded above. Interactive Windows gameplay verification remains pending.
+
+[Windows workflow run 40876612910](https://github.com/chihduo/stepmania/actions/runs/40876612910) builds source `0535f3e9d9b5ae3470d43d6b5d3ed4d778133e63`.
+
+
+Delivery results:
+
+- **PASS:** MSVC 2022 x64 Release build with static C/C++ runtime, portable-layout validation, and Windows startup Lua-export smoke test. Executable version: `StepMania5.1-git-0535f3e`.
+- **PASS:** downloaded SHA-256 matches the checksum file and CI log. ZIP CRC checks passed for all 3,554 files.
+- **PASS:** x64 executable and version match source `0535f3e9d9b5ae3470d43d6b5d3ed4d778133e63`. Bundled speed controls/display, bottom-left life-history graph underlays, line/label opacity, theme assets, and updated normal-scoring documentation match the committed source.
+- **PASS:** required media DLLs and game assets are present. Generated preferences, profiles, logs, caches, screenshots, and smoke-test output are absent.
+- [Download artifact `StepMania-windows-x64-13.1`](https://github.com/chihduo/stepmania/actions/runs/40876612910/artifacts/12899620835). GitHub currently retains it until 2026-11-28.
+- Local ZIP: `out/github-actions/normal-scoring-40876612910/StepMania-5.1-windows-x64-portable.zip` (73,463,537 bytes).
+- Build metadata, logs, checksum file, `verify_archive.py`, and `verification.json` are saved beside the archive in the ignored output directory.
+
+SHA-256 of the inner portable ZIP:
+
+```text
+5bf12a8d8e9c614394c27a25e26959d112377c8271dcff19dffd33e17e34f973
+```
+
+Extract the GitHub artifact, then its inner portable ZIP. For an existing portable installation, close StepMania and merge the new `Program`, `Scripts`, and `Themes` folders into the game folder, replacing matching files; `Docs` is optional. Preserve `Save`, `Songs`, `Logs`, `Screenshots`, and `Portable.ini`. Archive historical logs separately before launching because normal startup rewrites standard log files. Personal theme/script edits at matching paths will be replaced.
+
+This delivery supersedes the recorded `00e67ffb84` ZIP. Live speed changes now use the ordinary score, high-score, award, replay, and export paths; existing save settings and unrelated eligibility rules still apply. Interactive Windows gameplay verification remains pending. To verify the scoring fix, finish a song after changing speed, then restart and check its saved score; repeat after resetting to 1.0x. Automated build, startup, archive, and previously recorded engine tests do not replace an end-to-end Windows play.
+
+Delivery documentation is committed with `[skip ci]` so the downloadable executable remains tied to the verified source revision above.
