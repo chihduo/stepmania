@@ -154,3 +154,21 @@ Capture real gameplay and evaluation from the committed engine and bundled defau
 Commit the plan checkpoint, write and verify the README and any media, record capture provenance and limitations, and commit/push the documentation with `[skip ci]`. Validate relative links, media formats/sizes, source-supported feature claims, and the final diff. No new Windows executable is needed for documentation changes.
 
 Completed: replaced the upstream README, captured real Linux gameplay/evaluation with the unmodified theme, added PNG/GIF/MP4 demonstrations and capture notes, validated links/media and feature descriptions, and recorded the results in `PROGRESS.md`.
+
+
+## Follow-up: single-player recording and replay
+
+Implement the authorized in-game record/replay feature for local single-player regular songs. Preserve live speed changes, note results, score/combo/life presentation, and ordinary score saving for the original play. Replays use installed song assets and verify chart/timing identity. Watching a replay must not write scores, awards, activity totals, play counts, replay recordings, or modified player preferences.
+
+Use a versioned replay journal with initial chart/options metadata, timestamped logical input and speed events, and recorded judgment/note-state/statistic changes. Replay presentation consumes the recorded outcomes so different frame rates do not rejudge the original performance. Reuse the engine song clock, media rate control, theme judgments, and life graph. Bound parser/file sizes and reject missing/changed charts and unsupported recordings with readable errors. Preserve settings and stage/session state across exit/restart.
+
+Enable recording through the song options, provide a Watch Replay action on evaluation and a replay browser for the selected song/chart, and provide pause/resume, restart, and exit while watching. Start with single-player regular songs; courses, network play, multiplayer, editor/calibration, and dynamic note attacks are outside this initial scope and must be handled explicitly. Keep seeking and MP4 recording outside this in-game replay feature.
+
+Checkpoints:
+
+1. Commit the plan/progress before implementation.
+2. Implement and test replay data storage, identity validation, event ordering, and recording.
+3. Implement playback, profile/state isolation, theme controls/browser, and lifecycle handling.
+4. Build, run focused engine/regression tests, exercise actual rendered recording/playback in an isolated portable setup, document controls/limits, and commit the verified result.
+
+Cover taps, simultaneous inputs, misses, holds/rolls/releases/mines/lifts, rate changes/reset chords, pauses, failure/early exit, missing or changed charts, malformed files, P1/P2 single-player, repeat playback, and original-score/profile preservation. Record automated and interactive validation limits separately. Do not publish a new Windows ZIP until requested.

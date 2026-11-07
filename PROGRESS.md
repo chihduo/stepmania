@@ -463,3 +463,17 @@ Capture and validation:
 The isolated game tree, raw capture, automation, build log, metadata, and media verification report are retained under ignored `out/readme-demo/`. No personal profile or song directory was used for the demo. The temporary virtual display is stopped after capture. No gameplay source or theme behavior changed.
 
 Checkpoint `ed202f9327` records the plan. The completed README/media checkpoint is `docs: introduce fork features with gameplay demos [skip ci]`; push the documentation to the fork without starting another Windows build.
+
+
+## Follow-up: single-player recording and replay
+
+The user authorizes implementation and checkpoint commits after the feasibility investigation. The old exporter is incomplete: loading/controller support is disabled, hold results are empty, and no live-rate timeline is stored.
+
+- [x] Inspect existing replay stubs, clocks, judgments, profile writes, and theme entry points.
+- [x] Record the implementation and validation plan.
+- [ ] Implement replay storage/validation and recording; verify and commit.
+- [ ] Implement playback, state isolation, and theme controls/browser.
+- [ ] Validate engine behavior and actual rendered replay in an isolated setup.
+- [ ] Update documentation and commit the finished feature.
+
+Normal original plays must continue scoring normally after live speed changes. Replay viewing is a separate mode that does not add another play to saved history.
