@@ -473,8 +473,8 @@ The user authorizes implementation and checkpoint commits after the feasibility 
 - [x] Record the implementation and validation plan.
 - [x] Implement replay storage/validation and recording; verify and commit.
 - [x] Implement playback, state isolation, and theme controls/browser.
-- [ ] Validate engine behavior and actual rendered replay in an isolated setup.
-- [ ] Update documentation and commit the finished feature.
+- [x] Validate engine behavior and actual rendered replay in an isolated setup.
+- [x] Update documentation and commit the finished feature.
 
 Normal original plays must continue scoring normally after live speed changes. Replay viewing is a separate mode that does not add another play to saved history.
 
@@ -499,3 +499,21 @@ Artifacts and graphical scripts are retained under ignored `out/replay-tests/`; 
 ### Final review correction
 
 Preserve the timing offset and held-miss flag from the actual row judgment when a jump's judgment comes from a different column. Playback no longer substitutes the first column's tap offset. The journal accepts the earlier five-field judgment entries and the new entries with the explicit held-miss flag. Replay data round-trip and malformed-flag tests pass after the correction.
+
+
+### Completed validation and documentation
+
+Added `Docs/SinglePlayerReplays.md` with recording/viewer controls, file storage and compatibility, original-score behavior, supported contexts, and a Windows verification procedure. Updated the fork README and speed-control guide. Added an unedited, actual replay screenshot with capture provenance in `Docs/media/README.md`.
+
+- **PASS:** complete Linux Debug application build after the final judgment correction. Existing compiler deprecation warnings remain.
+- **PASS:** `test_replay_data.cpp` verifies journal round trips, chart/timing identity, taps/holds/mines/lifts and score counters, judgment offsets/held flags, and malformed input rejection. It was rerun after the final correction.
+- **PASS:** `test_replay_session.cpp` verifies missing/changed assets, nonfinite numeric modifiers, safe file/browser filtering, unsupported two-player styles, profile/play-count guards, restart, early exit, and restoration of stage/options/seed/calibration. It also verifies repeated cleanup.
+- **PASS:** existing engine rate-control, normal rate-adjusted scoring/persistence, song-sort, and Lua life-history checks. Syntax checks pass for all three changed default-theme overlays.
+- **PASS:** actual rendered P1 recording/playback reproduces score **97,435,899**, max combo **36**, the recorded 0.9x/1.0x/1.1x/1.2x rates, and life history. Pause/resume, restart, browser selection, completed/failed/aborted plays, immediate return, and repeated viewing were exercised. Human P2-only failed-play recording was replayed and returned to its original evaluation.
+- **PASS:** every file under the isolated `Save/` directory was compared before/after replay viewing and return, with no changes. The committed `b21530a9ad` reader/viewer was also exercised through the browser and returned without changing saved files.
+- **PASS:** the new replay PNG decodes at 1280 × 720; local documentation links and diff whitespace were checked. The screenshot is from the actual committed viewer and is labeled as a Linux capture.
+- **LIMIT:** graphical tests use Xvfb/Mesa, generated music/chart assets, Null audio, and a build without video decoding. Windows x64 runtime, audible music/video synchronization, physical controller behavior, and unusual song scripts still need platform verification. The final jump-offset/held-flag correction was built and covered by data tests, not a separate rendered jump capture.
+
+Focused engine-test logs are retained under `/tmp/stepmania-*replay*.log` and `/tmp/stepmania-final-{rate-engine,rate-scores,song-sort}.log`. Reproducible graphical scripts, Save-file comparison reports, raw captures, and game logs remain in the ignored `out/replay-tests/` directory. The temporary game/display processes were stopped after capture; no personal profile or song folder was used.
+
+Local checkpoints: `17115d3d9a` (plan), `d73c53afbf` (validated journal), `b21530a9ad` (recording/viewer and integration checks), and `402f628460` (jump judgment details). The final documentation checkpoint closes this revision. No remote push, Windows workflow, or ZIP packaging was performed; the previously delivered Windows executable does not contain replay playback.

@@ -172,3 +172,6 @@ Checkpoints:
 4. Build, run focused engine/regression tests, exercise actual rendered recording/playback in an isolated portable setup, document controls/limits, and commit the verified result.
 
 Cover taps, simultaneous inputs, misses, holds/rolls/releases/mines/lifts, rate changes/reset chords, pauses, failure/early exit, missing or changed charts, malformed files, P1/P2 single-player, repeat playback, and original-score/profile preservation. Record automated and interactive validation limits separately. Do not publish a new Windows ZIP until requested.
+
+
+Completed: implemented single-player recording and playback with the live-rate timeline, native recorded results, chart validation, state/profile isolation, and default-theme controls/browser. Passed the local Linux build and focused engine/regression checks, exercised rendered P1/P2 replay and Save-file preservation in an isolated setup, and added the guide plus an authentic screenshot. Verification details and Windows/audio/video limits are recorded in `PROGRESS.md`. All checkpoints are local; no new Windows ZIP was built or published.

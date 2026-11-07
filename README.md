@@ -1,10 +1,10 @@
-# StepMania with live playback speed control
+# StepMania with live speed control and single-player replays
 
-A fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also adds a live life-history graph to the default theme and keeps your highlighted song selected when changing the song-wheel sort.
+A fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also records and replays single-player songs, adds a live life-history graph to the default theme, and keeps your highlighted song selected when changing the song-wheel sort.
 
 [![Windows x64 build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml/badge.svg?branch=5_1-new)](https://github.com/chihduo/stepmania/actions/workflows/ci.yml)
 
-[Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3A5_1-new) · [Playback controls](Docs/LiveGameplayRate.md) · [Life-history graph](Docs/LifeHistoryGraph.md)
+[Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3A5_1-new) · [Playback controls](Docs/LiveGameplayRate.md) · [Recording and replay](Docs/SinglePlayerReplays.md) · [Life-history graph](Docs/LifeHistoryGraph.md)
 
 ![Gameplay with notes and judgments above the life-history graph and the current speed at the bottom-left.](Docs/media/gameplay.png)
 
@@ -34,7 +34,21 @@ For example, Up, Down, Down while holding Shift changes **1.0x → 1.1x → 1.0x
 
 [Open the 52-second silent gameplay video (MP4)](Docs/media/live-speed-demo.mp4), including both reset chords.
 
-These controls work during active local gameplay. They are disabled while paused and in the editor, attract-mode demonstration screens, calibration, and network play. Custom song scripts that use their own real-time clocks need separate verification. Replay exports retain the existing format, which does not store a timeline of rate changes. See [the playback guide](Docs/LiveGameplayRate.md) for behavior and verification steps.
+These controls work during active local gameplay. They are disabled while paused and in the editor, attract-mode demonstration screens, calibration, and network play. Custom song scripts that use their own real-time clocks need separate verification. Supported single-player replays include the live rate-change timeline. See [the playback guide](Docs/LiveGameplayRate.md) for behavior and verification steps.
+
+### Record and replay a single-player song
+
+Set **Save Replays → On** in song options to record a regular single-player play, including its speed changes, original judgments, score/combo, and life history. Recording is off by default.
+
+- On **evaluation**, press **F10** to watch that play.
+- On **song selection**, press **F10** to browse recordings for the selected chart.
+- While watching, use **Space/Start** to pause/resume, **R** to restart, and **Esc/Back** to return.
+- Watching restores the original results without adding another score or play to your history. The original play keeps its normal scoring rules.
+- Recordings live in **`Save/Replays/`** and require the matching installed song/chart. P1-only and P2-only play are supported. Courses, multiplayer, attacks, keysounds, and calibration are outside this first version.
+
+![In-game replay with recorded judgments, notes, speed, and life history.](Docs/media/replay.png)
+
+See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requirements, file limits, and verification. This is in-game playback; it does not export an MP4.
 
 ### See life history during and after play
 
@@ -70,7 +84,7 @@ The fork includes a GitHub Actions pipeline that builds a **Windows x64 Release*
 
 Close StepMania and back up the existing folder. Extract the new package elsewhere, then merge **`Program`**, **`Scripts`**, and **`Themes`** into the existing game folder, replacing matching files. Updating **`Docs`** is optional.
 
-Keep **`Save`**, **`Songs`**, **`Logs`**, **`Screenshots`**, and **`Portable.ini`**, along with any other personal content. `Save` contains settings, profiles, and play history. Back up custom theme/script edits before replacing matching files. Copy historical logs elsewhere before launching, since normal startup rewrites the standard log files.
+Keep **`Save`**, **`Songs`**, **`Logs`**, **`Screenshots`**, and **`Portable.ini`**, along with any other personal content. `Save` contains settings, profiles, play history, and recordings in `Save/Replays/`. Back up custom theme/script edits before replacing matching files. Copy historical logs elsewhere before launching, since normal startup rewrites the standard log files.
 
 ## Build from source
 
@@ -92,6 +106,7 @@ The portable ZIP and checksum appear in `out/`. See [the Windows pipeline guide]
 ## Documentation and credits
 
 - [Live playback controls and regression checks](Docs/LiveGameplayRate.md)
+- [Single-player recording, replay controls, and checks](Docs/SinglePlayerReplays.md)
 - [Life-history layout, customization, and checks](Docs/LifeHistoryGraph.md)
 - [Windows portable build pipeline](Docs/WindowsPortablePipeline.md)
 - [Demo media and capture details](Docs/media/README.md)

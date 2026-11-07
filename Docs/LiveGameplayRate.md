@@ -18,7 +18,7 @@ Notes, music, and standard song videos follow the same song clock. CMod and MMod
 
 The original settings return after finishing, failing, cancelling, restarting, or advancing to the next song in a course. The speed display clears when the song or gameplay screen ends and on retry/course advance. Changing the rate counts as normal gameplay. Scores can enter the normal personal and machine high-score lists, including after returning to 1.0x and in courses or summaries. Speed changes do not disqualify the play or suppress awards, replay saving, or score exports. The usual save settings and unrelated score-eligibility rules still apply. Play-count and activity totals continue to accumulate.
 
-Replay exports use the existing replay format, which does not store a timeline of playback-rate changes.
+Supported single-player recordings now use the version 1 replay journal, including the live playback-rate timeline and original results. Enable Save Replays in song options, then press F10 on evaluation to watch. See [single-player recording and replay](SinglePlayerReplays.md) for controls and limits.
 
 The shortcuts work during active local gameplay. They do not change the rate while paused, in the editor, in demonstrations, in the calibration screen, or in a network session. During manual rate control, Haste is overridden and autosync sampling is suspended; normal song settings resume afterward.
 
