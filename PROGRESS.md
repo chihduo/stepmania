@@ -477,3 +477,9 @@ The user authorizes implementation and checkpoint commits after the feasibility 
 - [ ] Update documentation and commit the finished feature.
 
 Normal original plays must continue scoring normally after live speed changes. Replay viewing is a separate mode that does not add another play to saved history.
+
+### Checkpoint: versioned replay storage
+
+Implemented a bounded version 1 JSON replay journal (`.smr.json`) with the resolved chart, timing fingerprint, initial settings, music-clock frames, original note/hold results, score counters, inputs, judgments, rates, and life-history events. Files use StepMania's safe-write path with checked write/flush/size results. The reader checks schema, enum values, column/row references, event counts, chronological order, file size, and JSON nesting before playback.
+
+Validation: the Linux Debug engine builds successfully. `test_replay_data.cpp` passes real-engine round trips for taps, holds, mines, lifts, original score/combo/judgment counts, and timing-sensitive fingerprints; malformed JSON, unsupported versions, absent notes, invalid columns/results/rates, duplicate notes, fractional counters, out-of-order frames, deep nesting, and missing files are rejected. Gameplay capture and playback integration are next; recording is not exposed in-game at this checkpoint.
