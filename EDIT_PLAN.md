@@ -152,3 +152,5 @@ Replace the upstream-only README with an introduction to this fork, its synchron
 Capture real gameplay and evaluation from the committed engine and bundled default theme in an isolated temporary game directory if this environment can run a virtual display. Use a generated demo chart and synthetic audio so screenshots/animation can be redistributed without importing third-party songs. Clearly identify the capture platform and demo setup. Prefer a compact inline animation plus readable still images; do not present fabricated UI as a gameplay capture.
 
 Commit the plan checkpoint, write and verify the README and any media, record capture provenance and limitations, and commit/push the documentation with `[skip ci]`. Validate relative links, media formats/sizes, source-supported feature claims, and the final diff. No new Windows executable is needed for documentation changes.
+
+Completed: replaced the upstream README, captured real Linux gameplay/evaluation with the unmodified theme, added PNG/GIF/MP4 demonstrations and capture notes, validated links/media and feature descriptions, and recorded the results in `PROGRESS.md`.

@@ -439,8 +439,27 @@ Delivery documentation is committed with `[skip ci]` so the downloadable executa
 
 - [x] Review the existing README, implemented features, Windows workflow, and capture prerequisites.
 - [x] Record the documentation and authentic-media plan.
-- [ ] Capture gameplay and evaluation in an isolated setup if available.
-- [ ] Replace the README and add media provenance and links.
-- [ ] Validate links, claims, media, and diff; commit and push the documentation.
+- [x] Capture gameplay and evaluation in an isolated setup if available.
+- [x] Replace the README and add media provenance and links.
+- [x] Validate links, claims, media, and diff; commit and push the documentation.
 
 The local Linux Debug executable is available, but no display is running. FFmpeg and X11 support are installed. Investigate a temporary virtual display and a generated WAV/chart fixture; keep all generated game state under the ignored output directory.
+
+
+Completed the fork README and authentic demonstration media. The README now explains all live playback controls, the persistent bottom-left multiplier, normal scoring after rate changes, single-player life history, song-sort selection preservation, Windows portable downloads/updates, source builds, and upstream credits. It uses this fork's workflow badge and a stable Actions link instead of upstream CI badges or an expiring artifact as the sole download route.
+
+Added `Docs/media/gameplay.png`, `evaluation.png`, a 17-second inline GIF, a 52-second silent MP4, and `Docs/media/README.md` with capture provenance and limits. Updated the life-history guide to link the Linux visual captures. Total media size is approximately 6.0 MB.
+
+Capture and validation:
+
+- **PASS:** refreshed and built the local Linux Debug executable. Embedded version is `StepMania5.1-git-ed202f9327`; source `ed202f932724d8b8f3124887c951f6dee71b09bc` has the same feature code as `0535f3e9d9b5ae3470d43d6b5d3ed4d778133e63`.
+- **PASS:** actual regular gameplay and evaluation rendered under Xvfb/Mesa using the unmodified default theme and dance noteskin. A generated 120 BPM chart, original synthetic WAV, and neutral background avoid importing external song media. Autoplay with brief misses produces the life curve; XTest keyboard events exercise increases, decreases, and both reset chords.
+- **PASS:** visually inspected the gameplay/evaluation stills and slowdown/reset animation/video frames. The speed label persists, note sprites render above the graph, life history updates, and evaluation shows the completed curve.
+- **PASS:** both PNGs decode at 1280 × 720. All 204 GIF frames decode at 800 × 450 for 17 seconds. The MP4 decodes without errors as H.264 at 960 × 540, 24 fps, 52 seconds, with no audio stream.
+- **PASS:** all 27 relative links in the README, media notes, and updated graph guide resolve; all four Markdown images (including the build badge) have alt text. Reviewed claims against feature documentation/source and checked diff whitespace.
+- **PASS:** verified the repository default branch is `5_1-new` and the existing normal-scoring Windows artifact is still available. The README points to the workflow for future downloads and explains the 30-day retention.
+- **LIMIT:** these are silent Linux captures using the Null audio driver and autoplay, not end-to-end Windows audio/video synchronization or human score-saving verification. Those limits and autoplay's normal scoring restrictions are stated with the media.
+
+The isolated game tree, raw capture, automation, build log, metadata, and media verification report are retained under ignored `out/readme-demo/`. No personal profile or song directory was used for the demo. The temporary virtual display is stopped after capture. No gameplay source or theme behavior changed.
+
+Checkpoint `ed202f9327` records the plan. The completed README/media checkpoint is `docs: introduce fork features with gameplay demos [skip ci]`; push the documentation to the fork without starting another Windows build.

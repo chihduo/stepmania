@@ -19,7 +19,7 @@ Use a build containing this change and select the **default** theme.
 5. Repeat with only P2 joined, checking both 16:9 and 4:3 layouts. The plot should keep its full width, with notes, judgments, and messages drawn over it and a clear gap beside the life bar. The bottom-left speed number should remain readable below it. Evaluation's radar details and modifier text should appear on the right, with the song title and judgment rows clear of the graph.
 6. Join both players. Confirm neither gameplay nor evaluation displays this additional graph.
 
-Interactive appearance and Windows gameplay verification remain pending; the local automated checks do not render the screens.
+Actual Linux gameplay and evaluation captures are available in the [repository README](../README.md) and [media directory](media/README.md). These demonstrate the rendered graph and its placement; Windows gameplay verification remains separate, and the focused automated checks do not render the screens.
 
 ## Theme settings and automated checks
 
