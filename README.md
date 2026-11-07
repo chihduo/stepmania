@@ -1,10 +1,10 @@
-# StepMania with live speed control and single-player replays
+# StepMania 6
 
-A fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also records and replays single-player songs, adds a live life-history graph to the default theme, and keeps your highlighted song selected when changing the song-wheel sort.
+A community fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also records and replays single-player songs, adds a live life-history graph to the default theme, and keeps your highlighted song selected when changing the song-wheel sort.
 
 [![Windows x64 build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml/badge.svg?branch=5_1-new)](https://github.com/chihduo/stepmania/actions/workflows/ci.yml)
 
-[Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3A5_1-new) · [Playback controls](Docs/LiveGameplayRate.md) · [Recording and replay](Docs/SinglePlayerReplays.md) · [Life-history graph](Docs/LifeHistoryGraph.md)
+[Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3A5_1-new) · [Playback controls](Docs/LiveGameplayRate.md) · [Record and replay](#record-and-replay) · [Life-history graph](Docs/LifeHistoryGraph.md)
 
 ![Gameplay with notes and judgments above the life-history graph and the current speed at the bottom-left.](Docs/media/gameplay.png)
 
@@ -36,20 +36,6 @@ For example, Up, Down, Down while holding Shift changes **1.0x → 1.1x → 1.0x
 
 These controls work during active local gameplay. They are disabled while paused and in the editor, attract-mode demonstration screens, calibration, and network play. Custom song scripts that use their own real-time clocks need separate verification. Supported single-player replays include the live rate-change timeline. See [the playback guide](Docs/LiveGameplayRate.md) for behavior and verification steps.
 
-### Record and replay a single-player song
-
-Set **Save Replays → On** in song options to record a regular single-player play, including its speed changes, original judgments, score/combo, and life history. Recording is off by default.
-
-- On **evaluation**, press **F10** to watch that play.
-- On **song selection**, press **F10** to browse recordings for the selected chart.
-- While watching, use **Space/Start** to pause/resume, **R** to restart, and **Esc/Back** to return.
-- Watching restores the original results without adding another score or play to your history. The original play keeps its normal scoring rules.
-- Recordings live in **`Save/Replays/`** and require the matching installed song/chart. P1-only and P2-only play are supported. Courses, multiplayer, attacks, keysounds, and calibration are outside this first version.
-
-![In-game replay with recorded judgments, notes, speed, and life history.](Docs/media/replay.png)
-
-See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requirements, file limits, and verification. This is in-game playback; it does not export an MP4.
-
 ### See life history during and after play
 
 The **default theme** shows a life-history graph automatically for single-player gameplay, evaluation, and evaluation summary.
@@ -71,6 +57,35 @@ On the song-selection screen, **Left + Right** cycles the configured sort order.
 ### Download a Windows x64 portable build
 
 The fork includes a GitHub Actions pipeline that builds a **Windows x64 Release** package with the static C/C++ runtime. Each package is checked for its portable layout and x64 executable, then runs a startup test before being archived with a SHA-256 checksum. These automated checks do not replace in-game audio, video, and input verification.
+
+## Record and replay
+
+Record a regular single-player song and watch it again inside the game. Replays preserve the original judgments, score, combo, life history, and live speed changes. Both **P1-only** and **P2-only** play are supported.
+
+### Record a play
+
+Set **Save Replays → On** in song options, then play normally. Recording is off by default. The default theme shows **Recording replay** near the bottom-right, and the existing Shift+arrow speed controls work as usual.
+
+Completed and failed plays can be watched from evaluation. Backing out saves an aborted recording that is available in the song-selection browser. The original play keeps its normal scoring and saving rules, including after speed changes.
+
+### Watch a recording
+
+- On **evaluation**, press **F10** to watch the play you just recorded.
+- On **song selection**, highlight the same song/chart and press **F10** to browse its recordings. Use Up/Down to choose one and Enter/Start to watch.
+
+| Replay control | Action |
+| --- | --- |
+| **Space** or **Start** | Pause/resume |
+| **R** | Restart from the beginning |
+| **Esc** or **Back** | Return to evaluation or the replay browser |
+
+Recorded speed changes apply automatically. Watching or restarting a replay adds no scores or plays to your history, and returning restores your previous settings and original results.
+
+![In-game replay with recorded judgments, notes, speed, and life history.](Docs/media/replay.png)
+
+Recordings are stored in **`Save/Replays/`** and require the matching installed song/chart and media. Keep this folder when updating the game. Courses, multiplayer, attacks, keysounds, and calibration are outside this first version. This is in-game playback; it does not export an MP4.
+
+See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requirements, file limits, and verification.
 
 ## Install on Windows x64
 

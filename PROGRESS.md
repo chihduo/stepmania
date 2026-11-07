@@ -517,3 +517,10 @@ Added `Docs/SinglePlayerReplays.md` with recording/viewer controls, file storage
 Focused engine-test logs are retained under `/tmp/stepmania-*replay*.log` and `/tmp/stepmania-final-{rate-engine,rate-scores,song-sort}.log`. Reproducible graphical scripts, Save-file comparison reports, raw captures, and game logs remain in the ignored `out/replay-tests/` directory. The temporary game/display processes were stopped after capture; no personal profile or song folder was used.
 
 Local checkpoints: `17115d3d9a` (plan), `d73c53afbf` (validated journal), `b21530a9ad` (recording/viewer and integration checks), and `402f628460` (jump judgment details). The final documentation checkpoint closes this revision. No remote push, Windows workflow, or ZIP packaging was performed; the previously delivered Windows executable does not contain replay playback.
+
+
+## Follow-up: StepMania 6 README title and record/replay section
+
+Changed the README title to **StepMania 6** and retained attribution as a community fork of StepMania 5.1. Expanded record/replay into a main section, linked from the introduction, covering Save Replays, F10 access, playback controls, recorded speed/results, completed/failed/aborted plays, file storage, and normal original-score behavior. The existing authentic screenshot and detailed guide are linked from the section.
+
+Validation: the requested title and single record/replay heading are present, all local README links and the new section anchor resolve, images have alt text, and `git diff --check` passes. This documentation-only checkpoint does not change executable branding or gameplay. No build, ZIP, or remote push was performed.

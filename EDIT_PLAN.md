@@ -175,3 +175,10 @@ Cover taps, simultaneous inputs, misses, holds/rolls/releases/mines/lifts, rate 
 
 
 Completed: implemented single-player recording and playback with the live-rate timeline, native recorded results, chart validation, state/profile isolation, and default-theme controls/browser. Passed the local Linux build and focused engine/regression checks, exercised rendered P1/P2 replay and Save-file preservation in an isolated setup, and added the guide plus an authentic screenshot. Verification details and Windows/audio/video limits are recorded in `PROGRESS.md`. All checkpoints are local; no new Windows ZIP was built or published.
+
+
+## Follow-up: StepMania 6 README title and record/replay section
+
+Use **StepMania 6** as the README title while retaining the StepMania 5.1 community-fork attribution. Make record/replay a main README section with recording setup, F10 entry points, viewer controls, saved-file location, original-score behavior, and the existing screenshot/guide. Validate local links and whitespace, update the progress record, and commit this documentation checkpoint.
+
+Completed: updated the title and main record/replay section, validated README links/formatting, and recorded the documentation checkpoint in `PROGRESS.md`.
