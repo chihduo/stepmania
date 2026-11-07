@@ -143,3 +143,12 @@ The user requests a ZIP of the latest build. Package source `0535f3e9d9b5ae3470d
 Push the completed source, verify the Windows Release build and startup smoke test, download the portable archive, and check its checksum, ZIP integrity, x64 executable/source revision, bundled feature assets and documentation, and clean portable layout. Record the run, artifact, checksum, and validation limits in `PROGRESS.md`; commit and push the delivery record without triggering another build.
 
 Delivery complete: source `0535f3e9d9` passed the Windows build/startup pipeline and downloaded-archive checks. The download link, checksum, and remaining in-game scoring verification are recorded in `PROGRESS.md`.
+
+
+## Follow-up: fork README and gameplay demonstrations
+
+Replace the upstream-only README with an introduction to this fork, its synchronized per-song speed controls, persistent speed display, normal scoring policy, single-player life-history graph, and song-sort selection fix. Document Windows x64 portable installation and updates, source builds, links to detailed feature documentation, and upstream credits/licenses. Use the fork's actual build workflow and avoid depending on an expiring artifact as the only download route.
+
+Capture real gameplay and evaluation from the committed engine and bundled default theme in an isolated temporary game directory if this environment can run a virtual display. Use a generated demo chart and synthetic audio so screenshots/animation can be redistributed without importing third-party songs. Clearly identify the capture platform and demo setup. Prefer a compact inline animation plus readable still images; do not present fabricated UI as a gameplay capture.
+
+Commit the plan checkpoint, write and verify the README and any media, record capture provenance and limitations, and commit/push the documentation with `[skip ci]`. Validate relative links, media formats/sizes, source-supported feature claims, and the final diff. No new Windows executable is needed for documentation changes.

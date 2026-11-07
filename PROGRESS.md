@@ -433,3 +433,14 @@ Extract the GitHub artifact, then its inner portable ZIP. For an existing portab
 This delivery supersedes the recorded `00e67ffb84` ZIP. Live speed changes now use the ordinary score, high-score, award, replay, and export paths; existing save settings and unrelated eligibility rules still apply. Interactive Windows gameplay verification remains pending. To verify the scoring fix, finish a song after changing speed, then restart and check its saved score; repeat after resetting to 1.0x. Automated build, startup, archive, and previously recorded engine tests do not replace an end-to-end Windows play.
 
 Delivery documentation is committed with `[skip ci]` so the downloadable executable remains tied to the verified source revision above.
+
+
+## Follow-up: fork README and gameplay demonstrations
+
+- [x] Review the existing README, implemented features, Windows workflow, and capture prerequisites.
+- [x] Record the documentation and authentic-media plan.
+- [ ] Capture gameplay and evaluation in an isolated setup if available.
+- [ ] Replace the README and add media provenance and links.
+- [ ] Validate links, claims, media, and diff; commit and push the documentation.
+
+The local Linux Debug executable is available, but no display is running. FFmpeg and X11 support are installed. Investigate a temporary virtual display and a generated WAV/chart fixture; keep all generated game state under the ignored output directory.
