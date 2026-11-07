@@ -1,5 +1,6 @@
 #include "global.h"
 #include "GameState.h"
+#include "GameplayReplay.h"
 #include "Actor.h"
 #include "ActorUtil.h"
 #include "AdjustSync.h"
@@ -717,6 +718,7 @@ int GameState::GetNumStagesForCurrentSongAndStepsOrCourse() const
 // Called by ScreenGameplay. Set the length of the current song.
 void GameState::BeginStage()
 {
+	if(GameplayReplay::IsPlaying()) return;
 	if( m_bDemonstrationOrJukebox )
 		return;
 
@@ -764,6 +766,7 @@ void GameState::BeginStage()
 
 void GameState::CancelStage()
 {
+	if(GameplayReplay::IsPlaying()) return;
 	FOREACH_CpuPlayer( p )
 	{
 		switch( m_PlayMode )
@@ -784,6 +787,7 @@ void GameState::CancelStage()
 
 void GameState::CommitStageStats()
 {
+	if(GameplayReplay::IsPlaying()) return;
 	if( m_bDemonstrationOrJukebox )
 		return;
 
@@ -807,6 +811,7 @@ void GameState::CommitStageStats()
  * played a song. Might be called more than once. */
 void GameState::FinishStage()
 {
+	if(GameplayReplay::IsPlaying()) return;
 	// Increment the stage counter.
 	const int iOldStageIndex = m_iCurrentStageIndex;
 	++m_iCurrentStageIndex;
@@ -890,6 +895,7 @@ void GameState::LoadCurrentSettingsFromProfile( PlayerNumber pn )
 
 void GameState::SaveCurrentSettingsToProfile( PlayerNumber pn )
 {
+	if(GameplayReplay::IsPlaying()) return;
 	if( !PROFILEMAN->IsPersistentProfile(pn) )
 		return;
 	if( m_bDemonstrationOrJukebox )
@@ -1192,7 +1198,7 @@ void GameState::Update( float fDelta )
 	{
 		m_pPlayerState[p]->Update( fDelta );
 
-		if( !m_bGoalComplete[p] && IsGoalComplete(p) )
+		if( !GameplayReplay::IsPlaying() && !m_bGoalComplete[p] && IsGoalComplete(p) )
 		{
 			m_bGoalComplete[p] = true;
 			MESSAGEMAN->Broadcast( (MessageID)(Message_GoalCompleteP1+p) );

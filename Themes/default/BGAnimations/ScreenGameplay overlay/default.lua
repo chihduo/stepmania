@@ -265,4 +265,21 @@ t.InitCommand=cmd(SetUpdateFunction,UpdateTime);
 		};
 	end;
 
+-- Recording feedback stays clear of the bottom-left speed label and life graph.
+t[#t+1] = LoadFont("Common Normal") .. {
+	InitCommand=function(self)
+		self:xy(SCREEN_RIGHT-16, SCREEN_BOTTOM-58):halign(1):zoom(0.4):maxwidth(1300):shadowlength(1)
+	end,
+	BeginCommand=cmd(playcommand,"Set"),
+	ReplayStatusChangedMessageCommand=cmd(playcommand,"Set"),
+	SetCommand=function(self)
+		local status = GetReplayStatus and GetReplayStatus() or ""
+		if IsReplay and IsReplay() then status = ""
+		elseif status:find("^Recording single") then status = "Recording replay"
+		elseif status:find("^Recording off") then status = ""
+		elseif status:find("^Replay saved") then status = "Replay saved" end
+		self:settext(status)
+	end,
+}
+
 return t

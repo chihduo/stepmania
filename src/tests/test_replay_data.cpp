@@ -97,6 +97,8 @@ int main(int argc, char** argv)
 	bad = r; bad["frames"][1][4] = 0; rejects(bad);
 	bad = r; bad["chart"].append(bad["chart"][0]); rejects(bad);
 	bad = r; bad["frames"][1][7][4] = 2.5; rejects(bad);
+	bad = r; bad["frames"][1][7][0] = Json::UInt(UINT_MAX); rejects(bad);
+	bad = r; bad["frames"][1][8][0][6] = HNS_None; rejects(bad);
 	assert(!loaded.Parse("{broken", error));
 	assert(!loaded.Parse(RString(32, '[') + RString(32, ']'), error));
 	assert(!loaded.Load("Save/Replays/missing.smr.json", error));

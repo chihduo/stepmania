@@ -471,8 +471,8 @@ The user authorizes implementation and checkpoint commits after the feasibility 
 
 - [x] Inspect existing replay stubs, clocks, judgments, profile writes, and theme entry points.
 - [x] Record the implementation and validation plan.
-- [ ] Implement replay storage/validation and recording; verify and commit.
-- [ ] Implement playback, state isolation, and theme controls/browser.
+- [x] Implement replay storage/validation and recording; verify and commit.
+- [x] Implement playback, state isolation, and theme controls/browser.
 - [ ] Validate engine behavior and actual rendered replay in an isolated setup.
 - [ ] Update documentation and commit the finished feature.
 
@@ -483,3 +483,14 @@ Normal original plays must continue scoring normally after live speed changes. R
 Implemented a bounded version 1 JSON replay journal (`.smr.json`) with the resolved chart, timing fingerprint, initial settings, music-clock frames, original note/hold results, score counters, inputs, judgments, rates, and life-history events. Files use StepMania's safe-write path with checked write/flush/size results. The reader checks schema, enum values, column/row references, event counts, chronological order, file size, and JSON nesting before playback.
 
 Validation: the Linux Debug engine builds successfully. `test_replay_data.cpp` passes real-engine round trips for taps, holds, mines, lifts, original score/combo/judgment counts, and timing-sensitive fingerprints; malformed JSON, unsupported versions, absent notes, invalid columns/results/rates, duplicate notes, fractional counters, out-of-order frames, deep nesting, and missing files are rejected. Gameplay capture and playback integration are next; recording is not exposed in-game at this checkpoint.
+
+
+### Checkpoint: recording, isolated playback, and controls
+
+Connected the version 1 journal to standard single-player gameplay. Capture records the resolved chart, filtered logical inputs, absolute speed changes, note/hold outcomes, score/combo counters, and original life-history updates. A moving window limits note scanning during play. Recording has explicit size/event limits and rejects unsupported contexts, calibration changes, attacks, and keysounds; recording failure does not block original score saving. The old incomplete XML exporter is replaced.
+
+Added the Save Replays song-option row (default off), default-theme recording feedback and F10 hints, evaluation playback, and a current-chart replay browser. The viewer uses the normal music clock, notefield, theme judgments, rate control, and life graph while applying recorded outcomes instead of rejudging inputs. Space/Start pauses, R restarts, and Esc/Back returns. It restores the original stage/index, player state, song options, seed, calibration offset, and evaluation; persistent score/profile/play-count entry points are guarded during viewing.
+
+Validation so far: Linux Debug builds; replay storage and session tests pass, along with existing rate-control, ordinary rate-adjusted score-saving, song-sort, and life-history checks. Real rendered P1 recording/playback reproduced the score (97,435,899), max combo (36), speed sequence (0.9x/1.0x/1.1x/1.2x), holds/rolls, and life graph; pause/restart and return to the original evaluation worked. Human P2-only failed-play recording/playback worked. Aborted recordings, browser playback, immediate exit, and repeated viewing were exercised. Full `Save` directory hashes were unchanged by replay viewing/exit in the isolated fixture. Corrected the browser background, stage display, and several invalid-file edge cases found during these checks.
+
+Artifacts and graphical scripts are retained under ignored `out/replay-tests/`; no personal songs or profiles were used. Final documentation and the verification ledger follow in the next checkpoint. No Windows ZIP has been built or published.

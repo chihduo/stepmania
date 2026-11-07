@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ScreenSelectMusic.h"
+#include "GameplayReplay.h"
 #include "ScreenManager.h"
 #include "PrefsManager.h"
 #include "SongManager.h"
@@ -51,6 +52,7 @@ AutoScreenMessage( SM_SongChanged );
 AutoScreenMessage( SM_SortOrderChanging );
 AutoScreenMessage( SM_SortOrderChanged );
 AutoScreenMessage( SM_BackFromPlayerOptions );
+AutoScreenMessage( SM_ReplayBrowserClosed );
 AutoScreenMessage( SM_ConfirmDeleteSong );
 
 static RString g_sCDTitlePath;
@@ -402,6 +404,21 @@ void ScreenSelectMusic::Update( float fDeltaTime )
 	CheckBackgroundRequests( false );
 }
 
+
+bool ScreenSelectMusic::InputShortcut(const InputEventPlus& input)
+{
+	if(input.DeviceI == DeviceInput(DEVICE_KEYBOARD, KEY_F10))
+	{
+		if(input.type == IET_FIRST_PRESS && !IsTransitioning())
+		{
+			RString error;
+			if(GameplayReplay::CheckContext(error)) SCREENMAN->AddNewScreenToTop("ScreenReplayBrowser", SM_ReplayBrowserClosed);
+			else SCREENMAN->SystemMessage(error);
+		}
+		return true;
+	}
+	return ScreenWithMenuElements::InputShortcut(input);
+}
 
 bool ScreenSelectMusic::Input( const InputEventPlus &input )
 {
@@ -1142,7 +1159,11 @@ void ScreenSelectMusic::HandleMessage( const Message &msg )
 
 void ScreenSelectMusic::HandleScreenMessage( const ScreenMessage SM )
 {
-	if( SM == SM_AllowOptionsMenuRepeat )
+	if(SM == SM_ReplayBrowserClosed)
+	{
+		m_MusicWheel.ChangeMusic(0); // Resume this song's preview after replay viewing.
+	}
+	else if( SM == SM_AllowOptionsMenuRepeat )
 	{
 		m_bAllowOptionsMenuRepeat = true;
 	}

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ScreenGameplay.h"
+#include "GameplayReplay.h"
 #include "SongManager.h"
 #include "ScreenManager.h"
 #include "GameConstantsAndTypes.h"
@@ -322,11 +323,13 @@ GetNextVisiblePlayerInfo( vector<PlayerInfo>::iterator iter, vector<PlayerInfo> 
 
 ScreenGameplay::ScreenGameplay()
 {
+	m_bReplayPlayback = GameplayReplay::IsPlaying();
 	m_pSongBackground = nullptr;
 	m_pSongForeground = nullptr;
 	m_bForceNoNetwork = false;
 	m_delaying_ready_announce= false;
-	GAMESTATE->m_AdjustTokensBySongCostForFinalStageCheck= false;
+	if(!m_bReplayPlayback)
+		GAMESTATE->m_AdjustTokensBySongCostForFinalStageCheck= false;
 }
 
 void ScreenGameplay::Init()
@@ -410,14 +413,14 @@ void ScreenGameplay::Init()
 	 * user doesn't have full control; saving would force profiles to Difficulty_Hard
 	 * and save over their default modifiers every time someone got an extra stage.
 	 * Do this before course modifiers are set up. */
-	if( !GAMESTATE->IsAnExtraStage() )
+	if( !m_bReplayPlayback && !GAMESTATE->IsAnExtraStage() )
 	{
 		FOREACH_HumanPlayer( pn )
 			GAMESTATE->SaveCurrentSettingsToProfile(pn);
 	}
 
 	/* Called once per stage (single song or single course). */
-	GAMESTATE->BeginStage();
+	if(!m_bReplayPlayback) GAMESTATE->BeginStage();
 
 	int player = 1;
 	FOREACH_EnabledPlayerInfo( m_vPlayerInfo, pi )
@@ -1027,8 +1030,8 @@ void ScreenGameplay::InitSongQueues()
 
 ScreenGameplay::~ScreenGameplay()
 {
-	GAMESTATE->m_AdjustTokensBySongCostForFinalStageCheck= true;
-	if( this->IsFirstUpdate() )
+	if(!m_bReplayPlayback) GAMESTATE->m_AdjustTokensBySongCostForFinalStageCheck= true;
+	if( !m_bReplayPlayback && this->IsFirstUpdate() )
 	{
 		/* We never received any updates. That means we were deleted without being
 		 * used, and never actually played. (This can happen when backing out of
@@ -1053,6 +1056,8 @@ ScreenGameplay::~ScreenGameplay()
 
 	if( !m_bForceNoNetwork )
 		NSMAN->ReportSongOver();
+	if(m_bReplayPlayback) GameplayReplay::EndPlayback();
+	else GameplayReplay::DiscardRecording();
 }
 
 void ScreenGameplay::EndScreen()
@@ -1237,7 +1242,7 @@ void ScreenGameplay::LoadNextSong()
 
 		/* Increment the play count even if the player fails.  (It's still popular,
 		 * even if the people playing it aren't good at it.) */
-		if( !GAMESTATE->m_bDemonstrationOrJukebox )
+		if( !m_bReplayPlayback && !GAMESTATE->m_bDemonstrationOrJukebox )
 		{
 			if( pi->m_pn != PLAYER_INVALID )
 				PROFILEMAN->IncrementStepsPlayCount( pSong, pSteps, pi->m_pn );
@@ -1412,6 +1417,14 @@ void ScreenGameplay::LoadNextSong()
 		pi->m_SoundEffectControl.SetSoundReader( pPlayerSound );
 	}
 
+	if(!m_bReplayPlayback && m_sName == "ScreenGameplay")
+	{
+		FOREACH_EnabledPlayerInfoNotDummy(m_vPlayerInfo, pi)
+		{
+			GameplayReplay::StartRecording(*pi);
+			break;
+		}
+	}
 	MESSAGEMAN->Broadcast("DoneLoadingNextSong");
 }
 
@@ -2062,6 +2075,7 @@ void ScreenGameplay::Update( float fDeltaTime )
 	// ArrowEffects::Update call moved because having it happen once per
 	// NoteField (which means twice in two player) seemed wasteful. -Kyz
 	ArrowEffects::Update();
+	GameplayReplay::Capture();
 }
 
 void ScreenGameplay::DrawPrimitives()
@@ -2491,6 +2505,7 @@ bool ScreenGameplay::InputShortcut(const InputEventPlus &input)
 		Message feedback("RateChanged");
 		feedback.SetParam("Rate", params.m_fSpeed);
 		m_PlaybackRateDisplay->HandleMessage(feedback);
+		GameplayReplay::Capture(true);
 	}
 	return true;
 }
@@ -2721,6 +2736,7 @@ void ScreenGameplay::SongFinished()
 
 void ScreenGameplay::StageFinished( bool bBackedOut )
 {
+	if(m_bReplayPlayback) return;
 	if( GAMESTATE->IsCourseMode() && GAMESTATE->m_PlayMode != PLAY_MODE_ENDLESS )
 	{
 		LOG->Trace("Stage finished at index %i/%i", GAMESTATE->GetCourseSongIndex(), (int) m_apSongsQueue.size() );
@@ -3076,6 +3092,7 @@ void ScreenGameplay::HandleScreenMessage( const ScreenMessage SM )
 	}
 	else if( SM == SM_DoPrevScreen )
 	{
+		GameplayReplay::FinishRecording(true);
 		SongFinished();
 		this->StageFinished( true );
 
@@ -3088,11 +3105,9 @@ void ScreenGameplay::HandleScreenMessage( const ScreenMessage SM )
 	}
 	else if( SM == SM_DoNextScreen )
 	{
+		GameplayReplay::FinishRecording(false);
 		SongFinished();
 		this->StageFinished( false );
-		// only save replays if the player chose to
-		if( GAMESTATE->m_SongOptions.GetCurrent().m_bSaveReplay )
-			SaveReplay();
 
 		if( AdjustSync::IsSyncDataChanged() )
 			ScreenSaveSync::PromptSaveSync( SM_GoToNextScreen );
@@ -3225,87 +3240,6 @@ PlayerInfo *ScreenGameplay::GetDummyPlayerInfo( int iDummyIndex )
 	}
 	return nullptr;
 }
-
-void ScreenGameplay::SaveReplay()
-{
-	/* Replay data TODO:
-	 * Add more player information (?)
-	 * Add AutoGen flag if steps were autogen?
-	 * Add proper steps hash?
-	 * Add modifiers used
-	 * Add date played, machine played on, etc.
-	 * Hash of some stuff to validate data (see Profile)
-	 */
-	FOREACH_HumanPlayer( pn )
-	{
-		FOREACH_EnabledPlayerInfo( m_vPlayerInfo, pi )
-		{
-			Profile *pTempProfile = PROFILEMAN->GetProfile(pn);
-
-			XNode *p = new XNode("ReplayData");
-			// append version number (in case the format changes)
-			p->AppendAttr("Version",0);
-
-			// song information node
-			SongID songID;
-			songID.FromSong(GAMESTATE->m_pCurSong);
-			XNode *pSongInfoNode = songID.CreateNode();
-			pSongInfoNode->AppendChild("Title", GAMESTATE->m_pCurSong->GetDisplayFullTitle());
-			pSongInfoNode->AppendChild("Artist", GAMESTATE->m_pCurSong->GetDisplayArtist());
-			p->AppendChild(pSongInfoNode);
-
-			// steps information
-			StepsID stepsID;
-			stepsID.FromSteps( GAMESTATE->m_pCurSteps[pn] );
-			XNode *pStepsInfoNode = stepsID.CreateNode();
-			// hashing = argh
-			//pStepsInfoNode->AppendChild("StepsHash", stepsID.ToSteps(GAMESTATE->m_pCurSong,false)->GetHash());
-			p->AppendChild(pStepsInfoNode);
-
-			// player information node (rival data sup)
-			XNode *pPlayerInfoNode = new XNode("Player");
-			pPlayerInfoNode->AppendChild("DisplayName", pTempProfile->m_sDisplayName);
-			pPlayerInfoNode->AppendChild("Guid", pTempProfile->m_sGuid);
-			p->AppendChild(pPlayerInfoNode);
-
-			// the timings.
-			p->AppendChild( pi->m_pPlayer->GetNoteData().CreateNode() );
-
-			// Find a file name for the replay
-			vector<RString> files;
-			GetDirListing( "Save/Replays/replay*", files, false, false );
-			sort( files.begin(), files.end() );
-
-			// Files should be of the form "replay#####.xml".
-			int iIndex = 0;
-
-			for( int i = files.size()-1; i >= 0; --i )
-			{
-				static Regex re( "^replay([0-9]{5})\\....$" );
-				vector<RString> matches;
-				if( !re.Compare( files[i], matches ) )
-					continue;
-
-				ASSERT( matches.size() == 1 );
-				iIndex = StringToInt( matches[0] )+1;
-				break;
-			}
-
-			RString sFileName = ssprintf( "replay%05d.xml", iIndex );
-
-			XmlFileUtil::SaveToFile( p, "Save/Replays/"+sFileName );
-			SAFE_DELETE( p );
-			return;
-		}
-	}
-}
-
-/*
-bool ScreenGameplay::LoadReplay()
-{
-	// Load replay which was selected via options
-}
-*/
 
 // lua start
 #include "LuaBinding.h"

@@ -7,6 +7,7 @@
 #include "RageSound.h"
 #include "AttackDisplay.h"
 #include "NoteData.h"
+#include "json/json.h"
 #include "ScreenMessage.h"
 #include "ThemeMetric.h"
 #include "InputEventPlus.h"
@@ -107,6 +108,8 @@ public:
 	void DoTapScoreNone();
 
 	void Step( int col, int row, const RageTimer &tm, bool bHeld, bool bRelease );
+	void ApplyReplayFrame(const Json::Value& frame);
+	int m_ReplayPressed = 0;
 
 	void FadeToFail();
 	void CacheAllUsedNoteSkins();
@@ -150,7 +153,7 @@ protected:
 	void SendComboMessages( unsigned int iOldCombo, unsigned int iOldMissCombo );
 	void PlayKeysound( const TapNote &tn, TapNoteScore score );
 
-	void SetMineJudgment( TapNoteScore tns , int iTrack );
+	void SetMineJudgment( TapNoteScore tns , int iTrack, int row = 0 );
 	void SetJudgment( int iRow, int iFirstTrack, const TapNote &tn ) { SetJudgment( iRow, iFirstTrack, tn, tn.result.tns, tn.result.fTapNoteOffset ); }	
 	void SetJudgment( int iRow, int iFirstTrack, const TapNote &tn, TapNoteScore tns, float fTapNoteOffset );	// -1 if no track as in TNS_Miss
 	void SetHoldJudgment( TapNote &tn, int iTrack );

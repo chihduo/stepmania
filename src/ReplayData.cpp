@@ -140,6 +140,9 @@ bool ReplayData::Validate(RString& error) const
 		!Integer(root["tracks"], 1, MAX_NOTE_TRACKS) || !Integer(root["player"], 0, NUM_PLAYERS-1) ||
 		!Integer(root["seed"], 0, INT_MAX) || !Number(root["initial_rate"], .01, 10) ||
 		!Number(root["global_offset"], -10, 10)) return fail("Invalid replay settings.");
+	if(root.isMember("steps_type") && !Text(root["steps_type"], 64)) return fail("Invalid replay chart type.");
+	if(root.isMember("stage_index") && !Integer(root["stage_index"], 0, INT_MAX)) return fail("Invalid replay stage index.");
+	if(root.isMember("autoplay") && !root["autoplay"].isBool()) return fail("Invalid replay controller flag.");
 	const int tracks = root["tracks"].asInt();
 	const auto& chart = root["chart"];
 	if(!chart.isArray() || chart.size() > MAX_NOTES) return fail("Invalid or excessively large replay chart.");
@@ -159,6 +162,7 @@ bool ReplayData::Validate(RString& error) const
 	const auto& frames = root["frames"];
 	if(!frames.isArray() || frames.empty() || frames.size() > MAX_FRAMES)
 		return fail("Empty or excessively large replay timeline.");
+	std::map<std::pair<int,int>, int> holdResults;
 	double previous = -3600;
 	unsigned events = 0;
 	for(const auto& f: frames)
@@ -173,8 +177,13 @@ bool ReplayData::Validate(RString& error) const
 		{
 			if(!Array(f[7], SCORE_SIZE)) return fail("Invalid replay score.");
 			for(unsigned i = 0; i < SCORE_SIZE; ++i)
-				if(!Number(f[7][i], i == 2 ? -INT_MAX : 0, UINT_MAX) ||
+			{
+				bool unsignedField = (i >= 4 && i <= 6) || (i >= 8 && i <= 10);
+				double upper = unsignedField ? double(UINT_MAX) : double(INT_MAX);
+				if(i >= 11 && i <= 13) upper = 1;
+				if(!Number(f[7][i], i == 2 ? -INT_MAX : 0, upper) ||
 					(!f[7][i].isInt() && !f[7][i].isUInt())) return fail("Invalid replay score counter.");
+			}
 		}
 		for(int i = 8; i < 12; ++i)
 		{
@@ -191,15 +200,19 @@ bool ReplayData::Validate(RString& error) const
 				!Integer(n[8], 0, MAX_NOTE_ROW-1) || !n[9].isBool() || !n[10].isBool() ||
 				!Integer(n[11], 0, INT_MAX) || !Integer(n[12], 0, INT_MAX) || !Number(n[13], 0, 86400))
 				return fail("Invalid replay note result.");
+			holdResults[{n[0].asInt(), n[1].asInt()}] = n[6].asInt();
 		}
 		for(const auto& j: f[9])
 		{
 			if(!Array(j, 5) || !Integer(j[0], 0, 2) || !Integer(j[1], 0, MAX_NOTE_ROW/2) ||
-				!Integer(j[2], 0, tracks-1) || !Integer(j[3], 0, NUM_TapNoteScore-1) || !Number(j[4], -60, 60))
+				!Integer(j[2], -1, tracks-1) || !Integer(j[3], 0, NUM_TapNoteScore-1) || !Number(j[4], -60, 60))
 				return fail("Invalid replay judgment.");
 			auto note = positions.find({j[2].asInt(), j[1].asInt()});
-			if(note == positions.end() || (j[0].asInt() == 1 && note->second != TapNoteType_HoldHead))
+			if((j[0].asInt() != 0 && note == positions.end()) ||
+				(j[0].asInt() == 1 && note->second != TapNoteType_HoldHead))
 				return fail("Replay judgment refers to an absent or incompatible note.");
+			if(j[0].asInt() == 1 && holdResults[{j[2].asInt(), j[1].asInt()}] == HNS_None)
+				return fail("Replay hold judgment has no recorded result.");
 		}
 		for(const auto& input: f[10])
 			if(!Array(input, 3) || !Integer(input[0], 0, tracks-1) || !input[1].isBool() || !Number(input[2], -3600, 86400))
@@ -255,7 +268,9 @@ bool ReplayData::Save(const RString& path, RString& error) const
 		file.Write(text) != int(text.size()) || file.Flush() < 0)
 	{ error = "Cannot save replay: " + file.GetError(); return false; }
 	file.Close();
-	if(FILEMAN->GetFileSizeInBytes(path) != int(text.size())) { error = "Replay write did not complete."; return false; }
+	RageFile verify;
+	if(!verify.Open(path) || verify.GetFileSize() != int(text.size()))
+	{ error = "Replay write did not complete."; return false; }
 	error.clear();
 	return true;
 }

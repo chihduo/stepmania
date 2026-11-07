@@ -53,6 +53,7 @@ public:
 	virtual ~ScreenEvaluation();
 	virtual void Init();
 	virtual bool Input( const InputEventPlus &input );
+	bool InputShortcut(const InputEventPlus& input) override;
 	virtual void HandleScreenMessage( const ScreenMessage SM );
 
 	virtual bool MenuBack( const InputEventPlus &input );

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "PlayerStageStats.h"
+#include "GameplayReplay.h"
 #include "RageLog.h"
 #include "ThemeManager.h"
 #include "LuaManager.h"
@@ -359,6 +360,7 @@ void PlayerStageStats::ResetScoreForLesson()
 
 void PlayerStageStats::SetLifeRecordAt( float fLife, float fStepsSecond )
 {
+	GameplayReplay::RecordLife(this, fLife, fStepsSecond);
 	// Don't save life stats in endless courses, or could run OOM in a few hours.
 	if( GAMESTATE->m_pCurCourse && GAMESTATE->m_pCurCourse->IsEndless() )
 		return;

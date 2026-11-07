@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ScreenEvaluation.h"
+#include "GameplayReplay.h"
 #include "SongManager.h"
 #include "ScreenManager.h"
 #include "GameManager.h"
@@ -718,6 +719,24 @@ void ScreenEvaluation::Init()
 		default:
 			break;
 	}
+}
+
+bool ScreenEvaluation::InputShortcut(const InputEventPlus& input)
+{
+	if(input.DeviceI == DeviceInput(DEVICE_KEYBOARD, KEY_F10))
+	{
+		if(input.type == IET_FIRST_PRESS && !IsTransitioning())
+		{
+			RString error;
+			if(!GameplayReplay::LastFile().empty())
+			{
+				if(!GameplayReplay::Watch(GameplayReplay::LastFile(), error)) SCREENMAN->SystemMessage(error);
+			}
+			else SCREENMAN->SystemMessage(GameplayReplay::Status().empty() ? "No replay was saved for this play." : GameplayReplay::Status());
+		}
+		return true;
+	}
+	return ScreenWithMenuElements::InputShortcut(input);
 }
 
 bool ScreenEvaluation::Input( const InputEventPlus &input )

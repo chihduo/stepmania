@@ -74,6 +74,7 @@ ScreenNetSelectMusic.cpp ScreenNetSelectMusic.h ScreenNetSelectBase.cpp ScreenNe
 ScreenGameplay.cpp ScreenGameplay.h \
 ScreenGameplayLesson.cpp ScreenGameplayLesson.h \
 ScreenGameplayNormal.cpp ScreenGameplayNormal.h \
+ScreenGameplayReplay.cpp ScreenGameplayReplay.h \
 ScreenGameplayShared.cpp ScreenGameplayShared.h \
 ScreenGameplaySyncMachine.cpp ScreenGameplaySyncMachine.h \
 ScreenHighScores.cpp ScreenHighScores.h \
@@ -165,6 +166,7 @@ LuaExpressionTransform.cpp LuaExpressionTransform.h \
 LyricsLoader.cpp LyricsLoader.h \
 ModsGroup.cpp ModsGroup.h \
 NoteData.cpp NoteData.h NoteDataUtil.cpp NoteDataUtil.h NoteDataWithScoring.cpp NoteDataWithScoring.h \
+ReplayData.cpp ReplayData.h \
 NoteTypes.cpp NoteTypes.h NotesLoader.cpp NotesLoader.h \
 NotesLoaderBMS.cpp NotesLoaderBMS.h NotesLoaderDWI.cpp NotesLoaderDWI.h \
 NotesLoaderJson.cpp NotesLoaderJson.h NotesLoaderKSF.cpp NotesLoaderKSF.h \
@@ -592,6 +594,7 @@ NoteSkinManager.cpp NoteSkinManager.h \
 PrefsManager.cpp PrefsManager.h ProfileManager.cpp ProfileManager.h ScreenManager.cpp \
 ScreenManager.h SongManager.cpp SongManager.h \
 StatsManager.cpp StatsManager.h \
+GameplayReplay.cpp GameplayReplay.h \
 ThemeManager.cpp ThemeManager.h \
 UnlockManager.cpp UnlockManager.h
 

@@ -2,12 +2,14 @@ list(APPEND SMDATA_SCREEN_GAMEPLAY_SRC
             "ScreenGameplay.cpp"
             "ScreenGameplayLesson.cpp"
             "ScreenGameplayNormal.cpp"
+            "ScreenGameplayReplay.cpp"
             "ScreenGameplayShared.cpp"
             "ScreenGameplaySyncMachine.cpp")
 
 list(APPEND SMDATA_SCREEN_GAMEPLAY_HPP
             "ScreenGameplay.h"
             "ScreenGameplayNormal.h"
+            "ScreenGameplayReplay.h"
             "ScreenGameplayShared.h"
             "ScreenGameplaySyncMachine.h")
 

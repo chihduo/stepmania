@@ -34,6 +34,7 @@ public:
 
 	virtual void Update( float fDeltaTime );
 	virtual bool Input( const InputEventPlus &input );
+	bool InputShortcut(const InputEventPlus& input) override;
 	virtual void HandleMessage( const Message &msg );
 	virtual void HandleScreenMessage( const ScreenMessage SM );
 	virtual bool AllowLateJoin() const { return true; }

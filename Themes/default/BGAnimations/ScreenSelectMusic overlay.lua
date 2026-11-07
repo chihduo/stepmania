@@ -42,4 +42,15 @@ t[#t+1] = Def.ActorFrame {
     };
 };
 
+
+t[#t+1] = LoadFont("Common Normal") .. {
+	InitCommand=function(self)
+		self:xy(SCREEN_RIGHT-16, SCREEN_BOTTOM-40):halign(1):zoom(0.45):shadowlength(1)
+	end,
+	OnCommand=function(self)
+		local enabled = not GAMESTATE:IsCourseMode() and #GAMESTATE:GetEnabledPlayers() == 1
+		self:settext(enabled and "F10: browse replays for this chart" or "")
+	end,
+}
+
 return t

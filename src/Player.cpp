@@ -1,5 +1,6 @@
 #include "global.h"
 #include "Player.h"
+#include "GameplayReplay.h"
 #include "GameConstantsAndTypes.h"
 #include "RageUtil.h"
 #include "RageTimer.h"
@@ -673,7 +674,10 @@ void Player::Load()
 	m_Timing = GAMESTATE->m_pCurSteps[pn]->GetTimingData();
 
 	/* Apply transforms. */
-	NoteDataUtil::TransformNoteData(m_NoteData, *m_Timing, m_pPlayerState->m_PlayerOptions.GetStage(), GAMESTATE->GetCurrentStyle(GetPlayerState()->m_PlayerNumber)->m_StepsType);
+	if(GameplayReplay::IsPlaying())
+		ReplayData::RestoreChart(GameplayReplay::Playback()->root["chart"], GameplayReplay::Playback()->root["tracks"].asInt(), m_NoteData);
+	else
+		NoteDataUtil::TransformNoteData(m_NoteData, *m_Timing, m_pPlayerState->m_PlayerOptions.GetStage(), GAMESTATE->GetCurrentStyle(GetPlayerState()->m_PlayerNumber)->m_StepsType);
 
 	const Song* pSong = GAMESTATE->m_pCurSong;
 
@@ -945,6 +949,14 @@ void Player::Update( float fDeltaTime )
 	// during pause.
 	if( m_bPaused )
 		return;
+
+	if(GameplayReplay::IsPlaying())
+	{
+		if(m_pNoteField)
+			for(int col = 0; col < m_NoteData.GetNumTracks(); ++col)
+				if(m_ReplayPressed & (1 << col)) m_pNoteField->SetPressed(col);
+		return; // Outcomes come from the recording, never from the current frame rate.
+	}
 
 	// update pressed flag
 	const int iNumCols = GAMESTATE->GetCurrentStyle(GetPlayerState()->m_PlayerNumber)->m_iColsPerPlayer;
@@ -2060,6 +2072,8 @@ void Player::Step( int col, int row, const RageTimer &tm, bool bHeld, bool bRele
 	const float fLastBeatUpdate = m_pPlayerState->m_Position.m_LastBeatUpdate.Ago();
 	const float fPositionSeconds = m_pPlayerState->m_Position.m_fMusicSeconds - tm.Ago();
 	const float fTimeSinceStep = tm.Ago();
+	GameplayReplay::RecordInput(this, col, bRelease, m_pPlayerState->m_Position.m_fMusicSeconds +
+		(fLastBeatUpdate - fTimeSinceStep) * GAMESTATE->m_SongOptions.GetCurrent().m_fMusicRate);
 
 	float fSongBeat = m_pPlayerState->m_Position.m_fSongBeat;
 	
@@ -2665,11 +2679,11 @@ void Player::UpdateJudgedRows()
 				bAllJudged = false;
 				continue;
 			case TNS_AvoidMine:
-				SetMineJudgment( tn.result.tns , iter.Track() );
+				SetMineJudgment( tn.result.tns , iter.Track(), iRow );
 				tn.result.bHidden= true;
 				continue;
 			case TNS_HitMine:
-				SetMineJudgment( tn.result.tns , iter.Track() );
+				SetMineJudgment( tn.result.tns , iter.Track(), iRow );
 				break;
 			}
 			if( m_pNoteField )
@@ -3152,8 +3166,68 @@ void Player::CacheAllUsedNoteSkins()
 		m_pNoteField->CacheAllUsedNoteSkins();
 }
 
-void Player::SetMineJudgment( TapNoteScore tns , int iTrack )
+void Player::ApplyReplayFrame(const Json::Value& frame)
 {
+	ASSERT(GameplayReplay::IsPlaying());
+	unsigned oldCombo = m_pPlayerStageStats->m_iCurCombo, oldMissCombo = m_pPlayerStageStats->m_iCurMissCombo;
+	m_ReplayPressed = frame[6].asInt();
+	if(!frame[7].isNull()) ReplayData::RestoreScore(frame[7], *m_pPlayerStageStats);
+	m_pPlayerStageStats->m_fAliveSeconds = frame[2].asFloat();
+	STATSMAN->m_CurStageStats.m_fStepsSeconds = frame[1].asFloat();
+	STATSMAN->m_CurStageStats.m_fGameplaySeconds = frame[3].asFloat();
+	for(const auto& value: frame[8])
+	{
+		int col = value[0].asInt(), row = value[1].asInt();
+		auto it = m_NoteData.FindTapNote(col, row);
+		if(it == m_NoteData.end(col)) continue;
+		auto before = it->second.result.tns;
+		auto heldBefore = it->second.HoldResult.hns;
+		ReplayData::RestoreNote(value, it->second);
+		const auto& tn = it->second;
+		if(m_pNoteField && before != tn.result.tns && (tn.result.tns >= TNS_W5 || tn.result.tns == TNS_HitMine))
+			m_pNoteField->DidTapNote(col, tn.result.tns, m_pPlayerStageStats->m_iCurCombo > BRIGHT_GHOST_COMBO_THRESHOLD);
+		if(before != tn.result.tns && tn.result.tns == TNS_HitMine && g_bEnableMineSoundPlayback) m_soundMine.Play(false);
+		if(m_pNoteField && heldBefore != tn.HoldResult.hns && tn.HoldResult.hns != HNS_None)
+			m_pNoteField->DidHoldNote(col, tn.HoldResult.hns, false);
+	}
+	if(m_pLifeMeter) m_pLifeMeter->SetLife(frame[5].asFloat());
+	for(const auto& value: frame[11]) m_pPlayerStageStats->SetLifeRecordAt(value[1].asFloat(), value[0].asFloat());
+	for(const auto& input: frame[10])
+		if(m_pNoteField && !input[1].asBool()) m_pNoteField->Step(input[0].asInt(), TNS_None);
+	for(const auto& j: frame[9])
+	{
+		int kind = j[0].asInt(), row = j[1].asInt(), col = j[2].asInt();
+		TapNoteScore tns = TapNoteScore(j[3].asInt());
+		if(kind == 1)
+		{
+			auto it = m_NoteData.FindTapNote(col, row);
+			if(it != m_NoteData.end(col))
+			{
+				SetHoldJudgment(it->second, col);
+				if(m_pScoreDisplay) m_pScoreDisplay->OnJudgment(it->second.HoldResult.hns, tns);
+				if(m_pSecondaryScoreDisplay) m_pSecondaryScoreDisplay->OnJudgment(it->second.HoldResult.hns, tns);
+			}
+		}
+		else
+		{
+			if(kind == 2) SetMineJudgment(tns, col, row);
+			else SetJudgment(row, col, col >= 0 ? m_NoteData.GetTapNote(col, row) : TAP_EMPTY, tns, j[4].asFloat());
+			if(m_pScoreDisplay) m_pScoreDisplay->OnJudgment(tns);
+			if(m_pSecondaryScoreDisplay) m_pSecondaryScoreDisplay->OnJudgment(tns);
+		}
+	}
+	if(!frame[7].isNull())
+	{
+		if(m_pScoreDisplay) m_pScoreDisplay->SetScore(m_pPlayerStageStats->m_iScore);
+		if(m_pSecondaryScoreDisplay) m_pSecondaryScoreDisplay->SetScore(m_pPlayerStageStats->m_iScore);
+		SetCombo(m_pPlayerStageStats->m_iCurCombo, m_pPlayerStageStats->m_iCurMissCombo);
+		SendComboMessages(oldCombo, oldMissCombo);
+	}
+}
+
+void Player::SetMineJudgment( TapNoteScore tns , int iTrack, int row )
+{
+	GameplayReplay::RecordJudgment(this, 2, row, iTrack, tns, 0);
 	if( m_bSendJudgmentAndComboMessages )
 	{
 		Message msg("Judgment");
@@ -3173,6 +3247,7 @@ void Player::SetMineJudgment( TapNoteScore tns , int iTrack )
 
 void Player::SetJudgment( int iRow, int iTrack, const TapNote &tn, TapNoteScore tns, float fTapNoteOffset )
 {
+	GameplayReplay::RecordJudgment(this, 0, iRow, iTrack, tns, fTapNoteOffset);
 	if( m_bSendJudgmentAndComboMessages )
 	{
 		Message msg("Judgment");
@@ -3219,6 +3294,7 @@ void Player::SetJudgment( int iRow, int iTrack, const TapNote &tn, TapNoteScore 
 
 void Player::SetHoldJudgment( TapNote &tn, int iTrack )
 {
+	GameplayReplay::RecordJudgment(this, 1, 0, iTrack, tn.result.tns, 0, &tn);
 	ASSERT( iTrack < (int)m_vpHoldJudgment.size() );
 	if( m_vpHoldJudgment[iTrack] )
 		m_vpHoldJudgment[iTrack]->SetHoldJudgment( tn.HoldResult.hns );

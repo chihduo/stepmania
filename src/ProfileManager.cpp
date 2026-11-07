@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ProfileManager.h"
+#include "GameplayReplay.h"
 #include "Profile.h"
 #include "RageUtil.h"
 #include "PrefsManager.h"
@@ -890,6 +891,7 @@ void ProfileManager::AddStepsScore( const Song* pSong, const Steps* pSteps, Play
 
 void ProfileManager::IncrementStepsPlayCount( const Song* pSong, const Steps* pSteps, PlayerNumber pn )
 {
+	if(GameplayReplay::IsPlaying()) return;
 	if( IsPersistentProfile(pn) )
 		GetProfile(pn)->IncrementStepsPlayCount( pSong, pSteps );
 	GetMachineProfile()->IncrementStepsPlayCount( pSong, pSteps );

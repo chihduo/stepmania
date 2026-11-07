@@ -75,4 +75,16 @@ if GAMESTATE:HasEarnedExtraStage() then
 	}
 end;
 
+
+t[#t+1] = LoadFont("Common Normal") .. {
+	InitCommand=function(self)
+		self:xy(SCREEN_RIGHT-16, SCREEN_BOTTOM-40):halign(1):zoom(0.45):shadowlength(1)
+	end,
+	OnCommand=function(self)
+		local enabled = not GAMESTATE:IsCourseMode() and #GAMESTATE:GetEnabledPlayers() == 1
+		enabled = enabled and GetLastReplayFile and GetLastReplayFile() ~= ""
+		self:settext(enabled and "F10: watch this replay" or "")
+	end,
+}
+
 return t;

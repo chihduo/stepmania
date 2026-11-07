@@ -235,8 +235,6 @@ protected:
 	void SongFinished();
 	virtual void SaveStats();
 	virtual void StageFinished( bool bBackedOut );
-	void SaveReplay();
-	//bool LoadReplay();
 	bool AllAreFailing();
 
 	virtual void InitSongQueues();
@@ -342,6 +340,7 @@ protected:
 	// Apparently we just hope the server is keeping track.
 	// All we can do is guess based on what subclass we are.
 	bool m_bForceNoNetwork;
+	bool m_bReplayPlayback;
 };
 
 vector<PlayerInfo>::iterator GetNextEnabledPlayerInfo		( vector<PlayerInfo>::iterator iter, vector<PlayerInfo> &v );

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "StageStats.h"
+#include "GameplayReplay.h"
 #include "GameState.h"
 #include "Steps.h"
 #include "Song.h"
@@ -171,6 +172,7 @@ static HighScore FillInHighScore( const PlayerStageStats &pss, const PlayerState
 
 void StageStats::FinalizeScores( bool bSummary )
 {
+	if(GameplayReplay::IsPlaying()) return;
 	switch( GAMESTATE->m_PlayMode )
 	{
 		case PLAY_MODE_BATTLE:

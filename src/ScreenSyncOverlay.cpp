@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ScreenSyncOverlay.h"
+#include "GameplayReplay.h"
 #include "ScreenDimensions.h"
 #include "ScreenManager.h"
 #include "GameState.h"
@@ -62,7 +63,7 @@ void ScreenSyncOverlay::UpdateText()
 	// Update Status
 	vector<RString> vs;
 
-	if( g_bShowAutoplay )
+	if( g_bShowAutoplay && !GameplayReplay::IsPlaying() )
 	{
 		PlayerController pc = GamePreferences::m_AutoPlay.Get();
 		switch( pc )
@@ -86,7 +87,7 @@ void ScreenSyncOverlay::UpdateText()
 		FAIL_M(ssprintf("Invalid autosync type: %i", type));
 	}
 
-	if( GAMESTATE->m_pCurSong != nullptr  &&  !GAMESTATE->IsCourseMode() )	// sync controls available
+	if( !GameplayReplay::IsPlaying() && GAMESTATE->m_pCurSong != nullptr  &&  !GAMESTATE->IsCourseMode() )	// sync controls available
 	{
 		AdjustSync::GetSyncChangeTextGlobal( vs );
 		AdjustSync::GetSyncChangeTextSong( vs );

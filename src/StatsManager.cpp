@@ -1,5 +1,6 @@
 ﻿#include "global.h"
 #include "StatsManager.h"
+#include "GameplayReplay.h"
 #include "RageFileManager.h"
 #include "GameState.h"
 #include "ProfileManager.h"
@@ -190,6 +191,7 @@ XNode* MakeRecentScoreNode( const StageStats &ss, Trail *pTrail, const PlayerSta
 
 void StatsManager::CommitStatsToProfiles( const StageStats *pSS )
 {
+	if(GameplayReplay::IsPlaying()) return;
 	// Add step totals.  Use radarActual, since the player might have failed part way
 	// through the song, in which case we don't want to give credit for the rest of the
 	// song.
