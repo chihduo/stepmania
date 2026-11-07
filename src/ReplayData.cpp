@@ -204,7 +204,7 @@ bool ReplayData::Validate(RString& error) const
 		}
 		for(const auto& j: f[9])
 		{
-			if(!Array(j, 5) || !Integer(j[0], 0, 2) || !Integer(j[1], 0, MAX_NOTE_ROW/2) ||
+			if((!Array(j, 5) && !Array(j, 6)) || (j.size() == 6 && !j[5].isBool()) || !Integer(j[0], 0, 2) || !Integer(j[1], 0, MAX_NOTE_ROW/2) ||
 				!Integer(j[2], -1, tracks-1) || !Integer(j[3], 0, NUM_TapNoteScore-1) || !Number(j[4], -60, 60))
 				return fail("Invalid replay judgment.");
 			auto note = positions.find({j[2].asInt(), j[1].asInt()});

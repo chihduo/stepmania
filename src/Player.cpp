@@ -3211,7 +3211,15 @@ void Player::ApplyReplayFrame(const Json::Value& frame)
 		else
 		{
 			if(kind == 2) SetMineJudgment(tns, col, row);
-			else SetJudgment(row, col, col >= 0 ? m_NoteData.GetTapNote(col, row) : TAP_EMPTY, tns, j[4].asFloat());
+			else
+			{
+				TapNote displayNote = col >= 0 ? m_NoteData.GetTapNote(col, row) : TAP_EMPTY;
+				// A jump's row judgment can come from another column. Preserve its
+				// actual offset/held-miss flag, not the first column's result.
+				displayNote.result.fTapNoteOffset = j[4].asFloat();
+				if(j.size() == 6) displayNote.result.bHeld = j[5].asBool();
+				SetJudgment(row, col, displayNote, tns, j[4].asFloat());
+			}
 			if(m_pScoreDisplay) m_pScoreDisplay->OnJudgment(tns);
 			if(m_pSecondaryScoreDisplay) m_pSecondaryScoreDisplay->OnJudgment(tns);
 		}
@@ -3247,7 +3255,7 @@ void Player::SetMineJudgment( TapNoteScore tns , int iTrack, int row )
 
 void Player::SetJudgment( int iRow, int iTrack, const TapNote &tn, TapNoteScore tns, float fTapNoteOffset )
 {
-	GameplayReplay::RecordJudgment(this, 0, iRow, iTrack, tns, fTapNoteOffset);
+	GameplayReplay::RecordJudgment(this, 0, iRow, iTrack, tns, fTapNoteOffset, &tn);
 	if( m_bSendJudgmentAndComboMessages )
 	{
 		Message msg("Judgment");

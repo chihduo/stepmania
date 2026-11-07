@@ -494,3 +494,8 @@ Added the Save Replays song-option row (default off), default-theme recording fe
 Validation so far: Linux Debug builds; replay storage and session tests pass, along with existing rate-control, ordinary rate-adjusted score-saving, song-sort, and life-history checks. Real rendered P1 recording/playback reproduced the score (97,435,899), max combo (36), speed sequence (0.9x/1.0x/1.1x/1.2x), holds/rolls, and life graph; pause/restart and return to the original evaluation worked. Human P2-only failed-play recording/playback worked. Aborted recordings, browser playback, immediate exit, and repeated viewing were exercised. Full `Save` directory hashes were unchanged by replay viewing/exit in the isolated fixture. Corrected the browser background, stage display, and several invalid-file edge cases found during these checks.
 
 Artifacts and graphical scripts are retained under ignored `out/replay-tests/`; no personal songs or profiles were used. Final documentation and the verification ledger follow in the next checkpoint. No Windows ZIP has been built or published.
+
+
+### Final review correction
+
+Preserve the timing offset and held-miss flag from the actual row judgment when a jump's judgment comes from a different column. Playback no longer substitutes the first column's tap offset. The journal accepts the earlier five-field judgment entries and the new entries with the explicit held-miss flag. Replay data round-trip and malformed-flag tests pass after the correction.

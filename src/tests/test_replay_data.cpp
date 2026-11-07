@@ -62,6 +62,7 @@ int main(int argc, char** argv)
 	frame[8].append(ReplayData::Note(1, 96, hold));
 	Json::Value judgment(Json::arrayValue);
 	for(int n: {1, 96, 1, int(TNS_W2), 0}) judgment.append(n);
+	judgment.append(true); // Keep the original held-miss flag, including for jump rows.
 	frame[9].append(judgment);
 	r["frames"].append(frame);
 	RString error;
@@ -82,6 +83,7 @@ int main(int argc, char** argv)
 	assert(result.m_iScore == stats.m_iScore && result.m_iCurCombo == 3 && result.m_iMaxCombo == 5);
 	assert(result.m_iTapNoteScores[TNS_W2] == 2 && result.m_iHoldNoteScores[HNS_Held] == 1);
 	assert(!result.m_bDisqualified);
+	assert(loaded.root["frames"][1][9][0][5].asBool());
 
 	auto rejects = [&](Json::Value bad) {
 		Json::FastWriter writer; ReplayData rejected;
@@ -99,6 +101,7 @@ int main(int argc, char** argv)
 	bad = r; bad["frames"][1][7][4] = 2.5; rejects(bad);
 	bad = r; bad["frames"][1][7][0] = Json::UInt(UINT_MAX); rejects(bad);
 	bad = r; bad["frames"][1][8][0][6] = HNS_None; rejects(bad);
+	bad = r; bad["frames"][1][9][0][5] = "bad flag"; rejects(bad);
 	assert(!loaded.Parse("{broken", error));
 	assert(!loaded.Parse(RString(32, '[') + RString(32, ']'), error));
 	assert(!loaded.Load("Save/Replays/missing.smr.json", error));

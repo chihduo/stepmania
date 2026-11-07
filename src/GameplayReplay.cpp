@@ -277,6 +277,7 @@ void GameplayReplay::RecordJudgment(Player* player, int kind, int row, int colum
 	}
 	Json::Value judgment(Json::arrayValue);
 	judgment.append(kind); judgment.append(std::max(0, row)); judgment.append(column); judgment.append(score); judgment.append(offset);
+	judgment.append(kind == 0 && note ? note->result.bHeld : false);
 	recording->judgments.append(judgment);
 }
 void GameplayReplay::RecordLife(const PlayerStageStats* stats, float life, float seconds)
