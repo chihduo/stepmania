@@ -548,3 +548,10 @@ Separation validation:
 - `AGENTS.md` records the branch policy for future work. The feature branch's first separation checkpoint is `83f33edd3e`; its initial source snapshot remains `a74362c422`.
 
 The main release snapshot is committed as `feat: promote finished Chiikawa theme and isolate development [skip ci]`. The feature journal records baseline reconciliation after this checkpoint. No remote push or Windows ZIP was performed.
+
+
+## Rename the default branch to main
+
+Prepared the local rename from `5_1-new` to `main` and updated active README, build/clone links, contributor instructions and the branch workflow. Verified GitHub administrator permission, that `main` is unused, and that no open repository pull requests or branch-specific CI filters need adjustment. The remote published tip is `0e53193abf`; newer local theme work remains unpublished. GitHub renamed the default branch successfully and still points to exactly `0e53193abfb663a0efdb9c99818bd06b644e6df4`. The old remote branch name is absent. Local `main` now tracks `fork/main`, and `fork/HEAD` resolves to `fork/main`; the stale old tracking ref was removed.
+
+Updated the badge, workflow filters in README URLs, clone command, contributor policy and active branch-promotion instructions. The Actions workflow itself already applies to all branches. Historical progress entries retain their original names. No gameplay code or assets changed, and no pending local theme commits were pushed. The feature worktree receives these documentation changes through a normal merge of `main`.

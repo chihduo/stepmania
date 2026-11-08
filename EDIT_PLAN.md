@@ -185,7 +185,7 @@ Completed: updated the title and main record/replay section, validated README li
 
 ## Chiikawa release and development separation
 
-Keep the finished Chiikawa theme, its required shared hooks/tests, user guides, native screenshots and asset manifest on `5_1-new`. Keep prompts, alternatives, the browser gallery, source videos, assembly scripts and detailed development journals on `feature/chiikawa-theme` in its separate worktree. Preserve published history and consolidate only the six unpublished movie commits into the current release result.
+Keep the finished Chiikawa theme, its required shared hooks/tests, user guides, native screenshots and asset manifest on `main`. Keep prompts, alternatives, the browser gallery, source videos, assembly scripts and detailed development journals on `feature/chiikawa-theme` in its separate worktree. Preserve published history and consolidate only the six unpublished movie commits into the current release result.
 
 Verify that all runtime files and focused tests match the tested movie revision, that final assets retain their hashes, and that release documentation has no broken local links. Document future selective promotion in `Docs/ChiikawaDevelopment.md`, commit the release snapshot, and reconcile the feature baseline while retaining its source package. No push or Windows ZIP is part of this task.
 
@@ -193,3 +193,11 @@ The theme's detailed plans are now in `Docs/theme-preview/chiikawa/DEVELOPMENT_P
 
 
 Release snapshot complete: runtime equivalence, media provenance, focused Lua checks and local links pass. The main snapshot contains the finished movie/theme and release docs; the full development tree is preserved in the feature worktree. Branch reconciliation is recorded in the feature journal after this checkpoint.
+
+
+## Rename the default branch to main
+
+Rename the local and GitHub default branch from `5_1-new` to `main`, preserving commit history and the current published tip. Update local tracking, fork HEAD, build/clone links and active branch-workflow instructions in both worktrees. Keep historical branch names in past progress entries. Verify the remote default name and exact commit, local upstream settings, document links and clean worktrees. Existing unpublished theme commits remain pending publication; a rename does not publish them.
+
+
+Completed: GitHub and local branch names are `main`, the remote commit is unchanged, tracking and fork HEAD point to `fork/main`, and active branch references are updated. The pending theme release remains local. Feature-worktree synchronization follows this documentation checkpoint.

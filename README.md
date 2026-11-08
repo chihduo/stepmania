@@ -2,9 +2,9 @@
 
 A community fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also records and replays single-player songs, adds a live life-history graph to the default theme, and keeps your highlighted song selected when changing the song-wheel sort.
 
-[![Windows x64 build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml/badge.svg?branch=5_1-new)](https://github.com/chihduo/stepmania/actions/workflows/ci.yml)
+[![Windows x64 build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/chihduo/stepmania/actions/workflows/ci.yml)
 
-[Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3A5_1-new) · [Playback controls](Docs/LiveGameplayRate.md) · [Record and replay](#record-and-replay) · [Life-history graph](Docs/LifeHistoryGraph.md)
+[Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3Amain) · [Playback controls](Docs/LiveGameplayRate.md) · [Record and replay](#record-and-replay) · [Life-history graph](Docs/LifeHistoryGraph.md)
 
 ![Gameplay with notes and judgments above the life-history graph and the current speed at the bottom-left.](Docs/media/gameplay.png)
 
@@ -95,7 +95,7 @@ See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requiremen
 
 ## Install on Windows x64
 
-1. Open [Windows portable build and test](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3A5_1-new) and select the latest successful run for **`5_1-new`** that contains an artifact.
+1. Open [Windows portable build and test](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3Amain) and select the latest successful run for **`main`** that contains an artifact.
 2. Download **`StepMania-windows-x64-<run>.<attempt>`** from the run's **Artifacts** section. GitHub may require you to sign in. Artifacts are retained for 30 days; if none remain, a repository maintainer can start a new run with **Run workflow**.
 3. Extract the downloaded artifact. It contains `StepMania-5.1-windows-x64-portable.zip` and its `.sha256` file. Extract that inner ZIP as well.
 4. Launch **`StepMania/Program/StepMania.exe`**. Keep the full folder together, including `Portable.ini`, which stores profiles and settings inside this portable installation.
@@ -109,10 +109,10 @@ Keep **`Save`**, **`Songs`**, **`Logs`**, **`Screenshots`**, and **`Portable.ini
 
 ## Build from source
 
-Clone this fork's feature branch:
+Clone this fork's main branch:
 
 ```sh
-git clone --branch 5_1-new https://github.com/chihduo/stepmania.git
+git clone --branch main https://github.com/chihduo/stepmania.git
 cd stepmania
 ```
 
