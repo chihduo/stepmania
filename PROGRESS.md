@@ -532,8 +532,17 @@ The user requests an artwork plan plus AI-generated images in a preview folder, 
 
 - [x] Confirm the visual direction and inspect current theme constraints.
 - [x] Write `Docs/theme-preview/chiikawa/ARTWORK_PLAN.md`.
-- [ ] Generate and inspect four standalone illustrations.
-- [ ] Add the preview gallery, exact prompts, provenance, and asset checks.
-- [ ] Commit the completed preview package.
+- [x] Generate and inspect four standalone illustrations.
+- [x] Add the preview gallery, exact prompts, provenance, and asset checks.
+- [x] Commit the completed preview package.
 
 This stage prepares artwork for review; the current game theme remains unchanged.
+
+
+Completed the four-image preview set using the built-in image tool. `Docs/theme-preview/chiikawa/images/` contains a transparent character trio, title background, selection background, and transparent results/replay illustration (about 5.4 MiB total). The latter three use earlier generated artwork as identity/style references. Full-resolution source pixels are preserved, and all exact prompts, output dimensions, alpha ranges, reference relationships, checksums, and inspection notes are recorded alongside them.
+
+Added a self-contained `index.html` gallery with five illustrative screen layouts, 16:9/4:3 switching, and cream/checkerboard/dark cutout previews. Functional UI text and panels are browser elements; generated artwork contains no baked-in UI text. The gallery is explicitly labeled as a concept with sample data, not implemented gameplay.
+
+Validation: all four PNGs decode and match their saved SHA-256 hashes; both cutouts have real transparency. Local document/gallery links resolve, image alt text is present, JavaScript syntax and diff whitespace pass. All five compositions were visually inspected in Linux Chrome at 1280 × 720 and 1024 × 768. Cream and checkerboard cutout rendering were inspected. Palette contrast checks reserve the secondary text color for cream/near-white surfaces and use dark text on pastel fills. The plan records pose/size deviations and the selection header's corner accents for later refinement.
+
+Checkpoint `4c344e7bd9` records the plan; the completed preview checkpoint is `art: add Chiikawa theme illustrations and preview gallery [skip ci]`. Browser captures/logs remain in ignored `out/chiikawa-preview/`. No engine/theme installation, executable build, ZIP packaging, or remote push was performed. Playable-theme integration and Windows checks remain a later revision after artwork review.

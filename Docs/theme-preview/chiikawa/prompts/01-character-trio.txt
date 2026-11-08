@@ -1,0 +1,10 @@
+Use case: illustration-story.
+Asset type: reusable transparent character decoration for a StepMania 6 theme, first artwork preview and identity reference for the rest of the set.
+Primary request: recognizable Chiikawa, Hachiware, and Usagi from Chiikawa, drawn together in the gentle familiar Chiikawa cartoon style. Exactly three full-body characters.
+Subject: left is Chiikawa, a very small white rounded creature with small round ears, tiny black oval eyes, delicate eyebrows, little mouth, pink blush and tiny paws, shyly happy. Middle is Hachiware, a blue-and-white cat with triangular blue ears and the recognizable blue divided cap framing a white face, friendly happy expression and tiny paws. Right is Usagi, a pale butter-yellow rabbit with two long upright ears, expressive small dark eyes and eyebrows, a playful smile. Preserve their recognizable species, markings and original proportions; Usagi is tallest because of the ears. They are doing a modest happy dance together, paws slightly raised, feet visible.
+Style/medium: clean flat 2D cartoon illustration with a slightly hand-drawn dark warm-brown outline, spare facial detail, restrained pink cheek blush, mostly flat fills. Warm and charming, matching Chiikawa's simple silhouettes rather than a glossy chibi redesign.
+Palette: creamy white, soft sky-blue Hachiware markings, pale yellow Usagi, tiny blush-pink accents. Only two or three tiny pastel pink/mint/sky-blue musical accents floating near the outer edges.
+Composition: landscape cutout, roughly 3:2, three characters standing side by side in one balanced group with a common baseline. Whole bodies and ears inside the canvas, generous 10 percent transparent padding on every side, clear separation of silhouettes, no overlap covering faces.
+Background: genuinely transparent alpha everywhere outside the characters and the few tiny accents. No filled backdrop, no ground, no cast shadow, no printed checkerboard, no white sticker border.
+Text: none.
+Avoid: additional characters, duplicate limbs, costumes, props covering faces, text, lettering, logos, interface controls, gradients, 3D, photorealism, busy decoration, cropping.

@@ -1,0 +1,10 @@
+Use case: illustration-story.
+Asset type: warm pastel title-screen BACKGROUND illustration for StepMania 6, an artwork preview rather than a finished interface.
+Input image 1: character identity and line-style reference; preserve exactly this recognizable Chiikawa / Hachiware / Usagi cast and their markings. Recompose the provided trio into a new wide title background.
+Primary request: a quiet, charming Chiikawa-style title background with the three friends happily spending time together along the lower edge.
+Scene: very light warm cream paper-like backdrop, restrained pastel pink, mint, and sky-blue accents, a low soft mint meadow strip, a few small simple flowers and small musical-note doodles near the outside corners. Minimal flat illustration, clean warm dark outlines, soft cheek blush, no detailed scenery.
+Characters: Chiikawa left, Hachiware middle, Usagi right, full bodies visible; use the provided character designs and proportions. Gentle cheerful poses. The group is centered horizontally near the bottom; characters occupy about the bottom 25 to 30 percent of canvas height, with Usagi's ears tallest.
+Composition: wide landscape intended for a 16:9 game screen. Keep the entire upper-center and center, roughly x=22 to 78 percent and y=8 to 66 percent, plain warm cream with almost no decoration, for a real title and vertical menu rendered later. The characters and flowers stay below that central menu area. Keep a small margin around all bodies and ears; no cropped characters.
+Palette: cream #FFF8EE dominant, pastel pink #F7BBC8, mint #CBE7D7, sky blue #BFDCF0, natural pale-yellow Usagi. Retain the original character identities.
+Text: none; do not draw StepMania or any lettering.
+Constraints: opaque full background; no interface, no buttons, no frames, no score, no notes/receptors, no watermark. No dramatic shadows, gradients, 3D or busy background. This is a usable quiet decorative artwork plate with generous empty space.

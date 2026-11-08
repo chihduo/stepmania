@@ -1,0 +1,97 @@
+{
+  "created_utc": "2026-11-08T08:14:29.822144+00:00",
+  "generation_mode": "built-in image_gen",
+  "status": "AI-generated fan-art concepts for preview, not installed theme assets",
+  "character_reference": "https://www.anime-chiikawa.jp/",
+  "image_modifications": "None: tool outputs copied byte-for-byte. Gallery scales the images for display.",
+  "assets": [
+    {
+      "file": "images/01-character-trio.png",
+      "prompt": "prompts/01-character-trio.txt",
+      "source_output": "exec-a74469e5-1fda-4b56-a6a4-17603976a415.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1403048,
+      "sha256": "77f6d26ced15a72ece8a1a04beffa6c5aa62a9f96b7632acea43d8ca2c95124e",
+      "transparent_requested": true,
+      "reference_images": [],
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 999890,
+      "near_opaque_pixels": 534907,
+      "inspection": "Accepted for preview: all three recognizable characters, full bodies, no unwanted text; real transparent pixels. Clean on cream and checkerboard in browser rendering."
+    },
+    {
+      "file": "images/02-title-background.png",
+      "prompt": "prompts/02-title-background.txt",
+      "source_output": "exec-35352432-b5e7-4574-a6cb-bcc442678b08.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 1260483,
+      "sha256": "f311fd1d341724e09ed358157673e1f87e4a2a320190b9c108b9e61d4d65f807",
+      "transparent_requested": false,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "inspection": "Accepted for preview: coherent palette and character identity, opaque wide background and usable menu area. Character group is taller than the requested 25\u201330 percent; the preview menu clears the faces."
+    },
+    {
+      "file": "images/03-selection-background.png",
+      "prompt": "prompts/03-selection-background.txt",
+      "source_output": "exec-52c4513b-e786-44a7-9a82-cb6f43afe0bd.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 1506536,
+      "sha256": "d8a618a93b9e1adb78c5a3716d302963fe9e7a38864f52227d758f134ea7c168",
+      "transparent_requested": false,
+      "reference_images": [
+        "images/01-character-trio.png",
+        "images/02-title-background.png"
+      ],
+      "inspection": "Accepted for preview: small lower-left trio, large quiet central/right area. Requested sitting pose became a dancing pose. Outer musical accents require attention when finalizing the header placement."
+    },
+    {
+      "file": "images/04-results-replay.png",
+      "prompt": "prompts/04-results-replay.txt",
+      "source_output": "exec-701d74e0-b585-42ad-8ce1-89409bfce29d.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1490869,
+      "sha256": "f8afc65ea2e3bb89db04b25a95887e067374df9f281a62d03ac716e947eceb03",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 990103,
+      "near_opaque_pixels": 512604,
+      "inspection": "Accepted for preview: changed clapping/waving/cheering poses, recognizable trio, no unwanted text, real alpha. Clean over cream and checkerboard; placed clear of result rows in mockups."
+    }
+  ],
+  "preview_checks": {
+    "image_decode": "pass: all four PNGs",
+    "original_bytes": "pass: SHA-256 matches copied generator outputs",
+    "transparency": "pass: both cutouts contain zero-alpha and near-opaque pixels",
+    "browser": "Google Chrome 151.0.7922.137, Linux headless",
+    "layouts": "Title, selection, gameplay, evaluation, and replay inspected at 1280x720 and 1024x768",
+    "gallery": "Cream and checkerboard previews inspected; exact prompts and source image links verified",
+    "limitations": "Browser concepts with sample data and schematic notes/graph, not rendered StepMania screens. Production theme, noteskin, fonts, animation, and Windows gameplay validation remain future work."
+  }
+}

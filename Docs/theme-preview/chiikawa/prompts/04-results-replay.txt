@@ -1,0 +1,10 @@
+Use case: illustration-story.
+Asset type: transparent celebratory character illustration for the evaluation and replay headers of a StepMania 6 theme.
+Input image 1: exact identity, proportions, palette, and line-style reference. Preserve recognizable Chiikawa, Hachiware, and Usagi, but CHANGE THEIR POSES to a gentle celebration. This is a new illustration derived from the reference, not a duplicate of the dancing lineup.
+Subject: exactly three full-body characters. Chiikawa on the left, white, round little ears, pink cheeks, happy open dark eyes, clapping tiny paws together. Hachiware in the middle, blue-and-white cat with triangular blue ears and a recognizable blue divided cap, smiling with one paw raised in encouragement and one near the chest. Usagi on the right, pale yellow long-eared rabbit with familiar lively eyebrows and face, both little paws lifted, a small cheerful hop. Keep the simple familiar faces, original markings, tiny bodies, and rounded silhouettes. Usagi's ears are the tallest part.
+Style: flat 2D Chiikawa cartoon, soft warm-dark hand-drawn contours, restrained blush, pale pastel fills, matching the supplied illustration. No glossy or realistic rendering.
+Decoration: just a few small pink, mint, sky-blue and soft-yellow stars and musical notes around the group; plenty of clear space between accents. No confetti cloud.
+Composition: compact horizontal trio for a reusable cutout, whole bodies and ears fully inside the frame, 10 percent clear padding on all sides. No character overlaps hiding faces.
+Background: genuinely transparent alpha, with no background color, no ground, no cast shadows, no glows, no white sticker border and no printed checkerboard. Preserve opaque character interiors.
+Text: none. No victory wording or badges baked in, so the same supportive art can accompany results and replay.
+Avoid: extra characters, extra limbs, duplicate ears, costumes, objects, letters, logos, score digits, gradients, 3D, cropping, busy sparkles.

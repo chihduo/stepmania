@@ -28,7 +28,7 @@ The initial cast uses the familiar white rounded Chiikawa, blue-and-white Hachiw
 | Sky blue | `#BFDCF0` | Replay, information, and Hachiware accents |
 | Soft yellow | `#F5DE9B` | Usagi and occasional celebration accents |
 
-These are target UI colors, not a promise that every generated pixel is an exact hex value. Use dark text on pastel surfaces. Share palette, type sizes, spacing, border widths, shadow, and motion rules in Lua. Start with bundled readable fonts and retain fallback glyphs for international song titles. Use quiet 150–250 ms interface transitions; keep large decorative animation out of gameplay.
+These are target UI colors, not a promise that every generated pixel is an exact hex value. Use dark text on pastel surfaces. Main text `#4A3C40` has contrast ratios of 6.41–10.20 against the listed backgrounds. Reserve secondary text `#796970` for cream/near-white surfaces (4.90–5.04); use the main text color on pastel fills. Share palette, type sizes, spacing, border widths, shadow, and motion rules in Lua. Start with bundled readable fonts and retain fallback glyphs for international song titles. Use quiet 150–250 ms interface transitions; keep large decorative animation out of gameplay.
 
 ## Initial preview set
 
@@ -66,7 +66,16 @@ The preview gallery will show the standalone images and illustrative UI composit
 - [x] Confirm recognizable characters and the warm pastel palette.
 - [x] Inspect the current theme, graph/speed placement, and replay styling boundary.
 - [x] Write the artwork and implementation plan.
-- [ ] Generate and inspect the four preview illustrations.
-- [ ] Create a local preview gallery and record prompts/asset metadata.
-- [ ] Validate and commit the completed preview package.
+- [x] Generate and inspect the four preview illustrations.
+- [x] Create a local preview gallery and record prompts/asset metadata.
+- [x] Validate and commit the completed preview package.
 - [ ] Integrate the selected artwork into a playable theme in a later revision.
+
+
+## Preview review results
+
+Four full-resolution images and the local `index.html` gallery are complete. The gallery uses shared colors, text, panels, focus styles, and the generated illustrations to demonstrate five screens in both 16:9 and 4:3. Browser captures are retained under ignored `out/chiikawa-preview/`.
+
+The images decode, match their saved hashes, and have the expected alpha/opaque formats. The cutouts were inspected on cream and checkerboard. The title/menu placement clears the characters; the selection artwork leaves the list clear; gameplay decoration uses the empty side area; evaluation/replay art clears the statistics and list. The selection background's outer musical accents should be considered when finalizing a production header. Minor pose/size differences from the generation requests are recorded in `PROMPTS.md` and `manifest.json`.
+
+Preview scope is complete. The remaining unchecked integration item belongs to the later playable-theme revision after artwork review.
