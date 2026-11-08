@@ -4,6 +4,8 @@
 
 Use recognizable **Chiikawa, Hachiware, and Usagi**, with **warm cream, pastel pink, mint, and sky blue**. The user selected this direction on 2026-11-08. Create AI-generated artwork for preview before integrating a new theme. Keep the current playable theme unchanged during this artwork stage. The follow-up instruction locks the original theme fonts, arrow/receptor artwork, and judgment-label artwork; change their colors only where this preserves readability and the existing meaning of each color.
 
+Every active illustration must now show at least two recognizable characters. The user rejected the vertical peekers; remove them from the candidate set and all screen choices. Replace the solo listening, guitar, and leap candidates with interacting pairs. This constraint supersedes the earlier solo/vertical-strip exploration.
+
 The initial cast uses the familiar white rounded Chiikawa, blue-and-white Hachiware, and pale-yellow long-eared Usagi. Use the [official anime character page](https://www.anime-chiikawa.jp/) as an identity reference. The illustrations in this folder are newly AI-generated fan-art concepts, not official artwork or actual game captures.
 
 ## Visual rules
@@ -112,3 +114,14 @@ The gallery now includes ten illustrations and uses six original font mappings: 
 All five screen concepts were reviewed at 1280 × 720 and 1024 × 768. Long labels wrap naturally, decorations stay clear of the sample functional areas, and cream/checkerboard previews expose cutout edges. The new composition differences and deviations from the prompts are recorded in [PROMPTS.md](PROMPTS.md). Browser captures and validation records are retained under ignored `out/chiikawa-preview-v2/`.
 
 This completes the requested artwork-preview revision. Choosing artwork and implementing the playable theme remain the next stage.
+
+
+## Revision: paired illustrations and animated menus
+
+1. Remove the rejected vertical peekers (09) and superseded solo candidates (05–07) from the active image folder, gallery, selectors, and manifest. Their previous versions remain in Git history.
+2. Generate three fresh transparent pair compositions: listening together (Chiikawa/Hachiware), an acoustic duet (Hachiware/Usagi), and a shared jump (Chiikawa/Usagi). Each must show two complete recognizable characters, with different actions and silhouettes. Retain the six existing group/pair images.
+3. Add an animated title/menu preview using gently rotating pastel layers and drifting particles behind transparent character art and interface text. Reuse the original theme's texture shapes and match its Lua actor approach. Provide a motion toggle and honor reduced-motion preferences; gameplay stays still.
+4. Document the native implementation route through `BGAnimations/ScreenTitleMenu background/default.lua`, shared menu backgrounds, and the existing `FancyUIBG` option. Theme Lua and graphics suffice; no C++ changes or recompilation are needed for this animation. The browser demonstration remains separate from actual game integration.
+5. Inspect every active illustration for at least two characters, verify alpha/hashes and removal of rejected candidates, review animated and static layouts at both ratios, update prompts/provenance/progress, and commit the completed revision.
+
+Plan checkpoint first; completion checkpoint after the revised gallery and animation demonstration are verified.

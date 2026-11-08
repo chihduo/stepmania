@@ -198,3 +198,8 @@ Preserve the original theme's font atlases, noteskin arrow/receptor sprites, and
 
 
 Completed: added six distinct illustration candidates (ten total), replaced schematic gameplay assets and browser typography with the original font/sprite artwork, added comparison controls, and updated exact prompts, provenance, and inspection notes. Verified source hashes, transparency, local references, script syntax, and five layouts at both aspect ratios. Details are in `PROGRESS.md`; the preview is ready for review before later playable-theme integration.
+
+
+## Follow-up: paired Chiikawa illustrations and animated backgrounds
+
+Remove the rejected vertical peekers and replace the three solo candidates with distinct two-character compositions. Every active illustration must show at least two recognizable characters. Retain original fonts, arrows, and judgment artwork. Inspect the default theme's Lua background animation, add a gentle animated title/menu demonstration and motion toggle to the preview, and document a native `FancyUIBG`-controlled implementation without recompiling. Validate artwork and layouts, update provenance/progress, and commit at plan/completion checkpoints.

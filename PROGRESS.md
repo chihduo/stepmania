@@ -568,3 +568,16 @@ The gallery now renders actual original bitmap fonts, arrows/receptors, and judg
 Validation: all ten generated PNGs decode and match both manifest hashes and generator outputs; seven have real transparency. All 15 original component copies match their source hashes. All 101 local preview references resolve, image descriptions are present, and the metadata/renderer/gallery JavaScript passes syntax checks. All five concepts render at 1280 × 720 and 1024 × 768 with no missing sample glyphs; typography, decoration clearance, and full cream/checkerboard galleries were visually reviewed. `git diff --check` passes. Captures, browser logs, and the validation report remain under ignored `out/chiikawa-preview-v2/`.
 
 Plan checkpoint: `04c95843dc`. Completion checkpoint: `art: vary Chiikawa previews and reuse original theme assets [skip ci]`. This completes the requested preview revision. The graph remains a layout sketch, and browser previews do not reproduce every engine font fallback or animation effect. Playable-theme integration and Windows verification remain later work. No live theme files, executable build, ZIP, or remote push are part of this checkpoint.
+
+
+## Follow-up: paired illustrations and animated backgrounds
+
+The user rejects the vertical peekers, requires at least two characters in every illustration, and asks whether the original animated backgrounds can be adapted. Inspected the original title/shared-menu actors: they rotate texture layers, update moving particles, and honor the existing `FancyUIBG` option. The same approach can be implemented with theme Lua/graphics without an engine rebuild.
+
+- [x] Inspect original animated background actors and record the revised constraints.
+- [ ] Generate and inspect three replacement pair illustrations.
+- [ ] Remove rejected/superseded candidates and update gallery choices.
+- [ ] Add and verify a pastel animated title/menu preview with a motion toggle.
+- [ ] Update provenance and native integration notes; validate and commit the revision.
+
+This task updates the artwork preview; native theme installation remains a later stage.
