@@ -700,8 +700,10 @@ Validation: both PNGs decode and match their recorded dimensions/hashes; all pac
 
 - [x] Probe all three uploaded clips: H.264 High, yuv420p, 1280×720, 24 fps, 240 frames each; AAC audio extends each container by about 27 ms.
 - [x] Inspect endpoint frames: the same centered trio composition is retained, with only small encoding/render differences. Direct cuts preserve the full 30-second sequence without adding crossfade ghosting.
-- [ ] Assemble a video-only MP4, extract the poster and record reproducible provenance.
+- [x] Assemble a video-only MP4, extract the poster and record reproducible provenance.
 - [ ] Integrate the fallback movie, static poster and cutout suppression.
 - [ ] Verify media and native gameplay behavior, refresh documentation/capture and commit.
 
 The existing Linux layout-test executable was built without FFmpeg. Actual in-engine movie verification requires a decoder-enabled test build; Windows packaging is not part of this request.
+
+Media checkpoint: `Themes/chiikawa/Movies/ddr-trio-loop.mp4` contains exactly 30.000 seconds / 720 frames at 1280×720, 24 fps, H.264 High/yuv420p, with exactly one video stream and no audio. All decoded frame hashes match the original clips concatenated in filename order, so no visual re-encoding or frame loss occurred. A matching first-frame PNG is the theme's common fallback poster. `build-loop.py` reproduces both assets and `movie-manifest.json` records original/output hashes; the three uploads remain unchanged.

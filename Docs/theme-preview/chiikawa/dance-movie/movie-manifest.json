@@ -1,0 +1,49 @@
+{
+  "sources_in_playback_order": [
+    {
+      "file": "Characters_dancing_on_DDR_pads_67d4dfe6.mp4",
+      "sha256": "fe994242d6d470d0a4b90a611e2f9e484cfcae0f626afef867dcf6d059caf7b8",
+      "video_seconds": 10,
+      "video_frames": 240,
+      "audio_streams": 1
+    },
+    {
+      "file": "Characters_dancing_on_DDR_pads_9e35d8f4.mp4",
+      "sha256": "e0c3d48db2fe34e016fa1af47a12f771d7901655855b1da816ba33e5d25b52d6",
+      "video_seconds": 10,
+      "video_frames": 240,
+      "audio_streams": 1
+    },
+    {
+      "file": "Characters_dancing_on_DDR_pads_d0d6f534.mp4",
+      "sha256": "9cba9c34fdb5e11b01f5ad2f0c1a42ea02c1c963a3c83ec6bfcad9edd9d36115",
+      "video_seconds": 10,
+      "video_frames": 240,
+      "audio_streams": 1
+    }
+  ],
+  "movie": {
+    "file": "Themes/chiikawa/Movies/ddr-trio-loop.mp4",
+    "sha256": "834c30dcb6ef78976b9eb1da80e7ffb3cdf80d094b069e872a1ce6e0e666f08c",
+    "bytes": 12452076,
+    "duration_seconds": 30,
+    "frames": 720,
+    "fps": 24,
+    "size": [
+      1280,
+      720
+    ],
+    "codec": "h264",
+    "profile": "High",
+    "pixel_format": "yuv420p",
+    "audio_streams": 0
+  },
+  "poster": {
+    "file": "Themes/chiikawa/Graphics/Common fallback background.png",
+    "sha256": "a9b7c4ac1f6450563c518721c18bf7c58bffbee02107af388fc343db210b6a71",
+    "source_frame": 0
+  },
+  "assembly": "Direct concatenation in listed order; video stream copy, explicit 10-second segments, all audio and source metadata excluded, faststart MP4",
+  "validation": "All 720 decoded frame hashes match the three source clips in order; exactly one video stream, no audio, exactly 30 seconds",
+  "rebuild": "python3 Docs/theme-preview/chiikawa/dance-movie/build-loop.py"
+}
