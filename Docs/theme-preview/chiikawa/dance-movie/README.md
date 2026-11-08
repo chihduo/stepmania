@@ -1,10 +1,18 @@
 # Dancing-trio gameplay background
 
-Status: reference artwork and implementation plan prepared. **No movie has been generated or installed.** The actual clip is awaiting a choice between a connected video-generation provider and a locally rendered illustrated animation.
+Status: **center-tile reference and expanded choreography ready for the next generation.** The user has generated trial movies externally and reported repetitive hopping on the up-arrow panel. The trial videos have not been supplied here for inspection, and no movie is installed in the theme yet.
 
-![Chiikawa, Hachiware and Usagi playing DDR](ddr-trio-keyframe.png)
+![Chiikawa, Hachiware and Usagi standing on the neutral centers of their DDR pads](ddr-trio-keyframe-v2.png)
 
-This is a still keyframe generated with the built-in image generator. It sets the characters, dance pads and lighting for the movie. It is AI-generated fan artwork, not official Chiikawa artwork. The unchanged source output, dimensions and SHA-256 are recorded in [manifest.json](manifest.json). Exact prompts are saved for the [keyframe](keyframe-prompt.txt) and [movie](movie-prompt.txt).
+This is a still keyframe edited with the built-in image generator. All three characters now have both feet on their own blank center tile in a ready stance. The characters, arcade lighting and pad arrangement are retained. It is AI-generated fan artwork, not official Chiikawa artwork. The generator output is copied without post-processing; dimensions, SHA-256 and previous-version provenance are recorded in [manifest.json](manifest.json). Exact prompts are saved for the [image edit](keyframe-v2-prompt.txt) and [movie](movie-prompt.txt).
+
+## Use this revision
+
+1. Replace both the start-frame and end-frame inputs with [ddr-trio-keyframe-v2.png](ddr-trio-keyframe-v2.png). Keeping the previous end frame would ask the movie to return to the old stance.
+2. Replace the earlier motion instructions with the full [updated movie prompt](movie-prompt.txt). It specifies an 8-second sequence: side steps, quick runs from center across the rear/front panels, a two-foot jump onto left/right, and a complete spin ending back at center.
+3. Generate at 16:9 and 720p or higher. Inspect actual foot travel across the tiles and the loop seam; the centered image and prompt guide the motion but do not guarantee it.
+
+The center pose is the opening/closing reference. The characters should use all four arrow panels during the movie rather than repeatedly hopping on one spot. The [original keyframe](ddr-trio-keyframe.png), [original image prompt](keyframe-prompt.txt), and [original movie prompt](movie-prompt-v1.txt) remain available for comparison.
 
 The intended movie is a short silent 16:9 loop with all three characters dancing, a smooth shallow camera orbit and push/pull movement, colorful arcade lighting, and a return to the opening framing. Original gameplay fonts, arrows and judgment graphics remain above it. The choreography is decorative; a reusable loop cannot match the steps or tempo of every song. Its playback time should still follow the song clock and live speed changes.
 
@@ -18,4 +26,4 @@ The intended movie is a short silent 16:9 loop with all three characters dancing
 
 ## Remaining validation
 
-Generate and inspect the actual motion and loop seam; export a silent movie with a codec supported by the bundled Windows decoder and a matching poster; test native no-art/own-art/scripted-video songs, pause, live rate changes, replay and both aspect ratios. Windows x64 decoder/rendering verification remains necessary. The Linux fixture's previous layout checks do not establish movie playback support.
+Inspect the next generated movie for tile travel, jumps, running, spins and a clean loop seam; export a silent movie with a codec supported by the bundled Windows decoder and a matching poster; test native no-art/own-art/scripted-video songs, pause, live rate changes, replay and both aspect ratios. Windows x64 decoder/rendering verification remains necessary. The Linux fixture's previous layout checks do not establish movie playback support.

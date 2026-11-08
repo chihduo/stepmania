@@ -1,17 +1,18 @@
 {
-  "status": "Reference still only; actual movie pending animation-route choice",
-  "created_utc": "2026-11-08T11:30:28.606385+00:00",
-  "generation_mode": "built-in image_gen",
-  "file": "ddr-trio-keyframe.png",
-  "prompt": "keyframe-prompt.txt",
+  "status": "Center-tile reference revision; user-generated trial videos reported, chosen movie not yet supplied or installed",
+  "revision": 2,
+  "created_utc": "2026-11-08T12:00:08.894782+00:00",
+  "generation_mode": "built-in image_gen edit",
+  "file": "ddr-trio-keyframe-v2.png",
+  "prompt": "keyframe-v2-prompt.txt",
   "movie_prompt": "movie-prompt.txt",
-  "source_output": "exec-a3710646-c26e-4c0f-ad8d-ba6417a69569.png",
+  "source_output": "exec-6ac4d97d-b845-4cf3-a9a2-1d1cfc5d29a8.png",
   "reference_images": [
-    "../images/01-character-trio.png"
+    "ddr-trio-keyframe.png"
   ],
-  "sha256": "9b30623ece1a5fa676902d399b3fab9f04896e97e7fb76c00be35af52c2decb3",
+  "sha256": "07a350b0f8559fdbc73b7d2a5c1f2657f9670e1c76e0327735381f43acbd5d80",
   "size": [
-    1672,
+    1671,
     941
   ],
   "mode": "RGB",
@@ -21,6 +22,34 @@
     "Usagi"
   ],
   "character_count": 3,
-  "modifications": "None; generated output copied byte-for-byte",
-  "inspection": "Accepted reference: exactly three recognizable characters in varied active DDR poses; three four-arrow pads, complete bodies and ears, vibrant pastel arcade, no text. All three faces/bodies fit a central 4:3 crop; the outer pad edges would crop. Actual motion and loop quality remain unverified until a movie exists."
+  "modifications": "AI edit repositions and reposes all three characters on their existing neutral center tiles; output copied byte-for-byte without post-processing",
+  "inspection": "Accepted: all three characters have both feet visibly grounded on their own blank center tile, with contact shadows. Usagi is no longer airborne. The left/right/front arrow panels remain visible and the rear/up panels remain behind the characters. Three pads, character order, full bodies/ears, vibrant arcade lighting and overall composition are retained. The movie prompt now specifies cross-pad runs, jumps and a complete spin; resulting motion remains to be checked in a new generated clip.",
+  "previous_versions": [
+    {
+      "status": "Superseded by center-tile revision after the user reported repetitive up-arrow hopping in generated trials",
+      "created_utc": "2026-11-08T11:30:28.606385+00:00",
+      "generation_mode": "built-in image_gen",
+      "file": "ddr-trio-keyframe.png",
+      "prompt": "keyframe-prompt.txt",
+      "movie_prompt": "movie-prompt-v1.txt",
+      "source_output": "exec-a3710646-c26e-4c0f-ad8d-ba6417a69569.png",
+      "reference_images": [
+        "../images/01-character-trio.png"
+      ],
+      "sha256": "9b30623ece1a5fa676902d399b3fab9f04896e97e7fb76c00be35af52c2decb3",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "characters": [
+        "Chiikawa",
+        "Hachiware",
+        "Usagi"
+      ],
+      "character_count": 3,
+      "modifications": "None; generated output copied byte-for-byte",
+      "inspection": "Accepted reference: exactly three recognizable characters in varied active DDR poses; three four-arrow pads, complete bodies and ears, vibrant pastel arcade, no text. All three faces/bodies fit a central 4:3 crop; the outer pad edges would crop. Actual motion and loop quality remain unverified until a movie exists."
+    }
+  ]
 }

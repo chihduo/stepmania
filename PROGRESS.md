@@ -679,3 +679,19 @@ Saved the 1672×941 keyframe, exact image/movie prompts, provenance manifest and
 Also confirmed that the linked gameplay screenshot uses the demo song's own dark `#BACKGROUND:background.png`, rather than the missing-image fallback. The next native capture must remove that background in an isolated test chart to exercise the new fallback properly.
 
 Plan checkpoint: `b52a3b5228`. Artwork checkpoint: `art: prepare Chiikawa DDR movie reference and brief [skip ci]`. Runtime theme files and the existing native gameplay capture remain unchanged while the user chooses a video-generation route. No Windows ZIP was built.
+
+## Follow-up: center-tile dance reference and varied choreography
+
+The user has generated trial videos externally. Their reported issue is repetitive dancing/jumping on the up-arrow panel, consistent with the original reference positions. Those trial videos have not been supplied for direct inspection. This supersedes the earlier pending animation-route choice.
+
+- [x] Edit and inspect a versioned keyframe with both feet on each neutral center tile.
+- [x] Add jumps, running steps and spins with explicit travel across the pad to the movie prompt.
+- [x] Update provenance, preview/use instructions and commit the correction.
+
+No runtime movie has been installed; a chosen clip is still needed for integration and playback verification.
+
+Saved `ddr-trio-keyframe-v2.png` (1671×941) using the built-in image-edit tool. Visual inspection confirms both feet of each character rest on their own existing blank center tile with contact shadows; Usagi is grounded and the old jump/impact marks are removed. Character identities, order, arcade composition and lighting remain consistent.
+
+The revised 8-second movie prompt specifies left/right stepping, short runs across the rear/up and front/down panels, a two-foot jump and rebound, and one complete 360-degree spin returning to center. The README directs replacing both frame inputs with v2. Original image and image prompt are unchanged; the old movie prompt is archived as `movie-prompt-v1.txt` and the manifest retains its provenance.
+
+Validation: both PNGs decode and match their recorded dimensions/hashes; all package links and prompt/reference paths resolve; archived content matches the previous commit byte-for-byte; `git diff --check` passes. The edited reference is a still image, and the next generated movie's choreography/loop remain unverified. Checkpoint: `art: center DDR trio and expand dance choreography [skip ci]`. No runtime theme or executable changes, ZIP or remote push.
