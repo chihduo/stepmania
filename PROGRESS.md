@@ -554,8 +554,17 @@ The user asks to retain the original fonts, arrows, and judgment labels, changin
 
 - [x] Inspect original theme font maps, noteskin, and judgment frames.
 - [x] Record the revised constraints and six-variation plan.
-- [ ] Generate and inspect six new illustrations with different casts, poses, and layouts.
-- [ ] Reuse original gameplay assets in the browser preview and add artwork comparison controls.
-- [ ] Validate images, provenance, and layouts; commit the completed revision.
+- [x] Generate and inspect six new illustrations with different casts, poses, and layouts.
+- [x] Reuse original gameplay assets in the browser preview and add artwork comparison controls.
+- [x] Validate images, provenance, and layouts; commit the completed revision.
 
 The current playable theme remains unchanged during this preview revision.
+
+
+Completed the expanded preview with six new illustrations: solo Chiikawa listening, Hachiware with a guitar, Usagi leaping, a triangular picnic group, vertical peekers, and a resting pair. The first four images remain available. All new illustrations use the first trio only as a character/style reference; poses, cast sizes, silhouettes, and arrangements vary. Exact built-in image-generation prompts and composition inspection notes are saved beside the full-resolution images.
+
+The gallery now renders actual original bitmap fonts, arrows/receptors, and judgment frames. Fifteen copied font/INI/sprite files match their repository sources byte-for-byte. Text alpha is tinted to the palette; colored notes and judgments retain their original shading and meanings. Artwork controls compare title scenes and cutouts across the five screen concepts. The long-label rendering was corrected to wrap words without squeezing glyphs.
+
+Validation: all ten generated PNGs decode and match both manifest hashes and generator outputs; seven have real transparency. All 15 original component copies match their source hashes. All 101 local preview references resolve, image descriptions are present, and the metadata/renderer/gallery JavaScript passes syntax checks. All five concepts render at 1280 × 720 and 1024 × 768 with no missing sample glyphs; typography, decoration clearance, and full cream/checkerboard galleries were visually reviewed. `git diff --check` passes. Captures, browser logs, and the validation report remain under ignored `out/chiikawa-preview-v2/`.
+
+Plan checkpoint: `04c95843dc`. Completion checkpoint: `art: vary Chiikawa previews and reuse original theme assets [skip ci]`. This completes the requested preview revision. The graph remains a layout sketch, and browser previews do not reproduce every engine font fallback or animation effect. Playable-theme integration and Windows verification remain later work. No live theme files, executable build, ZIP, or remote push are part of this checkpoint.

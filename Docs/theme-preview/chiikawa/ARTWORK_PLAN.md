@@ -41,7 +41,7 @@ Each illustration is generated separately with the built-in image tool. Requeste
 | `images/03-selection-background.png` | Restrained illustrated border with a small character group at the lower-left | Wide background; leave the center and right clear for song details and the wheel |
 | `images/04-results-replay.png` | Small cheerful trio with restrained musical accents | Transparent landscape cutout; evaluation or replay header decoration, with final placement chosen against the real statistics layout |
 
-The preview gallery will show the standalone images and illustrative UI compositions using real HTML text/panels. Any such compositions are design mockups, not screenshots or implemented screens. Transparent images will be shown over a checkerboard and a cream background to inspect edges.
+The preview gallery shows standalone images and illustrative UI compositions using the original bitmap fonts and sprites alongside browser panels. These compositions are design mockups, not screenshots or implemented screens. Transparent images can be shown over checkerboard, cream, and dark backgrounds to inspect edges.
 
 ## Implementation after artwork selection
 
@@ -72,13 +72,13 @@ The preview gallery will show the standalone images and illustrative UI composit
 - [ ] Integrate the selected artwork into a playable theme in a later revision.
 
 
-## Preview review results
+## Initial preview review results
 
-Four full-resolution images and the local `index.html` gallery are complete. The gallery uses shared colors, text, panels, focus styles, and the generated illustrations to demonstrate five screens in both 16:9 and 4:3. Browser captures are retained under ignored `out/chiikawa-preview/`.
+The first checkpoint delivered four full-resolution images and the local `index.html` gallery. The gallery uses shared colors, text, panels, focus styles, and the generated illustrations to demonstrate five screens in both 16:9 and 4:3. Browser captures are retained under ignored `out/chiikawa-preview/`.
 
 The images decode, match their saved hashes, and have the expected alpha/opaque formats. The cutouts were inspected on cream and checkerboard. The title/menu placement clears the characters; the selection artwork leaves the list clear; gameplay decoration uses the empty side area; evaluation/replay art clears the statistics and list. The selection background's outer musical accents should be considered when finalizing a production header. Minor pose/size differences from the generation requests are recorded in `PROMPTS.md` and `manifest.json`.
 
-Preview scope is complete. The remaining unchecked integration item belongs to the later playable-theme revision after artwork review.
+The first preview checkpoint is complete. The revision below extends that preview; playable-theme integration remains a later stage after artwork review.
 
 
 ## Revision: preserve original gameplay assets and vary the illustrations
@@ -97,3 +97,18 @@ Add six new illustrations with independent compositions rather than moving the s
 | 10 · Rest | Chiikawa and Hachiware resting together | Quiet close view with curved silhouettes; transparent cutout |
 
 Keep the established character identity, warm palette, and outline treatment, but vary cast size, viewing angle, scale, action, silhouette, and spatial arrangement. Preserve the original four candidates. Add gallery controls to compare new artwork in the existing layouts and inspect each standalone image. Record prompts, input references, alpha/size checks, and composition review notes. Commit the revised plan, then the completed preview update; theme installation, publishing, and Windows packaging remain outside this artwork revision.
+
+
+### Revised preview completed
+
+- [x] Generate six distinct compositions and retain the original four.
+- [x] Inspect characters, silhouettes, UI clearance, and real alpha; save exact prompts and output metadata.
+- [x] Copy original font pages/metrics and note/receptor/judgment textures without modifying their bytes.
+- [x] Render the original bitmap text in the browser and add artwork comparison controls.
+- [x] Check all ten images, original-asset hashes, local links, script syntax, and both screen ratios.
+
+The gallery now includes ten illustrations and uses six original font mappings: Roboto Medium, Open Sans Semibold, Roboto Condensed, Roboto Condensed Bold Italic, Roboto Bold combo digits, and Overpass score digits. Original arrow/receptor sprites and judgment frames preserve their shapes and source colors. Text alpha is tinted to the palette without replacing glyphs. See [original-theme/README.md](original-theme/README.md) for source mappings and preview limitations.
+
+All five screen concepts were reviewed at 1280 × 720 and 1024 × 768. Long labels wrap naturally, decorations stay clear of the sample functional areas, and cream/checkerboard previews expose cutout edges. The new composition differences and deviations from the prompts are recorded in [PROMPTS.md](PROMPTS.md). Browser captures and validation records are retained under ignored `out/chiikawa-preview-v2/`.
+
+This completes the requested artwork-preview revision. Choosing artwork and implementing the playable theme remain the next stage.

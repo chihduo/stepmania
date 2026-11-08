@@ -41,7 +41,7 @@
       "reference_images": [
         "images/01-character-trio.png"
       ],
-      "inspection": "Accepted for preview: coherent palette and character identity, opaque wide background and usable menu area. Character group is taller than the requested 25\u201330 percent; the preview menu clears the faces."
+      "inspection": "Accepted for preview: coherent palette and character identity, opaque wide background and usable menu area. Character group is taller than the requested 25–30 percent; the preview menu clears the faces."
     },
     {
       "file": "images/03-selection-background.png",
@@ -83,9 +83,148 @@
       "transparent_pixels": 990103,
       "near_opaque_pixels": 512604,
       "inspection": "Accepted for preview: changed clapping/waving/cheering poses, recognizable trio, no unwanted text, real alpha. Clean over cream and checkerboard; placed clear of result rows in mockups."
+    },
+    {
+      "file": "images/05-listening.png",
+      "prompt": "prompts/05-listening.txt",
+      "source_output": "exec-d8f9040a-17b3-47dc-b14c-7a0ab480db6d.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bytes": 801968,
+      "sha256": "d961cdd7cc86f8530cd4c63123700a63be6ec554617d4a4259ad56ace7057a84",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "original visuals and varied compositions",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1023223,
+      "near_opaque_pixels": 516274,
+      "inspection": "Accepted for preview: solo seated Chiikawa, headphones and tucked knees make a compact silhouette; recognizable markings, no unwanted text, true alpha. Clean on cream and checkerboard."
+    },
+    {
+      "file": "images/06-acoustic.png",
+      "prompt": "prompts/06-acoustic.txt",
+      "source_output": "exec-039dbaae-947c-4bee-9556-df72dfaa8f47.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1237736,
+      "sha256": "e152bc97282cafebe3ef535cad0d630a4cbb31e0a61b2323a5ee96f2a4970a5d",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "original visuals and varied compositions",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1100268,
+      "near_opaque_pixels": 458573,
+      "inspection": "Accepted for preview: solo seated Hachiware with a diagonal guitar, recognizable blue markings and true alpha. View is closer to front three-quarter than the requested side view; simplified cartoon instrument. Clean on cream and checkerboard."
+    },
+    {
+      "file": "images/07-leap.png",
+      "prompt": "prompts/07-leap.txt",
+      "source_output": "exec-c5438250-f050-42c4-8509-11c6c22dfef8.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "bytes": 1175731,
+      "sha256": "7a4820c78aff26365fb46cf3216ccf0c6b16eb5e725b67ae9b3cdabfb8979eb2",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "original visuals and varied compositions",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1118423,
+      "near_opaque_pixels": 437449,
+      "inspection": "Accepted for preview: tall diagonal airborne Usagi pose, recognizable long ears within the canvas, distinct action silhouette and true alpha. Gameplay and evaluation samples keep it outside functional areas."
+    },
+    {
+      "file": "images/08-picnic.png",
+      "prompt": "prompts/08-picnic.txt",
+      "source_output": "exec-30ee9585-dec5-4d4c-ae22-4b8baed03165.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 1389909,
+      "sha256": "422c6789856d73a55855d399dd7cdc0591f9c2812bc4ef1945a808cc35a2149b",
+      "transparent_requested": false,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "original visuals and varied compositions",
+      "inspection": "Accepted for preview: three interacting characters on a pink blanket, unequal head heights and triangular grouping. Opaque wide scene extends further left than requested; upper-left title/menu placement clears characters in both preview ratios."
+    },
+    {
+      "file": "images/09-peek.png",
+      "prompt": "prompts/09-peek.txt",
+      "source_output": "exec-a7d864bd-b050-4428-b8fc-ab23daf0c517.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "bytes": 1365201,
+      "sha256": "ee843e3adf0a473dd3ee3de7f635079606d61726db63d80ec532cd620c18dc20",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "original visuals and varied compositions",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1010720,
+      "near_opaque_pixels": 532325,
+      "inspection": "Accepted for preview: staggered faces and partial bodies in a vertical strip, recognizable character markings and true alpha. Side cuts are intentional peeking poses; final placement should use panel boundaries. Clean on cream and checkerboard."
+    },
+    {
+      "file": "images/10-rest.png",
+      "prompt": "prompts/10-rest.txt",
+      "source_output": "exec-56b55123-68b5-45f7-aff4-f6d486b4671d.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1395956,
+      "sha256": "824da3c9fbb291603cf8dcdf30052b9dcdb67eef3aaedff6608671b4130964a9",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "original visuals and varied compositions",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 842240,
+      "near_opaque_pixels": 712710,
+      "inspection": "Accepted for preview: sleeping Chiikawa and Hachiware on a mint blanket, two visible faces and low curved silhouette, true alpha. Distinct quiet mood and cast; clean on cream and checkerboard."
     }
   ],
-  "preview_checks": {
+  "updated_utc": "2026-11-08T09:01:01.605593+00:00",
+  "initial_preview_checks": {
     "image_decode": "pass: all four PNGs",
     "original_bytes": "pass: SHA-256 matches copied generator outputs",
     "transparency": "pass: both cutouts contain zero-alpha and near-opaque pixels",
@@ -93,5 +232,15 @@
     "layouts": "Title, selection, gameplay, evaluation, and replay inspected at 1280x720 and 1024x768",
     "gallery": "Cream and checkerboard previews inspected; exact prompts and source image links verified",
     "limitations": "Browser concepts with sample data and schematic notes/graph, not rendered StepMania screens. Production theme, noteskin, fonts, animation, and Windows gameplay validation remain future work."
+  },
+  "preview_checks": {
+    "image_decode": "pass: all ten PNGs",
+    "original_bytes": "pass: saved SHA-256 hashes match generated files; no pixel edits",
+    "transparency": "pass: seven cutouts contain zero-alpha and near-opaque pixels; three backgrounds are opaque RGB",
+    "original_theme_assets": "pass: 15 copied font/INI/sprite assets match repository source hashes in original-theme/sources.json",
+    "browser": "Google Chrome 151.0.7922.137, Linux headless",
+    "layouts": "Title, selection, gameplay, evaluation, and replay rendered at 1280x720 and 1024x768 with original bitmap fonts and no missing sample glyphs; natural word wrapping and decoration clearance inspected",
+    "gallery": "Six new variations plus four earlier candidates; cream/checkerboard cutouts inspected; exact prompts and local references checked",
+    "limitations": "Static browser concepts with sample data and a schematic life graph, not rendered StepMania screens. Original font/sprite artwork is preserved; engine fallback, animation/effects, playable theme integration, and Windows gameplay checks remain later work."
   }
 }

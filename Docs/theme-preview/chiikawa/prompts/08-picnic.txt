@@ -1,0 +1,10 @@
+Use case: illustration-story.
+Asset type: alternative wide title/menu background, variation 08 "Picnic rehearsal".
+Reference image: character identity, recognizable markings, warm contour treatment and pastel palette ONLY. Do not reuse the frontal dancing lineup, common baseline, or three matching poses.
+Scene: Chiikawa, Hachiware and Usagi enjoying an informal musical picnic on a small pastel-pink-and-cream blanket, viewed slightly from above. Warm cream dominates the canvas; a low pale-mint grass area and a few tiny sky-blue flowers ground the vignette. The illustration has gentle depth and a triangular arrangement, not three figures in a row.
+Characters: Hachiware sits at the BACK of the blanket, three-quarter view, playing a simple small pale-yellow acoustic guitar. Chiikawa sits closer in the FOREGROUND turned toward Hachiware, hugging its knees with an attentive happy face. Usagi lies playfully on its side at the RIGHT edge of the blanket, long ears pointing sideways and one foot lifted, looking toward the friends. Preserve the white round-eared Chiikawa, blue-and-white cat Hachiware with divided cap, and pale-yellow long-eared Usagi. Exactly three characters, no costumes.
+Composition: wide landscape about 16:9. Place the illustrated picnic in the RIGHT half, x=55 to 96 percent and y=28 to 92 percent. Leave the LEFT half and upper-left completely calm warm cream for the real title and menu. Different head heights, scales and body orientations must create a noticeably new composition. Keep the full vignette and all ears inside the frame.
+Style: flat simple Chiikawa cartoon, dark warm hand-drawn outline, blush, restrained pastel fills, subtle paper feeling, minimal scenery. Palette cream #FFF8EE, pink #F7BBC8, mint #CBE7D7, sky blue #BFDCF0.
+Background: opaque warm cream.
+Text: none; no drawn interface, panel, title, words, labels, or watermark.
+Avoid: symmetric trio, front-facing standing poses, repeated music-note corner graphics, overly detailed scenery, realistic depth/shadows, 3D, extra characters or limbs.

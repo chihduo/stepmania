@@ -1,0 +1,9 @@
+Use case: illustration-story.
+Asset type: transparent energetic Usagi cutout for a rhythm-game interface, variation 07 "Leap".
+Reference image: only Usagi's recognizable face, pale-yellow body, ears, and the warm hand-drawn line style. Recompose into a genuinely different action pose.
+Subject: ONLY Usagi from Chiikawa, joyfully springing upward in a lively three-quarter view. The rounded body leans diagonally up-right; one short foot kicks out to the left, the other tucks below; the two tiny paws stretch outward. The two long rabbit ears fan back along the diagonal, both fully visible. Give Usagi a mischievous open-mouth grin, expressive brows, small dark eyes and pink blush. Preserve the recognizable pale-yellow rabbit design and tiny rounded proportions.
+Composition: tall portrait canvas, a single diagonal airborne silhouette, generous 12 percent transparent padding. Include only two short pastel-pink motion marks behind the feet and one small mint star near the upper corner. Make the limb pose clearly different from the reference's standing dance.
+Style: simple flat Chiikawa cartoon artwork, warm dark slightly hand-drawn outline, soft pastel yellow and pink, clean readable shape, minimal detail.
+Background: genuine transparent alpha. No floor, cast shadow, glow, backdrop, checkerboard, frame or white sticker edge.
+Text: none. No speech bubbles or exclamation lettering.
+Avoid: other characters, duplicated ears or limbs, clothing, props, upright symmetric standing pose, horizontal trio arrangement, gradients, photorealism, 3D, cropped ears.

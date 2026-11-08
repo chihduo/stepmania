@@ -1,0 +1,92 @@
+[
+  {
+    "file": "original-theme/normal.ini",
+    "source": "Themes/default/Fonts/_roboto Medium 24px.ini",
+    "sha256": "3963255bceb53f30473aca998890ef859ef11d031efe42ed1407d607b3bf24e0",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/normal.png",
+    "source": "Themes/default/Fonts/_roboto Medium 24px [main] 15x15 (doubleres).png",
+    "sha256": "5bca34699b9afb3b462b3aedc5f733dec66abdb59276be0b24a6663b692c2c5d",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/header.ini",
+    "source": "Themes/default/Fonts/_open sans semibold 48px.ini",
+    "sha256": "933d8a142f50e7b50564c3cbbdf56de54d2d04c7ef127076e70903e8c98f4af8",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/header.png",
+    "source": "Themes/default/Fonts/_open sans semibold 48px [main] 15x15.png",
+    "sha256": "fd862f61a7a659fdfd6b0d3900a964423e6a498cd266427d29f6e9778d02348c",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/condensed.ini",
+    "source": "Themes/default/Fonts/_roboto condensed 24px.ini",
+    "sha256": "b9b92a3334e4ae95e3655cff76a6c5a8b83a241eef326d378482e04e771bfda3",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/condensed.png",
+    "source": "Themes/default/Fonts/_roboto condensed 24px [main] 15x15 (doubleres).png",
+    "sha256": "22944712de4ac61833a6a83af50c4168af4b542238eb44dede02b428bd3323ec",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/rate.ini",
+    "source": "Themes/default/Fonts/_roboto condensed Bold italic 24px.ini",
+    "sha256": "6e33587ad6134e2cb144c5f9e982725c44ce9802d3503f1a7e2dad5f9b319744",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/rate.png",
+    "source": "Themes/default/Fonts/_roboto condensed Bold italic 24px [main] 15x15 (doubleres).png",
+    "sha256": "9ebd5d03bc9da283dff174c05be69bba0ae87bf8cd47284e541f10d684657721",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/combo.ini",
+    "source": "Themes/default/Fonts/_roboto Bold 54px.ini",
+    "sha256": "9891299586109d85a06fa7eb3106eaba063564c5ebd1b9e7bc78d977a25ff943",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/combo.png",
+    "source": "Themes/default/Fonts/_roboto Bold 54px [numbers] 4x5 (doubleres).png",
+    "sha256": "70163c53f3de40403a182e17c8b5ef284756bdf15571899a2fa3f663e2b2285e",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/score.ini",
+    "source": "Themes/default/Fonts/_overpass Score.ini",
+    "sha256": "c1d509964b6cd371e8fde514600c593c574198a32d4c2530411e18726ded42ff",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/score.png",
+    "source": "Themes/default/Fonts/_overpass Score [numbers] 4x4 (doubleres).png",
+    "sha256": "5c5efdf8b7390b531ecf66f2120f822105bb5e2f5defad9b2e5d54e0184a6f69",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/judgments.png",
+    "source": "Themes/default/Graphics/Judgment Normal 2x6.png",
+    "sha256": "cddf33b713fa5c96e9989c4147526a48b7d660d9eca14449a5bbf9d42414055d",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/arrows.png",
+    "source": "NoteSkins/dance/default/_arrow 1x8 (doubleres).png",
+    "sha256": "03f0a7349bdcd149704bcab587559a0a385a5560a00fe5b5ee0de1d1db142002",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/receptor.png",
+    "source": "NoteSkins/dance/default/_receptor (doubleres).png",
+    "sha256": "6125bd8c80408638f3d67c714c4f94fd037ad5f3ff3b815ac94233787b080673",
+    "modification": "none; exact source copy"
+  }
+]
