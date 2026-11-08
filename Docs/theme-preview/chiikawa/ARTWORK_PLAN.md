@@ -2,7 +2,7 @@
 
 ## Confirmed direction
 
-Use recognizable **Chiikawa, Hachiware, and Usagi**, with **warm cream, pastel pink, mint, and sky blue**. The user selected this direction on 2026-11-08. Create AI-generated artwork for preview before integrating a new theme. Keep the current playable theme unchanged during this artwork stage.
+Use recognizable **Chiikawa, Hachiware, and Usagi**, with **warm cream, pastel pink, mint, and sky blue**. The user selected this direction on 2026-11-08. Create AI-generated artwork for preview before integrating a new theme. Keep the current playable theme unchanged during this artwork stage. The follow-up instruction locks the original theme fonts, arrow/receptor artwork, and judgment-label artwork; change their colors only where this preserves readability and the existing meaning of each color.
 
 The initial cast uses the familiar white rounded Chiikawa, blue-and-white Hachiware, and pale-yellow long-eared Usagi. Use the [official anime character page](https://www.anime-chiikawa.jp/) as an identity reference. The illustrations in this folder are newly AI-generated fan-art concepts, not official artwork or actual game captures.
 
@@ -13,7 +13,7 @@ The initial cast uses the familiar white rounded Chiikawa, blue-and-white Hachiw
 - Draw all functional text, scores, chart details, judgments, control hints, and arrows with the engine. Do not bake functional text or controls into generated illustrations.
 - Let characters decorate title, selection, evaluation, and replay screens. Gameplay decoration stays small and quiet, outside the active note field, life bar, graph, speed label, and recording status.
 - Keep player, difficulty, judgment, selected, disabled, and warning states distinct. Color must not be the only way to identify selection or gameplay state.
-- Preserve current note colors and silhouettes in the first theme pass. A coordinated noteskin is a separate later deliverable so artwork review does not change note readability.
+- Preserve the original noteskin sprites, receptor shapes, judgment sprite sheet, font faces, and glyph shapes. Do not replace them with schematic arrows, newly drawn labels, or a new typeface. Keep subdivision/judgment colors distinct; where a texture already contains color, retain it unless a controlled tint preserves contrast and shading.
 
 ## Shared palette and components
 
@@ -28,7 +28,7 @@ The initial cast uses the familiar white rounded Chiikawa, blue-and-white Hachiw
 | Sky blue | `#BFDCF0` | Replay, information, and Hachiware accents |
 | Soft yellow | `#F5DE9B` | Usagi and occasional celebration accents |
 
-These are target UI colors, not a promise that every generated pixel is an exact hex value. Use dark text on pastel surfaces. Main text `#4A3C40` has contrast ratios of 6.41–10.20 against the listed backgrounds. Reserve secondary text `#796970` for cream/near-white surfaces (4.90–5.04); use the main text color on pastel fills. Share palette, type sizes, spacing, border widths, shadow, and motion rules in Lua. Start with bundled readable fonts and retain fallback glyphs for international song titles. Use quiet 150–250 ms interface transitions; keep large decorative animation out of gameplay.
+These are target UI colors, not a promise that every generated pixel is an exact hex value. Use dark text on pastel surfaces. Main text `#4A3C40` has contrast ratios of 6.41–10.20 against the listed backgrounds. Reserve secondary text `#796970` for cream/near-white surfaces (4.90–5.04); use the main text color on pastel fills. Share palette, spacing, border widths, shadow, and motion rules in Lua. Retain the original font mappings and glyph artwork, including Roboto text/combo fonts, the Open Sans header font, Overpass score digits, and the existing fallback glyphs for international song titles. Use quiet 150–250 ms interface transitions; keep large decorative animation out of gameplay.
 
 ## Initial preview set
 
@@ -45,7 +45,7 @@ The preview gallery will show the standalone images and illustrative UI composit
 
 ## Implementation after artwork selection
 
-1. **Theme foundation.** Create `Themes/stepmania6/` with `FallbackTheme=default` and a separate display name. Establish shared palette, typography, spacing, and panel helpers. Preserve the current theme as a selectable option.
+1. **Theme foundation.** Create `Themes/stepmania6/` with `FallbackTheme=default` and a separate display name. Establish shared palette, spacing, and panel helpers while inheriting the original font mappings and gameplay artwork. Preserve the current theme as a selectable option.
 2. **Shared screen elements.** Apply the new logo treatment, backgrounds, headers, footers, menu rows, focus/disabled states, dialogs, and option screens. Use generated art as decorative textures; use Lua actors for reusable controls.
 3. **Song selection.** Restyle the wheel, chart list, banner frame, BPM/time labels, profile status, and F10 hint. Check long song/artist names and fast navigation.
 4. **Gameplay.** Restyle score/combo frames, life-meter framing, speed text, recording status, and graph labels using the shared palette. Retain graph placement beneath the notes, existing opacity behavior, and note readability. Suppress decorative characters when they cannot fit outside a centered/double note field.
@@ -79,3 +79,21 @@ Four full-resolution images and the local `index.html` gallery are complete. The
 The images decode, match their saved hashes, and have the expected alpha/opaque formats. The cutouts were inspected on cream and checkerboard. The title/menu placement clears the characters; the selection artwork leaves the list clear; gameplay decoration uses the empty side area; evaluation/replay art clears the statistics and list. The selection background's outer musical accents should be considered when finalizing a production header. Minor pose/size differences from the generation requests are recorded in `PROMPTS.md` and `manifest.json`.
 
 Preview scope is complete. The remaining unchecked integration item belongs to the later playable-theme revision after artwork review.
+
+
+## Revision: preserve original gameplay assets and vary the illustrations
+
+The user requests the same fonts, arrows, and judgment labels as the original theme, allowing color changes where practical. This supersedes the first gallery's browser-font and schematic-arrow examples. Update the browser compositions to render the actual original bitmap font atlases and sprite frames, and document that browser layout is still only a preview. Copy these assets unchanged with source hashes; do not regenerate their shapes with AI. Match the new palette through text tint and surrounding surfaces. Initially keep colored arrow and judgment textures intact so their shading and timing meanings remain readable.
+
+Add six new illustrations with independent compositions rather than moving the same frontal trio to a different corner:
+
+| Variant | Cast and action | Composition / use |
+| --- | --- | --- |
+| 05 · Listening | Chiikawa alone with headphones | Compact seated three-quarter portrait; transparent cutout |
+| 06 · Acoustic | Hachiware seated with a small guitar | Side-oriented musical vignette; transparent cutout |
+| 07 · Leap | Usagi alone in a joyful jump | Tall diagonal action silhouette; transparent cutout |
+| 08 · Picnic | Three friends interacting on a blanket | Wide scene with depth and triangular grouping; clear UI area |
+| 09 · Peek | The trio peeking at different heights | Tall edge decoration; partial-body poses, transparent background |
+| 10 · Rest | Chiikawa and Hachiware resting together | Quiet close view with curved silhouettes; transparent cutout |
+
+Keep the established character identity, warm palette, and outline treatment, but vary cast size, viewing angle, scale, action, silhouette, and spatial arrangement. Preserve the original four candidates. Add gallery controls to compare new artwork in the existing layouts and inspect each standalone image. Record prompts, input references, alpha/size checks, and composition review notes. Commit the revised plan, then the completed preview update; theme installation, publishing, and Windows packaging remain outside this artwork revision.

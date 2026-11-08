@@ -546,3 +546,16 @@ Added a self-contained `index.html` gallery with five illustrative screen layout
 Validation: all four PNGs decode and match their saved SHA-256 hashes; both cutouts have real transparency. Local document/gallery links resolve, image alt text is present, JavaScript syntax and diff whitespace pass. All five compositions were visually inspected in Linux Chrome at 1280 × 720 and 1024 × 768. Cream and checkerboard cutout rendering were inspected. Palette contrast checks reserve the secondary text color for cream/near-white surfaces and use dark text on pastel fills. The plan records pose/size deviations and the selection header's corner accents for later refinement.
 
 Checkpoint `4c344e7bd9` records the plan; the completed preview checkpoint is `art: add Chiikawa theme illustrations and preview gallery [skip ci]`. Browser captures/logs remain in ignored `out/chiikawa-preview/`. No engine/theme installation, executable build, ZIP packaging, or remote push was performed. Playable-theme integration and Windows checks remain a later revision after artwork review.
+
+
+## Follow-up: original gameplay visuals and varied Chiikawa artwork
+
+The user asks to retain the original fonts, arrows, and judgment labels, changing only colors where practical, and requests more varied illustration designs/compositions. The first preview's schematic arrows and browser typefaces will be replaced with actual bundled font/sprite assets. Colored notes/judgments retain their existing texture colors initially; dark UI text and pastel surfaces establish the palette.
+
+- [x] Inspect original theme font maps, noteskin, and judgment frames.
+- [x] Record the revised constraints and six-variation plan.
+- [ ] Generate and inspect six new illustrations with different casts, poses, and layouts.
+- [ ] Reuse original gameplay assets in the browser preview and add artwork comparison controls.
+- [ ] Validate images, provenance, and layouts; commit the completed revision.
+
+The current playable theme remains unchanged during this preview revision.
