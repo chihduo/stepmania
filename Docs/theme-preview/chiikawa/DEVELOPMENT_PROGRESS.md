@@ -15,7 +15,13 @@ Release validation passed both focused Lua checks, byte-for-byte runtime/source 
 
 Baseline validation: all 78 files from the original development package at `a74362c422` remain byte-identical. Runtime theme, shared/default-theme source and tests match main exactly; no merge conflicts remain. All 153 local links in the feature-worktree documentation resolve.
 
-Future engine updates can be merged from `5_1-new` into this feature branch normally. Promote only reviewed runtime/doc paths back to main as described in `Docs/ChiikawaDevelopment.md`. The worktrees are `/home/codex/stepmania` (main) and `/home/codex/stepmania-chiikawa` (theme development). No remote push or ZIP was performed.
+Future engine updates can be merged from `main` into this feature branch normally. Promote only reviewed runtime/doc paths back to main as described in `Docs/ChiikawaDevelopment.md`. The worktrees are `/home/codex/stepmania` (main) and `/home/codex/stepmania-chiikawa` (theme development). No remote push or ZIP was performed.
+
+## Default branch rename
+
+Renamed the default branch from `5_1-new` to `main` locally and on GitHub. GitHub still points to the original published commit `0e53193abf`; pending theme changes remain local. The main checkout tracks `fork/main`, and `fork/HEAD` resolves there. Main documentation checkpoint `27910ae890` updates active build/clone links, contributor instructions and promotion commands; this merge brings those changes into the feature worktree. Historical branch names in the completed separation records remain as originally observed.
+
+No runtime files, media or tests changed. The branch-specific plan and active future-merge instruction now use `main`. No pending commits were pushed and no ZIP was built.
 
 ## Earlier theme progress
 

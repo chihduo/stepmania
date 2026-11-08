@@ -1,8 +1,10 @@
 # Chiikawa development plan
 
-Theme work belongs on `feature/chiikawa-theme`; `5_1-new` receives finished runtime assets, required shared hooks/tests, release documentation and native screenshots. Keep prompts, alternatives, original clips, the browser gallery and detailed journals on this feature branch.
+Theme work belongs on `feature/chiikawa-theme`; `main` receives finished runtime assets, required shared hooks/tests, release documentation and native screenshots. Keep prompts, alternatives, original clips, the browser gallery and detailed journals on this feature branch.
 
 ## Branch separation
+
+This completed split used the former branch name `5_1-new`. The default branch is now `main`; use that name for ongoing development and promotion.
 
 1. Preserve the complete theme history and all development sources on the feature branch, with a separate worktree.
 2. Prepare a release commit from the published `5_1-new` tip, carrying the latest verified theme and removing development-only files from its current tree. Preserve all already-published commits.
@@ -10,7 +12,7 @@ Theme work belongs on `feature/chiikawa-theme`; `5_1-new` receives finished runt
 4. Verify runtime files are identical to the tested movie revision, run focused Lua checks, validate links and provenance, and commit the release snapshot.
 5. Move local `5_1-new` to that snapshot, then merge its baseline into the feature branch while preserving the development package. Keep subsequent theme plans/progress in these feature-only files. Do not push or package a ZIP in this task.
 
-The original history remains available below and in Git. Engine changes unrelated to the theme continue on `5_1-new`.
+The original history remains available below and in Git. Engine changes unrelated to the theme continue on `main`.
 
 Completed: preserved the development package, created and verified the main release snapshot, documented selective promotion and reconciled the shared baseline. Continue theme work here and update these dedicated journals at checkpoints.
 
