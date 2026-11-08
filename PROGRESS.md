@@ -590,3 +590,22 @@ Added a browser demonstration of the original title/menu animation approach. It 
 Validation: all nine PNGs decode and match generator-output hashes; manually reviewed character counts are at least two for every active candidate. Six cutouts contain real transparency. All 17 original-asset copies match their repository sources; 107 local/document/gallery references resolve. JavaScript syntax and diff whitespace checks pass. Local Chrome rendered all five screen concepts at 1280 × 720 and 1024 × 768 with no missing sample glyphs or runtime exceptions. Browser checks confirm animation advances, pause holds it still, resume restarts it, reduced-motion starts paused, and gameplay has zero animated decoration. Both ratios and cream/checkerboard artwork previews were reviewed. Captures and check reports remain under ignored `out/chiikawa-preview-v3/`.
 
 Plan checkpoint: `4fe1e4815b`. Completion checkpoint: `art: pair Chiikawa illustrations and preview animated menus [skip ci]`. This completes the artwork-preview revision. Native theme installation and Windows renderer verification remain the later integration stage; no engine build, ZIP, or remote push is included.
+
+
+## Follow-up: choosing and randomizing decorations
+
+The user asks how to choose among the illustrations and whether they can be shown randomly. The existing theme already uses `math.random` in its Lua actors. Use curated choices by screen: welcoming title art, musical selection art, calm gameplay pairs, celebration on evaluation, and quiet replay-list art.
+
+- [x] Review existing controls and confirm Lua random-selection support.
+- [x] Add recommended/random/manual gallery modes and stable per-screen choices.
+- [x] Document eligible artwork and when a new choice is made.
+- [x] Verify preview behavior and commit the completed change.
+
+
+Completed Recommended, Random, and Manual modes in the preview gallery. Each screen has a curated pool: welcoming/musical title and selection art, calm gameplay pairs, celebration on evaluation, and quiet replay-browser art. Random mode selects on screen entry and excludes the previous choice. Show another explicitly compares a different eligible candidate. Manual mode applies a fixed cutout; painted title scenes retain their own illustration. The animation toggle and artwork choice are independent.
+
+Added `ARTWORK_CHOICES.md` with recommendations, timing, controls, and the native Lua route. Moved gallery controls into `gallery.js` as part of the selection change. No artwork files or playable-theme code changed.
+
+Focused browser verification passes for recommended defaults, eligible random choices on all five screens, no immediate repeats on re-entry or Show another, stable gameplay artwork while resizing/changing ratio/toggling motion/waiting, manual choices, painted-title behavior, and query links. No missing sample glyphs or runtime exceptions were reported. Local links, script syntax, and diff whitespace pass. Captures and results are retained under ignored `out/chiikawa-preview-v4/`.
+
+Completion checkpoint: `art: add per-screen random decoration preview [skip ci]`. Native theme integration remains the later stage.

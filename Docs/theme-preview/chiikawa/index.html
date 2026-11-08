@@ -14,6 +14,7 @@
 
 /* Native-style menu motion stays behind characters and functional text. */
 .screen{isolation:isolate}.title-friends{display:none}.scene-title.duet{background-image:none}.scene-title.duet .title-friends{display:block;position:absolute;left:50%;top:27%;width:48%;height:66%;object-fit:contain}.scene-title.duet .title-wordmark{left:3%;width:46%;top:18%;font-size:4.4cqw}.scene-title.duet .title-tagline{left:3%;width:46%;top:32%}.scene-title.duet .title-menu{left:9%;width:32%;top:46%}.motion-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}.scene-title:not(.duet) .motion-layer,.scene-select:not(.with-cutout) .motion-layer{display:none}.motion-ring{position:absolute;left:64%;top:52%;width:var(--size);aspect-ratio:1;height:auto;opacity:var(--opacity);animation:menu-turn var(--duration) linear infinite;animation-direction:var(--direction);transform:translate(-50%,-50%) rotate(var(--angle));}.motion-particle{position:absolute;left:var(--x);top:var(--y);width:var(--size);aspect-ratio:1;height:auto;opacity:.32;animation:menu-drift var(--duration) ease-in-out infinite alternate;animation-delay:var(--delay)}.stage[data-motion=off] .motion-layer *,.screen:not(.active) .motion-layer *{animation-play-state:paused}.motion-status{font-size:14px;color:var(--muted);max-width:620px}@keyframes menu-turn{from{transform:translate(-50%,-50%) rotate(var(--angle))}to{transform:translate(-50%,-50%) rotate(calc(var(--angle) + 360deg))}}@keyframes menu-drift{from{transform:translate(-2cqw,3cqw) rotate(-12deg)}to{transform:translate(4cqw,-5cqw) rotate(18deg)}}
+button:disabled,select:disabled{opacity:.5;cursor:default}
 </style>
 </head>
 <body>
@@ -22,7 +23,7 @@
 <h1>StepMania 6, a little softer.</h1>
 <p class="intro">Recognizable Chiikawa, Hachiware, and Usagi with warm cream, pastel pink, mint, and sky blue. Every candidate now shows at least two characters. Three new pair compositions join the retained group and resting-pair illustrations. The screen concepts now reuse the original theme’s fonts, arrows, and judgment artwork.</p>
 <p class="intro">These are fan-art concepts and illustrative layouts, including an animated menu-background study. They are not official artwork, game screenshots, or an installed theme. Text tint and surrounding surfaces adopt the pastel palette; the original note and judgment colors remain distinct. The current game remains unchanged.</p>
-<nav class="links" aria-label="Preview documents"><a href="ARTWORK_PLAN.md">Artwork and implementation plan</a><a href="PROMPTS.md">Exact generation prompts</a><a href="ANIMATION.md">Animated background approach</a><a href="manifest.json">Image sizes and provenance</a><a href="#artwork">Standalone images ↓</a></nav>
+<nav class="links" aria-label="Preview documents"><a href="ARTWORK_PLAN.md">Artwork and implementation plan</a><a href="PROMPTS.md">Exact generation prompts</a><a href="ANIMATION.md">Animated background approach</a><a href="ARTWORK_CHOICES.md">Choosing artwork</a><a href="manifest.json">Image sizes and provenance</a><a href="#artwork">Standalone images ↓</a></nav>
 <div class="swatches" aria-label="Proposed interface palette">
 <span class="swatch"><i style="--swatch:#fff8ee"></i>Cream</span><span class="swatch"><i style="--swatch:#f7bbc8"></i>Pink</span><span class="swatch"><i style="--swatch:#cbe7d7"></i>Mint</span><span class="swatch"><i style="--swatch:#bfdcf0"></i>Sky blue</span><span class="swatch"><i style="--swatch:#4a3c40"></i>Dark text</span>
 </div>
@@ -32,10 +33,15 @@
 <label>Screen shape <select id="ratio"><option value="wide">16:9</option><option value="classic">4:3</option></select></label>
 </div>
 <div class="toolbar artwork-controls">
-<label>Title scene <select id="title-art"><option value="duet">12 · Acoustic duet / animated</option><option value="picnic">08 · Picnic rehearsal</option><option value="original">02 · Original meadow</option></select></label>
-<label>Character decoration <select id="decoration"><option value="11-listening-together">11 · Listening together</option><option value="12-acoustic-duet">12 · Acoustic duet</option><option value="13-shared-jump">13 · Shared jump</option><option value="10-rest">10 · Resting pair</option><option value="01-character-trio">01 · Original trio</option><option value="04-results-replay">04 · Celebration trio</option></select></label>
+<label>Artwork choice <select id="artwork-mode"><option value="recommended">Recommended per screen</option><option value="random">Random per screen</option><option value="manual">Manual</option></select></label>
+<button type="button" id="shuffle-art" disabled>Show another</button>
 </div>
-<p class="caption">Character decoration changes song selection, gameplay, evaluation, and replay. The duet title shows moving layers behind transparent artwork; the two painted title backgrounds retain their static scenes.</p>
+<p class="caption" id="artwork-status" aria-live="polite">Each screen uses artwork suited to its purpose.</p>
+<div class="toolbar artwork-controls">
+<label>Title scene <select id="title-art"><option value="duet">Animated character scene</option><option value="picnic">08 · Picnic rehearsal</option><option value="original">02 · Original meadow</option></select></label>
+<label>Manual decoration <select id="decoration" disabled><option value="11-listening-together">11 · Listening together</option><option value="12-acoustic-duet">12 · Acoustic duet</option><option value="13-shared-jump">13 · Shared jump</option><option value="10-rest">10 · Resting pair</option><option value="01-character-trio">01 · Original trio</option><option value="04-results-replay">04 · Celebration trio</option></select></label>
+</div>
+<p class="caption">Random mode chooses when you enter a screen and avoids its previous choice. Artwork stays fixed during a song. Use Show another to compare candidates here. Painted title scenes keep their own illustrations.</p>
 <div class="toolbar motion-controls"><button type="button" id="motion-toggle" aria-pressed="true">Background motion: on</button><span id="motion-status" class="motion-status" aria-live="polite">Slow rotating layers and drifting particles on menu screens.</span></div>
 <div class="stage" id="stage" data-ratio="wide">
 <section class="screen scene-title active" data-id="title" aria-label="Title screen concept">
@@ -95,26 +101,6 @@
 <script src="original-theme-data.js"></script>
 <script src="original-components.js"></script>
 <script src="menu-motion.js"></script>
-<script>
-const captions={title:'Title concept: original bitmap text with paired artwork and gentle background motion. Painted scene alternatives are static.',select:'Selection concept: original bitmap text, clear focus, chart choice, and room for the selected character decoration.',game:'Gameplay concept: original note/receptor textures, FLAWLESS sprite, score/combo/rate fonts. Character decoration stays outside the note field; the graph is a layout sketch.',result:'Evaluation concept: original bitmap fonts with supportive decoration clear of the result rows. Numbers are illustrative sample data.',replay:'Replay concept: original Common Normal typography with the selected illustration. The current C++ widgets still need theme styling hooks.'};
-function showScreen(name){if(!captions[name])name='title';document.querySelectorAll('[data-screen]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.screen===name)));document.querySelectorAll('.screen').forEach(s=>{s.classList.toggle('active',s.dataset.id===name);s.setAttribute('aria-hidden',String(s.dataset.id!==name));});document.getElementById('scene-caption').textContent=captions[name];requestAnimationFrame(()=>window.redrawOriginalComponents?.());}
-function setDecoration(name){const file='images/'+name+'.png';document.querySelectorAll('.selection-friends,.game-friends,.result-friends,.replay-friends').forEach(img=>{img.src=file;img.alt='Selected illustration: '+document.getElementById('decoration').selectedOptions[0].textContent;});document.querySelector('.scene-select').classList.toggle('with-cutout',name!=='01-character-trio');}
-function setTitle(name){const title=document.querySelector('.scene-title');title.classList.toggle('picnic',name==='picnic');title.classList.toggle('duet',name==='duet');requestAnimationFrame(()=>window.redrawOriginalComponents?.());}
-document.querySelectorAll('[data-screen]').forEach(b=>b.addEventListener('click',()=>showScreen(b.dataset.screen)));
-document.getElementById('ratio').addEventListener('change',e=>{document.getElementById('stage').dataset.ratio=e.target.value;requestAnimationFrame(()=>window.redrawOriginalComponents?.());});
-document.getElementById('title-art').addEventListener('change',e=>setTitle(e.target.value));
-document.getElementById('decoration').addEventListener('change',e=>setDecoration(e.target.value));
-document.getElementById('candidate-set').addEventListener('change',e=>document.getElementById('assets').dataset.set=e.target.value);
-document.querySelectorAll('[data-background]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('assets').className='asset-grid '+b.dataset.background;document.querySelectorAll('[data-background]').forEach(c=>c.setAttribute('aria-pressed',String(c===b)));}));
-if('scrollRestoration' in history)history.scrollRestoration='manual';
-const params=new URLSearchParams(location.search);
-if(params.get('ratio')==='classic'){document.getElementById('stage').dataset.ratio='classic';document.getElementById('ratio').value='classic';}
-if([...document.getElementById('decoration').options].some(o=>o.value===params.get('art')))document.getElementById('decoration').value=params.get('art');
-if(['original','picnic','duet'].includes(params.get('title')))document.getElementById('title-art').value=params.get('title');
-setDecoration(document.getElementById('decoration').value);setTitle(document.getElementById('title-art').value);
-if(['cream','checker','dark'].includes(params.get('background')))document.querySelector('[data-background="'+params.get('background')+'"]').click();
-if(params.get('set')==='all'){document.getElementById('assets').dataset.set='all';document.getElementById('candidate-set').value='all';}
-if(params.has('capture')){document.body.classList.add('capture');showScreen(params.get('capture'));requestAnimationFrame(()=>window.scrollTo(0,0));}
-</script>
+<script src="gallery.js"></script>
 </body>
 </html>

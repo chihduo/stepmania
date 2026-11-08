@@ -15,7 +15,7 @@ The option is presented as **Fancy UI Background** in the default theme. Origina
 
 ## What the preview demonstrates
 
-The animated duet title uses a cream base, three pink/mint/blue layers, nine drifting particles, then the transparent two-character illustration and original bitmap UI text. The layer shapes and particles are exact copies of the original title textures; the browser tints their alpha without changing the source PNGs. The three layers complete a rotation in 80, 48, and 65 seconds. Particle drift is slow and continuous. The characters themselves remain still.
+The animated character title uses a cream base, three pink/mint/blue layers, nine drifting particles, then the selected transparent character illustration and original bitmap UI text. The layer shapes and particles are exact copies of the original title textures; the browser tints their alpha without changing the source PNGs. The three layers complete a rotation in 80, 48, and 65 seconds. Particle drift is slow and continuous. The characters themselves remain still.
 
 Song selection, evaluation, and replay use the same treatment behind panels and character cutouts. Gameplay receives no animated decorative layer. Opaque painted title alternatives and the original painted selection scene retain their static backgrounds so artwork does not need to be artificially separated into layers.
 
@@ -32,3 +32,5 @@ The effect lives in [menu-motion.js](menu-motion.js) and the gallery's CSS. Brow
 5. Verify both aspect ratios in the actual Windows x64 renderer, including theme switching, animation off/on, screen transitions, and slow machines. These native checks remain part of the later theme integration.
 
 Only theme Lua, metrics, and graphics are needed for this animation. Existing replay-widget styling hooks discussed in the broader plan are a separate integration concern.
+
+The illustration can be [recommended, random, or manually selected](ARTWORK_CHOICES.md). Choosing an illustration is independent of background motion: it does not reroll when motion is paused or resumed.

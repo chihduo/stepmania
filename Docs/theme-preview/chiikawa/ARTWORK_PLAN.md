@@ -135,3 +135,11 @@ The default duet title demonstrates pastel rotating layers and drifting particle
 
 
 Validation for this revision passed for nine active illustrations, six transparent cutouts, 17 exact original-asset copies, 107 local references, and all four preview scripts. All five layouts rendered at both aspect ratios without missing sample glyphs or browser exceptions. Moving, paused, resumed, and reduced-motion states were exercised; gameplay has no decorative animation. The current artwork-preview revision is complete.
+
+
+## Revision: context-aware artwork selection
+
+Add Recommended, Random, and Manual choices to the gallery. Recommended mode gives each screen a suitable default. Random mode selects once on screen entry from that screen's eligible group and excludes its previous choice; it has no timed slideshow. Gameplay keeps its decoration for the whole song. An explicit preview button can choose another candidate. Full painted title scenes keep their own artwork. All eligible cutouts contain at least two characters and preserve existing clearance, fonts, arrows, and judgments. Native selection belongs in theme Lua when screen actors are constructed, without reseeding the global random generator or changing chart/replay state.
+
+
+The selection preview is complete. Recommended defaults, random eligibility/no-repeat behavior, manual choices, painted titles, and stable gameplay art were verified through the browser controls. Artwork selection remains independent of background motion. The per-screen rules and native integration approach are documented in [ARTWORK_CHOICES.md](ARTWORK_CHOICES.md).

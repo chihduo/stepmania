@@ -249,7 +249,7 @@
       "inspection": "Two complete airborne characters meeting raised paws along a rising diagonal; ears and feet within frame, distinct poses and recognizable faces; accepted for preview."
     }
   ],
-  "updated_utc": "2026-11-08T09:25:01.357808+00:00",
+  "updated_utc": "2026-11-08T09:40:15.647926+00:00",
   "initial_preview_checks": {
     "image_decode": "pass: all four PNGs",
     "original_bytes": "pass: SHA-256 matches copied generator outputs",
@@ -382,12 +382,21 @@
     "retired_candidates": "pass: three solos and vertical peekers removed from active image/prompt folders and gallery choices",
     "transparency": "pass: six transparent cutouts and three opaque backgrounds",
     "original_theme_assets": "pass: 17 exact repository copies; original fonts, note/receptor and judgment shapes retained",
-    "links": "pass: 107 local/document/gallery references checked, image descriptions present",
-    "javascript_syntax": "pass: original metadata/renderer, menu motion, and gallery controls",
+    "links": "pass: current document/HTML/CSS references checked; existing font atlas references unchanged",
+    "javascript_syntax": "pass: four external preview scripts, including gallery artwork selection",
     "browser": "Google Chrome 151.0.7922.137, Linux headless; local file:// gallery",
     "layouts": "pass: five screen concepts rendered at 1280x720 and 1024x768 with no missing sample glyphs",
     "motion": "pass: rotation advances, toggle pauses/resumes, reduced-motion starts paused, gameplay has no animated decoration",
     "runtime_errors": 0,
-    "limitations": "Browser artwork/layout and menu-animation preview; actual inherited-theme installation, engine rendering and Windows x64 checks remain later work."
+    "limitations": "Browser artwork/layout and menu-animation preview; actual inherited-theme installation, engine rendering and Windows x64 checks remain later work.",
+    "artwork_selection": {
+      "recommended": "per-screen defaults verified",
+      "random": "eligible per-screen choices; no immediate repeat on re-entry or Show another",
+      "stable": "active tab, elapsed time, resize, aspect ratio and motion toggle do not reroll gameplay artwork",
+      "manual": "explicit cutout stays selected across screens",
+      "painted_title": "retains its own scene; returning to animated title chooses an eligible decoration",
+      "query_links": "recommended/random/manual and existing art links verified",
+      "runtime_errors": 0
+    }
   }
 }
