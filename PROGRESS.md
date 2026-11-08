@@ -669,7 +669,13 @@ Checkpoint: `fix: hide inactive song-selection difficulty panes [skip ci]`. This
 
 - [x] Confirm theme fallback resolution in `Background.cpp` and movie music-clock support in `BackgroundEffects/StretchNormal.lua`.
 - [x] Discover a video-generation provider; Runway is available but not connected. Ask whether to enable it or use a locally rendered illustrated animation.
-- [ ] Prepare and inspect the trio DDR keyframe and motion brief.
+- [x] Prepare and inspect the trio DDR keyframe and motion brief.
 - [ ] Produce the actual movie, integrate it, and verify gameplay behavior.
 
 The built-in image generator cannot produce full-motion video. Artwork and source investigation can proceed while the animation route is pending; no movie has been generated or installed yet.
+
+Saved the 1672×941 keyframe, exact image/movie prompts, provenance manifest and source-backed integration notes in `Docs/theme-preview/chiikawa/dance-movie/`. Visual inspection confirms all three recognizable characters, distinct active poses, three DDR pads and the intended vibrant palette. The image is an unchanged built-in-generator output; its SHA-256 and all package links pass validation. It is a still reference, not a movie.
+
+Also confirmed that the linked gameplay screenshot uses the demo song's own dark `#BACKGROUND:background.png`, rather than the missing-image fallback. The next native capture must remove that background in an isolated test chart to exercise the new fallback properly.
+
+Plan checkpoint: `b52a3b5228`. Artwork checkpoint: `art: prepare Chiikawa DDR movie reference and brief [skip ci]`. Runtime theme files and the existing native gameplay capture remain unchanged while the user chooses a video-generation route. No Windows ZIP was built.

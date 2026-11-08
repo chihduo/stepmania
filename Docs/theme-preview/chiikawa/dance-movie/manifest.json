@@ -1,0 +1,26 @@
+{
+  "status": "Reference still only; actual movie pending animation-route choice",
+  "created_utc": "2026-11-08T11:30:28.606385+00:00",
+  "generation_mode": "built-in image_gen",
+  "file": "ddr-trio-keyframe.png",
+  "prompt": "keyframe-prompt.txt",
+  "movie_prompt": "movie-prompt.txt",
+  "source_output": "exec-a3710646-c26e-4c0f-ad8d-ba6417a69569.png",
+  "reference_images": [
+    "../images/01-character-trio.png"
+  ],
+  "sha256": "9b30623ece1a5fa676902d399b3fab9f04896e97e7fb76c00be35af52c2decb3",
+  "size": [
+    1672,
+    941
+  ],
+  "mode": "RGB",
+  "characters": [
+    "Chiikawa",
+    "Hachiware",
+    "Usagi"
+  ],
+  "character_count": 3,
+  "modifications": "None; generated output copied byte-for-byte",
+  "inspection": "Accepted reference: exactly three recognizable characters in varied active DDR poses; three four-arrow pads, complete bodies and ears, vibrant pastel arcade, no text. All three faces/bodies fit a central 4:3 crop; the outer pad edges would crop. Actual motion and loop quality remain unverified until a movie exists."
+}
