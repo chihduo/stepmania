@@ -1,0 +1,8 @@
+Use case: stylized-concept / game UI animation layer.
+Create a transparent PNG illustration of exactly THREE small DDR-style dance pads arranged side by side in one straight horizontal row. Match the supplied Chiikawa reference's hand-drawn dark-brown outlines, rounded friendly shapes, simple flat pastel colors and soft paper-like cartoon drawing. These pads belong in the same drawing as the reference characters; they are cute illustrated objects, not realistic metal arcade equipment.
+
+Landscape canvas around 3:1, preferably 1536 by 512. All three pads have the same size, perspective and height; their centers are evenly spaced at 1/6, 1/2 and 5/6 of the canvas width. Leave transparent margins so no pad is clipped, and a narrow clear gap between pads. Show each whole square pad from a slightly elevated frontal angle, giving a shallow trapezoid/diamond-like footprint with a very thin rounded front edge. No poles, handrails, screens, machines or cables.
+
+Each pad has a warm cream frame, a plainly visible blank neutral center square, and four directional arrow panels around it: rear/up, front/down, left and right. Use pastel pink, mint and sky blue tiles. Arrow symbols should point clearly outward in the corresponding directions. Keep the center tiles blank and flat, with enough room for a small cartoon character to stand. All three designs match. Use a clean readable 3x3 tile arrangement with simple off-white corner tiles.
+
+No characters or living figures in this asset; the three Chiikawa characters will be animated above these fixed pads. No backdrop, room, floor, decorative ground shadow, confetti, music notes, lettering, logo or watermark. Everything outside the pad silhouettes must be genuinely transparent alpha. Do not draw a checkerboard.

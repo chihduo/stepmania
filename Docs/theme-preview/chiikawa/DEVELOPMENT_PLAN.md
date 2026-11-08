@@ -107,3 +107,12 @@ Use the existing authentic native movie-background screenshot, preserving its pi
 
 
 Completed: published the movie-background capture and adjacent MP4 link on `main`, verified all three remote blobs against the local release, and synchronized the feature baseline while preserving its source package.
+
+
+## Transparent dancing trio on the right of the title menu
+
+Replace the title menu's right-side random still with Chiikawa, Hachiware and Usagi dancing on three matching cartoon pads. Work and commit only on `feature/chiikawa-theme`; leave main and remote publication for a later instruction.
+
+Create transparent AI-drawn character key poses and a separate fixed pad layer. Use a native PNG sprite animation with deterministic stepping/hopping and a periodic clock, preserving transparency and avoiding the engine's first-frame-only GIF loader. Export a looping transparent GIF for preview, alongside source artwork, exact prompts and provenance. Keep the actual title menu fonts and menu items inherited.
+
+Checkpoints: commit this plan; generate/inspect the artwork; implement the title actor and preview assembly; verify native 16:9/4:3 layout, seamless wraparound, motion-off behavior, cached title return and normal menu navigation; update the feature documentation, preview, progress and asset manifest; commit the completed feature. No main commits, push or Windows ZIP.

@@ -234,3 +234,15 @@ The requested GitHub page still showed the pre-movie capture because the finishe
 Screenshot SHA-256: `a49840da22b495df18a8ad63c2ceebf0dd39eab8471ca3ad4175768e860b9184` (828,469 bytes). All 15 runtime media hashes still match the release manifest. Added a clear caption and direct MP4 link beside the screenshot. Published the development branch first and then `main` at `eca4da9033`. GitHub now serves the movie-background capture, caption and direct silent-MP4 link at `Docs/theme-preview/chiikawa/native/README.md`. Verified the live README, screenshot and MP4 Git blob hashes against the local release, including exact README text. Both remote branch tips matched the pushed commits at verification. This follow-up publishes the previously local final theme and branch-workflow documentation as well as the requested preview.
 
 Merged the published main baseline back into this feature branch; the development sources and distinct preview documentation remain here. No Windows build or ZIP was requested or started.
+
+
+## Transparent title-menu dance loop
+
+- [x] Confirmed the requested location is the right-side illustration on the Game Start / Options title menu.
+- [x] Confirmed native GIF loading reads only the first image; native PNG sprite states support alpha and animation.
+- [x] Record the feature-only plan and exact artwork prompts.
+- [ ] Generate and inspect character poses and cartoon pad artwork.
+- [ ] Implement the transparent native title animation and looping GIF preview.
+- [ ] Verify native layout/lifecycle/motion settings, update documents and commit.
+
+Baseline: `373e795d6f` on `feature/chiikawa-theme`; main remains `eca4da9033`. Use the built-in image generator for the new drawings and preserve its transparent source outputs. Existing movie backgrounds and random decorations on other screens are outside this change.

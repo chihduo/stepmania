@@ -1,0 +1,16 @@
+Use case: identity-preserve / game sprite animation.
+Transform the three characters in the reference illustration into a production-ready transparent PNG animation sprite atlas. Retain the recognizable Chiikawa, Hachiware and Usagi designs, soft hand-drawn dark-brown outlines, warm off-white and pale yellow bodies, Hachiware sky-blue cap, pink cheeks, and flat pastel cartoon style. No costumes or extra props.
+
+Layout: exactly FOUR equal columns and THREE equal rows on one 4:3 landscape canvas (ideally 1536 by 1152 pixels). Twelve equal SQUARE cells. No grid lines, labels, borders, numbers or text. All space between and around the characters is genuinely transparent alpha, not a drawn checkerboard. Keep a generous transparent margin inside EVERY cell. No body, ear, arm or foot may cross a cell boundary.
+
+Row 1: Chiikawa, the small white round-eared character, in four poses.
+Row 2: Hachiware, the white cat with the blue cap and small visible tail, in four poses.
+Row 3: Usagi, the pale-yellow rabbit with long upright ears, in four poses.
+The same character must keep exactly the same size, colors, head proportions, face placement and camera angle across its four cells. Front view with a hint of three-quarter depth. The neutral head/body center stays fixed within its row. All character ground-contact feet are aligned to the same baseline at 88 percent of cell height; ears have ample headroom. Usagi's body is the same approximate size as the others, with extra height from its ears. Full bodies, both arms and both feet visible in every cell.
+
+Column 1: a dancing step toward the viewer's left, left foot planted and right foot lifted, arms counterbalancing, cheerful open eyes.
+Column 2: neutral happy ready stance, both feet grounded and slightly apart, arms comfortably out, a gentle smile. This is the idle/resting pose.
+Column 3: a dancing step toward the viewer's right, right foot planted and left foot lifted, opposite arms counterbalancing. Same identity and scale as column 1.
+Column 4: excited two-foot dance hop pose with arms up and feet tucked slightly, happy face; keep the body aligned with the other poses so animation can raise the sprite.
+
+These are actual distinct animation key poses, not twelve copies of one drawing. Keep the feet and arm differences readable at small screen size. No ground, pads, floor, platform, background, shadows, sparkles, music notes, furniture or accessories. Pads will be supplied as a separate fixed layer. Transparent background is essential.
