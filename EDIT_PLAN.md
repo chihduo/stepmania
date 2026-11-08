@@ -214,3 +214,14 @@ Recommend artwork by screen purpose and add Recommended, Random, and Manual mode
 
 
 Completed per-screen recommendations and random/manual gallery controls, including no immediate repeats, stable artwork during a screen visit, explicit comparison, and fixed painted scenes. Documented the eligible groups and native Lua approach; focused browser and link/syntax checks pass.
+
+
+## Follow-up: playable Chiikawa theme and five instrument illustrations
+
+Implement the agreed random-per-screen policy in a separate `Themes/chiikawa/` theme inheriting `default`. Preserve the original fonts, noteskin, judgments, gameplay scoring/speed/replay behavior, and graph placement. Choose from curated pools on visible screen entry, avoid immediate repeats, and hold the same illustration throughout gameplay, pauses, rate changes, and replay viewing. Account for cached title screens and hide decorations where two-player/centered/double layouts leave no clear space.
+
+Generate five additional transparent multi-character scenes featuring piano, drums, violin, flute, and saxophone. Keep at least two recognizable Chiikawa characters in every illustration, the warm pastel palette, and varied compositions. Save exact prompts and full-resolution outputs, extend provenance and the preview gallery, and share consistent pools between documentation, preview, and native theme.
+
+Add cream/pastel menu backgrounds with the original-style optional animation, and place randomized illustrations on title, song selection, gameplay, evaluation, and replay screens. Inherit functional actors; add minimal replay theming hooks only if the existing C++ widgets prevent integration, preserving default-theme behavior.
+
+Checkpoints: commit this plan; commit inspected artwork and updated pools; implement the native theme, verify Lua and actual rendered screens in the isolated fixture, document installation and limits, and commit the completed feature. Test random selection stability and no repeats, valid assets, cached screen returns, 16:9/4:3, P1/P2 and crowded layouts, motion off/on, gameplay speed/pause, and replay return. No Windows ZIP or remote push is requested.

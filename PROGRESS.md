@@ -609,3 +609,15 @@ Added `ARTWORK_CHOICES.md` with recommendations, timing, controls, and the nativ
 Focused browser verification passes for recommended defaults, eligible random choices on all five screens, no immediate repeats on re-entry or Show another, stable gameplay artwork while resizing/changing ratio/toggling motion/waiting, manual choices, painted-title behavior, and query links. No missing sample glyphs or runtime exceptions were reported. Local links, script syntax, and diff whitespace pass. Captures and results are retained under ignored `out/chiikawa-preview-v4/`.
 
 Completion checkpoint: `art: add per-screen random decoration preview [skip ci]`. Native theme integration remains the later stage.
+
+
+## Follow-up: playable Chiikawa random artwork theme
+
+The user authorizes implementing the random-per-screen policy and asks for five more instrument illustrations. This moves the work from browser concepts into a selectable inherited theme. Use piano, drums, violin, flute, and saxophone scenes with two or three characters; preserve original fonts, arrows, and judgments.
+
+- [x] Inspect native theme fallback, layout, replay entry points, and isolated rendering tools.
+- [x] Record implementation/artwork plan.
+- [ ] Generate and inspect five instrument scenes; extend the pool, gallery, and provenance; commit.
+- [ ] Implement the native theme and stable per-screen random artwork.
+- [ ] Verify Lua behavior, actual layouts, gameplay/replay stability, and fallback compatibility.
+- [ ] Document installation and validation limits; commit the finished change.

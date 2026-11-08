@@ -143,3 +143,10 @@ Add Recommended, Random, and Manual choices to the gallery. Recommended mode giv
 
 
 The selection preview is complete. Recommended defaults, random eligibility/no-repeat behavior, manual choices, painted titles, and stable gameplay art were verified through the browser controls. Artwork selection remains independent of background motion. The per-screen rules and native integration approach are documented in [ARTWORK_CHOICES.md](ARTWORK_CHOICES.md).
+
+
+## Implementation: random-per-screen native theme
+
+The user now requests implementation. Create a separate inherited Chiikawa theme, keeping original typefaces, arrows, receptors, and judgments. Extend the active illustration set with five transparent multi-character musical scenes: piano, drums, violin, flute, and saxophone. Use varied low, diagonal, seated, and standing interactions. Add the new art to appropriate screen pools; keep the gameplay pool calm and static.
+
+Choose once per visible screen entry (including cached title re-entry), avoid the last choice for that screen, and retain the texture during gameplay/rate changes/pauses. Add native cream/pastel menu backgrounds with `FancyUIBG` animation and preserve functional default-theme actors. Suppress artwork where it would crowd notes, graph, life bar, or statistics. Validate native rendering and document how to select/install the theme after the artwork checkpoint.
