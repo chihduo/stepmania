@@ -236,3 +236,12 @@ The native Chiikawa song-selection screenshot shows a black/gray unused P2 diffi
 Make each inherited difficulty pane use actual joined-side state, refresh visibility on screen entry, and hide when its player leaves. Keep the existing joined-player chart data and animations. Verify direct entry, ordinary title-to-selection navigation, P1-only, P2-only and a second player joining at 16:9/4:3. Refresh the native selection screenshot, record checks and commit this focused Lua correction. No executable rebuild is needed.
 
 Completed: both panes now follow joined-player state on initialization, screen entry, join and leave. Native checks passed for direct entry at 16:9/4:3, normal P1-only and P2-only navigation, late joins with populated chart details, and the original default theme. Replaced the selection preview with an unedited capture from normal P1 navigation.
+
+## Follow-up: dancing-trio gameplay fallback movie
+
+Replace the Chiikawa theme's no-song-background fallback with a silent looping movie of Chiikawa, Hachiware and Usagi playing DDR. Use a vibrant cream/pink/mint/sky-blue arcade scene, expressive footwork and smooth camera orbits, low-angle pushes and pullbacks. Preserve the original notes, fonts and judgments; keep the note field readable through the engine's background brightness/filter controls. Song-supplied images and scripted movies retain precedence.
+
+1. Confirm the existing fallback actor, movie timing and theme-only integration path. Inspect the native preview chart separately because it may supply its own background.
+2. Create a reference keyframe and exact animation brief in `Docs/theme-preview/chiikawa/dance-movie/`, with provenance. The built-in generator produces images; a full generated movie requires a connected video provider. Discover a provider and ask the user to choose that route or a local illustrated animation before producing the clip.
+3. Produce and inspect a short seamless silent loop. Export a Windows-compatible movie plus a still poster. Integrate it through the existing song-background pipeline so rate changes, pause, replay and brightness retain their engine behavior. Respect static-background settings and avoid redundant character decorations over the movie.
+4. Verify songs with no art, existing art and scripted video, movie looping, rate changes/pause, 16:9/4:3 readability, and poster behavior. Refresh the genuine gameplay capture, document settings and limitations, and commit at plan/artwork/implementation checkpoints. No ZIP is requested.

@@ -664,3 +664,12 @@ Validation in the isolated Linux native fixture:
 - Updated `Docs/theme-preview/chiikawa/native/selection.png` with an unedited capture reached through normal P1 navigation. Native captures/logs are retained in ignored `out/chiikawa-pane-fix/`; `git diff --check` passed.
 
 Checkpoint: `fix: hide inactive song-selection difficulty panes [skip ci]`. This is a Lua-only correction; no executable rebuild or ZIP is needed. Windows rendering remains untested by this Linux verification.
+
+## Follow-up: dancing-trio gameplay fallback movie
+
+- [x] Confirm theme fallback resolution in `Background.cpp` and movie music-clock support in `BackgroundEffects/StretchNormal.lua`.
+- [x] Discover a video-generation provider; Runway is available but not connected. Ask whether to enable it or use a locally rendered illustrated animation.
+- [ ] Prepare and inspect the trio DDR keyframe and motion brief.
+- [ ] Produce the actual movie, integrate it, and verify gameplay behavior.
+
+The built-in image generator cannot produce full-motion video. Artwork and source investigation can proceed while the animation route is pending; no movie has been generated or installed yet.
