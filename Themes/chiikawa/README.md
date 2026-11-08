@@ -8,17 +8,23 @@ Keep this folder named **`Themes/chiikawa`**, alongside `Themes/default` and `Th
 
 The theme's Lua, PNG and MP4 files control artwork, movies and random selection. Its replay-browser layout also uses the optional replay actor commands added in this source revision, so use a matching executable for the complete appearance. An older executable still shows its original replay browser. A new Windows ZIP has not been built for this revision.
 
-To disable moving menu backgrounds, use **Options → Theme Options → Fancy UI Background → Off**. The cream background and characters remain. This preference is stored as `FancyUIBG` under `[chiikawa]` in `Save/ThemePrefs.ini`.
+To freeze the title dancers and disable moving menu backgrounds, use **Options → Theme Options → Fancy UI Background → Off**. The cream background and characters remain. This preference is stored as `FancyUIBG` under `[chiikawa]` in `Save/ThemePrefs.ini`.
+
+## Dancing title illustration
+
+The right side of the **Game Start / Options** title menu shows Chiikawa, Hachiware and Usagi stepping and hopping on three pastel cartoon pads. The transparent animation repeats every **3.2 seconds**, with the pads held still and the feet returning to the center tiles. It restarts when returning to the title menu. **Fancy UI Background → Off** keeps a neutral still pose.
+
+[View the looping GIF](../../Docs/theme-preview/chiikawa/title-dance/title-dance.gif), [open the interactive preview](../../Docs/theme-preview/chiikawa/title-dance/preview.html), or [see the actual title menu](../../Docs/theme-preview/chiikawa/native/title.png). The native theme uses four drawn PNG poses per character with smooth Lua movement; its GIF loader only reads the first frame. The PNG version preserves smooth alpha edges. Copy the updated `Themes/chiikawa/` folder into an existing installation to use this title animation; it needs no executable rebuild.
 
 ## Random per screen
 
-A curated illustration is chosen each time the title, song selection, gameplay, single-song evaluation, or replay browser opens. Consecutive visits to the same screen category avoid its previous illustration. Cached title-screen returns also choose again. The memory lasts until theme reload or game exit.
+A curated illustration is chosen each time song selection, gameplay, single-song evaluation, or the replay browser opens. Consecutive visits to the same screen category avoid its previous illustration. The memory lasts until theme reload or game exit. The title menu always uses the dancing trio described above.
 
 The selected decoration stays fixed while that screen is open. Moving the song wheel, changing playback speed, pausing gameplay, or pausing/restarting a replay does not reroll it. Returning from a replay to the existing browser keeps the browser's current choice; closing and reopening the browser chooses again. These cutouts are static. The separate gameplay fallback movie animates the dancing trio.
 
 | Screen | Eligible decorations |
 | --- | --- |
-| Title and song selection | Welcoming trio, Listening together, Acoustic duet, Piano duet, Drum circle, Violin serenade, Flute practice, Saxophone swing |
+| Song selection | Welcoming trio, Listening together, Acoustic duet, Piano duet, Drum circle, Violin serenade, Flute practice, Saxophone swing |
 | Gameplay with song artwork | Resting pair, Listening together, Piano duet, Violin serenade, Flute practice |
 | Single-song evaluation | Celebration trio, Shared jump, Drum circle, Saxophone swing |
 | Replay browser | Resting pair, Listening together, Acoustic duet, Piano duet, Violin serenade, Flute practice |
@@ -41,11 +47,12 @@ To add this movie to an existing portable installation, close the game and copy 
 
 - [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua) defines `Pools`, placement in `Layout`, and the menu background. Change these Lua values without recompiling. Keep each pool nonempty and use PNG filenames from `Art/` without the extension.
 - The private selector avoids using or reseeding `math.random`. This keeps decoration choices separate from gameplay randomness and recorded outcomes.
-- Each screen's underlay selects its art in `OnCommand`, after preloading. Functional gameplay/evaluation actors are loaded from the default theme explicitly, so the life graph and other behavior remain inherited.
+- The random-decoration underlays select art in `OnCommand`, after preloading. Functional gameplay/evaluation actors are loaded from the default theme explicitly, so the life graph and other behavior remain inherited.
 - [metrics.ini](metrics.ini) sets `Background/FallbackMovie` to the MP4 path. Set it to `""` to keep the poster for all missing-art songs; an absent movie file also falls back to the poster. [BackgroundEffects/StretchNormal.lua](../../BackgroundEffects/StretchNormal.lua) applies this optional metric while retaining the normal music clock and focus handlers.
 - [metrics.ini](metrics.ini) styles the replay browser through `ReplayBackdrop`, `ReplayTitle`, `ReplayList`, and `ReplayHelp` commands. Original themes need no new metrics.
 - [Graphics/LifeHistory graph.lua](Graphics/LifeHistory%20graph.lua) only darkens evaluation labels for cream backgrounds. Their 80% opacity and the graph's original line/fill opacity remain intact.
-- The playable theme uses random per screen. Its documented pools are in [artwork-pools.json](../../Docs/theme-preview/chiikawa/artwork-pools.json).
+- [Scripts/07 TitleDance.lua](Scripts/07%20TitleDance.lua) controls the title loop's duration, step/hop distances, pose timing and fixed pad layout. It uses a periodic clock without gameplay randomness. The title's underlay calls `Chiikawa.TitleDance()`.
+- The remaining decorated screens use random per screen. Their pools are in [artwork-pools.json](../../Docs/theme-preview/chiikawa/artwork-pools.json); the retained title pool is for the older gallery comparisons.
 
 The [released asset manifest](../../Docs/theme-preview/chiikawa/release-manifest.json) records hashes and source attribution. Exact prompts, source outputs, alternatives and assembly scripts are retained on the [development branch](../../Docs/ChiikawaDevelopment.md). The two menu textures are unchanged copies of the original theme. These illustrations are AI-generated fan artwork, not official Chiikawa artwork.
 
@@ -54,5 +61,7 @@ The [released asset manifest](../../Docs/theme-preview/chiikawa/release-manifest
 The local Linux build and focused Lua selection/layout checks pass. Isolated native captures cover title, selection, gameplay, evaluation and replay at 16:9 and 4:3, including P2-only and centered fields, rate/reset controls, gameplay pause, replay pause/restart/return, cached title returns, and motion off/on. Replay checks compare saved profile, recording and upload hashes before/after viewing. [Native screenshots](../../Docs/theme-preview/chiikawa/native/README.md) show the actual engine separately from the browser concepts.
 
 The dance movie additionally passes full decoding and exact frame-preservation checks, plus native Linux playback with FFmpeg enabled. Native checks cover looping, live rate changes, gameplay/replay pause and resume, replay restart, still-poster settings, own-art/scripted-video precedence, centered/P2 layouts and the original default-theme fallback.
+
+The title animation passes periodicity, pose coverage, RNG isolation, lifecycle and layout checks. Native Linux captures confirm moving/still modes, cached title returns and menu navigation at 16:9 and 4:3. The transparent GIF contains 96 frames totaling 3.2 seconds, and its rendered loop endpoint matches its start exactly.
 
 Windows x64 rendering, audible audio/video synchronization, controller play and unusual song scripts still need checking on the next Windows build. The Linux fixture uses software OpenGL and null audio; it cannot verify those behaviors. Existing default-theme dialogs and functional panels remain inherited.

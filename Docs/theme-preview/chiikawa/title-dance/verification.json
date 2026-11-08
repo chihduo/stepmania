@@ -1,0 +1,145 @@
+{
+  "date": "2026-11-08",
+  "branch": "feature/chiikawa-theme",
+  "tests": [
+    {
+      "file": "src/tests/test_chiikawa_title_dance.lua",
+      "status": "passed",
+      "output": "Title dance: periodic motion/poses, stationary pads, RNG isolation, 16:9/4:3 sizing, off/return lifecycle and motion-off checks passed"
+    },
+    {
+      "file": "src/tests/test_chiikawa_theme.lua",
+      "status": "passed",
+      "output": "Chiikawa theme: selection, RNG isolation, entry lifecycle and layout checks passed"
+    }
+  ],
+  "runtime_media_hashes_verified": 17,
+  "gif": {
+    "frames": 96,
+    "duration_ms": 3200,
+    "loop": 0,
+    "max_extra_opaque_pixels_per_frame": 0,
+    "max_missing_opaque_pixels_per_frame": 0,
+    "rendered_endpoint_matches_start": true
+  },
+  "native": {
+    "platform": "Linux, existing debug executable, software OpenGL, null audio",
+    "resolutions": [
+      [
+        1280,
+        720
+      ],
+      [
+        1024,
+        768
+      ]
+    ],
+    "navigation": [
+      "Options then cached return to title",
+      "Game Start opens the normal caution screen"
+    ],
+    "illustration_region_xyxy": [
+      670,
+      250,
+      1210,
+      610
+    ],
+    "captures": [
+      {
+        "file": "out/title-dance/title-moving-a.png",
+        "sha256": "98bb969fc3d0f669a9e04b2fc67f5a8ca8f6b46adc77dc56bc59f7c2306956d0",
+        "bytes": 247584
+      },
+      {
+        "file": "out/title-dance/title-moving-b.png",
+        "sha256": "1a0a80884d8acb44a2527fa510e82735e65a5314d5f9e588c59509f2ac617a21",
+        "bytes": 248371
+      },
+      {
+        "file": "out/title-dance/title-still-a.png",
+        "sha256": "d228c30417bda951a6a26facf40690b816d45fda9aff959991b06b1409525295",
+        "bytes": 198415
+      },
+      {
+        "file": "out/title-dance/title-still-b.png",
+        "sha256": "d228c30417bda951a6a26facf40690b816d45fda9aff959991b06b1409525295",
+        "bytes": 198415
+      },
+      {
+        "file": "out/title-dance/title-returned.png",
+        "sha256": "c679172df440e98ab9bc58e9140ffef8e4cb675a6a5dccbec1b85d64372daa3d",
+        "bytes": 250830
+      },
+      {
+        "file": "out/title-dance/title-options.png",
+        "sha256": "7f653305e711756e10aa7b35efd26ee3119521ee5484ffb3200b09e08aac9316",
+        "bytes": 56049
+      },
+      {
+        "file": "out/title-dance/title-game-start.png",
+        "sha256": "4b25860efb4f01ef3e777652847f1313a0dfe239e240e531e00ae7b459e43507",
+        "bytes": 325967
+      },
+      {
+        "file": "out/title-dance/title-dance-4x3.png",
+        "sha256": "847f1cf4c0411997122156830314e10a33cff1d723a417846b1b2ef120faf1e1",
+        "bytes": 227291
+      }
+    ],
+    "logs": [
+      {
+        "file": "out/title-dance/title-wide.log",
+        "sha256": "eea970683973b2c00b7e60e38e59d4ef8570e9e189e1665f8fc4fe1d2aefa4ba",
+        "bytes": 71897
+      },
+      {
+        "file": "out/title-dance/title-still.log",
+        "sha256": "ac99268a544a8dbdf0639c9b8a34b1f29cb7c630c8e895ba31d98eef27d50bee",
+        "bytes": 52425
+      },
+      {
+        "file": "out/title-dance/title-4x3.log",
+        "sha256": "9b65c48bc64fea8a21bf1343ce7f88da2a23731a16a4a1a75b3c220efa40d958",
+        "bytes": 52804
+      },
+      {
+        "file": "out/title-dance/title-navigation.log",
+        "sha256": "8bf00f7a1a1c4de27b34b67ce89592d0aa1f5318b138bd1b3baba383b065a425",
+        "bytes": 57141
+      }
+    ],
+    "motion_on": {
+      "captures": [
+        "title-moving-a.png",
+        "title-moving-b.png"
+      ],
+      "changed_channel_values": 159026
+    },
+    "motion_off": {
+      "captures": [
+        "title-still-a.png",
+        "title-still-b.png"
+      ],
+      "changed_channel_values": 0
+    },
+    "lua_errors": 0,
+    "audio_note": "Fixture reports unsupported OGG sounds; audio is not part of this silent title animation check."
+  },
+  "committed_native_captures": [
+    {
+      "file": "Docs/theme-preview/chiikawa/native/title.png",
+      "sha256": "c679172df440e98ab9bc58e9140ffef8e4cb675a6a5dccbec1b85d64372daa3d",
+      "bytes": 250830
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/title-dance/title-4x3.png",
+      "sha256": "847f1cf4c0411997122156830314e10a33cff1d723a417846b1b2ef120faf1e1",
+      "bytes": 227291
+    }
+  ],
+  "limitations": [
+    "Windows x64 rendering not checked",
+    "Native output and logs retained under ignored out/title-dance/",
+    "No executable rebuild or ZIP"
+  ]
+}

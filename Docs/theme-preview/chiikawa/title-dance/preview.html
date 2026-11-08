@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chiikawa title dance preview</title>
+<style>
+body{margin:24px;background:#fff8ee;color:#4a3c40;font:16px system-ui,sans-serif}main{max-width:720px;margin:auto}h1{font-size:22px}canvas{display:block;max-width:100%;height:auto;background:repeating-conic-gradient(#ddd 0% 25%,#fff 0% 50%) 0/24px 24px;border-radius:10px}button,select{font:inherit;padding:7px 12px;margin:12px 8px 8px 0}body.export{margin:0;background:transparent}body.export main{max-width:none;margin:0}body.export .controls,body.export h1,body.export p{display:none}body.export canvas{background:transparent;border-radius:0}
+</style>
+<main><h1>Dancing trio for the title menu</h1><canvas id="scene" width="660" height="480" aria-label="Chiikawa, Hachiware and Usagi dance on three pastel pads"></canvas>
+<div class="controls"><button id="pause">Pause</button><label>Background <select id="background"><option value="checker">Checkerboard</option><option value="cream">Warm cream</option><option value="dark">Dark</option></select></label></div>
+<p>The drawings and motion samples match the native theme. The in-game PNG animation retains smooth alpha edges; the GIF preview uses GIF palette transparency.</p><p><a href="title-dance.gif">Open looping transparent GIF</a> · <a href="../native/title.png">Actual title-menu capture</a></p></main>
+<script src="motion-data.js"></script>
+<script>
+const exporting=new URLSearchParams(location.search).has('export');
+if(exporting)document.body.classList.add('export');
+const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d'),c=window.titleDanceData;
+canvas.width=c.width;canvas.height=c.height;
+const dancers=new Image(),pads=new Image();
+dancers.src='../../../../Themes/chiikawa/Art/title-dancers%204x3.png';pads.src='../../../../Themes/chiikawa/Art/title-dance-pads.png';
+let paused=exporting||matchMedia('(prefers-reduced-motion: reduce)').matches,frame=0,last=0,elapsed=0;
+document.getElementById('pause').textContent=paused?'Play':'Pause';
+window.renderTitleDanceFrame=function(index){
+ frame=((index%c.frames.length)+c.frames.length)%c.frames.length;
+ ctx.clearRect(0,0,c.width,c.height);ctx.save();ctx.translate(c.width/2,c.height/2);
+ ctx.drawImage(pads,-c.padsWidth/2,c.padsY-c.padsHeight/2,c.padsWidth,c.padsHeight);
+ const fw=dancers.naturalWidth/4,fh=dancers.naturalHeight/3;
+ c.frames[frame].forEach((pose,i)=>{ctx.save();ctx.translate(c.centers[i]+pose.x,c.feetY-c.spriteSize*(c.footAnchor-.5)+pose.y);ctx.rotate(pose.angle*Math.PI/180);ctx.drawImage(dancers,(pose.state%4)*fw,Math.floor(pose.state/4)*fh,fw,fh,-c.spriteSize/2,-c.spriteSize/2,c.spriteSize,c.spriteSize);ctx.restore();});ctx.restore();
+};
+window.titleDanceReadyPromise=Promise.all([dancers.decode(),pads.decode()]).then(()=>{window.renderTitleDanceFrame(0);window.titleDanceReady=true;if(!exporting)requestAnimationFrame(tick);});
+function tick(now){if(last&&!paused)elapsed+=(now-last)/1000;last=now;if(!paused)window.renderTitleDanceFrame(Math.floor(elapsed*c.fps));requestAnimationFrame(tick);}
+document.getElementById('pause').onclick=()=>{paused=!paused;document.getElementById('pause').textContent=paused?'Play':'Pause';};
+document.getElementById('background').onchange=e=>{canvas.style.background=e.target.value==='cream'?'#fff8ee':e.target.value==='dark'?'#202731':'';};
+</script></html>

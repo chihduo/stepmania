@@ -1,0 +1,60 @@
+{
+  "duration_seconds": 3.2,
+  "nominal_fps": 30,
+  "frames": 96,
+  "width": 660,
+  "height": 480,
+  "loop": "infinite",
+  "transparency": "GIF palette alpha; native PNG uses full alpha",
+  "rendered_endpoint_matches_start": true,
+  "rendered_endpoint_sha256": "732c572f759a3c2eb332bb8da11c58d5ed60de2bf3900c264887501ad56ba820",
+  "inputs": [
+    {
+      "file": "Themes/chiikawa/Scripts/07 TitleDance.lua",
+      "sha256": "2c0248459fd9f6cc1252293d7cb9e6cbace03cf641970896fa9d44c70d343a0e",
+      "bytes": 3679
+    },
+    {
+      "file": "Themes/chiikawa/Art/title-dancers 4x3.png",
+      "sha256": "c96cb7c009d47479eb1d505fa39ad17c18755bd7f6dad39d464365d964c7307d",
+      "bytes": 1158963
+    },
+    {
+      "file": "Themes/chiikawa/Art/title-dance-pads.png",
+      "sha256": "664bf5a5472755283094a3e402bae4f9cf0e535252e6ad7c699e66f148314513",
+      "bytes": 1009910
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/title-dance/export-motion.lua",
+      "sha256": "1c1adc3ef23101aa95756ef93968e99fafab1b1d9be29fef26bca0a54bc46fcf",
+      "bytes": 980
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/title-dance/motion-data.js",
+      "sha256": "ad8fa66a40cf34cf5326d9f2751e21b9b58884ace4022d3e4e605420e117bf51",
+      "bytes": 17007
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/title-dance/preview.html",
+      "sha256": "1703a3ed8c60d55bdec335ecc11d244b07e366b46a2133bc6b4b11b4f7561499",
+      "bytes": 3432
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/title-dance/build-preview.mjs",
+      "sha256": "d82b4484787de59bf622065b793af3145b40e48fd28ddd20a810cad9f85ef941",
+      "bytes": 5247
+    }
+  ],
+  "outputs": [
+    {
+      "file": "Docs/theme-preview/chiikawa/title-dance/title-dance.gif",
+      "sha256": "b92bc226ba98657e143fd991cb1ef216175f2855a1cfd864b4aa2b001932d554",
+      "bytes": 7626056
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/title-dance/title-dance-still.png",
+      "sha256": "732c572f759a3c2eb332bb8da11c58d5ed60de2bf3900c264887501ad56ba820",
+      "bytes": 232171
+    }
+  ]
+}

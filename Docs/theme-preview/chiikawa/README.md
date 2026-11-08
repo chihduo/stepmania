@@ -1,10 +1,12 @@
 # Chiikawa artwork preview for StepMania 6
 
-**Open [index.html](index.html) in a browser** to compare the artwork and animated menu concepts. It works locally without a server or network access.
+**The title menu now has a transparent dancing-trio illustration.** [View its looping GIF](title-dance/title-dance.gif), [open the interactive animation preview](title-dance/preview.html), or [see the native title capture](native/title.png). All three characters dance on their own cartoon pads. Source drawings, prompts and build steps are in [title-dance/](title-dance/README.md).
 
-Every active illustration shows **at least two recognizable characters**. The vertical peekers have been removed, and the three solo candidates have been replaced with paired compositions. There are now **fourteen active illustrations**, all in warm cream, pastel pink, mint, and sky blue.
+**Open [index.html](index.html) in a browser** to compare the earlier artwork and animated menu concepts. It works locally without a server or network access. Its title comparisons retain the older random stills; the playable title now always uses the dancing trio.
 
-The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data. The [playable Chiikawa theme](../../../Themes/chiikawa/README.md) now uses these decorations with random selection on entry.
+Every active illustration shows **at least two recognizable characters**. The vertical peekers have been removed, and the three solo candidates have been replaced with paired compositions. The comparison gallery contains **fourteen illustrations**, all in warm cream, pastel pink, mint, and sky blue, alongside the separate title-animation package.
+
+The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data. The [playable Chiikawa theme](../../../Themes/chiikawa/README.md) uses these decorations with random selection on entry outside the animated title menu.
 
 ## Compare the illustrations
 

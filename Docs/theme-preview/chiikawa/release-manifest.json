@@ -1,6 +1,5 @@
 {
-  "schema_version": 1,
-  "theme_source_commit": "a74362c422",
+  "schema_version": 2,
   "development_branch": "feature/chiikawa-theme",
   "development_directory": "Docs/theme-preview/chiikawa",
   "runtime_assets": [
@@ -217,6 +216,30 @@
       "sha256": "834c30dcb6ef78976b9eb1da80e7ffb3cdf80d094b069e872a1ce6e0e666f08c",
       "bytes": 12452076,
       "origin": "Three externally generated user clips concatenated without re-encoding; audio removed"
+    },
+    {
+      "file": "Themes/chiikawa/Art/title-dancers 4x3.png",
+      "sha256": "c96cb7c009d47479eb1d505fa39ad17c18755bd7f6dad39d464365d964c7307d",
+      "bytes": 1158963,
+      "source_output": "exec-e16cb2d8-45d6-4239-9d16-1e4886248813.png",
+      "development_source": "Docs/theme-preview/chiikawa/title-dance/characters-source.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/title-dance/characters-prompt.txt",
+      "size": [
+        1664,
+        1248
+      ]
+    },
+    {
+      "file": "Themes/chiikawa/Art/title-dance-pads.png",
+      "sha256": "664bf5a5472755283094a3e402bae4f9cf0e535252e6ad7c699e66f148314513",
+      "bytes": 1009910,
+      "source_output": "exec-fbd9ed17-b757-49c7-a63d-9effc2ec6341.png",
+      "development_source": "Docs/theme-preview/chiikawa/title-dance/pads-source.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/title-dance/pads-prompt.txt",
+      "size": [
+        2172,
+        724
+      ]
     }
   ],
   "movie": {
@@ -258,5 +281,14 @@
       "audio_streams": 1
     }
   ],
-  "verification": "All 720 movie frames match the input sequence; no audio. Native Linux playback, looping, live speed, pause/resume and replay verified; Windows and audible synchronization not yet verified."
+  "verification": "All 720 movie frames match the input sequence; no audio. Native Linux playback, looping, live speed, pause/resume and replay verified; Windows and audible synchronization not yet verified.",
+  "base_theme_source_commit": "a74362c422",
+  "title_animation": {
+    "artwork_commit": "4f608b03db",
+    "source_manifest": "Docs/theme-preview/chiikawa/title-dance/manifest.json",
+    "script": "Themes/chiikawa/Scripts/07 TitleDance.lua",
+    "duration_seconds": 3.2,
+    "native_format": "transparent PNG sprite states plus Lua transforms",
+    "status": "feature branch only"
+  }
 }

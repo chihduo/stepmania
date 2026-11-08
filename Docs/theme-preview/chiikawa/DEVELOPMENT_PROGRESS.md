@@ -242,10 +242,25 @@ Merged the published main baseline back into this feature branch; the developmen
 - [x] Confirmed native GIF loading reads only the first image; native PNG sprite states support alpha and animation.
 - [x] Record the feature-only plan and exact artwork prompts.
 - [x] Generate and inspect character poses and cartoon pad artwork.
-- [ ] Implement the transparent native title animation and looping GIF preview.
-- [ ] Verify native layout/lifecycle/motion settings, update documents and commit.
+- [x] Implement the transparent native title animation and looping GIF preview.
+- [x] Verify native layout/lifecycle/motion settings, update documents and commit.
 
 Baseline: `373e795d6f` on `feature/chiikawa-theme`; main remains `eca4da9033`. Use the built-in image generator for the new drawings and preserve its transparent source outputs. Existing movie backgrounds and random decorations on other screens are outside this change.
 
 
 Artwork checkpoint: built-in image generation produced twelve recognizable character poses on a 1448×1086 RGBA source atlas and three matching cartoon pads on a 2172×724 RGBA source. Both have genuine 0–255 alpha. The source atlas has uneven visual spacing, so `build-assets.py` crops the inspected pose bounds and aligns them losslessly into twelve 416×416 cells with a common foot baseline. Every packed crop matches its original RGBA pixels exactly; the pad source is copied unchanged. Source outputs, exact prompts, packing coordinates and runtime hashes are in `title-dance/`.
+
+Implementation: the title underlay now uses `Chiikawa.TitleDance()` from `Scripts/07 TitleDance.lua`. Three sprites share a twelve-state PNG sheet above one fixed pad layer. A deterministic 3.2-second clock drives side steps, hops and a small shuffle, with phase offsets per character. Pose boundaries use a rounded phase to keep exact periodicity across floating-point wraparound. `OffCommand` removes the update callback; returning to the title restarts it. `FancyUIBG=0` selects neutral poses with no update callback. Other screen pools and gameplay backgrounds remain unchanged.
+
+Preview: `title-dance/build-preview.mjs` exports the actual Lua choreography, renders 96 transparent canvas frames and encodes a looping GIF. Source artwork, exact prompts, packing recipe, runtime hashes, interactive preview, GIF and native 4:3 capture are under `title-dance/`. The current native `title.png` is an unedited 1280×720 capture after returning from Options. The gallery explicitly labels its older static title comparisons.
+
+Verification:
+
+- `test_chiikawa_title_dance.lua` passes pose coverage, valid state ranges, periodicity and boundary continuity, gameplay RNG isolation, fixed pads, 16:9/4:3 sizing, motion off/on and cached return lifecycle. Existing `test_chiikawa_theme.lua` also passes.
+- Native Linux captures fit both 1280×720 and 1024×768. Options opens and returns to the animated title; Game Start enters the normal caution screen. Moving captures differ, while the illustration region remains pixel-identical across frozen captures 1.5 seconds apart. No Lua errors appear in the saved logs.
+- The transparent GIF has 96 frames, 3,200 ms total duration and infinite looping. Every decoded frame's opacity mask matches its rendered PNG with zero extra or missing opaque pixels. The rendered wraparound frame is byte-identical to the start.
+- All 17 runtime media hashes and preview input/output hashes match. JavaScript syntax, 190 local documentation links and `git diff --check` pass. `title-dance/verification.json` records test output and capture/log hashes; `preview-manifest.json` records reproducible preview inputs and outputs.
+
+The fixture uses the existing Linux debug executable, software OpenGL and null audio; its inherited unsupported-OGG warnings do not affect this silent animation. Windows x64 rendering is still unverified. Intermediate frames, native fixture and detailed logs stay under ignored `out/title-dance/`.
+
+Checkpoints: plan `497bd6f5ae`; artwork `4f608b03db`; final implementation `feat: animate the Chiikawa title illustration [skip ci]`. All three are on `feature/chiikawa-theme` only. Main remains clean at `eca4da9033`. No executable rebuild, Windows ZIP or remote push.

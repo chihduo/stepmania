@@ -1,8 +1,10 @@
 # Native Chiikawa theme captures
 
-These are actual StepMania screens rendered on Linux on 2026-11-08, separate from the [browser concepts](../index.html). Captures use the isolated synthetic Live Speed Demo chart and test profiles, software OpenGL, and null audio. Gameplay uses autoplay to exercise layout and the live rate display. The refreshed gameplay capture uses a background-free copy of the chart, the new silent dance movie, 45% background brightness, and 1.1x playback speed. It was rendered with the engine's FFmpeg movie decoder enabled; other captures retain their original fixture. The engine version string remains its inherited StepMania 5.1 build identifier.
+These are actual StepMania screens rendered on Linux on 2026-11-08, separate from the [browser concepts](../index.html). Captures use the isolated synthetic Live Speed Demo chart and test profiles, software OpenGL, and null audio. Gameplay uses autoplay to exercise layout and the live rate display. The refreshed gameplay capture uses a background-free copy of the chart, the new silent dance movie, 45% background brightness, and 1.1x playback speed. It was rendered with the engine's FFmpeg movie decoder enabled; the title capture has also been refreshed for the transparent three-character title animation using the existing Linux executable. Other captures retain their original fixture. The engine version string remains its inherited StepMania 5.1 build identifier.
 
-![Title with the flute-practice illustration](title.png)
+![Title menu with Chiikawa, Hachiware and Usagi dancing on three transparent cartoon pads](title.png)
+
+The title illustration now loops on the right, with the existing menu on the left. [View the transparent looping GIF](../title-dance/title-dance.gif) or the [4:3 native capture](../title-dance/title-4x3.png). Turning **Fancy UI Background** off freezes the dancers in a neutral pose.
 
 ![P1 song selection with a flute duet and the unused P2 difficulty pane hidden](selection.png)
 
@@ -14,8 +16,10 @@ Gameplay with the **dancing background movie**, captured at 1.1x speed and 45% b
 
 ![4:3 replay browser with the violin illustration](replay-browser-4x3.png)
 
-The screenshots are unedited native captures. Random choices differ on future visits. The playable theme inherits the original functional panels, notes, fonts, and judgments. Windows x64, physical controller input, and audible media synchronization need checking on the next Windows build; these captures do not verify them.
+The screenshots are unedited native captures. Random choices on other decorated screens differ on future visits; the title menu always uses the dancing trio. The playable theme inherits the original functional panels, notes, fonts, and judgments. Windows x64, physical controller input, and audible media synchronization need checking on the next Windows build; these captures do not verify them.
 
 [Install and customize the theme](../../../../Themes/chiikawa/README.md). Extended native captures and test logs remain under ignored `out/chiikawa-native/` in the development workspace. The selection capture was refreshed through normal title-menu navigation after correcting inactive-player pane visibility; its layout and player-join checks are under `out/chiikawa-pane-fix/`.
 
 The dance-movie capture and native movie verification logs are retained under ignored `out/chiikawa-movie/`. [Preview the full silent loop and read its assembly notes](../dance-movie/README.md).
+
+Title-animation captures and logs are under ignored `out/title-dance/`. The updated title image is an unedited return-to-title capture at 1280×720. [Artwork sources, exact prompts and animation assembly](../title-dance/README.md) remain on the feature branch.
