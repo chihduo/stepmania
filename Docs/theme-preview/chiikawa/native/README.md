@@ -8,6 +8,8 @@ These are actual StepMania screens rendered on Linux on 2026-11-08, showing the 
 
 ![Silent dancing-trio background beneath original notes, judgment, graph and persistent speed display](gameplay.png)
 
+Gameplay with the **dancing background movie**, captured at 1.1x speed and 45% background brightness. [Watch the 30-second silent background movie](../../../../Themes/chiikawa/Movies/ddr-trio-loop.mp4).
+
 ![4:3 evaluation with a celebration beside the results and readable graph labels](evaluation-4x3.png)
 
 ![4:3 replay browser with the violin illustration](replay-browser-4x3.png)
