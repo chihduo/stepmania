@@ -1,0 +1,10 @@
+Use case: illustration-story.
+Asset type: a full-resolution transparent Chiikawa illustration for a rhythm-game theme.
+Reference image: character identities, familiar proportions, warm pastel palette and hand-drawn line treatment ONLY. Create the new instrument scene described below; do not copy the standing lineup.
+Style: recognizable flat 2D Chiikawa cartoon art with clean warm dark outlines, creamy white, pastel pink, mint, sky blue, and soft yellow. Tiny friendly facial features and pink blush. Vary body directions and head heights.
+Composition: one coherent landscape 3:2 cutout, both/all characters and the instrument within frame, generous clear margin. At least two recognizable characters in this single image, no vertical peeking strip.
+Background: genuine transparent alpha; no background scene, floor plane, cast shadow, halo, glow, white sticker border, panel, or checkerboard.
+Text: none; no UI text, logos, arrow controls, judgment labels, or watermark.
+Avoid: a solo character, extra limbs or ears, duplicate faces, cropped heads, a uniform frontal lineup, photorealism, 3D, heavy texture.
+Scene: Chiikawa, the small white round-eared character, sits on the right in three-quarter view facing left, playing a small sky-blue/silver transverse flute held horizontally beside the mouth with two tiny paws. Draw a recognizable straight flute with a few simple round keys, no exaggerated mechanical detail. Hachiware, the blue-and-white cat with triangular ears and divided blue cap, sits slightly behind on the left holding an open cream-and-pink music book and listening attentively. Show Hachiware's gentle smiling face above the book; the pages have only a few small abstract musical marks, no readable text. Their legs tuck in different directions, and Hachiware's blue tail curls to the left.
+Composition emphasis: close quiet pair looking toward one another, flute as a clear horizontal line and small open book forming a low V. Both complete faces and bodies visible, generous margin. No other instruments or characters.

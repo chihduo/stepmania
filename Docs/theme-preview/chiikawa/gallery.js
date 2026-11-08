@@ -5,16 +5,57 @@ const artworkNames = {
   '10-rest': 'Resting pair',
   '11-listening-together': 'Listening together',
   '12-acoustic-duet': 'Acoustic duet',
-  '13-shared-jump': 'Shared jump'
+  '13-shared-jump': 'Shared jump',
+  '14-piano-duet': 'Piano duet',
+  '15-drum-circle': 'Drum circle',
+  '16-violin-serenade': 'Violin serenade',
+  '17-flute-practice': 'Flute practice',
+  '18-saxophone-swing': 'Saxophone swing'
 };
 // First entry is the recommended default. Only these compatible cutouts can
 // appear in random mode; painted scenes are a separate title-scene choice.
 const artworkPools = {
-  title: ['12-acoustic-duet', '01-character-trio', '11-listening-together'],
-  select: ['11-listening-together', '12-acoustic-duet', '01-character-trio'],
-  game: ['10-rest', '11-listening-together'],
-  result: ['04-results-replay', '13-shared-jump'],
-  replay: ['10-rest', '11-listening-together', '12-acoustic-duet']
+  "title": [
+    "12-acoustic-duet",
+    "01-character-trio",
+    "11-listening-together",
+    "14-piano-duet",
+    "15-drum-circle",
+    "16-violin-serenade",
+    "17-flute-practice",
+    "18-saxophone-swing"
+  ],
+  "select": [
+    "11-listening-together",
+    "12-acoustic-duet",
+    "01-character-trio",
+    "14-piano-duet",
+    "15-drum-circle",
+    "16-violin-serenade",
+    "17-flute-practice",
+    "18-saxophone-swing"
+  ],
+  "game": [
+    "10-rest",
+    "11-listening-together",
+    "14-piano-duet",
+    "16-violin-serenade",
+    "17-flute-practice"
+  ],
+  "result": [
+    "04-results-replay",
+    "13-shared-jump",
+    "15-drum-circle",
+    "18-saxophone-swing"
+  ],
+  "replay": [
+    "10-rest",
+    "11-listening-together",
+    "12-acoustic-duet",
+    "14-piano-duet",
+    "16-violin-serenade",
+    "17-flute-practice"
+  ]
 };
 const screenNames = {title:'Title', select:'Song selection', game:'Gameplay', result:'Evaluation', replay:'Replays'};
 const captions = {

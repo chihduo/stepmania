@@ -2,7 +2,7 @@
 
 **Open [index.html](index.html) in a browser** to compare the artwork and animated menu concepts. It works locally without a server or network access.
 
-Every active illustration shows **at least two recognizable characters**. The vertical peekers have been removed, and the three solo candidates have been replaced with paired compositions. There are now **nine active illustrations**, all in warm cream, pastel pink, mint, and sky blue.
+Every active illustration shows **at least two recognizable characters**. The vertical peekers have been removed, and the three solo candidates have been replaced with paired compositions. There are now **fourteen active illustrations**, all in warm cream, pastel pink, mint, and sky blue.
 
 The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data and remain an artwork preview for later playable-theme integration.
 
@@ -10,6 +10,11 @@ The screen concepts preserve the original bitmap fonts, arrows/receptors, and ju
 
 | Candidate | Characters | Composition |
 | --- | --- | --- |
+| [14 · Piano Duet](images/14-piano-duet.png) | Chiikawa + Hachiware | Diagonal pink piano and shared mint bench |
+| [15 · Drum Circle](images/15-drum-circle.png) | All three | Triangular drum circle with clapping listeners |
+| [16 · Violin Serenade](images/16-violin-serenade.png) | Hachiware + Chiikawa | Standing violinist and seated listener |
+| [17 · Flute Practice](images/17-flute-practice.png) | Chiikawa + Hachiware | Flute practice with a shared music book |
+| [18 · Saxophone Swing](images/18-saxophone-swing.png) | Usagi + Chiikawa | Leaning saxophonist and dancing partner |
 | [11 · Listening together](images/11-listening-together.png) | Chiikawa + Hachiware | Close seated pair in different headphones |
 | [12 · Acoustic duet](images/12-acoustic-duet.png) | Hachiware + Usagi | Guitar and tambourine, unequal head heights |
 | [13 · Shared jump](images/13-shared-jump.png) | Chiikawa + Usagi | Two airborne characters meeting raised paws |
@@ -20,9 +25,9 @@ The screen concepts preserve the original bitmap fonts, arrows/receptors, and ju
 | [03 · Selection background](images/03-selection-background.png) | All three | Small corner group with open interface space |
 | [04 · Results/replay](images/04-results-replay.png) | All three | Cheerful celebration group |
 
-Use **Artwork choice** for Recommended per screen, Random per screen, or Manual. Random mode chooses a suitable decoration on screen entry and avoids its previous choice; **Show another** compares another eligible illustration. Manual mode enables **Manual decoration** for direct comparison. Artwork stays fixed throughout gameplay. See [how artwork is chosen](ARTWORK_CHOICES.md) for the per-screen recommendations and random pools. Use **Show candidates** to see the five varied group/pair scenes, the first four candidates, or all nine. Switch between 16:9 and 4:3, and inspect cutouts on cream, checkerboard, or dark backgrounds.
+The gallery defaults to **Random per screen**. Use **Artwork choice** for Recommended per screen, Random per screen, or Manual. Random mode chooses a suitable decoration on screen entry and avoids its previous choice; **Show another** compares another eligible illustration. Manual mode enables **Manual decoration** for direct comparison. Artwork stays fixed throughout gameplay. See [how artwork is chosen](ARTWORK_CHOICES.md) for the per-screen recommendations and random pools. Use **Show candidates** to see the five new instrument scenes, five earlier group/pair scenes, the first four candidates, or all fourteen. Switch between 16:9 and 4:3, and inspect cutouts on cream, checkerboard, or dark backgrounds.
 
-All nine full-resolution files are in `images/`. Six have real alpha transparency; three are opaque backgrounds. Generated source pixels are preserved. Retired candidates are available only in Git history and are excluded from the current preview and image folder.
+All fourteen full-resolution files are in `images/`. Eleven have real alpha transparency; three are opaque backgrounds. Generated source pixels are preserved. Retired candidates are available only in Git history and are excluded from the current preview and image folder.
 
 ## Animated background preview
 

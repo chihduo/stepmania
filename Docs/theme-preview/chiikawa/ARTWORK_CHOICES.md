@@ -26,10 +26,10 @@ Direct preview links can use `?choice=random`, `?choice=recommended`, or `?choic
 
 ## Native theme implementation
 
-This can be implemented in theme Lua without recompiling. The default theme already uses `math.random` in its [particle loader](../../../Themes/default/BGAnimations/ScreenTitleMenu%20background/_particleLoader.lua).
+The optional `Themes/chiikawa` theme is being integrated with the same pools in [artwork-pools.json](artwork-pools.json). The gallery now defaults to Random per screen.
 
-A shared theme helper should keep each screen's eligible filenames and last choice. When the screen's decoration actors are constructed, choose a filename from the eligible list after excluding the previous one, save the choice, then load that image with `LoadActor`. Keep the chosen texture for the actor's lifetime. With only one eligible image, use it directly.
+The five new scenes add piano, drums, violin, flute, and saxophone. All five join title and song selection. Piano, violin, and flute also join gameplay and the replay browser. Drums and saxophone join evaluation. The first entry of each pool remains its recommended preview choice.
 
-For gameplay, choose once before the song starts and keep it through pauses and live speed adjustments. Do not choose from an update loop, song-wheel movement, judgments, or music beats. Keep this visual choice separate from chart/replay state and do not reseed the global random generator. A theme preference can expose Recommended, Random, and a fixed favorite in the playable theme.
+Native selection runs in the decoration's `OnCommand`, when the screen becomes visible, including cached title screens. A private random generator and last-choice table avoid immediate repeats without consuming the engine's random sequence. Gameplay keeps its texture through rate changes and pauses; replay restart retains the same choice. No selection runs from update, judgment, or wheel-change events.
 
-The current implementation is in [gallery.js](gallery.js) for preview. Actual theme integration remains the next stage.
+The random policy and artwork need only Lua and PNG files. The replay browser also needs optional actor styling hooks in the engine because its current opaque background and unnamed text widgets cannot be styled by a theme.

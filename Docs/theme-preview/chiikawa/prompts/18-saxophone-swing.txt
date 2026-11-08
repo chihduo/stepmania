@@ -1,0 +1,10 @@
+Use case: illustration-story.
+Asset type: a full-resolution transparent Chiikawa illustration for a rhythm-game theme.
+Reference image: character identities, familiar proportions, warm pastel palette and hand-drawn line treatment ONLY. Create the new instrument scene described below; do not copy the standing lineup.
+Style: recognizable flat 2D Chiikawa cartoon art with clean warm dark outlines, creamy white, pastel pink, mint, sky blue, and soft yellow. Tiny friendly facial features and pink blush. Vary body directions and head heights.
+Composition: one coherent landscape 3:2 cutout, both/all characters and the instrument within frame, generous clear margin. At least two recognizable characters in this single image, no vertical peeking strip.
+Background: genuine transparent alpha; no background scene, floor plane, cast shadow, halo, glow, white sticker border, panel, or checkerboard.
+Text: none; no UI text, logos, arrow controls, judgment labels, or watermark.
+Avoid: a solo character, extra limbs or ears, duplicate faces, cropped heads, a uniform frontal lineup, photorealism, 3D, heavy texture.
+Scene: Usagi, the pale-yellow long-eared rabbit, stands at the right leaning joyfully backward while playing a small warm-gold saxophone. Its curved J-shaped tube, flared bell and a few round keys must be recognizable; the mouthpiece reaches the tiny mouth without hiding eyes. Both short paws hold the instrument naturally. Chiikawa, the small white round-eared character, dances at the lower left with one foot forward and two paws lifted in delight, leaning toward the saxophone. Usagi's ears sweep diagonally up-right, completely inside the canvas. Give both pink blush and expressive joyful faces.
+Composition emphasis: an energetic asymmetric duet with the saxophone's curved bell pointing down-left toward Chiikawa, unequal heights and opposing body angles. Entire instrument and both full bodies in frame. At most two tiny pastel musical accents; no guitar, tambourine, additional characters, or scenery.

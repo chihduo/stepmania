@@ -1,6 +1,6 @@
 # Generation prompts and provenance
 
-All nine active illustrations were generated with the **built-in `image_gen` tool**. Exact prompts are linked below. Tool outputs are copied byte-for-byte, with no manual recoloring or cutout. The gallery scales the illustrations and renders functional text, arrows, and judgment labels using the original theme assets.
+All fourteen active illustrations were generated with the **built-in `image_gen` tool**. Exact prompts are linked below. Tool outputs are copied byte-for-byte, with no manual recoloring or cutout. The gallery scales the illustrations and renders functional text, arrows, and judgment labels using the original theme assets.
 
 | Image | Exact prompt | Reference inputs | Transparency |
 | --- | --- | --- | --- |
@@ -13,10 +13,29 @@ All nine active illustrations were generated with the **built-in `image_gen` too
 | [Listening together](images/11-listening-together.png) | [11-listening-together.txt](prompts/11-listening-together.txt) | Character trio, identity/style only | Yes |
 | [Acoustic duet](images/12-acoustic-duet.png) | [12-acoustic-duet.txt](prompts/12-acoustic-duet.txt) | Character trio, identity/style only | Yes |
 | [Shared jump](images/13-shared-jump.png) | [13-shared-jump.txt](prompts/13-shared-jump.txt) | Character trio, identity/style only | Yes |
+| [Piano duet](images/14-piano-duet.png) | [14-piano-duet.txt](prompts/14-piano-duet.txt) | Character trio, identity/style only | Yes |
+| [Drum circle](images/15-drum-circle.png) | [15-drum-circle.txt](prompts/15-drum-circle.txt) | Character trio, identity/style only | Yes |
+| [Violin serenade](images/16-violin-serenade.png) | [16-violin-serenade.txt](prompts/16-violin-serenade.txt) | Character trio, identity/style only | Yes |
+| [Flute practice](images/17-flute-practice.png) | [17-flute-practice.txt](prompts/17-flute-practice.txt) | Character trio, identity/style only | Yes |
+| [Saxophone swing](images/18-saxophone-swing.png) | [18-saxophone-swing.txt](prompts/18-saxophone-swing.txt) | Character trio, identity/style only | Yes |
 
 The user selected recognizable Chiikawa, Hachiware, and Usagi with a warm pastel palette, and now requires at least two characters in every illustration. The [official anime site](https://www.anime-chiikawa.jp/) was consulted for identity in the initial preview. No downloaded official illustration is bundled. These are AI-generated fan-art previews. Original fonts, notes, judgments, and background texture shapes are copied directly from this repository and were never passed through the generator.
 
-## Latest composition review
+## Instrument revision
+
+Two seated characters at a pink piano on a mint bench; diagonal keyboard and visible faces. Simplified toy piano, full composition within frame.
+
+Three characters in a triangular drum-circle composition; Usagi plays while Chiikawa and Hachiware clap and cheer. Full ears and instruments, three small decorative notes.
+
+Hachiware plays a violin beside seated listening Chiikawa; unequal heights and diagonal bow, complete figures and clear instrument.
+
+Chiikawa plays a transverse flute with Hachiware holding a music book behind-left; close seated pair and simplified abstract page markings.
+
+Usagi leans back playing a curved saxophone beside dancing Chiikawa; opposing leans and unequal heights, two decorative music notes.
+
+The instrument hardware is simplified cartoon detail. The outputs preserve their generated alpha and pixels without manual editing.
+
+## Earlier composition review
 
 Listening together shows Chiikawa and Hachiware sitting close in different headphones. Acoustic duet shows Hachiware and Usagi with guitar and tambourine. Shared jump shows Chiikawa and Usagi at unequal heights meeting raised paws. Each has two recognizable complete characters, real transparency, and a different action/silhouette. Faces and ears fit within the canvas. All three were inspected in the gallery over cream and checkerboard and in the screen compositions.
 

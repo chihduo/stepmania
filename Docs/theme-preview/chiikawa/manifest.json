@@ -1,7 +1,7 @@
 {
   "created_utc": "2026-11-08T08:14:29.822144+00:00",
   "generation_mode": "built-in image_gen",
-  "status": "AI-generated fan-art concepts for preview, not installed theme assets",
+  "status": "AI-generated fan artwork for the preview gallery and optional Chiikawa theme",
   "character_reference": "https://www.anime-chiikawa.jp/",
   "image_modifications": "None: tool outputs copied byte-for-byte. Gallery scales the images for display.",
   "assets": [
@@ -247,9 +247,160 @@
       "transparent_pixels": 1108140,
       "near_opaque_pixels": 434438,
       "inspection": "Two complete airborne characters meeting raised paws along a rising diagonal; ears and feet within frame, distinct poses and recognizable faces; accepted for preview."
+    },
+    {
+      "file": "images/14-piano-duet.png",
+      "prompt": "prompts/14-piano-duet.txt",
+      "source_output": "exec-7823d6e1-cba0-437f-8964-cf4b0e6a6b35.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1490426,
+      "sha256": "f6a8f90bea80335d4c4ef8fa3f553d9101af4dc6ab2899d965f0aeb742ca7bc2",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "native random-per-screen theme and musical instruments",
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "instrument": "piano",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 769496,
+      "near_opaque_pixels": 783258,
+      "inspection": "Two seated characters at a pink piano on a mint bench; diagonal keyboard and visible faces. Simplified toy piano, full composition within frame. True alpha verified; accepted for gallery and native layout inspection."
+    },
+    {
+      "file": "images/15-drum-circle.png",
+      "prompt": "prompts/15-drum-circle.txt",
+      "source_output": "exec-83bccd42-4af4-4301-b87c-5745c4617f7b.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1602892,
+      "sha256": "5499dd961af73668bc6547f219e6aaf7ee5fafaf75068ac7c84f43a0573df6d0",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "native random-per-screen theme and musical instruments",
+      "characters": [
+        "Chiikawa",
+        "Hachiware",
+        "Usagi"
+      ],
+      "character_count": 3,
+      "instrument": "drums",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 813798,
+      "near_opaque_pixels": 645321,
+      "inspection": "Three characters in a triangular drum-circle composition; Usagi plays while Chiikawa and Hachiware clap and cheer. Full ears and instruments, three small decorative notes. True alpha verified; accepted for gallery and native layout inspection."
+    },
+    {
+      "file": "images/16-violin-serenade.png",
+      "prompt": "prompts/16-violin-serenade.txt",
+      "source_output": "exec-d3dcbd43-2aea-496c-83b4-07fd1b788dff.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1434868,
+      "sha256": "de306f25a1c7c02dbc2cc351a7be110080bf4beb23a733b0a57c99b88e08d86d",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "native random-per-screen theme and musical instruments",
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "instrument": "violin",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 959121,
+      "near_opaque_pixels": 575139,
+      "inspection": "Hachiware plays a violin beside seated listening Chiikawa; unequal heights and diagonal bow, complete figures and clear instrument. True alpha verified; accepted for gallery and native layout inspection."
+    },
+    {
+      "file": "images/17-flute-practice.png",
+      "prompt": "prompts/17-flute-practice.txt",
+      "source_output": "exec-e1445b40-08c8-4d9a-a067-231744318f2e.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1451765,
+      "sha256": "29e81ae5e3c23c781b9b9dcbf1e5f30017bb68154e35da73f6d0d2b346d53622",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "native random-per-screen theme and musical instruments",
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "instrument": "flute",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 886356,
+      "near_opaque_pixels": 652130,
+      "inspection": "Chiikawa plays a transverse flute with Hachiware holding a music book behind-left; close seated pair and simplified abstract page markings. True alpha verified; accepted for gallery and native layout inspection."
+    },
+    {
+      "file": "images/18-saxophone-swing.png",
+      "prompt": "prompts/18-saxophone-swing.txt",
+      "source_output": "exec-7c154bc0-d4e2-488a-ad3c-ea5171666123.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1403072,
+      "sha256": "ce0d859bfa438d3bf937fe164530047c9ffad1534ecdaec75b40cf0f00f11a25",
+      "transparent_requested": true,
+      "reference_images": [
+        "images/01-character-trio.png"
+      ],
+      "revision": "native random-per-screen theme and musical instruments",
+      "characters": [
+        "Chiikawa",
+        "Usagi"
+      ],
+      "character_count": 2,
+      "instrument": "saxophone",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1003477,
+      "near_opaque_pixels": 498502,
+      "inspection": "Usagi leans back playing a curved saxophone beside dancing Chiikawa; opposing leans and unequal heights, two decorative music notes. True alpha verified; accepted for gallery and native layout inspection."
     }
   ],
-  "updated_utc": "2026-11-08T09:40:15.647926+00:00",
+  "updated_utc": "2026-11-08T10:11:32.840574+00:00",
   "initial_preview_checks": {
     "image_decode": "pass: all four PNGs",
     "original_bytes": "pass: SHA-256 matches copied generator outputs",
@@ -376,7 +527,7 @@
     "gallery": "Six new variations plus four earlier candidates; cream/checkerboard cutouts inspected; exact prompts and local references checked",
     "limitations": "Static browser concepts with sample data and a schematic life graph, not rendered StepMania screens. Original font/sprite artwork is preserved; engine fallback, animation/effects, playable theme integration, and Windows gameplay checks remain later work."
   },
-  "preview_checks": {
+  "previous_preview_checks": {
     "image_decode": "pass: nine active PNGs, source hashes and metadata match",
     "character_rule": "pass: every active illustration inspected and contains two or three recognizable characters",
     "retired_candidates": "pass: three solos and vertical peekers removed from active image/prompt folders and gallery choices",
@@ -398,5 +549,51 @@
       "query_links": "recommended/random/manual and existing art links verified",
       "runtime_errors": 0
     }
+  },
+  "preview_checks": {
+    "images": "14 active PNGs decode and match manifest hashes; 11 transparent cutouts, 3 opaque backgrounds",
+    "characters": "All five instrument scenes visually inspected: two or three complete recognizable characters per image",
+    "new_artwork": "Piano, drums, violin, flute and saxophone; exact generator output bytes retained",
+    "browser": {
+      "recommended_defaults": true,
+      "random_eligible_choices": {
+        "title": [
+          "17-flute-practice",
+          "15-drum-circle",
+          "18-saxophone-swing"
+        ],
+        "select": [
+          "15-drum-circle",
+          "12-acoustic-duet",
+          "16-violin-serenade"
+        ],
+        "game": [
+          "11-listening-together",
+          "17-flute-practice",
+          "10-rest"
+        ],
+        "result": [
+          "13-shared-jump",
+          "15-drum-circle",
+          "04-results-replay"
+        ],
+        "replay": [
+          "12-acoustic-duet",
+          "14-piano-duet",
+          "17-flute-practice"
+        ]
+      },
+      "no_immediate_repeats": true,
+      "active_tab_stable": true,
+      "gameplay_stable_on_resize_ratio_motion_and_wait": true,
+      "manual_choice_preserved": true,
+      "painted_title_fixed": true,
+      "return_from_painted_title_eligible": true,
+      "query_links": true,
+      "missing_glyphs": "",
+      "runtime_errors": []
+    },
+    "visual_review": "New instrument scenes rendered over cream; checkerboard confirms clean alpha. Original typography and sprites retained.",
+    "limitations": "Browser concepts use sample data. Native theme verification is tracked separately."
   }
 }

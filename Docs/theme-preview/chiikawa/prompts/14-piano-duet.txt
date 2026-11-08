@@ -1,0 +1,10 @@
+Use case: illustration-story.
+Asset type: a full-resolution transparent Chiikawa illustration for a rhythm-game theme.
+Reference image: character identities, familiar proportions, warm pastel palette and hand-drawn line treatment ONLY. Create the new instrument scene described below; do not copy the standing lineup.
+Style: recognizable flat 2D Chiikawa cartoon art with clean warm dark outlines, creamy white, pastel pink, mint, sky blue, and soft yellow. Tiny friendly facial features and pink blush. Vary body directions and head heights.
+Composition: one coherent landscape 3:2 cutout, both/all characters and the instrument within frame, generous clear margin. At least two recognizable characters in this single image, no vertical peeking strip.
+Background: genuine transparent alpha; no background scene, floor plane, cast shadow, halo, glow, white sticker border, panel, or checkerboard.
+Text: none; no UI text, logos, arrow controls, judgment labels, or watermark.
+Avoid: a solo character, extra limbs or ears, duplicate faces, cropped heads, a uniform frontal lineup, photorealism, 3D, heavy texture.
+Scene: Chiikawa and Hachiware sit side-by-side on a short mint bench at a small pastel-pink toy upright piano, playing a simple duet. Chiikawa is the small white round-eared character, seated nearer the viewer at left, and Hachiware is the blue-and-white cat with triangular ears and divided blue cap, a little further right. View them in a three-quarter side angle so both happy faces remain clearly visible as they look toward the keys. Their tiny paws reach different sections of one readable black-and-white keyboard. Piano body is low and compact, with no tall lid hiding faces. Show the bench, their little feet below it, and Hachiware's curved blue tail.
+Composition emphasis: broad low L-shaped piano-and-bench grouping, unequal face heights, strong horizontal keyboard; quiet shared concentration. No additional characters or instruments.

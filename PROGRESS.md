@@ -617,7 +617,11 @@ The user authorizes implementing the random-per-screen policy and asks for five 
 
 - [x] Inspect native theme fallback, layout, replay entry points, and isolated rendering tools.
 - [x] Record implementation/artwork plan.
-- [ ] Generate and inspect five instrument scenes; extend the pool, gallery, and provenance; commit.
+- [x] Generate and inspect five instrument scenes; extend the pool, gallery, and provenance; commit.
 - [ ] Implement the native theme and stable per-screen random artwork.
 - [ ] Verify Lua behavior, actual layouts, gameplay/replay stability, and fallback compatibility.
 - [ ] Document installation and validation limits; commit the finished change.
+
+Artwork checkpoint: added piano duet, drum circle, violin serenade, flute practice, and saxophone swing. Each scene has two or three recognizable characters. All five PNGs retain generator bytes and real alpha; the gallery now has fourteen candidates and eleven cutouts. Title/selection use all five additions; calm scenes also enter gameplay/replay pools, and drums/saxophone enter evaluation. Random per screen is the preview default. Exact prompts, source hashes, character counts, and composition notes are recorded.
+
+Focused Chrome checks pass for all curated pools, no immediate repeats, stable active-screen/gameplay choices, manual and recommended modes, query links, and all image decoding. No missing sample glyphs or runtime errors. Cream/checkerboard renders were inspected; captured evidence is under ignored `out/chiikawa-preview-v5/`. Native implementation follows this artwork checkpoint.
