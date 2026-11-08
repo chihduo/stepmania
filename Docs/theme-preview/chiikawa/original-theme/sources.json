@@ -88,5 +88,17 @@
     "source": "NoteSkins/dance/default/_receptor (doubleres).png",
     "sha256": "6125bd8c80408638f3d67c714c4f94fd037ad5f3ff3b815ac94233787b080673",
     "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/menu-tunnel.png",
+    "source": "Themes/default/BGAnimations/ScreenTitleMenu background/_tunnel1.png",
+    "sha256": "2d2fa528516b1e71aae930aad0e252456c1c4cc7c86fcc6cd6695c8d5a8bd620",
+    "modification": "none; exact source copy"
+  },
+  {
+    "file": "original-theme/menu-particle.png",
+    "source": "Themes/default/BGAnimations/ScreenTitleMenu background/_particle normal.png",
+    "sha256": "951a73f2bd8f1a827cfe8126e253974e409df1ecca4e38de790e73bb9b5a55eb",
+    "modification": "none; exact source copy"
   }
 ]

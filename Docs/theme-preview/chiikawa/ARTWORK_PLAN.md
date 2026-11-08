@@ -83,11 +83,11 @@ The images decode, match their saved hashes, and have the expected alpha/opaque 
 The first preview checkpoint is complete. The revision below extends that preview; playable-theme integration remains a later stage after artwork review.
 
 
-## Revision: preserve original gameplay assets and vary the illustrations
+## Earlier revision: preserve original gameplay assets and vary the illustrations
 
 The user requests the same fonts, arrows, and judgment labels as the original theme, allowing color changes where practical. This supersedes the first gallery's browser-font and schematic-arrow examples. Update the browser compositions to render the actual original bitmap font atlases and sprite frames, and document that browser layout is still only a preview. Copy these assets unchanged with source hashes; do not regenerate their shapes with AI. Match the new palette through text tint and surrounding surfaces. Initially keep colored arrow and judgment textures intact so their shading and timing meanings remain readable.
 
-Add six new illustrations with independent compositions rather than moving the same frontal trio to a different corner:
+That revision added six illustrations with independent compositions. Its solo and peeking candidates have since been retired by the paired-illustration requirement below:
 
 | Variant | Cast and action | Composition / use |
 | --- | --- | --- |
@@ -109,7 +109,7 @@ Keep the established character identity, warm palette, and outline treatment, bu
 - [x] Render the original bitmap text in the browser and add artwork comparison controls.
 - [x] Check all ten images, original-asset hashes, local links, script syntax, and both screen ratios.
 
-The gallery now includes ten illustrations and uses six original font mappings: Roboto Medium, Open Sans Semibold, Roboto Condensed, Roboto Condensed Bold Italic, Roboto Bold combo digits, and Overpass score digits. Original arrow/receptor sprites and judgment frames preserve their shapes and source colors. Text alpha is tinted to the palette without replacing glyphs. See [original-theme/README.md](original-theme/README.md) for source mappings and preview limitations.
+That checkpoint included ten illustrations and established six original font mappings: Roboto Medium, Open Sans Semibold, Roboto Condensed, Roboto Condensed Bold Italic, Roboto Bold combo digits, and Overpass score digits. Original arrow/receptor sprites and judgment frames preserve their shapes and source colors. Text alpha is tinted to the palette without replacing glyphs. See [original-theme/README.md](original-theme/README.md) for source mappings and preview limitations.
 
 All five screen concepts were reviewed at 1280 × 720 and 1024 × 768. Long labels wrap naturally, decorations stay clear of the sample functional areas, and cream/checkerboard previews expose cutout edges. The new composition differences and deviations from the prompts are recorded in [PROMPTS.md](PROMPTS.md). Browser captures and validation records are retained under ignored `out/chiikawa-preview-v2/`.
 
@@ -125,3 +125,13 @@ This completes the requested artwork-preview revision. Choosing artwork and impl
 5. Inspect every active illustration for at least two characters, verify alpha/hashes and removal of rejected candidates, review animated and static layouts at both ratios, update prompts/provenance/progress, and commit the completed revision.
 
 Plan checkpoint first; completion checkpoint after the revised gallery and animation demonstration are verified.
+
+
+### Paired-artwork and motion preview results
+
+The active set contains nine images, all with two or three recognizable characters. Candidates 05–07 and 09 are removed from the image folder and every gallery choice; their historical provenance is marked retired. New candidates 11–13 provide paired listening, an acoustic duet, and a shared jump. The five varied group/pair scenes are shown first in the gallery.
+
+The default duet title demonstrates pastel rotating layers and drifting particles beneath the artwork and original UI text. Other menu concepts use the shared motion where visible; gameplay remains still. A toggle pauses/resumes motion, and reduced-motion preference starts the preview paused. Native feasibility and the exact original Lua sources are documented in [ANIMATION.md](ANIMATION.md). Actual game installation remains the next stage.
+
+
+Validation for this revision passed for nine active illustrations, six transparent cutouts, 17 exact original-asset copies, 107 local references, and all four preview scripts. All five layouts rendered at both aspect ratios without missing sample glyphs or browser exceptions. Moving, paused, resumed, and reduced-motion states were exercised; gameplay has no decorative animation. The current artwork-preview revision is complete.

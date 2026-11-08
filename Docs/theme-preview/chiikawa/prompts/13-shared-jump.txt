@@ -1,0 +1,9 @@
+Use case: illustration-story.
+Asset type: transparent two-character Chiikawa celebration, "Shared jump".
+Reference image: identity and line/palette reference only. Do not repeat the original standing group.
+Subject: exactly TWO recognizable characters, Chiikawa and Usagi, caught midair in a playful shared high-five. Chiikawa, the small white round-eared character, is at the lower left with knees tucked and one tiny paw raised toward the center. Usagi, the pale-yellow long-eared rabbit, springs diagonally at the upper right, one paw meeting Chiikawa's raised paw, ears swept back but completely visible. Show two separate rounded bodies and clear happy faces with blush; give them different leg poses. Their other paws extend outward naturally.
+Composition: ONE compact diagonal action pair, landscape 3:2, full bodies and all ears within generous 12 percent transparent padding. Unequal heights and inward-facing interaction create a rising diagonal, not a horizontal standing lineup or vertical peeking strip. Two small pastel-pink motion marks below and one tiny mint star above.
+Style: recognizable flat Chiikawa cartoon design, warm dark slightly hand-drawn outline matching the reference, creamy white, soft yellow, pink and mint, clean readable silhouettes.
+Background: genuine transparent alpha. No floor, backdrop, shadow, glow, halo, white sticker border, or checkerboard.
+Text: none; no speech bubbles, interface lettering, arrows, or watermark.
+Avoid: single character, third character, extra hands or ears, fused faces, clipped anatomy, clothing, props, static portrait, large confetti field, heavy texture, gradients, 3D.

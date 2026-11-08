@@ -575,9 +575,18 @@ Plan checkpoint: `04c95843dc`. Completion checkpoint: `art: vary Chiikawa previe
 The user rejects the vertical peekers, requires at least two characters in every illustration, and asks whether the original animated backgrounds can be adapted. Inspected the original title/shared-menu actors: they rotate texture layers, update moving particles, and honor the existing `FancyUIBG` option. The same approach can be implemented with theme Lua/graphics without an engine rebuild.
 
 - [x] Inspect original animated background actors and record the revised constraints.
-- [ ] Generate and inspect three replacement pair illustrations.
-- [ ] Remove rejected/superseded candidates and update gallery choices.
-- [ ] Add and verify a pastel animated title/menu preview with a motion toggle.
-- [ ] Update provenance and native integration notes; validate and commit the revision.
+- [x] Generate and inspect three replacement pair illustrations.
+- [x] Remove rejected/superseded candidates and update gallery choices.
+- [x] Add and verify a pastel animated title/menu preview with a motion toggle.
+- [x] Update provenance and native integration notes; validate and commit the revision.
 
 This task updates the artwork preview; native theme installation remains a later stage.
+
+
+Completed three new transparent paired illustrations: Listening together (Chiikawa/Hachiware), Acoustic duet (Hachiware/Usagi), and Shared jump (Chiikawa/Usagi). Every active illustration now contains two or three characters. Removed the three solo candidates and rejected vertical peekers from active images, prompts, selectors, and gallery cards; their previous content remains in Git history, with manifest metadata explicitly marked retired. Nine active candidates remain, including six transparent cutouts.
+
+Added a browser demonstration of the original title/menu animation approach. It reuses exact copies of the original tunnel and particle texture shapes, tinted pink/mint/blue, with slow opposing rotations and drifting particles behind the paired artwork and original fonts. The title defaults to the acoustic duet. Background motion can be paused/resumed and starts paused for reduced-motion preferences. Hidden screens pause, and gameplay has no decorative animation. `ANIMATION.md` links the original Lua actors and documents an inherited-theme implementation using the existing `FancyUIBG` option without recompiling the engine.
+
+Validation: all nine PNGs decode and match generator-output hashes; manually reviewed character counts are at least two for every active candidate. Six cutouts contain real transparency. All 17 original-asset copies match their repository sources; 107 local/document/gallery references resolve. JavaScript syntax and diff whitespace checks pass. Local Chrome rendered all five screen concepts at 1280 × 720 and 1024 × 768 with no missing sample glyphs or runtime exceptions. Browser checks confirm animation advances, pause holds it still, resume restarts it, reduced-motion starts paused, and gameplay has zero animated decoration. Both ratios and cream/checkerboard artwork previews were reviewed. Captures and check reports remain under ignored `out/chiikawa-preview-v3/`.
+
+Plan checkpoint: `4fe1e4815b`. Completion checkpoint: `art: pair Chiikawa illustrations and preview animated menus [skip ci]`. This completes the artwork-preview revision. Native theme installation and Windows renderer verification remain the later integration stage; no engine build, ZIP, or remote push is included.

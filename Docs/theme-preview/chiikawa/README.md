@@ -1,44 +1,42 @@
 # Chiikawa artwork preview for StepMania 6
 
-The selected direction is **recognizable Chiikawa characters with warm cream, pastel pink, mint, and sky blue**. This folder now contains **ten AI-generated illustrations**, including six new compositions, and a plan for applying the look across the interface.
+**Open [index.html](index.html) in a browser** to compare the artwork and animated menu concepts. It works locally without a server or network access.
 
-**Open [index.html](index.html) in a browser** for the local gallery. It works without a server or network access. Switch between title, song selection, gameplay, evaluation, and replay concepts; compare 16:9 with 4:3; choose the character decoration; and inspect cutouts against cream, checkerboard, or dark backgrounds. The candidate filter compares the six new illustrations, the first four, or all ten.
+Every active illustration shows **at least two recognizable characters**. The vertical peekers have been removed, and the three solo candidates have been replaced with paired compositions. There are now **nine active illustrations**, all in warm cream, pastel pink, mint, and sky blue.
 
-The screen concepts now draw the **original bitmap fonts, arrow/receptor textures, and judgment artwork**. Their shapes are unchanged. Text tint and surrounding panels adopt the new palette; arrows and judgment labels retain their existing colors and shading. The browser controls outside the concepts use normal browser fonts. These are static layouts with sample data, not captures of an installed theme.
+The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data and remain an artwork preview for later playable-theme integration.
+
+## Compare the illustrations
+
+| Candidate | Characters | Composition |
+| --- | --- | --- |
+| [11 · Listening together](images/11-listening-together.png) | Chiikawa + Hachiware | Close seated pair in different headphones |
+| [12 · Acoustic duet](images/12-acoustic-duet.png) | Hachiware + Usagi | Guitar and tambourine, unequal head heights |
+| [13 · Shared jump](images/13-shared-jump.png) | Chiikawa + Usagi | Two airborne characters meeting raised paws |
+| [08 · Picnic rehearsal](images/08-picnic.png) | All three | Interacting triangular group around a blanket |
+| [10 · Rest](images/10-rest.png) | Chiikawa + Hachiware | Low sleeping pair on a mint blanket |
+| [01 · Character trio](images/01-character-trio.png) | All three | Welcoming group and identity reference |
+| [02 · Title background](images/02-title-background.png) | All three | Painted meadow scene with space for menus |
+| [03 · Selection background](images/03-selection-background.png) | All three | Small corner group with open interface space |
+| [04 · Results/replay](images/04-results-replay.png) | All three | Cheerful celebration group |
+
+Use **Character decoration** to compare pairs and groups on song selection, gameplay, evaluation, and replay screens. Use **Show candidates** to see the five varied group/pair scenes, the first four candidates, or all nine. Switch between 16:9 and 4:3, and inspect cutouts on cream, checkerboard, or dark backgrounds.
+
+All nine full-resolution files are in `images/`. Six have real alpha transparency; three are opaque backgrounds. Generated source pixels are preserved. Retired candidates are available only in Git history and are excluded from the current preview and image folder.
+
+## Animated background preview
+
+The default **Acoustic duet / animated** title combines the two-character cutout with slow pastel rotating layers and drifting particles behind it. Selection, evaluation, and replay concepts use the same background treatment where their artwork leaves it visible. Gameplay decoration stays still. The painted title-scene alternatives remain static.
+
+The **Background motion** button pauses/resumes the animation. The preview starts paused when the browser requests reduced motion. These are browser demonstrations of the original theme's Lua background approach; implementing the same effect in StepMania needs theme Lua/graphics changes, **not recompilation**. See the [animation feasibility and integration notes](ANIMATION.md).
+
+## Files and validation
 
 - [Artwork and implementation plan](ARTWORK_PLAN.md)
-- [Exact prompts and provenance](PROMPTS.md)
+- [Exact generation prompts and inspection notes](PROMPTS.md)
 - [Image manifest](manifest.json)
 - [Original theme asset mappings and checksums](original-theme/README.md)
 
-## Six new compositions
+The illustrations were generated with the built-in image tool. Image decoding, true alpha, source hashes, local links, and script syntax were checked. All 17 copied original font/INI/sprite/background files match their repository sources. All five concepts render at 1280 × 720 and 1024 × 768 without missing sample glyphs. The browser checks exercise moving, paused, resumed, and reduced-motion states, and verify that gameplay has no animated decoration.
 
-| Preview | Composition | File |
-| --- | --- | --- |
-| 05 · Listening | Solo Chiikawa seated with headphones; compact silhouette | [05-listening.png](images/05-listening.png) |
-| 06 · Acoustic | Solo Hachiware seated with a diagonal guitar | [06-acoustic.png](images/06-acoustic.png) |
-| 07 · Leap | Solo Usagi airborne in a tall diagonal pose | [07-leap.png](images/07-leap.png) |
-| 08 · Picnic rehearsal | Interacting trio around a blanket; unequal heights and a triangular grouping | [08-picnic.png](images/08-picnic.png) |
-| 09 · Peek | Staggered partial-body poses in a vertical strip | [09-peek.png](images/09-peek.png) |
-| 10 · Rest | Chiikawa and Hachiware sleeping in a low, curved composition | [10-rest.png](images/10-rest.png) |
-
-![Chiikawa, Hachiware, and Usagi relaxing together around a pink picnic blanket.](images/08-picnic.png)
-
-These variations change the cast size, activity, mood, silhouette, and arrangement while retaining the established characters and palette. The picnic is an opaque background; the other five new images have real alpha transparency.
-
-## First four candidates
-
-| Preview | Intended use | File |
-| --- | --- | --- |
-| Character trio | Reusable menu/header decoration; identity reference | [01-character-trio.png](images/01-character-trio.png) |
-| Title background | Title/menu backdrop with open central space | [02-title-background.png](images/02-title-background.png) |
-| Selection background | Quiet backdrop with a small corner vignette | [03-selection-background.png](images/03-selection-background.png) |
-| Results/replay illustration | Supportive header or empty-space decoration | [04-results-replay.png](images/04-results-replay.png) |
-
-The full-resolution files are in **`images/`**. Across both sets there are seven transparent cutouts and three opaque backgrounds. All generated source pixels are preserved. The exact sizes, references, and hashes are recorded in the manifest.
-
-## Preview checks and next stage
-
-All ten PNGs decode and match their saved hashes. All 15 copied original font/INI/sprite assets match their repository sources. The five screen concepts were rendered at 1280 × 720 and 1024 × 768 with no missing sample glyphs. Text wraps without stretching the original letterforms, and decorations clear the sample note field, life bar, speed label, lists, and result rows. Cutouts were reviewed on cream and checkerboard. Local links and JavaScript syntax were checked.
-
-This preview does not reproduce the engine's full font fallback, animation, or rendering effects; the life graph remains a layout sketch. The current playable theme is unchanged. The plan covers later integration into a separate inherited theme and verification in Windows x64. Artwork choice and final in-game placement remain open for review.
+This preview does not reproduce every engine font fallback, rendering effect, or gameplay behavior; the life graph remains a layout sketch. Actual theme installation and Windows x64 verification are the next implementation stage.

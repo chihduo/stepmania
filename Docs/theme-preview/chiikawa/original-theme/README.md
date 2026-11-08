@@ -12,7 +12,10 @@ These PNG and INI files are exact copies of assets already in this StepMania rep
 | Score digits | `ScoreDisplayNormal Text` → Overpass Score |
 | Tap notes and receptors | Bundled dance/default sprite textures, rotated using its direction mapping |
 | Gameplay judgments | Default theme `Judgment Normal 2x6.png`, including its original shading and lettering |
+| Menu motion | Original title `_tunnel1.png` and `_particle normal.png` textures; their alpha is tinted for the pastel background |
 
 The browser draws the bitmap glyphs using their original atlas pages and advance widths. It changes text color through the existing glyph alpha, without inventing letterforms. Note and judgment textures keep their source colors so rhythm subdivisions, judgment meanings, and shading remain distinct. Their cyan/pastel accents already fit parts of the new palette.
 
-This is a static artwork/layout preview. It does not implement the engine's complete font fallback, animation, texture filtering, lighting, or gameplay behavior. The English sample text is covered by these atlas pages; a real inherited theme retains the engine's international glyph fallback. Original assets are used directly, not passed through the image generator. The AI-generated illustrations are in the separate `images/` directory.
+This is an artwork/layout preview with a browser menu-animation demonstration. It does not implement the engine's complete font fallback, animation, texture filtering, lighting, or gameplay behavior. The English sample text is covered by these atlas pages; a real inherited theme retains the engine's international glyph fallback. Original assets are used directly, not passed through the image generator. The AI-generated illustrations are in the separate `images/` directory.
+
+The 17 copied files consist of six font atlas/INI pairs, three gameplay sprites, and two menu-background textures. See [the animation notes](../ANIMATION.md) for the native Lua implementation route.

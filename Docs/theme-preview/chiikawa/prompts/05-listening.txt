@@ -1,9 +1,0 @@
-Use case: illustration-story.
-Asset type: new transparent Chiikawa UI decoration, variation 05 "Listening".
-Reference image: identity, palette, and hand-drawn line treatment ONLY. Create a completely different pose and composition; do not reuse the frontal dancing lineup.
-Subject: ONLY Chiikawa, the recognizable small white round-eared character from the reference. No Hachiware or Usagi. Chiikawa is sitting with knees tucked close and small feet forward, turned three-quarter toward the left, listening peacefully through large simple sky-blue over-ear headphones. Keep round ears visible, a tiny contented mouth, soft half-closed eyes, pink cheek blush, small white paws gently holding the earcups.
-Composition: one compact rounded seated silhouette, square canvas, full body, head and headphones visible, about 12 percent clear padding all around. One small mint music note near the headphones, no other floating decoration. The head tilts slightly toward the music, giving the image a calm inward feeling.
-Style: recognizable Chiikawa cartoon design, simple flat 2D fills, warm dark hand-drawn contours of the same weight as the reference, creamy white body, pastel pink and sky-blue accents. Preserve identity but change perspective, expression, limb positions, and silhouette.
-Background: genuine transparent alpha. No backdrop, floor, ground shadow, halo, printed checkerboard, sticker border, panel, or frame.
-Text: none. No UI lettering, arrows, or judgment labels.
-Avoid: standing pose, frontal group composition, extra characters, extra limbs, duplicate ears, realistic headphones, gradients, 3D, heavy texture, cropped body.
