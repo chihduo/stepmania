@@ -241,8 +241,11 @@ Merged the published main baseline back into this feature branch; the developmen
 - [x] Confirmed the requested location is the right-side illustration on the Game Start / Options title menu.
 - [x] Confirmed native GIF loading reads only the first image; native PNG sprite states support alpha and animation.
 - [x] Record the feature-only plan and exact artwork prompts.
-- [ ] Generate and inspect character poses and cartoon pad artwork.
+- [x] Generate and inspect character poses and cartoon pad artwork.
 - [ ] Implement the transparent native title animation and looping GIF preview.
 - [ ] Verify native layout/lifecycle/motion settings, update documents and commit.
 
 Baseline: `373e795d6f` on `feature/chiikawa-theme`; main remains `eca4da9033`. Use the built-in image generator for the new drawings and preserve its transparent source outputs. Existing movie backgrounds and random decorations on other screens are outside this change.
+
+
+Artwork checkpoint: built-in image generation produced twelve recognizable character poses on a 1448×1086 RGBA source atlas and three matching cartoon pads on a 2172×724 RGBA source. Both have genuine 0–255 alpha. The source atlas has uneven visual spacing, so `build-assets.py` crops the inspected pose bounds and aligns them losslessly into twelve 416×416 cells with a common foot baseline. Every packed crop matches its original RGBA pixels exactly; the pad source is copied unchanged. Source outputs, exact prompts, packing coordinates and runtime hashes are in `title-dance/`.

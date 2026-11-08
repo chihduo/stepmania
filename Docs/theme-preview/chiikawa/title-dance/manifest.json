@@ -1,0 +1,207 @@
+{
+  "sources": [
+    {
+      "file": "characters-source.png",
+      "generator": "built-in image_gen",
+      "source_output": "exec-e16cb2d8-45d6-4239-9d16-1e4886248813.png",
+      "prompt": "characters-prompt.txt",
+      "sha256": "c8dd4ad3414333ea7b19dc14ef8c13dd86c5b8db5bea3f3da24320d495f43b47",
+      "size": [
+        1448,
+        1086
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "pads-source.png",
+      "generator": "built-in image_gen",
+      "source_output": "exec-fbd9ed17-b757-49c7-a63d-9effc2ec6341.png",
+      "prompt": "pads-prompt.txt",
+      "sha256": "664bf5a5472755283094a3e402bae4f9cf0e535252e6ad7c699e66f148314513",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    }
+  ],
+  "reference": "../images/01-character-trio.png",
+  "characters": [
+    "Chiikawa",
+    "Hachiware",
+    "Usagi"
+  ],
+  "runtime_assets": [
+    {
+      "file": "Themes/chiikawa/Art/title-dancers 4x3.png",
+      "sha256": "c96cb7c009d47479eb1d505fa39ad17c18755bd7f6dad39d464365d964c7307d",
+      "bytes": 1158963
+    },
+    {
+      "file": "Themes/chiikawa/Art/title-dance-pads.png",
+      "sha256": "664bf5a5472755283094a3e402bae4f9cf0e535252e6ad7c699e66f148314513",
+      "bytes": 1009910
+    }
+  ],
+  "packing": {
+    "cell": 416,
+    "baseline": 374,
+    "frames": [
+      {
+        "source_crop": [
+          127,
+          50,
+          240,
+          287
+        ],
+        "placement": [
+          88,
+          95
+        ]
+      },
+      {
+        "source_crop": [
+          446,
+          54,
+          243,
+          282
+        ],
+        "placement": [
+          86,
+          99
+        ]
+      },
+      {
+        "source_crop": [
+          772,
+          51,
+          241,
+          287
+        ],
+        "placement": [
+          87,
+          96
+        ]
+      },
+      {
+        "source_crop": [
+          1085,
+          51,
+          241,
+          271
+        ],
+        "placement": [
+          87,
+          96
+        ]
+      },
+      {
+        "source_crop": [
+          127,
+          369,
+          248,
+          300
+        ],
+        "placement": [
+          84,
+          82
+        ]
+      },
+      {
+        "source_crop": [
+          443,
+          376,
+          249,
+          293
+        ],
+        "placement": [
+          83,
+          89
+        ]
+      },
+      {
+        "source_crop": [
+          767,
+          371,
+          246,
+          298
+        ],
+        "placement": [
+          85,
+          84
+        ]
+      },
+      {
+        "source_crop": [
+          1077,
+          369,
+          246,
+          282
+        ],
+        "placement": [
+          85,
+          82
+        ]
+      },
+      {
+        "source_crop": [
+          129,
+          683,
+          240,
+          367
+        ],
+        "placement": [
+          88,
+          13
+        ]
+      },
+      {
+        "source_crop": [
+          444,
+          685,
+          245,
+          367
+        ],
+        "placement": [
+          85,
+          15
+        ]
+      },
+      {
+        "source_crop": [
+          765,
+          687,
+          244,
+          363
+        ],
+        "placement": [
+          86,
+          17
+        ]
+      },
+      {
+        "source_crop": [
+          1083,
+          680,
+          242,
+          352
+        ],
+        "placement": [
+          87,
+          10
+        ]
+      }
+    ],
+    "validation": "Every packed crop equals its source pixels, including alpha; pads copied unchanged"
+  },
+  "animation": "Four drawn poses per character, deterministic 3.2-second stepping/hopping clock; stationary pads; alpha retained",
+  "rebuild": "python3 Docs/theme-preview/chiikawa/title-dance/build-assets.py"
+}
