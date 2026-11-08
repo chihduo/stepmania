@@ -99,3 +99,8 @@ Validate the silent output, exact frame preservation, poster/asset links, theme 
 
 
 Completed: concatenated and verified all three uploads into the silent 30-second MP4, installed the movie and matching poster through the optional theme metric, and suppressed duplicate no-art gameplay cutouts. The decoder-enabled Linux build, focused Lua checks and native playback/layout checks pass. Refreshed the authentic gameplay preview and documented settings, provenance, rebuild steps and portable-update files. See `PROGRESS.md` for the evidence and Windows/audio limitations. No Windows ZIP was built.
+
+
+## Publish the movie-background gameplay capture
+
+Use the existing authentic native movie-background screenshot, preserving its pixels and provenance. Add a movie link beside it, promote the finished preview documentation to main, publish the development branch before the release branch, and verify the image/document/movie blobs on GitHub. Keep the experiment package on the feature branch. No Windows ZIP is requested.

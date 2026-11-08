@@ -225,3 +225,10 @@ Validation:
 The isolated fixture, build records, native screenshots and logs are under ignored `out/chiikawa-movie/`; user songs, profiles and settings were not used. Windows x64 rendering, physical controller play and audible synchronization remain untested. Native checks use software OpenGL and null audio.
 
 Plan checkpoint: `09b8817104`. Media checkpoint: `e9ca447d2d`. Implementation checkpoint: `feat: use silent dance movie for Chiikawa fallback [skip ci]`. No Windows ZIP or remote push was performed for this revision.
+
+
+## Movie-background capture publication
+
+The requested GitHub page still showed the pre-movie capture because the finished theme release had remained local. Reused the already verified 1280×720 native capture from `out/chiikawa-movie/gameplay-rate-wide.png`: the trio dances behind original notes, judgments and the life graph, with 1.1x speed and 45% brightness. Visual inspection confirms the movie version, and both worktrees' PNGs match the raw native capture byte-for-byte.
+
+Screenshot SHA-256: `a49840da22b495df18a8ad63c2ceebf0dd39eab8471ca3ad4175768e860b9184` (828,469 bytes). All 15 runtime media hashes still match the release manifest. Added a clear caption and direct MP4 link beside the screenshot. Publication will send the development branch first, then the prepared main release, and verify the remote content.
