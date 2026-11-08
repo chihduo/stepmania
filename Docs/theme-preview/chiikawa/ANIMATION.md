@@ -23,14 +23,12 @@ Use **Background motion** to pause/resume. The browser honors `prefers-reduced-m
 
 The effect lives in [menu-motion.js](menu-motion.js) and the gallery's CSS. Browser motion, tint, and layout are a design demonstration rather than a claim of identical engine rendering.
 
-## Native theme integration
+## Native theme implementation
 
-1. Create the separate inherited theme described in [ARTWORK_PLAN.md](ARTWORK_PLAN.md). Keep the existing font, noteskin, and judgment mappings.
-2. Add a shared Lua background actor: cream base first, optional rotating textures/particles next, and the selected paired illustration above them. Use normal alpha blending over the pale base rather than the original title's additive blend.
-3. Gate animation with `ThemePrefs.Get("FancyUIBG")`; retain a readable still background when disabled. Use existing `spin` / `effectmagnitude` commands for rotation and either actor tweens or an update function for drift. Match the preview speeds and opacity by visual review in the engine.
-4. Load it from the title and shared menu background entry points. Keep decorations behind labels and panels. Leave gameplay background/video handling and note readability intact.
-5. Verify both aspect ratios in the actual Windows x64 renderer, including theme switching, animation off/on, screen transitions, and slow machines. These native checks remain part of the later theme integration.
+[Themes/chiikawa](../../../Themes/chiikawa/README.md) now implements cream menu backgrounds with three slow rotating original texture layers and nine gently drifting particles. Character artwork is a separate screen underlay, so it is selected on actual entry even when the shared background is cached. Pushed replay-browser screens own their backdrop because they do not activate a new shared background.
 
-Only theme Lua, metrics, and graphics are needed for this animation. Existing replay-widget styling hooks discussed in the broader plan are a separate integration concern.
+The existing **Fancy UI Background** option controls native motion (`FancyUIBG` in `Save/ThemePrefs.ini`, `[chiikawa]`). Disabling it leaves the cream background and static characters. Gameplay keeps its song background/video and static character decoration. The native engine multiplies texture colors while the browser tints their alpha, so the animation is similar rather than pixel-identical.
 
-The illustration can be [recommended, random, or manually selected](ARTWORK_CHOICES.md). Choosing an illustration is independent of background motion: it does not reroll when motion is paused or resumed.
+The animation needs only Lua and PNG files. Optional replay-browser styling commands are a separate small engine addition. Actual Linux rendering is checked at 16:9 and 4:3; Windows/audio/video validation remains a manual check on the next Windows build.
+
+See [artwork selection](ARTWORK_CHOICES.md) for the independent random-per-screen policy. The browser's reduced-motion behavior is separate from the native Fancy UI Background setting.

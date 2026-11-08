@@ -63,7 +63,7 @@ const captions = {
   select: 'Selection concept: original bitmap text, clear focus, chart choice, and room for the selected character decoration.',
   game: 'Gameplay concept: original note/receptor textures, FLAWLESS sprite, score/combo/rate fonts. Decoration stays still outside the note field; the graph is a layout sketch.',
   result: 'Evaluation concept: original bitmap fonts with supportive decoration clear of the result rows. Numbers are illustrative sample data.',
-  replay: 'Replay concept: original Common Normal typography with the selected illustration. The current C++ widgets still need theme styling hooks.'
+  replay: 'Replay concept: original Common Normal typography with the selected illustration. The native theme uses optional replay-widget styling hooks.'
 };
 const decorationClasses = {title:'.title-friends', select:'.selection-friends', game:'.game-friends', result:'.result-friends', replay:'.replay-friends'};
 const modeControl = document.getElementById('artwork-mode');

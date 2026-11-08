@@ -4,11 +4,11 @@ Use the screen's purpose and available space to choose artwork. Keep quiet, comp
 
 | Screen | Recommended default | Random choices | Reason |
 | --- | --- | --- | --- |
-| Animated title | Acoustic duet | Acoustic duet, Character trio, Listening together | Welcoming music theme; readable beside the title/menu |
-| Song selection | Listening together | Listening together, Acoustic duet, Character trio | Music-related decoration that leaves the song list clear |
-| Gameplay | Resting pair | Resting pair, Listening together | Calm silhouettes outside the note field |
-| Evaluation | Celebration trio | Celebration trio, Shared jump | Supportive celebration beside the results |
-| Replay browser | Resting pair | Resting pair, Listening together, Acoustic duet | Quiet decoration beside a list |
+| Animated title | Acoustic duet | Acoustic duet, Character trio, Listening together, Piano duet, Drum circle, Violin serenade, Flute practice, Saxophone swing | Welcoming music theme; readable beside the title/menu |
+| Song selection | Listening together | Listening together, Acoustic duet, Character trio, Piano duet, Drum circle, Violin serenade, Flute practice, Saxophone swing | Music-related decoration that leaves the song list clear |
+| Gameplay | Resting pair | Resting pair, Listening together, Piano duet, Violin serenade, Flute practice | Calm silhouettes outside the note field |
+| Evaluation | Celebration trio | Celebration trio, Shared jump, Drum circle, Saxophone swing | Supportive celebration beside the results |
+| Replay browser | Resting pair | Resting pair, Listening together, Acoustic duet, Piano duet, Violin serenade, Flute practice | Quiet decoration beside a list |
 
 ## Preview controls
 
@@ -26,10 +26,14 @@ Direct preview links can use `?choice=random`, `?choice=recommended`, or `?choic
 
 ## Native theme implementation
 
-The optional `Themes/chiikawa` theme is being integrated with the same pools in [artwork-pools.json](artwork-pools.json). The gallery now defaults to Random per screen.
+The optional [Chiikawa theme](../../../Themes/chiikawa/README.md) uses the same pools in [artwork-pools.json](artwork-pools.json). The gallery now defaults to Random per screen.
 
 The five new scenes add piano, drums, violin, flute, and saxophone. All five join title and song selection. Piano, violin, and flute also join gameplay and the replay browser. Drums and saxophone join evaluation. The first entry of each pool remains its recommended preview choice.
 
 Native selection runs in the decoration's `OnCommand`, when the screen becomes visible, including cached title screens. A private random generator and last-choice table avoid immediate repeats without consuming the engine's random sequence. Gameplay keeps its texture through rate changes and pauses; replay restart retains the same choice. No selection runs from update, judgment, or wheel-change events.
 
-The random policy and artwork need only Lua and PNG files. The replay browser also needs optional actor styling hooks in the engine because its current opaque background and unnamed text widgets cannot be styled by a theme.
+The random policy and artwork need only Lua and PNG files. The replay browser uses the new optional actor styling hooks in the engine, so its matching layout requires a build containing this revision. Other themes retain their original replay appearance.
+
+Native gameplay art is shown for one human player using a non-centered one-side style with at most four columns. It moves to the unused side for P2. Two-player, centered, double/shared-side, demonstration, and wider-column fields omit it. Single-song evaluation uses the unused grade area; course/summary layouts retain their inherited presentation. Returning from a replay to the existing browser preserves its current decoration; closing and reopening the browser picks again. The last-choice memory lasts until theme reload or game exit.
+
+Recommended and Manual are gallery comparison controls. The playable theme uses Random per screen.

@@ -4,7 +4,7 @@
 
 Every active illustration shows **at least two recognizable characters**. The vertical peekers have been removed, and the three solo candidates have been replaced with paired compositions. There are now **fourteen active illustrations**, all in warm cream, pastel pink, mint, and sky blue.
 
-The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data and remain an artwork preview for later playable-theme integration.
+The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data. The [playable Chiikawa theme](../../../Themes/chiikawa/README.md) now uses these decorations with random selection on entry.
 
 ## Compare the illustrations
 
@@ -45,6 +45,6 @@ The **Background motion** button pauses/resumes the animation. The preview start
 
 The illustrations were generated with the built-in image tool. Image decoding, true alpha, source hashes, local links, and script syntax were checked. All 17 copied original font/INI/sprite/background files match their repository sources. All five concepts render at 1280 × 720 and 1024 × 768 without missing sample glyphs. The browser checks exercise moving, paused, resumed, and reduced-motion states, and verify that gameplay has no animated decoration.
 
-This preview does not reproduce every engine font fallback, rendering effect, or gameplay behavior; the life graph remains a layout sketch. Actual theme installation and Windows x64 verification are the next implementation stage.
+This preview does not reproduce every engine font fallback, rendering effect, or gameplay behavior; the life graph remains a layout sketch. Native theme installation is described in the [theme guide](../../../Themes/chiikawa/README.md). Windows x64 verification remains to be done with a future build.
 
 Random selection was also checked for eligible per-screen choices, no immediate repeats, stable artwork while staying on a screen, fixed painted titles, and manual selection. The randomization controls do not change the illustration files.

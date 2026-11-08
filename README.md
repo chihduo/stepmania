@@ -58,6 +58,12 @@ On the song-selection screen, **Left + Right** cycles the configured sort order.
 
 The fork includes a GitHub Actions pipeline that builds a **Windows x64 Release** package with the static C/C++ runtime. Each package is checked for its portable layout and x64 executable, then runs a startup test before being archived with a SHA-256 checksum. These automated checks do not replace in-game audio, video, and input verification.
 
+## Chiikawa theme
+
+Select **Chiikawa - StepMania 6** in **Options → Display Options → Appearance Options → Theme** for cream/pastel menus and paired character illustrations. Each screen chooses from its own pool on entry and avoids an immediate repeat. Artwork stays fixed during songs, speed changes, pauses, and replay restarts. The original fonts, notes, judgments, and gameplay features are inherited.
+
+The eleven transparent decorations include new piano, drums, violin, flute, and saxophone scenes. Menu backgrounds have optional gentle motion; gameplay characters remain still. [Preview the artwork](Docs/theme-preview/chiikawa/index.html), [see native screenshots](Docs/theme-preview/chiikawa/native/README.md), or read the [theme installation and customization guide](Themes/chiikawa/README.md). These are AI-generated fan illustrations. The complete replay-browser appearance requires a build containing the new theme hooks.
+
 ## Record and replay
 
 Record a regular single-player song and watch it again inside the game. Replays preserve the original judgments, score, combo, life history, and live speed changes. Both **P1-only** and **P2-only** play are supported.

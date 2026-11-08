@@ -1,6 +1,7 @@
 #include "global.h"
 #include "ScreenGameplayReplay.h"
 #include "ArrowEffects.h"
+#include "ActorUtil.h"
 #include "GameSoundManager.h"
 #include "GameState.h"
 #include "GameplayReplay.h"
@@ -156,6 +157,10 @@ void ScreenGameplayReplay::HandleScreenMessage(ScreenMessage message)
 void ScreenReplayBrowser::Init()
 {
 	ScreenWithMenuElements::Init();
+	m_Backdrop.SetName("ReplayBackdrop");
+	m_Title.SetName("ReplayTitle");
+	m_List.SetName("ReplayList");
+	m_Help.SetName("ReplayHelp");
 	m_Backdrop.StretchTo(RectF(SCREEN_LEFT, SCREEN_TOP, SCREEN_RIGHT, SCREEN_BOTTOM));
 	m_Backdrop.SetDiffuse(RageColor(.04f, .06f, .10f, 1));
 	m_Backdrop.SetDrawOrder(999);
@@ -175,6 +180,10 @@ void ScreenReplayBrowser::Init()
 	m_Help.SetXY(SCREEN_CENTER_X, SCREEN_BOTTOM-55); m_Help.SetZoom(.5f);
 	m_Help.SetMaxWidth((SCREEN_WIDTH-30)/.5f);
 	m_Help.SetText("Up / Down: select | Enter / Start: watch | Esc / Back: return\nRecordings are stored in Save/Replays. Dates are UTC.");
+	// Themes may style these actors without replacing replay browsing logic.
+	Actor* themedActors[] = {&m_Backdrop, &m_Title, &m_List, &m_Help};
+	for(Actor* actor: themedActors)
+		ActorUtil::LoadAllCommands(*actor, m_sName);
 	SortByDrawOrder();
 	Refresh();
 }

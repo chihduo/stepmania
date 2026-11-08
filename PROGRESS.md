@@ -618,10 +618,29 @@ The user authorizes implementing the random-per-screen policy and asks for five 
 - [x] Inspect native theme fallback, layout, replay entry points, and isolated rendering tools.
 - [x] Record implementation/artwork plan.
 - [x] Generate and inspect five instrument scenes; extend the pool, gallery, and provenance; commit.
-- [ ] Implement the native theme and stable per-screen random artwork.
-- [ ] Verify Lua behavior, actual layouts, gameplay/replay stability, and fallback compatibility.
-- [ ] Document installation and validation limits; commit the finished change.
+- [x] Implement the native theme and stable per-screen random artwork.
+- [x] Verify Lua behavior, actual layouts, gameplay/replay stability, and fallback compatibility.
+- [x] Document installation and validation limits; commit the finished change.
 
 Artwork checkpoint: added piano duet, drum circle, violin serenade, flute practice, and saxophone swing. Each scene has two or three recognizable characters. All five PNGs retain generator bytes and real alpha; the gallery now has fourteen candidates and eleven cutouts. Title/selection use all five additions; calm scenes also enter gameplay/replay pools, and drums/saxophone enter evaluation. Random per screen is the preview default. Exact prompts, source hashes, character counts, and composition notes are recorded.
 
 Focused Chrome checks pass for all curated pools, no immediate repeats, stable active-screen/gameplay choices, manual and recommended modes, query links, and all image decoding. No missing sample glyphs or runtime errors. Cream/checkerboard renders were inspected; captured evidence is under ignored `out/chiikawa-preview-v5/`. Native implementation follows this artwork checkpoint.
+
+Native implementation completed in `Themes/chiikawa`, inheriting `default`. Eleven transparent paired/group cutouts use the same curated pools as the gallery. A private random stream avoids consuming/reseeding gameplay randomness and excludes the previous choice per screen category. Selection happens in each screen underlay's `OnCommand`, including cached title re-entry; constructing/preloading actors does not select. Rate changes, wheel movement, gameplay pause, and replay pause/resume/restart leave the texture alone. Returning to an existing browser preserves its illustration; reopening the browser selects again.
+
+Added cream/pastel title and shared menu backgrounds with three rotating original texture layers and nine slowly drifting particles, controlled by `FancyUIBG`. Characters remain static. Original fonts, notes/receptors, judgments/effects, gameplay media, graph, score and replay behavior are inherited. Gameplay decoration uses the empty side for P1/P2 and is omitted for two-player, centered, double/shared, demonstration and wider-column fields. Single-song evaluation uses the unused grade area. The graph's evaluation labels become dark for cream-background contrast while retaining 80% opacity; line/fill opacity and gameplay labels remain inherited.
+
+The replay browser had a hardcoded opaque backdrop and unnamed widgets. Nine added C++ lines name its four actors and load optional theme commands after their defaults. The Chiikawa theme uses those commands for a readable cream browser with art beside the list. Native inspection confirms the original default browser keeps its original dark centered layout. Pushed browsers own their backdrop; the shared background does not change when pushing a screen.
+
+Validation:
+
+- Linux Debug build passed with the existing local CMake toolchain. Only existing deprecated `std::binary_function` warnings were emitted for the compiled translation unit.
+- `src/tests/test_chiikawa_theme.lua` passes eligible choices, no immediate repeat, coverage of all pool entries, deterministic private seeds, empty/single-item pools, gameplay RNG isolation, no preload selection, entry/message lifecycle, P1/P2 clearance at both ratios, and crowded-layout suppression. Existing life-history tests also pass.
+- Isolated native rendering at 1280×720 and 1024×768 covers title, selection, gameplay, evaluation and replay, plus P2-only and centered gameplay. Cached title returns choose again. Shift+arrow rate/reset and native gameplay pause preserve artwork; the rate display persists and the graph stays beneath notes. Native P2 evaluation puts art in the unused left grade area.
+- Replay pause/resume/restart and return preserve the appropriate artwork. Profile, replay and upload hashes match before/after viewing. Closing/reopening the browser changes its choice. Motion-off captures are identical in the background/art region; motion-on captures advance.
+- All fourteen active illustrations decode, have at least two inspected characters, and retain source hashes. All thirteen native PNGs (eleven cutouts and two original motion textures) match their preview sources byte-for-byte. Gallery/native pools match. All 170 checked local document/gallery links resolve; Lua/JavaScript syntax and diff whitespace pass. Retained native logs have no Lua, broken-reference, or missing-texture errors.
+- Browser policy tests passed in the artwork checkpoint. Final documentation-only gallery text changes pass syntax and local-link checks. Authentic unedited native screenshots are saved in `Docs/theme-preview/chiikawa/native/`; detailed logs, captures and test summaries remain under ignored `out/chiikawa-native/`.
+
+Plan checkpoint: `ce573e07ab`. Artwork checkpoint: `b752db6a95`. Final implementation checkpoint: `feat: add Chiikawa theme with random screen artwork [skip ci]`. The guide documents selecting the theme and retaining `default`/`_fallback`, along with Lua customization. Existing install rules already include the entire Themes tree.
+
+Limits: native checks use Linux software OpenGL and null audio; this build cannot verify audible OGG/media behavior, video synchronization, Windows x64 rendering, physical controllers or unusual song scripts. Two-player/double/wider-column suppression is covered by Lua checks; centered and P2-only layouts were additionally rendered. Windows verification remains pending for the next requested Windows build. No Windows ZIP or remote push was performed for this revision.

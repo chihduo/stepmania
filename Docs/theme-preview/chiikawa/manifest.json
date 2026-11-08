@@ -400,7 +400,7 @@
       "inspection": "Usagi leans back playing a curved saxophone beside dancing Chiikawa; opposing leans and unequal heights, two decorative music notes. True alpha verified; accepted for gallery and native layout inspection."
     }
   ],
-  "updated_utc": "2026-11-08T10:11:32.840574+00:00",
+  "updated_utc": "2026-11-08T10:31:59.353343+00:00",
   "initial_preview_checks": {
     "image_decode": "pass: all four PNGs",
     "original_bytes": "pass: SHA-256 matches copied generator outputs",
@@ -595,5 +595,39 @@
     },
     "visual_review": "New instrument scenes rendered over cream; checkerboard confirms clean alpha. Original typography and sprites retained.",
     "limitations": "Browser concepts use sample data. Native theme verification is tracked separately."
+  },
+  "native_theme": {
+    "path": "Themes/chiikawa",
+    "cutouts": 11,
+    "motion_textures": "2 unchanged original-theme copies",
+    "pool_mapping": "artwork-pools.json",
+    "build": "Linux Debug build passed",
+    "selection_test": "src/tests/test_chiikawa_theme.lua passed",
+    "graph_regression": "src/tests/test_life_history.lua passed",
+    "rendering": "Native 16:9/4:3 title, selection, gameplay, evaluation and replay; P2-only and centered layouts inspected",
+    "replay": {
+      "initial_browser": [
+        "replay",
+        "12-acoustic-duet"
+      ],
+      "replay_gameplay_art": [
+        "game",
+        "11-listening-together"
+      ],
+      "reentered_browser": [
+        "replay",
+        "14-piano-duet"
+      ],
+      "pause_resume_restart_stable": true,
+      "history_unchanged": true
+    },
+    "motion_and_fallback": {
+      "motion_disabled_static": true,
+      "motion_enabled_advances": true,
+      "cached_title_reentry_changes_art": true,
+      "default_theme_no_decorations": true
+    },
+    "captures": "native/README.md",
+    "limits": "Windows x64, audible audio/video synchronization, controller input and unusual song scripts remain manual verification on the next build."
   }
 }
