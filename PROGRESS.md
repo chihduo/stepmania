@@ -524,3 +524,16 @@ Local checkpoints: `17115d3d9a` (plan), `d73c53afbf` (validated journal), `b2153
 Changed the README title to **StepMania 6** and retained attribution as a community fork of StepMania 5.1. Expanded record/replay into a main section, linked from the introduction, covering Save Replays, F10 access, playback controls, recorded speed/results, completed/failed/aborted plays, file storage, and normal original-score behavior. The existing authentic screenshot and detailed guide are linked from the section.
 
 Validation: the requested title and single record/replay heading are present, all local README links and the new section anchor resolve, images have alt text, and `git diff --check` passes. This documentation-only checkpoint does not change executable branding or gameplay. No build, ZIP, or remote push was performed.
+
+
+## Follow-up: Chiikawa artwork preview
+
+The user requests an artwork plan plus AI-generated images in a preview folder, and confirms recognizable Chiikawa characters with a warm cream/pink/mint/sky-blue palette. The imagegen skill's built-in generation path is selected. No artwork was generated before the user answered the character/palette questions.
+
+- [x] Confirm the visual direction and inspect current theme constraints.
+- [x] Write `Docs/theme-preview/chiikawa/ARTWORK_PLAN.md`.
+- [ ] Generate and inspect four standalone illustrations.
+- [ ] Add the preview gallery, exact prompts, provenance, and asset checks.
+- [ ] Commit the completed preview package.
+
+This stage prepares artwork for review; the current game theme remains unchanged.

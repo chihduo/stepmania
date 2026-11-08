@@ -182,3 +182,8 @@ Completed: implemented single-player recording and playback with the live-rate t
 Use **StepMania 6** as the README title while retaining the StepMania 5.1 community-fork attribution. Make record/replay a main README section with recording setup, F10 entry points, viewer controls, saved-file location, original-score behavior, and the existing screenshot/guide. Validate local links and whitespace, update the progress record, and commit this documentation checkpoint.
 
 Completed: updated the title and main record/replay section, validated README links/formatting, and recorded the documentation checkpoint in `PROGRESS.md`.
+
+
+## Follow-up: Chiikawa artwork preview
+
+Create a reviewable artwork plan and four AI-generated interface decoration previews using recognizable Chiikawa, Hachiware, and Usagi with warm cream, pastel pink, mint, and sky blue. The user confirmed characters and palette after requesting explicit questions in chat. Store the plan, exact prompts, preview gallery, images, and inspection metadata in `Docs/theme-preview/chiikawa/`. Preserve the current playable theme during this preview stage. Follow the detailed plan in that folder and commit at the plan and completed-preview checkpoints.
