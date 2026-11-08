@@ -555,3 +555,10 @@ The main release snapshot is committed as `feat: promote finished Chiikawa theme
 Prepared the local rename from `5_1-new` to `main` and updated active README, build/clone links, contributor instructions and the branch workflow. Verified GitHub administrator permission, that `main` is unused, and that no open repository pull requests or branch-specific CI filters need adjustment. The remote published tip is `0e53193abf`; newer local theme work remains unpublished. GitHub renamed the default branch successfully and still points to exactly `0e53193abfb663a0efdb9c99818bd06b644e6df4`. The old remote branch name is absent. Local `main` now tracks `fork/main`, and `fork/HEAD` resolves to `fork/main`; the stale old tracking ref was removed.
 
 Updated the badge, workflow filters in README URLs, clone command, contributor policy and active branch-promotion instructions. The Actions workflow itself already applies to all branches. Historical progress entries retain their original names. No gameplay code or assets changed, and no pending local theme commits were pushed. The feature worktree receives these documentation changes through a normal merge of `main`.
+
+
+## Movie-background gameplay preview
+
+The release preview uses the native 1280×720 gameplay capture with the silent dancing-trio movie, original notes/judgments, life graph and persistent 1.1x display. It matches the original `out/chiikawa-movie/gameplay-rate-wide.png` byte-for-byte, with SHA-256 `a49840da22b495df18a8ad63c2ceebf0dd39eab8471ca3ad4175768e860b9184`. Visual review and all 15 released media hashes pass. Added an adjacent caption and direct 30-second MP4 link to `Docs/theme-preview/chiikawa/native/README.md`.
+
+This publication includes the prepared final movie/theme release and the `main` branch documentation updates. Development originals remain on `feature/chiikawa-theme`. The GitHub page previously pointed to the older capture because the release commits were still local. The final source-side publication verification is recorded in the feature progress journal. All commits use `[skip ci]`; no Windows ZIP is requested.

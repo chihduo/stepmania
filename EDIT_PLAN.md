@@ -201,3 +201,8 @@ Rename the local and GitHub default branch from `5_1-new` to `main`, preserving 
 
 
 Completed: GitHub and local branch names are `main`, the remote commit is unchanged, tracking and fork HEAD point to `fork/main`, and active branch references are updated. The pending theme release remains local. Feature-worktree synchronization follows this documentation checkpoint.
+
+
+## Publish the movie-background gameplay preview
+
+Publish the completed native gameplay capture and its adjacent silent-movie link on `main`, using the already prepared theme release. Preserve the exact captured pixels and existing provenance. Publish the feature branch first to retain development sources separately, then verify the README, screenshot and MP4 on GitHub. No new game build is needed for the preview update.

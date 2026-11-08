@@ -104,3 +104,6 @@ Completed: concatenated and verified all three uploads into the silent 30-second
 ## Publish the movie-background gameplay capture
 
 Use the existing authentic native movie-background screenshot, preserving its pixels and provenance. Add a movie link beside it, promote the finished preview documentation to main, publish the development branch before the release branch, and verify the image/document/movie blobs on GitHub. Keep the experiment package on the feature branch. No Windows ZIP is requested.
+
+
+Completed: published the movie-background capture and adjacent MP4 link on `main`, verified all three remote blobs against the local release, and synchronized the feature baseline while preserving its source package.
