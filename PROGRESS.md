@@ -695,3 +695,13 @@ Saved `ddr-trio-keyframe-v2.png` (1671×941) using the built-in image-edit tool.
 The revised 8-second movie prompt specifies left/right stepping, short runs across the rear/up and front/down panels, a two-foot jump and rebound, and one complete 360-degree spin returning to center. The README directs replacing both frame inputs with v2. Original image and image prompt are unchanged; the old movie prompt is archived as `movie-prompt-v1.txt` and the manifest retains its provenance.
 
 Validation: both PNGs decode and match their recorded dimensions/hashes; all package links and prompt/reference paths resolve; archived content matches the previous commit byte-for-byte; `git diff --check` passes. The edited reference is a still image, and the next generated movie's choreography/loop remain unverified. Checkpoint: `art: center DDR trio and expand dance choreography [skip ci]`. No runtime theme or executable changes, ZIP or remote push.
+
+## Follow-up: supplied dance movies and silent gameplay fallback
+
+- [x] Probe all three uploaded clips: H.264 High, yuv420p, 1280×720, 24 fps, 240 frames each; AAC audio extends each container by about 27 ms.
+- [x] Inspect endpoint frames: the same centered trio composition is retained, with only small encoding/render differences. Direct cuts preserve the full 30-second sequence without adding crossfade ghosting.
+- [ ] Assemble a video-only MP4, extract the poster and record reproducible provenance.
+- [ ] Integrate the fallback movie, static poster and cutout suppression.
+- [ ] Verify media and native gameplay behavior, refresh documentation/capture and commit.
+
+The existing Linux layout-test executable was built without FFmpeg. Actual in-engine movie verification requires a decoder-enabled test build; Windows packaging is not part of this request.
