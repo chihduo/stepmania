@@ -12,6 +12,8 @@ Theme work belongs on `feature/chiikawa-theme`; `5_1-new` receives finished runt
 
 The original history remains available below and in Git. Engine changes unrelated to the theme continue on `5_1-new`.
 
+Completed: preserved the development package, created and verified the main release snapshot, documented selective promotion and reconciled the shared baseline. Continue theme work here and update these dedicated journals at checkpoints.
+
 ## Earlier theme plan
 
 ### Chiikawa artwork preview

@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "theme_source_commit": "a74362c422",
+  "development_branch": "feature/chiikawa-theme",
+  "development_directory": "Docs/theme-preview/chiikawa",
+  "runtime_assets": [
+    {
+      "file": "Themes/chiikawa/Art/01-character-trio.png",
+      "sha256": "77f6d26ced15a72ece8a1a04beffa6c5aa62a9f96b7632acea43d8ca2c95124e",
+      "bytes": 1403048,
+      "source_output": "exec-a74469e5-1fda-4b56-a6a4-17603976a415.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware",
+        "Usagi"
+      ],
+      "character_count": 3,
+      "development_source": "Docs/theme-preview/chiikawa/images/01-character-trio.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/01-character-trio.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/04-results-replay.png",
+      "sha256": "f8afc65ea2e3bb89db04b25a95887e067374df9f281a62d03ac716e947eceb03",
+      "bytes": 1490869,
+      "source_output": "exec-701d74e0-b585-42ad-8ce1-89409bfce29d.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware",
+        "Usagi"
+      ],
+      "character_count": 3,
+      "development_source": "Docs/theme-preview/chiikawa/images/04-results-replay.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/04-results-replay.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/10-rest.png",
+      "sha256": "824da3c9fbb291603cf8dcdf30052b9dcdb67eef3aaedff6608671b4130964a9",
+      "bytes": 1395956,
+      "source_output": "exec-56b55123-68b5-45f7-aff4-f6d486b4671d.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/10-rest.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/10-rest.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/11-listening-together.png",
+      "sha256": "4987d301b8495e1d551cfc328752a5705a20cb1cf3aca7eab056d3973d81219a",
+      "bytes": 1275244,
+      "source_output": "exec-2f3619f7-0666-407e-8d9b-681a74b7d8d1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/11-listening-together.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/11-listening-together.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/12-acoustic-duet.png",
+      "sha256": "30112d96c00a20253fddf5538d61759fa22bd3974d0a44b015ea6fbd5e780613",
+      "bytes": 1391759,
+      "source_output": "exec-9e7b0fb3-6612-4d42-9edf-0be71acbde88.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Hachiware",
+        "Usagi"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/12-acoustic-duet.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/12-acoustic-duet.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/13-shared-jump.png",
+      "sha256": "300d616237b79da1fcb185cdb64946958d87128919be57f93a81de95d685540a",
+      "bytes": 1269429,
+      "source_output": "exec-afae3eaf-c36f-4eb6-be98-f1ff9a3a0613.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Usagi"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/13-shared-jump.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/13-shared-jump.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/14-piano-duet.png",
+      "sha256": "f6a8f90bea80335d4c4ef8fa3f553d9101af4dc6ab2899d965f0aeb742ca7bc2",
+      "bytes": 1490426,
+      "source_output": "exec-7823d6e1-cba0-437f-8964-cf4b0e6a6b35.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/14-piano-duet.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/14-piano-duet.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/15-drum-circle.png",
+      "sha256": "5499dd961af73668bc6547f219e6aaf7ee5fafaf75068ac7c84f43a0573df6d0",
+      "bytes": 1602892,
+      "source_output": "exec-83bccd42-4af4-4301-b87c-5745c4617f7b.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware",
+        "Usagi"
+      ],
+      "character_count": 3,
+      "development_source": "Docs/theme-preview/chiikawa/images/15-drum-circle.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/15-drum-circle.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/16-violin-serenade.png",
+      "sha256": "de306f25a1c7c02dbc2cc351a7be110080bf4beb23a733b0a57c99b88e08d86d",
+      "bytes": 1434868,
+      "source_output": "exec-d3dcbd43-2aea-496c-83b4-07fd1b788dff.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/16-violin-serenade.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/16-violin-serenade.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/17-flute-practice.png",
+      "sha256": "29e81ae5e3c23c781b9b9dcbf1e5f30017bb68154e35da73f6d0d2b346d53622",
+      "bytes": 1451765,
+      "source_output": "exec-e1445b40-08c8-4d9a-a067-231744318f2e.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Hachiware"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/17-flute-practice.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/17-flute-practice.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/18-saxophone-swing.png",
+      "sha256": "ce0d859bfa438d3bf937fe164530047c9ffad1534ecdaec75b40cf0f00f11a25",
+      "bytes": 1403072,
+      "source_output": "exec-7c154bc0-d4e2-488a-ad3c-ea5171666123.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "characters": [
+        "Chiikawa",
+        "Usagi"
+      ],
+      "character_count": 2,
+      "development_source": "Docs/theme-preview/chiikawa/images/18-saxophone-swing.png",
+      "development_prompt": "Docs/theme-preview/chiikawa/prompts/18-saxophone-swing.txt"
+    },
+    {
+      "file": "Themes/chiikawa/Art/menu-particle.png",
+      "sha256": "951a73f2bd8f1a827cfe8126e253974e409df1ecca4e38de790e73bb9b5a55eb",
+      "bytes": 1868,
+      "origin": "Unmodified original-theme texture; mapping retained in feature branch Docs/theme-preview/chiikawa/original-theme/sources.json"
+    },
+    {
+      "file": "Themes/chiikawa/Art/menu-tunnel.png",
+      "sha256": "2d2fa528516b1e71aae930aad0e252456c1c4cc7c86fcc6cd6695c8d5a8bd620",
+      "bytes": 11287,
+      "origin": "Unmodified original-theme texture; mapping retained in feature branch Docs/theme-preview/chiikawa/original-theme/sources.json"
+    },
+    {
+      "file": "Themes/chiikawa/Graphics/Common fallback background.png",
+      "sha256": "a9b7c4ac1f6450563c518721c18bf7c58bffbee02107af388fc343db210b6a71",
+      "bytes": 1396069,
+      "origin": "First decoded frame of Movies/ddr-trio-loop.mp4"
+    },
+    {
+      "file": "Themes/chiikawa/Movies/ddr-trio-loop.mp4",
+      "sha256": "834c30dcb6ef78976b9eb1da80e7ffb3cdf80d094b069e872a1ce6e0e666f08c",
+      "bytes": 12452076,
+      "origin": "Three externally generated user clips concatenated without re-encoding; audio removed"
+    }
+  ],
+  "movie": {
+    "file": "Themes/chiikawa/Movies/ddr-trio-loop.mp4",
+    "sha256": "834c30dcb6ef78976b9eb1da80e7ffb3cdf80d094b069e872a1ce6e0e666f08c",
+    "bytes": 12452076,
+    "duration_seconds": 30,
+    "frames": 720,
+    "fps": 24,
+    "size": [
+      1280,
+      720
+    ],
+    "codec": "h264",
+    "profile": "High",
+    "pixel_format": "yuv420p",
+    "audio_streams": 0
+  },
+  "movie_sources_in_playback_order": [
+    {
+      "file": "Characters_dancing_on_DDR_pads_67d4dfe6.mp4",
+      "sha256": "fe994242d6d470d0a4b90a611e2f9e484cfcae0f626afef867dcf6d059caf7b8",
+      "video_seconds": 10,
+      "video_frames": 240,
+      "audio_streams": 1
+    },
+    {
+      "file": "Characters_dancing_on_DDR_pads_9e35d8f4.mp4",
+      "sha256": "e0c3d48db2fe34e016fa1af47a12f771d7901655855b1da816ba33e5d25b52d6",
+      "video_seconds": 10,
+      "video_frames": 240,
+      "audio_streams": 1
+    },
+    {
+      "file": "Characters_dancing_on_DDR_pads_d0d6f534.mp4",
+      "sha256": "9cba9c34fdb5e11b01f5ad2f0c1a42ea02c1c963a3c83ec6bfcad9edd9d36115",
+      "video_seconds": 10,
+      "video_frames": 240,
+      "audio_streams": 1
+    }
+  ],
+  "verification": "All 720 movie frames match the input sequence; no audio. Native Linux playback, looping, live speed, pause/resume and replay verified; Windows and audible synchronization not yet verified."
+}

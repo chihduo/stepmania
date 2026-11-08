@@ -4,10 +4,18 @@
 
 - [x] Verify the remote default branch is `5_1-new`, currently published at `0e53193abf`.
 - [x] Preserve the full latest tree at `a74362c422` on `feature/chiikawa-theme` and create the separate development worktree.
-- [ ] Prepare and validate the finished-results snapshot on the main branch.
-- [ ] Commit the release snapshot and reconcile the feature baseline without losing its sources.
+- [x] Prepare and validate the finished-results snapshot on the main branch.
+- [x] Commit the release snapshot and reconcile the feature baseline without losing its sources.
 
 The six movie-related commits after the published tip are retained on this branch. Published history will remain intact. Raw inputs and trial artwork are removed only from the main branch's current tree; they remain here and in existing Git history.
+
+Completed: `5_1-new` now points to release commit `7ba3066551`, whose parent is the unchanged published tip `0e53193abf`. It contains the finished movie, poster, theme behavior, required hooks/tests, user guides, native screenshots, asset manifest and branch workflow. Its current tree omits development-only assets; the six original movie commits remain on this feature branch.
+
+Release validation passed both focused Lua checks, byte-for-byte runtime/source equivalence with `a74362c422`, all 15 runtime media hashes and original clip hashes, native screenshot preservation, 71 local document links and diff whitespace checks. The original development package is retained unchanged while reconciling the new main baseline. The main root plan/progress files are now concise release records; these feature-only files retain the complete theme journals.
+
+Baseline validation: all 78 files from the original development package at `a74362c422` remain byte-identical. Runtime theme, shared/default-theme source and tests match main exactly; no merge conflicts remain. All 153 local links in the feature-worktree documentation resolve.
+
+Future engine updates can be merged from `5_1-new` into this feature branch normally. Promote only reviewed runtime/doc paths back to main as described in `Docs/ChiikawaDevelopment.md`. The worktrees are `/home/codex/stepmania` (main) and `/home/codex/stepmania-chiikawa` (theme development). No remote push or ZIP was performed.
 
 ## Earlier theme progress
 

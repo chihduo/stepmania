@@ -23,13 +23,13 @@ The selected decoration stays fixed while that screen is open. Moving the song w
 | Single-song evaluation | Celebration trio, Shared jump, Drum circle, Saxophone swing |
 | Replay browser | Resting pair, Listening together, Acoustic duet, Piano duet, Violin serenade, Flute practice |
 
-All eleven cutouts contain at least two recognizable characters. The five latest additions feature **piano, drums, violin, flute, and saxophone** with different poses and compositions. [Preview all artwork](../../Docs/theme-preview/chiikawa/index.html) or [open the image folder](../../Docs/theme-preview/chiikawa/images).
+All eleven cutouts contain at least two recognizable characters. The five latest additions feature **piano, drums, violin, flute, and saxophone** with different poses and compositions. [View the included artwork](Art/README.md) or [see the native screens](../../Docs/theme-preview/chiikawa/native/README.md).
 
 Gameplay cutouts are omitted for songs without a background image, since the fallback movie/poster already contains the trio. Other gameplay art uses the empty side of a one-player, non-centered, one-side field with at most four columns. It moves left for P2, above the life graph and clear of the life bar. Two-player, centered, double/shared-side, wider-column, and demonstration fields omit characters. Single-song evaluation uses the unused grade area; course/summary layouts keep their inherited presentation.
 
 ## Dancing-trio gameplay background
 
-When a song has no background image, the theme can use a **30-second silent loop** of Chiikawa, Hachiware and Usagi dancing on DDR pads. It combines the three supplied clips in order, without re-encoding, at 1280×720 and 24 fps. [Preview the MP4](Movies/ddr-trio-loop.mp4) or see the [source clips and assembly recipe](../../Docs/theme-preview/chiikawa/dance-movie/README.md).
+When a song has no background image, the theme can use a **30-second silent loop** of Chiikawa, Hachiware and Usagi dancing on DDR pads. It combines the three supplied clips in order, without re-encoding, at 1280×720 and 24 fps. [Preview the MP4](Movies/ddr-trio-loop.mp4) or see the [development branch](../../Docs/ChiikawaDevelopment.md) for source clips and the assembly recipe.
 
 The movie uses the normal gameplay background pipeline, beneath the notes, judgments and life-history graph. It loops, follows live speed changes and pause/resume, and also appears in replays. The existing background-brightness setting controls its visibility; the preview uses 45%. Choreography is decorative and does not match every chart's steps or beat.
 
@@ -45,9 +45,9 @@ To add this movie to an existing portable installation, close the game and copy 
 - [metrics.ini](metrics.ini) sets `Background/FallbackMovie` to the MP4 path. Set it to `""` to keep the poster for all missing-art songs; an absent movie file also falls back to the poster. [BackgroundEffects/StretchNormal.lua](../../BackgroundEffects/StretchNormal.lua) applies this optional metric while retaining the normal music clock and focus handlers.
 - [metrics.ini](metrics.ini) styles the replay browser through `ReplayBackdrop`, `ReplayTitle`, `ReplayList`, and `ReplayHelp` commands. Original themes need no new metrics.
 - [Graphics/LifeHistory graph.lua](Graphics/LifeHistory%20graph.lua) only darkens evaluation labels for cream backgrounds. Their 80% opacity and the graph's original line/fill opacity remain intact.
-- The browser gallery's Recommended/Manual controls are comparison tools. The playable theme always uses random per screen. Keep gallery and Lua pools in sync with [artwork-pools.json](../../Docs/theme-preview/chiikawa/artwork-pools.json).
+- The playable theme uses random per screen. Its documented pools are in [artwork-pools.json](../../Docs/theme-preview/chiikawa/artwork-pools.json).
 
-Generated PNGs are copied unchanged from the preview package. [Exact prompts and provenance](../../Docs/theme-preview/chiikawa/PROMPTS.md) identify the source outputs, characters, and hashes. The two menu textures are unchanged copies of the original theme. These illustrations are AI-generated fan artwork, not official Chiikawa artwork.
+The [released asset manifest](../../Docs/theme-preview/chiikawa/release-manifest.json) records hashes and source attribution. Exact prompts, source outputs, alternatives and assembly scripts are retained on the [development branch](../../Docs/ChiikawaDevelopment.md). The two menu textures are unchanged copies of the original theme. These illustrations are AI-generated fan artwork, not official Chiikawa artwork.
 
 ## Verification
 

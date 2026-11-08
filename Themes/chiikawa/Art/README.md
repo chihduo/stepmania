@@ -1,7 +1,23 @@
-# Artwork sources
+# Included Chiikawa artwork
 
-The eleven character PNGs are byte-for-byte copies from `Docs/theme-preview/chiikawa/images/`. That package records exact prompts, generator-output filenames, character counts and SHA-256 hashes in `manifest.json`. Each cutout contains at least two characters. Rejected solos and vertical peekers are excluded.
+The eleven character cutouts below are the finished illustrations used by the theme. Each contains at least two recognizable characters and retains the generated source pixels.
 
-`menu-tunnel.png` and `menu-particle.png` are unchanged copies from the preview package's `original-theme/` folder; `sources.json` there identifies the original default-theme files and hashes. Lua applies colors and transforms during rendering.
+| Illustration | Preview |
+| --- | --- |
+| Welcoming trio | [01-character-trio.png](01-character-trio.png) |
+| Celebration trio | [04-results-replay.png](04-results-replay.png) |
+| Resting pair | [10-rest.png](10-rest.png) |
+| Listening together | [11-listening-together.png](11-listening-together.png) |
+| Acoustic duet | [12-acoustic-duet.png](12-acoustic-duet.png) |
+| Shared jump | [13-shared-jump.png](13-shared-jump.png) |
+| Piano duet | [14-piano-duet.png](14-piano-duet.png) |
+| Drum circle | [15-drum-circle.png](15-drum-circle.png) |
+| Violin serenade | [16-violin-serenade.png](16-violin-serenade.png) |
+| Flute practice | [17-flute-practice.png](17-flute-practice.png) |
+| Saxophone swing | [18-saxophone-swing.png](18-saxophone-swing.png) |
 
-These character illustrations are AI-generated fan artwork, not official Chiikawa artwork. Fonts, noteskin and judgment graphics are inherited from the default theme, not regenerated.
+[The release manifest](../../../Docs/theme-preview/chiikawa/release-manifest.json) records each asset's SHA-256, source-output identifier and characters. Exact prompts, original images, the comparison gallery and retired-candidate history remain on the [development branch](../../../Docs/ChiikawaDevelopment.md).
+
+`menu-tunnel.png` and `menu-particle.png` are unchanged original-theme textures. Lua applies colors and transforms during rendering. Their source files are recorded in the manifest.
+
+These illustrations are AI-generated fan artwork, not official Chiikawa artwork. Fonts, noteskin and judgment graphics are inherited from the default theme.
