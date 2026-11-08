@@ -644,3 +644,23 @@ Validation:
 Plan checkpoint: `ce573e07ab`. Artwork checkpoint: `b752db6a95`. Final implementation checkpoint: `feat: add Chiikawa theme with random screen artwork [skip ci]`. The guide documents selecting the theme and retaining `default`/`_fallback`, along with Lua customization. Existing install rules already include the entire Themes tree.
 
 Limits: native checks use Linux software OpenGL and null audio; this build cannot verify audible OGG/media behavior, video synchronization, Windows x64 rendering, physical controllers or unusual song scripts. Two-player/double/wider-column suppression is covered by Lua checks; centered and P2-only layouts were additionally rendered. Windows verification remains pending for the next requested Windows build. No Windows ZIP or remote push was performed for this revision.
+
+
+## Follow-up: black panel on song selection
+
+Traced the reported screenshot panel to the default theme's unused P2 difficulty frame. The direct-screen capture path sets a temporary versus style in `ScreenSelectMusic::Init`; the pane's `IsHumanPlayer` test happens before `BeginScreen` selects compatible single-player styles. This is a stale visibility decision, not a missing graphic. Both inherited panes now use joined sides and refresh visibility on entry/join/leave while preserving active-player information, colors and animations.
+
+- [x] Identify the actor and startup-state cause.
+- [x] Correct both inherited player-pane visibility lifecycles.
+- [x] Verify native layouts/joins and replace the screenshot.
+- [x] Record validation and commit the correction.
+
+Validation in the isolated Linux native fixture:
+
+- Direct P1 song-selection startup at 1280×720 and 1024×768 hides the unused P2 pane. Joining P2 restores both populated difficulty/statistics panels at both sizes.
+- Normal title → mode → music navigation works for P1-only and P2-only at 1280×720. Joining P1 from P2-only restores the left chart panel.
+- The original default theme also hides the unused P2 panel on direct startup, confirming the shared decoration correction works outside Chiikawa.
+- No theme runtime or missing-reference errors occurred in the retained engine logs. The former panel interior's neutral dark pixels dropped from 28,196 to zero in the replacement native screenshot.
+- Updated `Docs/theme-preview/chiikawa/native/selection.png` with an unedited capture reached through normal P1 navigation. Native captures/logs are retained in ignored `out/chiikawa-pane-fix/`; `git diff --check` passed.
+
+Checkpoint: `fix: hide inactive song-selection difficulty panes [skip ci]`. This is a Lua-only correction; no executable rebuild or ZIP is needed. Windows rendering remains untested by this Linux verification.

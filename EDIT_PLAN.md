@@ -227,3 +227,12 @@ Add cream/pastel menu backgrounds with the original-style optional animation, an
 Checkpoints: commit this plan; commit inspected artwork and updated pools; implement the native theme, verify Lua and actual rendered screens in the isolated fixture, document installation and limits, and commit the completed feature. Test random selection stability and no repeats, valid assets, cached screen returns, 16:9/4:3, P1/P2 and crowded layouts, motion off/on, gameplay speed/pause, and replay return. No Windows ZIP or remote push is requested.
 
 Completed: added the selectable inherited Chiikawa theme, five new instrument scenes, stable random selection in screen underlays, optional menu motion, and minimal replay-browser styling hooks. Native Linux rendering and focused selection/graph/replay checks passed; screenshots, installation guidance and Windows/audio/video limits are recorded in the theme guide and `PROGRESS.md`.
+
+
+## Follow-up: inactive selection panel
+
+The native Chiikawa song-selection screenshot shows a black/gray unused P2 difficulty panel. Direct `TestInitialScreen=ScreenSelectMusic` startup temporarily sets a versus style before loading decorations, so their initialization-time `IsHumanPlayer` check treats both sides as active. `BeginScreen` then selects a single-player style, leaving the unused backdrop visible.
+
+Make each inherited difficulty pane use actual joined-side state, refresh visibility on screen entry, and hide when its player leaves. Keep the existing joined-player chart data and animations. Verify direct entry, ordinary title-to-selection navigation, P1-only, P2-only and a second player joining at 16:9/4:3. Refresh the native selection screenshot, record checks and commit this focused Lua correction. No executable rebuild is needed.
+
+Completed: both panes now follow joined-player state on initialization, screen entry, join and leave. Native checks passed for direct entry at 16:9/4:3, normal P1-only and P2-only navigation, late joins with populated chart details, and the original default theme. Replaced the selection preview with an unedited capture from normal P1 navigation.

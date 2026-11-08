@@ -4,7 +4,7 @@ These are actual StepMania screens rendered on Linux on 2026-11-08, separate fro
 
 ![Title with the flute-practice illustration](title.png)
 
-![Song selection with an acoustic duet clear of the banner and song wheel](selection.png)
+![P1 song selection with a flute duet and the unused P2 difficulty pane hidden](selection.png)
 
 ![Gameplay with original notes, judgment, graph and persistent speed display](gameplay.png)
 
@@ -14,4 +14,4 @@ These are actual StepMania screens rendered on Linux on 2026-11-08, separate fro
 
 The screenshots are unedited native captures. Random choices differ on future visits. The playable theme inherits the original functional panels, notes, fonts, and judgments. Windows x64, physical controller input, and audible media synchronization need checking on the next Windows build; these captures do not verify them.
 
-[Install and customize the theme](../../../../Themes/chiikawa/README.md). Extended native captures and test logs remain under ignored `out/chiikawa-native/` in the development workspace.
+[Install and customize the theme](../../../../Themes/chiikawa/README.md). Extended native captures and test logs remain under ignored `out/chiikawa-native/` in the development workspace. The selection capture was refreshed through normal title-menu navigation after correcting inactive-player pane visibility; its layout and player-join checks are under `out/chiikawa-pane-fix/`.

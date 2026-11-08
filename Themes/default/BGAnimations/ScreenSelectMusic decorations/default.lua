@@ -192,14 +192,20 @@ t[#t+1] = StandardDecorationFromFileOptional("CourseContentsList","CourseContent
 
 if not GAMESTATE:IsCourseMode() then
 
+-- Use joined sides: direct-screen startup may temporarily use a versus style.
+-- Refresh on entry as well, so cached screens cannot retain a departed pane.
 -- P1 Difficulty Pane
 t[#t+1] = Def.ActorFrame {
-		InitCommand=cmd(visible,GAMESTATE:IsHumanPlayer(PLAYER_1);horizalign,center;x,SCREEN_CENTER_X-210-32;y,SCREEN_CENTER_Y+230+10);
-		OnCommand=cmd(zoomy,0.8;diffusealpha,0;smooth,0.4;diffusealpha,1;zoomy,1);
+		Name="DifficultyPaneP1",
+		InitCommand=cmd(visible,GAMESTATE:IsSideJoined(PLAYER_1);horizalign,center;x,SCREEN_CENTER_X-210-32;y,SCREEN_CENTER_Y+230+10);
+		OnCommand=cmd(visible,GAMESTATE:IsSideJoined(PLAYER_1);zoomy,0.8;diffusealpha,0;smooth,0.4;diffusealpha,1;zoomy,1);
 		PlayerJoinedMessageCommand=function(self,param)
 			if param.Player == PLAYER_1 then
 				(cmd(visible,true;diffusealpha,0;linear,0.3;diffusealpha,1))(self);
 			end;
+		end;
+		PlayerUnjoinedMessageCommand=function(self,param)
+			if param.Player == PLAYER_1 then self:visible(false) end
 		end;
 		OffCommand=cmd(decelerate,0.3;diffusealpha,0);
 		LoadActor(THEME:GetPathG("ScreenSelectMusic", "pane background")) .. {
@@ -303,12 +309,16 @@ t[#t+1] = Def.ActorFrame {
 	
 -- P2 Difficulty Pane	
 t[#t+1] = Def.ActorFrame {
-		InitCommand=cmd(visible,GAMESTATE:IsHumanPlayer(PLAYER_2);horizalign,center;x,SCREEN_CENTER_X+210+32;y,SCREEN_CENTER_Y+230+10);
-		OnCommand=cmd(zoomy,0.8;diffusealpha,0;smooth,0.4;diffusealpha,1;zoomy,1);
+		Name="DifficultyPaneP2",
+		InitCommand=cmd(visible,GAMESTATE:IsSideJoined(PLAYER_2);horizalign,center;x,SCREEN_CENTER_X+210+32;y,SCREEN_CENTER_Y+230+10);
+		OnCommand=cmd(visible,GAMESTATE:IsSideJoined(PLAYER_2);zoomy,0.8;diffusealpha,0;smooth,0.4;diffusealpha,1;zoomy,1);
 		PlayerJoinedMessageCommand=function(self,param)
 			if param.Player == PLAYER_2 then
 				(cmd(visible,true;diffusealpha,0;linear,0.3;diffusealpha,1))(self);
 			end;
+		end;
+		PlayerUnjoinedMessageCommand=function(self,param)
+			if param.Player == PLAYER_2 then self:visible(false) end
 		end;
 		OffCommand=cmd(decelerate,0.3;diffusealpha,0);
 		LoadActor(THEME:GetPathG("ScreenSelectMusic", "pane background")) .. {
