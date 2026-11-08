@@ -1,9 +1,0 @@
-Use case: illustration-story.
-Asset type: transparent two-character Chiikawa musical vignette, "Acoustic duet".
-Reference image: use only the recognizable character identities, pastel palette, and dark hand-drawn contours. Invent an interacting scene rather than copying the lineup.
-Subject: exactly TWO recognizable characters, Hachiware and Usagi. Hachiware, the blue-and-white cat with triangular blue ears and a divided blue cap, sits on the left turned three-quarter right, strumming a small warm cream acoustic guitar across the lap. Usagi, the pale-yellow long-eared rabbit, sits on the right at a different height with one foot extended, joyfully holding a small pastel-pink tambourine angled toward Hachiware. Both look toward one another, with pink cheeks and delighted small mouths. Both faces, complete bodies, guitar and tambourine must be visible.
-Composition: landscape 3:2, an asymmetrical low duet. The guitar neck points toward the space between the two friends, Usagi's ears angle slightly outward, both wholly within frame. Leave generous transparent margins all around. Make the paired silhouettes clearly different from a standing dance and a sleeping pair.
-Style: simple flat 2D Chiikawa illustration, clean warm dark outlines, soft pastel cream/yellow, sky blue, pink and small mint accents. Simplified cartoon instruments with readable strings and a few tambourine jingles.
-Background: genuine transparent alpha, no floor, cast shadow, glow, backdrop, checkerboard, sticker edge or panel.
-Text: none; no logos, lyrics or lettering.
-Avoid: one character, a third character, cropped ears or instruments, overlapping faces, extra limbs, vertical peeking, stage scenery, gradients, photorealism, 3D.

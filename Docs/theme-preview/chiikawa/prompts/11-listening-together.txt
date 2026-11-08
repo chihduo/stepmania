@@ -1,9 +1,0 @@
-Use case: illustration-story.
-Asset type: transparent two-character Chiikawa UI decoration, "Listening together".
-Reference image: use only character identity, warm palette, and line treatment from the attached trio. Make a new composition, not a standing lineup.
-Subject: exactly TWO recognizable characters, Chiikawa and Hachiware. Chiikawa is creamy white with small round ears; Hachiware is the blue-and-white cat with triangular blue ears and the divided blue cap. Both sit close together with short feet forward, shoulders gently touching, facing slightly inward. Chiikawa in the left foreground wears sky-blue over-ear headphones and has relaxed closed eyes; Hachiware to the right and a little behind wears pastel-pink headphones and smiles with a gentle head tilt toward Chiikawa. Their hands rest on their own knees or an earcup. Preserve both characters' facial markings and blush.
-Composition: a compact low pair with unequal head heights, full bodies visible, landscape 3:2 framing and generous transparent margin. Two complete characters in ONE illustration. This is a quiet intimate listening pose, not a dance or a vertical stack. One tiny mint music note is enough.
-Style: flat 2D Chiikawa cartoon illustration, clean warm dark hand-drawn outlines, rounded familiar proportions, cream, pink, mint, sky blue; match reference line weight.
-Background: true transparent alpha. No scene, floor, shadow, glow, halo, white border, frame, or printed checkerboard.
-Text: none; no interface text, labels, symbols resembling gameplay arrows, or watermark.
-Avoid: single character, third character, cropped body, duplicate ears or hands, vertical peeking poses, uniform frontal standing lineup, realistic headphones, heavy texture, 3D.

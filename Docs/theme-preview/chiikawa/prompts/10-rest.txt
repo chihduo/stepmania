@@ -1,9 +1,0 @@
-Use case: illustration-story.
-Asset type: quiet transparent illustration for an empty replay list or a resting menu corner, variation 10 "Rest".
-Reference image: Chiikawa and Hachiware identity, recognizable markings, palette and contour treatment ONLY. Invent a different resting composition rather than repeating a dancing pose.
-Subject: ONLY Chiikawa and Hachiware, sleeping peacefully beside each other on a small soft mint oval blanket. A slightly overhead three-quarter close view shows Chiikawa curled into a small white round shape in front, tiny paws tucked under the cheek, round ears visible; Hachiware curls behind and slightly to the right, its blue cat ears, divided blue cap, white face and curved blue tail still recognizable. Their heads rest close together, eyes softly closed, mouths tiny and relaxed, light pink blush. No Usagi.
-Composition: landscape about 3:2. Two overlapping curled silhouettes form a low gentle oval, with unequal head heights and bodies lying diagonally. Show the entire blanket and both characters with about 12 percent clear padding. This must feel quiet and intimate rather than a formal lineup.
-Style: recognizable simple Chiikawa cartoon, warm dark hand-drawn outlines, flat soft cream, sky-blue and mint fills, minimal detail. The blanket has at most two simple folds. No floating music notes or stars.
-Background: genuinely transparent alpha outside the characters and blanket. No room, sky, floor, glow, ground shadow, printed checkerboard or white sticker outline.
-Text: none, including no Z letters or speech bubbles.
-Avoid: frontal standing figures, three-character groups, extra limbs, duplicate heads or ears, realistic fur, deep shading, 3D, busy props, cropped bodies.

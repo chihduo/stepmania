@@ -25,7 +25,9 @@ for i=1,100 do assert(a("title",C.Pools.title) == b("title",C.Pools.title)) end
 
 PLAYER_1,PLAYER_2 = "PlayerNumber_P1","PlayerNumber_P2"
 local humans,enabled,demo,centered,course,style,columns = {PLAYER_1},{PLAYER_1},false,false,false,"StyleType_OnePlayerOneSide",4
+local hasBackground = true
 GAMESTATE = {
+	GetCurrentSong=function() return {HasBackground=function() return hasBackground end} end,
 	GetHumanPlayers=function() return humans end,
 	GetEnabledPlayers=function() return enabled end,
 	IsDemonstration=function() return demo end,
@@ -53,6 +55,7 @@ end
 humans,enabled={PLAYER_1,PLAYER_2},{PLAYER_1,PLAYER_2}
 assert(C.Layout("game")==nil and C.Layout("result")==nil)
 humans,enabled={PLAYER_1},{PLAYER_1}
+hasBackground=false;assert(C.Layout("game")==nil);hasBackground=true
 centered=true;assert(C.Layout("game")==nil);centered=false
 style="StyleType_OnePlayerTwoSides";assert(C.Layout("game")==nil);style="StyleType_OnePlayerOneSide"
 columns=5;assert(C.Layout("game")==nil);columns=4
@@ -75,6 +78,10 @@ for _,message in ipairs({"RateChangedMessageCommand","CurrentSongChangedMessageC
 	if spec[message] then spec[message](actor) end
 end
 assert(actor.loads==1 and actor.path==first)
+hasBackground=false;spec.CurrentSongChangedMessageCommand(actor)
+assert(not actor.shown and actor.loads==1 and actor.path==first)
+hasBackground=true;spec.CurrentSongChangedMessageCommand(actor)
+assert(actor.shown and actor.loads==1 and actor.path==first)
 spec.OnCommand(actor);assert(actor.loads==2 and actor.path~=first)
 centered=true;spec.OnCommand(actor);assert(not actor.shown and actor.loads==2)
 print("Chiikawa theme: selection, RNG isolation, entry lifecycle and layout checks passed")

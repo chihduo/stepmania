@@ -183,56 +183,13 @@ Use **StepMania 6** as the README title while retaining the StepMania 5.1 commun
 
 Completed: updated the title and main record/replay section, validated README links/formatting, and recorded the documentation checkpoint in `PROGRESS.md`.
 
+## Chiikawa release and development separation
 
-## Follow-up: Chiikawa artwork preview
+Keep the finished Chiikawa theme, its required shared hooks/tests, user guides, native screenshots and asset manifest on `5_1-new`. Keep prompts, alternatives, the browser gallery, source videos, assembly scripts and detailed development journals on `feature/chiikawa-theme` in its separate worktree. Preserve published history and consolidate only the six unpublished movie commits into the current release result.
 
-Create a reviewable artwork plan and four AI-generated interface decoration previews using recognizable Chiikawa, Hachiware, and Usagi with warm cream, pastel pink, mint, and sky blue. The user confirmed characters and palette after requesting explicit questions in chat. Store the plan, exact prompts, preview gallery, images, and inspection metadata in `Docs/theme-preview/chiikawa/`. Preserve the current playable theme during this preview stage. Follow the detailed plan in that folder and commit at the plan and completed-preview checkpoints.
+Verify that all runtime files and focused tests match the tested movie revision, that final assets retain their hashes, and that release documentation has no broken local links. Document future selective promotion in `Docs/ChiikawaDevelopment.md`, commit the release snapshot, and reconcile the feature baseline while retaining its source package. No push or Windows ZIP is part of this task.
 
-
-Completed the artwork-preview stage: four generated illustrations, exact prompts and provenance, a local gallery with five screen concepts, and checks of image integrity/transparency, layout, links, and text contrast. The current theme remains unchanged. See the preview folder's plan and `PROGRESS.md` for inspection notes and the subsequent playable-theme steps.
-
-
-## Follow-up: original gameplay visuals and varied Chiikawa artwork
-
-Preserve the original theme's font atlases, noteskin arrow/receptor sprites, and judgment artwork, with optional color tint only. Correct the preview's browser-font/schematic-arrow representations by reusing actual assets. Add six varied illustration candidates (solo listening, guitar, leap, group picnic, vertical peekers, resting pair), retain the first four, and extend the gallery for comparison. Record exact prompts, provenance, inspection, and local-browser validation. Commit at plan and completed-preview checkpoints.
+The theme's detailed plans are now in `Docs/theme-preview/chiikawa/DEVELOPMENT_PLAN.md` on the feature branch.
 
 
-Completed: added six distinct illustration candidates (ten total), replaced schematic gameplay assets and browser typography with the original font/sprite artwork, added comparison controls, and updated exact prompts, provenance, and inspection notes. Verified source hashes, transparency, local references, script syntax, and five layouts at both aspect ratios. Details are in `PROGRESS.md`; the preview is ready for review before later playable-theme integration.
-
-
-## Follow-up: paired Chiikawa illustrations and animated backgrounds
-
-Remove the rejected vertical peekers and replace the three solo candidates with distinct two-character compositions. Every active illustration must show at least two recognizable characters. Retain original fonts, arrows, and judgment artwork. Inspect the default theme's Lua background animation, add a gentle animated title/menu demonstration and motion toggle to the preview, and document a native `FancyUIBG`-controlled implementation without recompiling. Validate artwork and layouts, update provenance/progress, and commit at plan/completion checkpoints.
-
-
-Completed: replaced three solo illustrations with distinct pairs, removed the rejected vertical peekers, and kept nine active multi-character candidates. Added a verified animated menu-background preview using original texture shapes, motion controls, and reduced-motion handling, plus source-linked native Lua integration notes. Verified images, character counts, original asset hashes, local links, syntax, both layout ratios, and moving/paused/resumed states.
-
-
-## Follow-up: choosing and randomizing character decorations
-
-Recommend artwork by screen purpose and add Recommended, Random, and Manual modes to the preview. Random mode chooses from a curated set once when entering each screen and avoids immediately repeating that screen's previous choice. Keep gameplay art fixed for the whole song; resizing, animation toggles, and repeated clicks on the active screen must not reroll it. Provide an explicit Show another control for preview comparison. Preserve full painted title scenes as independent choices. Document the native Lua route and commit after focused browser verification.
-
-
-Completed per-screen recommendations and random/manual gallery controls, including no immediate repeats, stable artwork during a screen visit, explicit comparison, and fixed painted scenes. Documented the eligible groups and native Lua approach; focused browser and link/syntax checks pass.
-
-
-## Follow-up: playable Chiikawa theme and five instrument illustrations
-
-Implement the agreed random-per-screen policy in a separate `Themes/chiikawa/` theme inheriting `default`. Preserve the original fonts, noteskin, judgments, gameplay scoring/speed/replay behavior, and graph placement. Choose from curated pools on visible screen entry, avoid immediate repeats, and hold the same illustration throughout gameplay, pauses, rate changes, and replay viewing. Account for cached title screens and hide decorations where two-player/centered/double layouts leave no clear space.
-
-Generate five additional transparent multi-character scenes featuring piano, drums, violin, flute, and saxophone. Keep at least two recognizable Chiikawa characters in every illustration, the warm pastel palette, and varied compositions. Save exact prompts and full-resolution outputs, extend provenance and the preview gallery, and share consistent pools between documentation, preview, and native theme.
-
-Add cream/pastel menu backgrounds with the original-style optional animation, and place randomized illustrations on title, song selection, gameplay, evaluation, and replay screens. Inherit functional actors; add minimal replay theming hooks only if the existing C++ widgets prevent integration, preserving default-theme behavior.
-
-Checkpoints: commit this plan; commit inspected artwork and updated pools; implement the native theme, verify Lua and actual rendered screens in the isolated fixture, document installation and limits, and commit the completed feature. Test random selection stability and no repeats, valid assets, cached screen returns, 16:9/4:3, P1/P2 and crowded layouts, motion off/on, gameplay speed/pause, and replay return. No Windows ZIP or remote push is requested.
-
-Completed: added the selectable inherited Chiikawa theme, five new instrument scenes, stable random selection in screen underlays, optional menu motion, and minimal replay-browser styling hooks. Native Linux rendering and focused selection/graph/replay checks passed; screenshots, installation guidance and Windows/audio/video limits are recorded in the theme guide and `PROGRESS.md`.
-
-
-## Follow-up: inactive selection panel
-
-The native Chiikawa song-selection screenshot shows a black/gray unused P2 difficulty panel. Direct `TestInitialScreen=ScreenSelectMusic` startup temporarily sets a versus style before loading decorations, so their initialization-time `IsHumanPlayer` check treats both sides as active. `BeginScreen` then selects a single-player style, leaving the unused backdrop visible.
-
-Make each inherited difficulty pane use actual joined-side state, refresh visibility on screen entry, and hide when its player leaves. Keep the existing joined-player chart data and animations. Verify direct entry, ordinary title-to-selection navigation, P1-only, P2-only and a second player joining at 16:9/4:3. Refresh the native selection screenshot, record checks and commit this focused Lua correction. No executable rebuild is needed.
-
-Completed: both panes now follow joined-player state on initialization, screen entry, join and leave. Native checks passed for direct entry at 16:9/4:3, normal P1-only and P2-only navigation, late joins with populated chart details, and the original default theme. Replaced the selection preview with an unedited capture from normal P1 navigation.
+Release snapshot complete: runtime equivalence, media provenance, focused Lua checks and local links pass. The main snapshot contains the finished movie/theme and release docs; the full development tree is preserved in the feature worktree. Branch reconciliation is recorded in the feature journal after this checkpoint.

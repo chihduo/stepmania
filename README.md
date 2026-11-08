@@ -60,9 +60,9 @@ The fork includes a GitHub Actions pipeline that builds a **Windows x64 Release*
 
 ## Chiikawa theme
 
-Select **Chiikawa - StepMania 6** in **Options → Display Options → Appearance Options → Theme** for cream/pastel menus and paired character illustrations. Each screen chooses from its own pool on entry and avoids an immediate repeat. Artwork stays fixed during songs, speed changes, pauses, and replay restarts. The original fonts, notes, judgments, and gameplay features are inherited.
+Select **Chiikawa - StepMania 6** in **Options → Display Options → Appearance Options → Theme** for cream/pastel menus and paired character illustrations. Each screen chooses from its own pool on entry and avoids an immediate repeat. The selected decoration stays fixed during songs, speed changes, pauses, and replay restarts. The original fonts, notes, judgments, and gameplay features are inherited.
 
-The eleven transparent decorations include new piano, drums, violin, flute, and saxophone scenes. Menu backgrounds have optional gentle motion; gameplay characters remain still. [Preview the artwork](Docs/theme-preview/chiikawa/index.html), [see native screenshots](Docs/theme-preview/chiikawa/native/README.md), or read the [theme installation and customization guide](Themes/chiikawa/README.md). These are AI-generated fan illustrations. The complete replay-browser appearance requires a build containing the new theme hooks.
+The eleven transparent decorations include new piano, drums, violin, flute, and saxophone scenes. Menu backgrounds have optional gentle motion. Songs without background artwork use a [30-second silent movie](Themes/chiikawa/Movies/ddr-trio-loop.mp4) of Chiikawa, Hachiware and Usagi dancing on DDR pads; static-background mode uses its still poster. Song images and scripted movies keep their usual precedence. [View the theme results](Docs/theme-preview/chiikawa/README.md), [see native screenshots](Docs/theme-preview/chiikawa/native/README.md), or read the [theme installation and customization guide](Themes/chiikawa/README.md). These are AI-generated fan illustrations. The complete replay-browser appearance requires a build containing the new theme hooks. Theme experiments and source media live on `feature/chiikawa-theme`; see the [development workflow](Docs/ChiikawaDevelopment.md).
 
 ## Record and replay
 
@@ -103,7 +103,7 @@ See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requiremen
 
 ### Update an existing portable installation
 
-Close StepMania and back up the existing folder. Extract the new package elsewhere, then merge **`Program`**, **`Scripts`**, and **`Themes`** into the existing game folder, replacing matching files. Updating **`Docs`** is optional.
+Close StepMania and back up the existing folder. Extract the new package elsewhere, then merge **`Program`**, **`Scripts`**, **`Themes`**, and **`BackgroundEffects`** into the existing game folder, replacing matching files. Updating **`Docs`** is optional.
 
 Keep **`Save`**, **`Songs`**, **`Logs`**, **`Screenshots`**, and **`Portable.ini`**, along with any other personal content. `Save` contains settings, profiles, play history, and recordings in `Save/Replays/`. Back up custom theme/script edits before replacing matching files. Copy historical logs elsewhere before launching, since normal startup rewrites the standard log files.
 
