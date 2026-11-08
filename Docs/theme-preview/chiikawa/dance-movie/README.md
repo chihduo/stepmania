@@ -1,29 +1,45 @@
 # Dancing-trio gameplay background
 
-Status: **center-tile reference and expanded choreography ready for the next generation.** The user has generated trial movies externally and reported repetitive hopping on the up-arrow panel. The trial videos have not been supplied here for inspection, and no movie is installed in the theme yet.
+The three supplied movies are now combined into a **30-second silent loop** and installed as the Chiikawa theme's missing-song-art background.
 
-![Chiikawa, Hachiware and Usagi standing on the neutral centers of their DDR pads](ddr-trio-keyframe-v2.png)
+[Preview the combined movie (MP4, 12.5 MB)](../../../../Themes/chiikawa/Movies/ddr-trio-loop.mp4) · [Native gameplay screenshot](../native/gameplay.png) · [Theme settings and installation](../../../../Themes/chiikawa/README.md#dancing-trio-gameplay-background)
 
-This is a still keyframe edited with the built-in image generator. All three characters now have both feet on their own blank center tile in a ready stance. The characters, arcade lighting and pad arrangement are retained. It is AI-generated fan artwork, not official Chiikawa artwork. The generator output is copied without post-processing; dimensions, SHA-256 and previous-version provenance are recorded in [manifest.json](manifest.json). Exact prompts are saved for the [image edit](keyframe-v2-prompt.txt) and [movie](movie-prompt.txt).
+![First-frame poster from the installed dance movie](../../../../Themes/chiikawa/Graphics/Common%20fallback%20background.png)
 
-## Use this revision
+## Movie and sources
 
-1. Replace both the start-frame and end-frame inputs with [ddr-trio-keyframe-v2.png](ddr-trio-keyframe-v2.png). Keeping the previous end frame would ask the movie to return to the old stance.
-2. Replace the earlier motion instructions with the full [updated movie prompt](movie-prompt.txt). It specifies an 8-second sequence: side steps, quick runs from center across the rear/front panels, a two-foot jump onto left/right, and a complete spin ending back at center.
-3. Generate at 16:9 and 720p or higher. Inspect actual foot travel across the tiles and the loop seam; the centered image and prompt guide the motion but do not guarantee it.
+The installed MP4 contains exactly **720 frames, 1280×720, 24 fps, 30.000 seconds**, encoded as H.264 High/yuv420p. It has one video stream and **no audio streams**. Video packets are copied without re-encoding, and all decoded frame hashes match the source clips in this order:
 
-The center pose is the opening/closing reference. The characters should use all four arrow panels during the movie rather than repeatedly hopping on one spot. The [original keyframe](ddr-trio-keyframe.png), [original image prompt](keyframe-prompt.txt), and [original movie prompt](movie-prompt-v1.txt) remain available for comparison.
+1. [Characters_dancing_on_DDR_pads_67d4dfe6.mp4](Characters_dancing_on_DDR_pads_67d4dfe6.mp4)
+2. [Characters_dancing_on_DDR_pads_9e35d8f4.mp4](Characters_dancing_on_DDR_pads_9e35d8f4.mp4)
+3. [Characters_dancing_on_DDR_pads_d0d6f534.mp4](Characters_dancing_on_DDR_pads_d0d6f534.mp4)
 
-The intended movie is a short silent 16:9 loop with all three characters dancing, a smooth shallow camera orbit and push/pull movement, colorful arcade lighting, and a return to the opening framing. Original gameplay fonts, arrows and judgment graphics remain above it. The choreography is decorative; a reusable loop cannot match the steps or tempo of every song. Its playback time should still follow the song clock and live speed changes.
+Each source has 240 video frames / 10 seconds. Explicit ten-second segment durations exclude the slightly longer AAC audio tails. The shared opening/closing composition allows direct joins; small encoding/render differences remain between endpoint frames. The original uploads, including their original audio, are retained unchanged in this folder. Only the combined runtime movie is silent.
 
-## Integration findings
+Rebuild from the repository root with Python 3, FFmpeg and ffprobe installed:
 
-- `src/Background.cpp`, in `BackgroundImpl::Layer::CreateBackground`, resolves the song-background marker to the song's own background when available, or `THEME:GetPathG("Common", "fallback background")` otherwise. A Chiikawa-specific fallback can therefore use theme assets without changing C++.
-- The same engine accepts movies as background actors. `BackgroundEffects/StretchNormal.lua` selects the music clock, scaling/cropping, texture rate and focus play/pause commands. Integration should preserve those behaviors rather than play a movie as a menu decoration.
-- Respect the engine background-brightness setting and draw the movie below notes, judgments and the life-history graph. Use a poster for `StaticBackground`/disabled song backgrounds and an explicit no-motion option if needed.
-- Song images and scripted background changes must keep their normal precedence. Avoid a second random character cutout over the dancing trio when the new fallback is active. Verify centered/P2/4:3 layouts before adopting any local dimming mask.
-- The current `native/gameplay.png` uses the synthetic demo chart's own dark `background.png`, declared by `#BACKGROUND:` in `demo.sm`. It is not an example of the engine's missing-image fallback. A new capture must use a genuinely background-free chart.
+```sh
+python3 Docs/theme-preview/chiikawa/dance-movie/build-loop.py
+```
 
-## Remaining validation
+The [recipe](build-loop.py) assembles the MP4, verifies all frames and the absence of audio, and extracts its first frame as the common fallback PNG. [movie-manifest.json](movie-manifest.json) records source order, hashes, dimensions, codec and output metadata. The user generated the source videos externally; their generation service and exact per-clip prompts were not provided.
 
-Inspect the next generated movie for tile travel, jumps, running, spins and a clean loop seam; export a silent movie with a codec supported by the bundled Windows decoder and a matching poster; test native no-art/own-art/scripted-video songs, pause, live rate changes, replay and both aspect ratios. Windows x64 decoder/rendering verification remains necessary. The Linux fixture's previous layout checks do not establish movie playback support.
+## Gameplay behavior
+
+The optional `Background/FallbackMovie` theme metric substitutes this MP4 only when the normal `StretchNormal` effect receives the common fallback poster. The engine keeps its usual music clock, live rate handling, looping, pause, brightness and draw order. Song artwork and scripted background changes retain their precedence. Static-background mode or disabled song backgrounds uses the poster; thumbnails also use the poster. Songs without a background image omit the extra random character cutout.
+
+The choreography is decorative. Playback follows the song clock, but a reusable dance loop cannot match every chart's steps or tempo. See the [theme guide](../../../../Themes/chiikawa/README.md) for settings and the two paths to copy when updating an existing portable installation.
+
+## Keyframes and generation brief
+
+The [center-tile keyframe](ddr-trio-keyframe-v2.png) places Chiikawa, Hachiware and Usagi on their own blank center tiles. It is an unchanged output of the built-in image editor. [manifest.json](manifest.json) preserves its dimensions, SHA-256 and previous-version provenance. These images and movies are AI-generated fan artwork, not official Chiikawa artwork.
+
+For future variations, use the center-tile image for both the start and end frame. The [movie prompt](movie-prompt.txt) describes side steps, short runs across the pad, a two-foot jump and a complete spin returning to center, with vibrant arcade lighting and a smooth camera orbit. It was written for an eight-second generation; the three supplied clips are ten seconds each. Inspect foot travel and loop seams after generation.
+
+The [image-edit prompt](keyframe-v2-prompt.txt), [original keyframe](ddr-trio-keyframe.png), [original image prompt](keyframe-prompt.txt), and [original movie prompt](movie-prompt-v1.txt) remain available for comparison.
+
+## Verification
+
+The combined file fully decodes and preserves all 720 source frames. A Linux native build using the engine's pinned FFmpeg version successfully loads and loops it. Checks cover live rate adjustment, gameplay/replay pause and resume, replay restart, own-art/scripted-video precedence, static/disabled-background settings, 16:9 and 4:3 layouts, and the unchanged default-theme fallback. Paused movie regions remain pixel-identical and advance after resume. The [updated gameplay screenshot](../native/gameplay.png) is an unedited engine capture using a truly background-free chart.
+
+Windows x64 playback and audible synchronization remain unverified here. The native fixture uses software OpenGL and null audio. No Windows ZIP was built for this movie revision.

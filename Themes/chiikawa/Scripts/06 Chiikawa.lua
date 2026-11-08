@@ -54,6 +54,10 @@ function C.Layout(role)
 		return {x=cx+(player == PLAYER_1 and 320 or -320), y=300, width=230, height=180}
 	end
 	if role == "game" then
+		-- The fallback movie/poster already contains the trio. Do not put a
+		-- second character cutout over it, including during course changes.
+		local song = GAMESTATE:GetCurrentSong()
+		if song and not song:HasBackground() then return nil end
 		local style = GAMESTATE:GetCurrentStyle()
 		if not style or style:GetStyleType() ~= "StyleType_OnePlayerOneSide"
 			or style:ColumnsPerPlayer() > 4 or Center1Player() then return nil end
@@ -62,19 +66,29 @@ function C.Layout(role)
 end
 
 function C.Decoration(role)
+	local selected = false
 	return Def.Sprite {
 		Name="ChiikawaDecoration",
 		InitCommand=function(self) self:visible(false) end,
 		-- On runs at visible entry, not preloading. It also runs on cached re-entry.
 		-- No beat, update, rate-change, pause or wheel-change handler can reroll it.
 		OnCommand=function(self)
+			selected = false
 			local box = C.Layout(role)
 			self:visible(box ~= nil)
 			if not box then return end
 			local name = choose(role, C.Pools[role])
 			self:Load(C.ArtPath .. name .. ".png")
+			selected = true
 			self:scaletofit(-box.width/2,-box.height/2,box.width/2,box.height/2):xy(box.x,box.y)
 			Trace("[Chiikawa] " .. role .. " artwork: " .. name)
+		end,
+		CurrentSongChangedMessageCommand=function(self)
+			if role == "game" then
+				-- A course may change backgrounds without reopening the screen.
+				-- Hide/show the existing choice without choosing new artwork.
+				self:visible(selected and C.Layout(role) ~= nil)
+			end
 		end,
 	}
 end

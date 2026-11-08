@@ -670,7 +670,7 @@ Checkpoint: `fix: hide inactive song-selection difficulty panes [skip ci]`. This
 - [x] Confirm theme fallback resolution in `Background.cpp` and movie music-clock support in `BackgroundEffects/StretchNormal.lua`.
 - [x] Discover a video-generation provider; Runway is available but not connected. Ask whether to enable it or use a locally rendered illustrated animation.
 - [x] Prepare and inspect the trio DDR keyframe and motion brief.
-- [ ] Produce the actual movie, integrate it, and verify gameplay behavior.
+- [x] Produce the actual movie, integrate it, and verify gameplay behavior. Completed using the three supplied clips in the later movie-integration checkpoint below.
 
 The built-in image generator cannot produce full-motion video. Artwork and source investigation can proceed while the animation route is pending; no movie has been generated or installed yet.
 
@@ -701,9 +701,27 @@ Validation: both PNGs decode and match their recorded dimensions/hashes; all pac
 - [x] Probe all three uploaded clips: H.264 High, yuv420p, 1280×720, 24 fps, 240 frames each; AAC audio extends each container by about 27 ms.
 - [x] Inspect endpoint frames: the same centered trio composition is retained, with only small encoding/render differences. Direct cuts preserve the full 30-second sequence without adding crossfade ghosting.
 - [x] Assemble a video-only MP4, extract the poster and record reproducible provenance.
-- [ ] Integrate the fallback movie, static poster and cutout suppression.
-- [ ] Verify media and native gameplay behavior, refresh documentation/capture and commit.
+- [x] Integrate the fallback movie, static poster and cutout suppression.
+- [x] Verify media and native gameplay behavior, refresh documentation/capture and commit.
 
 The existing Linux layout-test executable was built without FFmpeg. Actual in-engine movie verification requires a decoder-enabled test build; Windows packaging is not part of this request.
 
 Media checkpoint: `Themes/chiikawa/Movies/ddr-trio-loop.mp4` contains exactly 30.000 seconds / 720 frames at 1280×720, 24 fps, H.264 High/yuv420p, with exactly one video stream and no audio. All decoded frame hashes match the original clips concatenated in filename order, so no visual re-encoding or frame loss occurred. A matching first-frame PNG is the theme's common fallback poster. `build-loop.py` reproduces both assets and `movie-manifest.json` records original/output hashes; the three uploads remain unchanged.
+
+
+Implementation: `BackgroundEffects/StretchNormal.lua` now supports an optional `Background/FallbackMovie` metric. Chiikawa points it to the combined MP4 only when the common fallback would otherwise be used. Static-background mode, disabled song backgrounds and an absent movie keep the PNG poster; other themes need no new metric. Keeping the common fallback as a bitmap also preserves Sprite/Banner thumbnail consumers. The normal background music clock, texture-rate and focus handlers remain intact. Gameplay omits the extra random cutout for songs without an image; course song changes hide/show an already selected cutout without rerolling it.
+
+Validation:
+
+- Media: exactly 30.000 seconds, 720 video frames, 1280×720, 24 fps, one H.264 High/yuv420p stream and zero audio streams; complete decode succeeds. All 720 decoded frame hashes equal the three original sequences in order. Source files are unchanged. Poster and movie SHA-256 values are recorded in `movie-manifest.json`.
+- Lua: `test_fallback_movie.lua` passes no-art selection, own-image/scripted-movie preservation, static/disabled/missing-file/empty-metric fallback, themes without the metric, music clock, initial rate and focus callbacks. `test_chiikawa_theme.lua` passes selection/RNG/layout checks and no-art cutout suppression across song changes without rerolling.
+- Build: enabled FFmpeg in the local Linux verification build and rebuilt successfully. Its decoder is the repository's pinned FFmpeg n2.1.3 (`eda6effcabcf9c238e4635eb058d72371336e09b`), built with H.264/MOV support and portable C decoding for this host. This confirms the MP4 is accepted by that older decoder generation. No C++ source changes were needed.
+- Native missing-art gameplay: FFmpeg loads the combined movie, displays it behind the original notes/judgments/life graph, and loops it after 30 seconds. Shift+Up displays 1.1x while the movie continues playing. A double-Escape pause freezes the background region exactly across captures 1.5 seconds apart; resuming changes it again.
+- Native fallback rules: Static Background and `SongBackgrounds=0` load the PNG, not the MP4. Static captures are pixel-identical in the background region. A song's existing image retains its static artwork and normal random cutout; a scripted MP4 remains the active background. The original default theme still loads its original fallback bitmap.
+- Native layout/replay: 1280×720 P1, 1024×768 centered P1 and P2/scripted-video layouts render with the original gameplay layers. Standard fill cropping trims the outer movie edges at 4:3. Replay loads the movie, pauses with an unchanged background region across captures, advances on resume and reloads on restart.
+- Final checks: all 64 local links in the four updated guides resolve; source/movie/poster/keyframe hashes match their manifests; the assembly recipe parses; the refreshed screenshot matches the raw capture byte-for-byte. Retained native logs contain no Lua runtime/theme errors, and `git diff --check` passes. Existing install rules include both Themes and BackgroundEffects.
+- Preview/documentation: replaced `Docs/theme-preview/chiikawa/native/gameplay.png` with an unedited 1280×720 capture of the background-free chart at 1.1x and 45% brightness. Updated the movie, theme and repository guides, including copying `Themes/chiikawa/` plus `BackgroundEffects/StretchNormal.lua` into existing installations. No executable rebuild is needed for the existing Windows movie decoder.
+
+The isolated fixture, build records, native screenshots and logs are under ignored `out/chiikawa-movie/`; user songs, profiles and settings were not used. Windows x64 rendering, physical controller play and audible synchronization remain untested. Native checks use software OpenGL and null audio.
+
+Plan checkpoint: `09b8817104`. Media checkpoint: `e9ca447d2d`. Implementation checkpoint: `feat: use silent dance movie for Chiikawa fallback [skip ci]`. No Windows ZIP or remote push was performed for this revision.

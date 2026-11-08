@@ -1,5 +1,5 @@
 {
-  "status": "Center-tile reference revision; user-generated trial videos reported, chosen movie not yet supplied or installed",
+  "status": "Center-tile reference retained; three externally generated user clips assembled and installed as the silent 30-second Chiikawa fallback movie",
   "revision": 2,
   "created_utc": "2026-11-08T12:00:08.894782+00:00",
   "generation_mode": "built-in image_gen edit",
@@ -51,5 +51,6 @@
       "modifications": "None; generated output copied byte-for-byte",
       "inspection": "Accepted reference: exactly three recognizable characters in varied active DDR poses; three four-arrow pads, complete bodies and ears, vibrant pastel arcade, no text. All three faces/bodies fit a central 4:3 crop; the outer pad edges would crop. Actual motion and loop quality remain unverified until a movie exists."
     }
-  ]
+  ],
+  "assembled_movie_manifest": "movie-manifest.json"
 }
