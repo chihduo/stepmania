@@ -4,16 +4,16 @@ This fork can record a local single-player song and play it back inside StepMani
 
 ![Replay viewer showing recorded judgments, a roll, the life-history graph, and a recorded 1.2x playback rate.](media/replay.png)
 
-Actual replay captured on Linux from the default theme; [capture details](media/README.md#replay-screenshot).
+Actual replay captured on Linux from Classic (then named Default); [capture details](media/README.md#replay-screenshot).
 
 ## Record a play
 
 1. Join as **P1 or P2**, with only one player enabled, and select a song in regular song mode.
 2. Open the song options and set **Save Replays → On**. Recording is off by default. Leave Autosync, Haste, and sound effects off, and use the normal life bar.
-3. Play normally. The default theme shows **Recording replay** near the bottom-right. The existing Shift+arrow speed controls work as usual and their changes are recorded.
+3. Play normally. Chiikawa and Classic show **Recording replay** near the bottom-right. The existing Shift+arrow speed controls work as usual and their changes are recorded.
 4. Finish the song. On evaluation, press **F10** to watch that play. Failed plays can also be replayed. Backing out saves an explicitly labeled aborted recording, available from the song-selection browser.
 
-If recording cannot start or a file cannot be saved, the default theme shows the reason. The same message is written to `Logs/log.txt`. On evaluation, F10 also reports why no recording is available.
+If recording cannot start or a file cannot be saved, Chiikawa and Classic show the reason. The same message is written to `Logs/log.txt`. On evaluation, F10 also reports why no recording is available.
 
 Recording does not change the original play's score eligibility. In particular, adjusting speed still counts as normal gameplay. Autoplay and other existing eligibility restrictions retain their normal behavior; recording does not make such scores eligible.
 
@@ -46,7 +46,7 @@ The previous upstream version 0 XML exports cannot be played by this implementat
 
 ## First-version scope
 
-Supported: local regular-song gameplay with one joined player, including P1-only and P2-only play, live speed changes, taps, jumps, holds, rolls, lifts, mines, misses, and completed/failed/aborted results. The default theme supplies visible hints; the F10 shortcuts and replay screens are also available to themes that inherit the fallback definitions.
+Supported: local regular-song gameplay with one joined player, including P1-only and P2-only play, live speed changes, taps, jumps, holds, rolls, lifts, mines, misses, and completed/failed/aborted results. Chiikawa and Classic supply visible hints; the F10 shortcuts and replay screens are also available to themes that inherit the fallback definitions.
 
 Not recorded in this version: courses, multiplayer/network play, editor/calibration sessions, battery/time life meters, attacks, keysound charts, Haste, or controller-driven music sound effects. Enabling calibration or attacks during a recording stops it; changing chart timing or the calibration offset prevents saving a misleading replay. Custom gameplay screen classes and song scripts with their own clocks need separate support/verification.
 

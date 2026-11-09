@@ -264,3 +264,24 @@ Verification:
 The fixture uses the existing Linux debug executable, software OpenGL and null audio; its inherited unsupported-OGG warnings do not affect this silent animation. Windows x64 rendering is still unverified. Intermediate frames, native fixture and detailed logs stay under ignored `out/title-dance/`.
 
 Checkpoints: plan `497bd6f5ae`; artwork `4f608b03db`; final implementation `feat: animate the Chiikawa title illustration [skip ci]`. All three are on `feature/chiikawa-theme` only. Main remains clean at `eca4da9033`. No executable rebuild, Windows ZIP or remote push.
+
+
+## Chiikawa as the default theme
+
+- [x] Trace startup, per-game preferences, invalid-theme recovery and packaged Data files.
+- [x] Configure the shipped default and label the original theme Classic without changing its directory.
+- [x] Verify native startup and saved theme choices, refresh documentation and commit on the feature branch.
+
+`PrefsManager` reads `Data/Defaults.ini` before saved preferences. `ThemeManager` uses the configured `Theme` default when the initial `_fallback` or a removed theme is not selectable. This supports new installations without C++ changes and keeps explicit user selections. The original folder remains required by the theme inheritance chain.
+
+Completed the default through `Data/Defaults.ini`, with Classic's display label in `Themes/default/ThemeInfo.ini`. The portable package check now requires `Data/Defaults.ini` and `Themes/chiikawa`; existing CMake installation rules already include both trees. Updated upgrade instructions to copy the defaults file while preserving Save and explicitly choosing Chiikawa once for an older installation. The README now shows the current Chiikawa gameplay capture and identifies older examples as Classic. The release manifest records the two configuration hashes alongside the unchanged 17 media assets.
+
+Native verification used the existing Linux executable in an isolated installation, with no command-line theme override:
+
+- An empty Save folder selects Chiikawa and renders its dancing-trio title.
+- Saved `Theme=default` and `Theme=legacy` per-game choices remain Classic and Legacy, respectively.
+- A missing saved theme resolves to Chiikawa even when the old `DefaultTheme=default` preference remains.
+- The appearance menu displays **Chiikawa - StepMania 6** and **Classic**. Switching to Classic writes `Theme=default`; switching back writes `Theme=chiikawa`. Both transitions and startup cases have no Lua errors.
+- Both runtime configuration hashes, all 17 media hashes, 155 local links and diff whitespace pass. Native captures, logs and the verification record remain under ignored `out/default-theme/`.
+
+No new engine or theme-logic tests were needed for this configuration-only change. The Windows package script's required-path lists were updated and checked against the existing install rules; PowerShell and Windows runtime checks were not run on this Linux host. Commit: `feat: make Chiikawa the default StepMania 6 theme [skip ci]`, on `feature/chiikawa-theme` only. Main remains at `eca4da9033`; no executable rebuild, ZIP or remote push.

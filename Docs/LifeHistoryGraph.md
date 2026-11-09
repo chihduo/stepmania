@@ -1,6 +1,6 @@
 # Single-player life-history graph
 
-The default theme displays the life/health history at the bottom-left during gameplay and on evaluation. It uses the older theme's grid and green/yellow/red fill, with a white line showing life from empty to full. The percentage above the plot is the latest recorded life. The preferred plot size is 400 by 128 theme pixels, with its lower edge 71 pixels above the screen bottom. Its left edge is inset by 96 pixels, leaving a 24-pixel gap beyond the left life-meter frame. The white line and all graph labels use 80% opacity. The backing and colored fill retain their existing transparency.
+Chiikawa, the default theme, and Classic display the life/health history at the bottom-left during gameplay and on evaluation. It uses the older theme's grid and green/yellow/red fill, with a white line showing life from empty to full. The percentage above the plot is the latest recorded life. The preferred plot size is 400 by 128 theme pixels, with its lower edge 71 pixels above the screen bottom. Its left edge is inset by 96 pixels, leaving a 24-pixel gap beyond the left life-meter frame. The white line and all graph labels use 80% opacity. The backing and colored fill retain their existing transparency.
 
 During gameplay, recorded life changes update the plot immediately. Its horizontal range grows from the start of play to the current elapsed play time. The entire history stays in view, so earlier events move closer together as the song progresses. Evaluation shows the completed history; evaluation summary uses the statistics selected by that screen.
 
@@ -10,7 +10,7 @@ The display is enabled automatically for exactly one human player and one enable
 
 ## In-game verification
 
-Use a build containing this change and select the **default** theme.
+Use a build containing this change and select **Chiikawa - StepMania 6** or **Classic**.
 
 1. Start a song with only P1 joined. Find the LIFE plot at the bottom-left, above the bottom status area and to the right of the life-meter frame. Hit some notes and miss others; the rightmost point and percentage should follow the life meter immediately.
 2. Adjust playback speed with Shift+arrows. Confirm that life history continues smoothly and elapsed time moves forward. If using a pause control, confirm the plot's time range stops advancing while paused.
@@ -23,7 +23,7 @@ Actual Linux gameplay and evaluation captures are available in the [repository R
 
 ## Theme settings and automated checks
 
-The `[LifeHistory]` section of `Themes/default/metrics.ini` controls the preferred width, height, and left/bottom margins. The shared actor is `Themes/default/Graphics/LifeHistory graph.lua`. It samples 128 points and reuses fixed-size vertex arrays, avoiding the legacy graph actor's repeated child creation.
+Classic lives in `Themes/default`, and Chiikawa inherits its shared graph. The `[LifeHistory]` section of `Themes/default/metrics.ini` controls the preferred width, height, and left/bottom margins. The shared actor is `Themes/default/Graphics/LifeHistory graph.lua`. It samples 128 points and reuses fixed-size vertex arrays, avoiding the legacy graph actor's repeated child creation.
 
 Run the focused Lua checks from the repository root with Lua 5.1:
 

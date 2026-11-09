@@ -290,5 +290,24 @@
     "duration_seconds": 3.2,
     "native_format": "transparent PNG sprite states plus Lua transforms",
     "status": "feature branch only"
-  }
+  },
+  "default_theme": {
+    "id": "chiikawa",
+    "display_name": "Chiikawa - StepMania 6",
+    "existing_saved_choices": "preserved",
+    "classic_theme_id": "default",
+    "classic_display_name": "Classic"
+  },
+  "runtime_configuration": [
+    {
+      "file": "Data/Defaults.ini",
+      "sha256": "791cb3e61c628079fe67f17f1989e24f107511d72c5ba128e217434707c20630",
+      "bytes": 122
+    },
+    {
+      "file": "Themes/default/ThemeInfo.ini",
+      "sha256": "b151a0a27404f89aba3416f4e636754c92be451d6a97ec3963915d18599588b7",
+      "bytes": 57
+    }
+  ]
 }

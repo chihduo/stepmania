@@ -1,6 +1,6 @@
 # Gameplay media
 
-These files are actual captures of this fork's default theme, recorded on **2026-11-07** at **1280 × 720** on Linux x86_64. The gameplay engine and theme render the notes, judgments, speed number, life history, and evaluation screen. The GIF and MP4 are trimmed/resized encodings of that recording.
+These files are actual captures of Classic, this fork's original theme (named Default at capture time), recorded on **2026-11-07** at **1280 × 720** on Linux x86_64. The gameplay engine and theme render the notes, judgments, speed number, life history, and evaluation screen. The GIF and MP4 are trimmed/resized encodings of that recording.
 
 | File | Size and duration | Purpose |
 | --- | --- | --- |

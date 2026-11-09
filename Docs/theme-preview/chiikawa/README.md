@@ -6,7 +6,7 @@
 
 Every active illustration shows **at least two recognizable characters**. The vertical peekers have been removed, and the three solo candidates have been replaced with paired compositions. The comparison gallery contains **fourteen illustrations**, all in warm cream, pastel pink, mint, and sky blue, alongside the separate title-animation package.
 
-The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data. The [playable Chiikawa theme](../../../Themes/chiikawa/README.md) uses these decorations with random selection on entry outside the animated title menu.
+The screen concepts preserve the original bitmap fonts, arrows/receptors, and judgment artwork. Text tint and surrounding panels adopt the palette; note and judgment textures retain their original colors and shading. Layouts use sample data. The [default Chiikawa theme](../../../Themes/chiikawa/README.md) uses these decorations with random selection on entry outside the animated title menu.
 
 ## Compare the illustrations
 

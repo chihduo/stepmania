@@ -23,6 +23,7 @@ $requiredFiles = @(
     "Program/swscale-2.dll",
     "Program/parallel_lights_io.dll",
     "Data/splash.png",
+    "Data/Defaults.ini",
     "Songs/instructions.txt"
 )
 
@@ -33,7 +34,8 @@ $requiredDirectories = @(
     "Scripts",
     "Songs/StepMania 5",
     "Themes/_fallback",
-    "Themes/default"
+    "Themes/default",
+    "Themes/chiikawa"
 )
 
 $missing = [System.Collections.Generic.List[string]]::new()

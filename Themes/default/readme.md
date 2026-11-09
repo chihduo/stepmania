@@ -1,3 +1,7 @@
+Classic in StepMania 6
+---------------------
+This is the original StepMania 5.1 theme, labeled **Classic** in StepMania 6's theme selector. Chiikawa is the default for fresh installations. Keep this folder named `Themes/default`: Chiikawa and Home inherit it, and saved `Theme=default` choices still select Classic.
+
 Introduction
 -----------
 Lambda (formerly FiftyOne) is a modern, high-definition theme for StepMania 5.x. It is designed to serve as the default theme for StepMania 5.1; it features a clean aesthetic with bold colors that reflects modern design trends, yet still maintains a suitable level of energy for a rhythm game. Under the hood, it's also a bit more future-proof than the previous theme, with certain screens featuring more prominent use of backend Lua code to replace legacy methods of rendering particular elements.

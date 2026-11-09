@@ -1,14 +1,16 @@
 # StepMania 6
 
-A community fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also records and replays single-player songs, adds a live life-history graph to the default theme, and keeps your highlighted song selected when changing the song-wheel sort.
+A community fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also records and replays single-player songs, adds a live life-history graph to the bundled themes, and keeps your highlighted song selected when changing the song-wheel sort.
 
 [![Windows x64 build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/chihduo/stepmania/actions/workflows/ci.yml)
 
 [Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3Amain) · [Playback controls](Docs/LiveGameplayRate.md) · [Record and replay](#record-and-replay) · [Life-history graph](Docs/LifeHistoryGraph.md)
 
-![Gameplay with notes and judgments above the life-history graph and the current speed at the bottom-left.](Docs/media/gameplay.png)
+**Chiikawa is the default theme** for fresh installations, with pastel menus, a transparent dancing title illustration and a silent dance movie for songs without background artwork. The original appearance remains available as **Classic**. Existing saved theme choices are preserved.
 
-Actual gameplay captured from this fork's default theme on Linux. The generated demo chart uses autoplay with brief misses to make the life-history curve visible. [Capture details](Docs/media/README.md).
+![Chiikawa gameplay with the dancing background movie, notes, life-history graph and speed display.](Docs/theme-preview/chiikawa/native/gameplay.png)
+
+Actual Linux gameplay captured with the default Chiikawa theme. [Native capture details](Docs/theme-preview/chiikawa/native/README.md). The speed-control recordings and evaluation/replay examples below use Classic, the original theme. [Classic capture details](Docs/media/README.md).
 
 ## What this fork adds
 
@@ -38,7 +40,7 @@ These controls work during active local gameplay. They are disabled while paused
 
 ### See life history during and after play
 
-The **default theme** shows a life-history graph automatically for single-player gameplay, evaluation, and evaluation summary.
+Both **Chiikawa** and **Classic** show a life-history graph automatically for single-player gameplay, evaluation, and evaluation summary.
 
 - It updates as life changes and keeps the whole elapsed play history in view.
 - It sits at the **bottom-left**, clear of the life bar, and draws **beneath notes, judgments, and other gameplay information**.
@@ -60,7 +62,7 @@ The fork includes a GitHub Actions pipeline that builds a **Windows x64 Release*
 
 ## Chiikawa theme
 
-Select **Chiikawa - StepMania 6** in **Options → Display Options → Appearance Options → Theme** for cream/pastel menus and paired character illustrations. Song selection, gameplay, evaluation and replay screens choose from their own pools on entry and avoid an immediate repeat. The title menu instead shows the three characters dancing on transparent cartoon pads in a 3.2-second loop. The selected decoration stays fixed during songs, speed changes, pauses, and replay restarts. The original fonts, notes, judgments, and gameplay features are inherited.
+**Chiikawa - StepMania 6** is selected automatically on fresh installations. Use **Options → Display Options → Appearance Options → Theme** to switch between its cream/pastel menus and **Classic**. Existing installations retain their saved selection. Song selection, gameplay, evaluation and replay screens choose from their own pools on entry and avoid an immediate repeat. The title menu instead shows the three characters dancing on transparent cartoon pads in a 3.2-second loop. The selected decoration stays fixed during songs, speed changes, pauses, and replay restarts. The original fonts, notes, judgments, and gameplay features are inherited.
 
 The eleven transparent decorations include new piano, drums, violin, flute, and saxophone scenes. Menu backgrounds and title dancers have optional motion, controlled by **Fancy UI Background**. [Preview the transparent title loop](Docs/theme-preview/chiikawa/title-dance/title-dance.gif). Songs without background artwork use a [30-second silent movie](Themes/chiikawa/Movies/ddr-trio-loop.mp4) of Chiikawa, Hachiware and Usagi dancing on DDR pads; static-background mode uses its still poster. Song images and scripted movies keep their usual precedence. [View the theme results](Docs/theme-preview/chiikawa/README.md), [see native screenshots](Docs/theme-preview/chiikawa/native/README.md), or read the [theme installation and customization guide](Themes/chiikawa/README.md). These are AI-generated fan illustrations. The complete replay-browser appearance requires a build containing the new theme hooks. Theme experiments and source media live on `feature/chiikawa-theme`; see the [development workflow](Docs/ChiikawaDevelopment.md).
 
@@ -70,7 +72,7 @@ Record a regular single-player song and watch it again inside the game. Replays 
 
 ### Record a play
 
-Set **Save Replays → On** in song options, then play normally. Recording is off by default. The default theme shows **Recording replay** near the bottom-right, and the existing Shift+arrow speed controls work as usual.
+Set **Save Replays → On** in song options, then play normally. Recording is off by default. Chiikawa and Classic show **Recording replay** near the bottom-right, and the existing Shift+arrow speed controls work as usual.
 
 Completed and failed plays can be watched from evaluation. Backing out saves an aborted recording that is available in the song-selection browser. The original play keeps its normal scoring and saving rules, including after speed changes.
 
@@ -99,11 +101,11 @@ See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requiremen
 2. Download **`StepMania-windows-x64-<run>.<attempt>`** from the run's **Artifacts** section. GitHub may require you to sign in. Artifacts are retained for 30 days; if none remain, a repository maintainer can start a new run with **Run workflow**.
 3. Extract the downloaded artifact. It contains `StepMania-5.1-windows-x64-portable.zip` and its `.sha256` file. Extract that inner ZIP as well.
 4. Launch **`StepMania/Program/StepMania.exe`**. Keep the full folder together, including `Portable.ini`, which stores profiles and settings inside this portable installation.
-5. Add song packs under `StepMania/Songs/`, keeping the usual `Songs/<pack>/<song>/` structure. Select the **default** theme to see the life-history graph.
+5. Add song packs under `StepMania/Songs/`, keeping the usual `Songs/<pack>/<song>/` structure. Chiikawa is selected by default; both **Chiikawa** and **Classic** include the life-history graph.
 
 ### Update an existing portable installation
 
-Close StepMania and back up the existing folder. Extract the new package elsewhere, then merge **`Program`**, **`Scripts`**, **`Themes`**, and **`BackgroundEffects`** into the existing game folder, replacing matching files. Updating **`Docs`** is optional.
+Close StepMania and back up the existing folder. Extract the new package elsewhere, then merge **`Program`**, **`Scripts`**, **`Themes`**, and **`BackgroundEffects`** into the existing game folder, replacing matching files. Also copy **`Data/Defaults.ini`** into the existing `Data` folder to install the new theme defaults. Updating **`Docs`** is optional. Existing saved theme choices take precedence; select **Chiikawa - StepMania 6** in Appearance Options to switch an older installation. The original theme is now labeled **Classic**, with its `Themes/default` folder retained.
 
 Keep **`Save`**, **`Songs`**, **`Logs`**, **`Screenshots`**, and **`Portable.ini`**, along with any other personal content. `Save` contains settings, profiles, play history, and recordings in `Save/Replays/`. Back up custom theme/script edits before replacing matching files. Copy historical logs elsewhere before launching, since normal startup rewrites the standard log files.
 

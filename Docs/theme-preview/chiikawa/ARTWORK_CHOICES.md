@@ -28,7 +28,7 @@ Direct preview links can use `?choice=random`, `?choice=recommended`, or `?choic
 
 ## Native theme implementation
 
-The optional [Chiikawa theme](../../../Themes/chiikawa/README.md) uses the same pools in [artwork-pools.json](artwork-pools.json) for its random decorations; the title pool is retained only for gallery comparisons. The gallery now defaults to Random per screen.
+The default [Chiikawa theme](../../../Themes/chiikawa/README.md) uses the same pools in [artwork-pools.json](artwork-pools.json) for its random decorations; the title pool is retained only for gallery comparisons. The gallery now defaults to Random per screen.
 
 The five new scenes add piano, drums, violin, flute, and saxophone. All five join the gallery title pool and native song selection. Piano, violin, and flute also join gameplay and the replay browser. Drums and saxophone join evaluation. The first entry of each pool remains its recommended preview choice.
 

@@ -1,10 +1,14 @@
 # Chiikawa theme for StepMania 6
 
-An optional theme with cream and pastel menus, gentle menu motion, AI-generated Chiikawa character decorations, and a silent dancing-trio gameplay background. It inherits the default theme's fonts, notes/receptors, judgment labels and effects, live speed controls, life graph, score handling, and recording/replay features.
+The default StepMania 6 theme, with cream and pastel menus, gentle menu motion, AI-generated Chiikawa character decorations, and a silent dancing-trio gameplay background. It inherits the original **Classic** theme's fonts, notes/receptors, judgment labels and effects, live speed controls, life graph, score handling, and recording/replay features.
 
-## Enable it
+## Default theme and switching
 
-Keep this folder named **`Themes/chiikawa`**, alongside `Themes/default` and `Themes/_fallback`. From the title menu, choose **Options → Display Options → Appearance Options → Theme → Chiikawa - StepMania 6**, then save/exit that menu. Existing songs, profiles, logs, and recordings remain in their usual folders.
+Fresh installations select **Chiikawa - StepMania 6** automatically through [Data/Defaults.ini](../../Data/Defaults.ini). Existing installations keep their saved theme choice. To switch, choose **Options → Display Options → Appearance Options → Theme → Chiikawa - StepMania 6**, then save/exit that menu. Choose **Classic** there to use the original appearance.
+
+Keep this folder named **`Themes/chiikawa`**, alongside `Themes/default` and `Themes/_fallback`. The original theme is labeled **Classic** but retains its internal `default` directory for inheritance and compatibility with saved `Theme=default` settings. Existing songs, profiles, logs and recordings remain in their usual folders.
+
+For an existing portable installation, copy the updated `Themes/` files and `Data/Defaults.ini` into the same relative locations. The defaults do not overwrite a saved choice; switch themes in Options once if necessary. This default/label change needs no executable rebuild.
 
 The theme's Lua, PNG and MP4 files control artwork, movies and random selection. Its replay-browser layout also uses the optional replay actor commands added in this source revision, so use a matching executable for the complete appearance. An older executable still shows its original replay browser. A new Windows ZIP has not been built for this revision.
 
@@ -47,7 +51,7 @@ To add this movie to an existing portable installation, close the game and copy 
 
 - [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua) defines `Pools`, placement in `Layout`, and the menu background. Change these Lua values without recompiling. Keep each pool nonempty and use PNG filenames from `Art/` without the extension.
 - The private selector avoids using or reseeding `math.random`. This keeps decoration choices separate from gameplay randomness and recorded outcomes.
-- The random-decoration underlays select art in `OnCommand`, after preloading. Functional gameplay/evaluation actors are loaded from the default theme explicitly, so the life graph and other behavior remain inherited.
+- The random-decoration underlays select art in `OnCommand`, after preloading. Functional gameplay/evaluation actors are loaded from Classic (`Themes/default`) explicitly, so the life graph and other behavior remain inherited.
 - [metrics.ini](metrics.ini) sets `Background/FallbackMovie` to the MP4 path. Set it to `""` to keep the poster for all missing-art songs; an absent movie file also falls back to the poster. [BackgroundEffects/StretchNormal.lua](../../BackgroundEffects/StretchNormal.lua) applies this optional metric while retaining the normal music clock and focus handlers.
 - [metrics.ini](metrics.ini) styles the replay browser through `ReplayBackdrop`, `ReplayTitle`, `ReplayList`, and `ReplayHelp` commands. Original themes need no new metrics.
 - [Graphics/LifeHistory graph.lua](Graphics/LifeHistory%20graph.lua) only darkens evaluation labels for cream backgrounds. Their 80% opacity and the graph's original line/fill opacity remain intact.
