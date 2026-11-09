@@ -562,3 +562,19 @@ Updated the badge, workflow filters in README URLs, clone command, contributor p
 The release preview uses the native 1280×720 gameplay capture with the silent dancing-trio movie, original notes/judgments, life graph and persistent 1.1x display. It matches the original `out/chiikawa-movie/gameplay-rate-wide.png` byte-for-byte, with SHA-256 `a49840da22b495df18a8ad63c2ceebf0dd39eab8471ca3ad4175768e860b9184`. Visual review and all 15 released media hashes pass. Added an adjacent caption and direct 30-second MP4 link to `Docs/theme-preview/chiikawa/native/README.md`.
 
 This publication includes the prepared final movie/theme release and the `main` branch documentation updates. Development originals remain on `feature/chiikawa-theme`. The GitHub page previously pointed to the older capture because the release commits were still local. The final source-side publication verification is recorded in the feature progress journal. All commits use `[skip ci]`; no Windows ZIP is requested.
+
+
+## Chiikawa default and refreshed README release
+
+Prepared the completed theme revision from `56789e3115` for selective main promotion. It adds the 3.2-second transparent title dance, Chiikawa defaults for new installations and the **Classic** display label for the original theme. The internal `Themes/default` folder remains for inheritance and saved choices. Earlier native checks verify fresh startup, missing-theme recovery, retained Classic/Legacy selections and switching in both directions.
+
+Fresh 2026-11-09 Linux captures show the current title, movie-background gameplay, evaluation and replay. The README now uses these screenshots plus a new 12.01-second gameplay GIF and 40-second silent MP4. The same synthetic play's replay confirms every illustrated rate change and both reset chords. Full capture metadata and hashes are in `Docs/media/manifest.json`; PNG pixels are unedited. The finished transparent title preview is included, while source atlases, prompts, assembly scripts and detailed development journals remain feature-only.
+
+Release verification passes:
+
+- All 42 selected runtime/check files match the reviewed feature snapshot. All 17 runtime media hashes, two configuration hashes and nine final README/native media hashes match their manifests.
+- The title-animation, theme-selection/layout and fallback-movie Lua checks pass in the release tree.
+- The exact integration tree starts in Chiikawa without a saved or forced theme. Its title animation renders and loads with no Lua errors; isolated evidence is under `out/chiikawa-release/`.
+- All 106 local links in changed release guides resolve, and diff whitespace checks pass. Source illustrations, prompts, original movies, browser comparisons and detailed development journals are absent from the release tree.
+
+Promoted source checkpoint: `56789e3115`. The focused release commit is `feat: make Chiikawa the main default and refresh README captures [skip ci]`. The feature branch is reconciled after main advances. Linux native verification uses software OpenGL and Null audio; Windows hardware, physical controls and audible synchronization remain unverified. No executable rebuild, Windows ZIP or remote push is part of this promotion.

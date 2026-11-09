@@ -206,3 +206,12 @@ Completed: GitHub and local branch names are `main`, the remote commit is unchan
 ## Publish the movie-background gameplay preview
 
 Publish the completed native gameplay capture and its adjacent silent-movie link on `main`, using the already prepared theme release. Preserve the exact captured pixels and existing provenance. Publish the feature branch first to retain development sources separately, then verify the README, screenshot and MP4 on GitHub. No new game build is needed for the preview update.
+
+
+## Promote Chiikawa defaults and current README captures
+
+Promote the finished transparent title loop, `Data/Defaults.ini` Chiikawa defaults, Classic display label, packaging requirements and focused theme check from feature revision `56789e3115`. Keep original theme directory names for inheritance and saved preferences. Include the refreshed native title/gameplay/evaluation/replay PNGs, current gameplay GIF and silent MP4, final title preview and capture provenance. Retain artwork sources, prompts, browser comparisons and detailed journals on the feature branch.
+
+Validate the selected release files against the feature snapshot, run the focused Lua checks, verify all release/media/configuration hashes and local links, and commit a focused release before fast-forwarding main. Reconcile main back into the feature branch. No Windows ZIP or remote push is requested.
+
+Completed: selected the finished runtime/default/Classic changes and final media from `56789e3115`, verified their equality and manifests, passed the three focused Lua checks and actual release-tree default startup, and checked 106 release links. Main receives one focused result commit; development materials remain on the feature branch.

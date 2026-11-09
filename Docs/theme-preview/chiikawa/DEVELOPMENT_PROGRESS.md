@@ -293,7 +293,7 @@ No new engine or theme-logic tests were needed for this configuration-only chang
 - [x] Identify the reviewed title/default/Classic runtime changes and feature-only source assets.
 - [x] Capture Chiikawa gameplay, evaluation and replay; refresh the inline GIF and silent MP4.
 - [x] Update release-safe README/capture documentation and provenance.
-- [ ] Commit the feature checkpoint, selectively promote to main, verify and reconcile the feature baseline.
+- [x] Commit the feature checkpoint, selectively promote to main, verify and reconcile the feature baseline.
 
 Baseline: main `eca4da9033`; feature `fdd9180efa`. The user now explicitly authorizes main-branch promotion, replacing the earlier feature-only restriction for this finished release.
 
@@ -302,3 +302,7 @@ Capture checkpoint: new unedited 1280×720 title, 0.9x gameplay, completed evalu
 Validation: all PNGs decode and match their raw captures; the MP4 fully decodes with 960 H.264 frames and no audio; the new GIF decodes and loops. Native logs show FFmpeg movie playback in both gameplay and replay with no Lua errors. Inspected every screenshot and slowdown/reset GIF samples. All current media/runtime/configuration hashes and 94 local links in changed feature guides pass. Capture provenance is in `Docs/media/manifest.json`; intermediate media and scripts stay ignored under `out/readme-chiikawa/`. Native capture processes were stopped. Windows hardware and audible synchronization remain unverified.
 
 Prepared shared runtime guides and capture documentation with release-safe links. `Docs/media/title-dance.gif` is the completed transparent illustration preview; prompts, packing scripts and source atlases stay in the feature-only package. Main promotion is the remaining step.
+
+Completed promotion: feature capture checkpoint `56789e3115`; main release `d961b87fb9`. Main contains the finished title/default/Classic revision, current README media, checks and release docs. The three focused Lua checks pass from the release tree; all 42 selected runtime/check files match the feature snapshot, all output/configuration hashes match, and 106 release links resolve. An isolated main-tree startup with no saved/forced theme renders Chiikawa's title without Lua errors.
+
+Merged the main release baseline back into this feature branch, preserving its full gallery, prompts, original movies, source atlases, scripts and detailed journals. Resolved the preview README to retain feature comparisons with a release note, and adopted main's final release manifest. No engine rebuild, Windows ZIP or remote push.

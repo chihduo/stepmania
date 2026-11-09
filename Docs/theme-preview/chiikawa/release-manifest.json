@@ -289,7 +289,7 @@
     "script": "Themes/chiikawa/Scripts/07 TitleDance.lua",
     "duration_seconds": 3.2,
     "native_format": "transparent PNG sprite states plus Lua transforms",
-    "status": "complete; ready for main promotion",
+    "status": "included in main release",
     "implementation_commit": "b0e83d6ff7"
   },
   "default_theme": {
@@ -312,5 +312,6 @@
     }
   ],
   "theme_source_commit": "fdd9180efa",
-  "readme_media_manifest": "Docs/media/manifest.json"
+  "readme_media_manifest": "Docs/media/manifest.json",
+  "promoted_feature_commit": "56789e3115"
 }
