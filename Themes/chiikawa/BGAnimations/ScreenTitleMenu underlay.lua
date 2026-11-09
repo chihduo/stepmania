@@ -1,1 +1,1 @@
-return Chiikawa.Decoration("title")
+return Chiikawa.TitleDance()

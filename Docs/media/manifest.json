@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "capture_date": "2026-11-09",
+  "theme": "chiikawa",
+  "theme_runtime_source_commit": "fdd9180efa95e847e6465636d9ae436284b01dde",
+  "engine_build_identifier": "StepMania5.1-git-09b8817104 (20261108)",
+  "engine_sources_match_runtime_revision": true,
+  "capture_platform": "Linux x86_64, Xvfb, Mesa software OpenGL, Null audio, FFmpeg movie decoder",
+  "native_size": [
+    1280,
+    720
+  ],
+  "background_brightness": 0.45,
+  "chart": {
+    "title": "Live Speed Demo",
+    "bpm": 120,
+    "measures": 32,
+    "type": "dance-single",
+    "notes": "taps",
+    "source": {
+      "file": "out/readme-chiikawa/game/Songs/README Demo/Live Speed Demo/demo.sm",
+      "sha256": "b851d25699271072a4ceb8e26082985bda654842e5423170efe80bb57fca0ba0",
+      "bytes": 969
+    },
+    "music": {
+      "file": "out/readme-chiikawa/game/Songs/README Demo/Live Speed Demo/pulse.wav",
+      "sha256": "c896b25c1453fbdfb9c9b578f01fd9a0800ffa5cc2ccec1330a2e556bae72d18",
+      "bytes": 2998844
+    },
+    "song_background": null
+  },
+  "play": {
+    "controller": "built-in autoplay with two brief F8 interruptions",
+    "scroll_modifier": "1.5x",
+    "fail_mode": "FailOff",
+    "replay_outcome": "completed",
+    "playback_rate_sequence": [
+      1.0,
+      1.1,
+      1.2,
+      1.1,
+      1.0,
+      0.9,
+      1.0,
+      1.1,
+      1.0
+    ],
+    "score": 97638084,
+    "max_combo": 59,
+    "flawless": 122,
+    "misses": 6
+  },
+  "source_recording": {
+    "file": "out/readme-chiikawa/capture-raw.mp4",
+    "sha256": "daf93f65558c696ae06a36a2ad61d3d0a798a88c7e1f27d167e064b6bcbb92db",
+    "bytes": 33751501
+  },
+  "source_replay": {
+    "file": "out/readme-chiikawa/game/Save/Replays/0f4b53e135e8c7a9bfb3bb92ae01b1f7f5096ff9f33cf36add820ac6eec7caae-20261109-090518-000.smr.json",
+    "sha256": "53d28cd481ef2c953417a0898299ec1e9026288e2c8b81cec4619b37d01cbed8",
+    "bytes": 75616
+  },
+  "control_events": [
+    {
+      "capture_seconds": 2.0913895899429917,
+      "action": "1.1x via Shift+Up"
+    },
+    {
+      "capture_seconds": 6.086530051194131,
+      "action": "1.2x via Shift+Right"
+    },
+    {
+      "capture_seconds": 8.081866244785488,
+      "action": "gameplay capture"
+    },
+    {
+      "capture_seconds": 9.085686355829239,
+      "action": "autoplay off for a life-history dip"
+    },
+    {
+      "capture_seconds": 10.492396838963032,
+      "action": "autoplay resumes"
+    },
+    {
+      "capture_seconds": 12.099428962916136,
+      "action": "1.1x via Shift+Down"
+    },
+    {
+      "capture_seconds": 16.095752904191613,
+      "action": "1.0x via Shift+Left"
+    },
+    {
+      "capture_seconds": 20.092799291945994,
+      "action": "0.9x via Shift+Down"
+    },
+    {
+      "capture_seconds": 23.663555241189897,
+      "action": "slowdown capture"
+    },
+    {
+      "capture_seconds": 24.135539810173213,
+      "action": "reset via Shift+Up+Down"
+    },
+    {
+      "capture_seconds": 26.66635601129383,
+      "action": "reset capture"
+    },
+    {
+      "capture_seconds": 28.091445322148502,
+      "action": "1.1x via Shift+Right"
+    },
+    {
+      "capture_seconds": 32.138467830605805,
+      "action": "reset via Shift+Left+Right"
+    },
+    {
+      "capture_seconds": 35.090991070494056,
+      "action": "autoplay off for a second life-history dip"
+    },
+    {
+      "capture_seconds": 36.495847238227725,
+      "action": "autoplay resumes"
+    }
+  ],
+  "files": [
+    {
+      "file": "Docs/media/gameplay.png",
+      "sha256": "654ad61f810a9da7f1fe7e72660c3b16faab428fd509ec30a048f5dd2ef45b3c",
+      "bytes": 853895,
+      "size": [
+        1280,
+        720
+      ],
+      "frames": 1
+    },
+    {
+      "file": "Docs/media/evaluation.png",
+      "sha256": "1b1c8669dd2a62e324d8d00f14c77f78321c024aa2ec175fb239323857beaab4",
+      "bytes": 182035,
+      "size": [
+        1280,
+        720
+      ],
+      "frames": 1
+    },
+    {
+      "file": "Docs/media/replay.png",
+      "sha256": "50671c1c6bbf6cf66ed38c6dd1ffd8cd5835c9aa8c7411a44b3d0fac925bbb82",
+      "bytes": 860271,
+      "size": [
+        1280,
+        720
+      ],
+      "frames": 1
+    },
+    {
+      "file": "Docs/media/live-speed-demo.gif",
+      "sha256": "f17b4dff3b8a18e501f8caa6022288a2bf1b20da4555f0ce80d0d52cb7490f8b",
+      "bytes": 8077485,
+      "size": [
+        800,
+        450
+      ],
+      "frames": 96,
+      "duration_seconds": 12.01,
+      "loop": 0
+    },
+    {
+      "file": "Docs/media/title-dance.gif",
+      "sha256": "b92bc226ba98657e143fd991cb1ef216175f2855a1cfd864b4aa2b001932d554",
+      "bytes": 7626056,
+      "size": [
+        660,
+        480
+      ],
+      "frames": 96,
+      "duration_seconds": 3.2,
+      "loop": 0
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/native/title.png",
+      "sha256": "d943f0e6e8d7c65cfa34b16091f8f3836c29731f7445eb6af072b13b2b6e1021",
+      "bytes": 247799,
+      "size": [
+        1280,
+        720
+      ],
+      "frames": 1
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/native/title-4x3.png",
+      "sha256": "847f1cf4c0411997122156830314e10a33cff1d723a417846b1b2ef120faf1e1",
+      "bytes": 227291,
+      "size": [
+        1024,
+        768
+      ],
+      "frames": 1
+    },
+    {
+      "file": "Docs/theme-preview/chiikawa/native/gameplay.png",
+      "sha256": "654ad61f810a9da7f1fe7e72660c3b16faab428fd509ec30a048f5dd2ef45b3c",
+      "bytes": 853895,
+      "size": [
+        1280,
+        720
+      ],
+      "frames": 1
+    },
+    {
+      "file": "Docs/media/live-speed-demo.mp4",
+      "sha256": "9b2f7fd1df4f559de078f428ac3f5396fb13a6797b5dd4000a9a9d560570848e",
+      "bytes": 4345203,
+      "size": [
+        960,
+        540
+      ],
+      "duration_seconds": 40,
+      "fps": 24,
+      "frames": 960,
+      "audio_streams": 0,
+      "codec": "h264"
+    }
+  ],
+  "notes": [
+    "PNG screenshots retain the captured pixels unchanged.",
+    "Gameplay GIF is seconds 18\u201330 of the raw recording, scaled to 800x450 at nominal 8 fps; GIF delay rounding produces 12.01 seconds. MP4 is 40 seconds at 960x540 and 24 fps.",
+    "Title GIF is the finished transparent sprite-animation preview from 2026-11-08, not a game-window recording.",
+    "The 4:3 title capture is from 2026-11-08; the other refreshed PNGs are from 2026-11-09.",
+    "Windows x64, physical input devices and audible synchronization are not verified by these captures."
+  ]
+}

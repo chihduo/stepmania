@@ -34,12 +34,16 @@ git switch main
 git switch -c integrate/chiikawa-release
 git restore --source=feature/chiikawa-theme -- \
   Themes/chiikawa \
+  Data/Defaults.ini \
+  Themes/default/ThemeInfo.ini \
+  Themes/default/readme.md \
   BackgroundEffects/StretchNormal.lua \
   src/tests/test_chiikawa_theme.lua \
+  src/tests/test_chiikawa_title_dance.lua \
   src/tests/test_fallback_movie.lua
 ```
 
-3. Update user-facing docs and the release manifest, copy finished native screenshots as needed, and review the diff. Keep the comparison gallery, raw inputs and development journals on the feature branch. The established main documentation paths are `README.md`, `Themes/chiikawa/README.md`, `Themes/chiikawa/Art/README.md`, this guide, and `Docs/theme-preview/chiikawa/{README.md,artwork-pools.json,release-manifest.json,native/}`. Preview-folder docs on the feature branch include development material, so copy only the intended release files.
+3. Include the shipped `Data/Defaults.ini`, Classic display label in `Themes/default/ThemeInfo.ini`, and required-path checks in `ci/Test-WindowsPortable.ps1` when promoting the default-theme revision. Keep the original `Themes/default` directory for inheritance and saved choices. Update user-facing docs and the release manifest, copy finished native screenshots as needed, and review the diff. Keep the comparison gallery, raw inputs and development journals on the feature branch. The established main documentation paths are `README.md`, `Themes/chiikawa/README.md`, `Themes/chiikawa/Art/README.md`, this guide, and `Docs/theme-preview/chiikawa/{README.md,artwork-pools.json,release-manifest.json,native/}`. Preview-folder docs on the feature branch include development material, so copy only the intended release files.
 4. Check asset hashes and local document links, run the focused Lua checks with the bundled Lua interpreter, and perform native verification when behavior changes. Commit the finished snapshot. Advance `main` by fast-forwarding this integration branch, then delete the temporary integration branch.
 5. Merge `main` back into the feature worktree before starting the next round. The initial split reconciles that baseline while retaining the feature-only files, so subsequent normal merges preserve them unless main explicitly changes those paths.
 
