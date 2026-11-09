@@ -18,7 +18,7 @@ To freeze the title dancers and disable moving menu backgrounds, use **Options â
 
 The right side of the **Game Start / Options** title menu shows Chiikawa, Hachiware and Usagi stepping and hopping on three pastel cartoon pads. The transparent animation repeats every **3.2 seconds**, with the pads held still and the feet returning to the center tiles. It restarts when returning to the title menu. **Fancy UI Background â†’ Off** keeps a neutral still pose.
 
-[View the looping GIF](../../Docs/theme-preview/chiikawa/title-dance/title-dance.gif), [open the interactive preview](../../Docs/theme-preview/chiikawa/title-dance/preview.html), or [see the actual title menu](../../Docs/theme-preview/chiikawa/native/title.png). The native theme uses four drawn PNG poses per character with smooth Lua movement; its GIF loader only reads the first frame. The PNG version preserves smooth alpha edges. Copy the updated `Themes/chiikawa/` folder into an existing installation to use this title animation; it needs no executable rebuild.
+[View the looping GIF](../../Docs/media/title-dance.gif) or [see the actual title menu](../../Docs/theme-preview/chiikawa/native/title.png). The interactive comparison, source artwork and assembly tools are retained on the [development branch](../../Docs/ChiikawaDevelopment.md) under `Docs/theme-preview/chiikawa/title-dance/`. The native theme uses four drawn PNG poses per character with smooth Lua movement; its GIF loader only reads the first frame. The PNG version preserves smooth alpha edges. Copy the updated `Themes/chiikawa/` folder into an existing installation to use this title animation; it needs no executable rebuild.
 
 ## Random per screen
 

@@ -39,6 +39,7 @@ git restore --source=feature/chiikawa-theme -- \
   Themes/default/readme.md \
   BackgroundEffects/StretchNormal.lua \
   src/tests/test_chiikawa_theme.lua \
+  src/tests/test_chiikawa_title_dance.lua \
   src/tests/test_fallback_movie.lua
 ```
 

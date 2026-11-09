@@ -2,9 +2,9 @@
 
 This fork can record a local single-player song and play it back inside StepMania. A recording includes the actual note judgments, score/combo changes, life history, player modifiers, and live playback-speed changes. It uses the installed song's music and background/video assets; it is not a video file.
 
-![Replay viewer showing recorded judgments, a roll, the life-history graph, and a recorded 1.2x playback rate.](media/replay.png)
+![Chiikawa replay viewer showing recorded judgments, the life-history graph, the dancing movie and a recorded 1.2x playback rate.](media/replay.png)
 
-Actual replay captured on Linux from Classic (then named Default); [capture details](media/README.md#replay-screenshot).
+Actual replay captured on Linux from the current default Chiikawa theme; [capture details](media/README.md#replay-screenshot).
 
 ## Record a play
 

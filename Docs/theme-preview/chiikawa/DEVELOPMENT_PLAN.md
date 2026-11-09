@@ -127,3 +127,12 @@ Ship `Data/Defaults.ini` with `Theme=chiikawa` and `DefaultTheme=chiikawa` in `[
 Update portable-package required paths, installation and theme-selection guides, historical screenshot captions, and the feature release manifest. Verify actual native startup with an empty Save folder, a missing theme choice and explicit Classic/other saved choices; verify the appearance menu labels and theme switching. Retain the isolated evidence under `out/default-theme/`. Commit the small completed revision on `feature/chiikawa-theme` only. No engine rebuild, main promotion, push or Windows ZIP is requested.
 
 Completed: shipped configurable Chiikawa defaults and renamed the original display label to Classic, preserving its internal directory. Native first-run and missing-theme recovery select Chiikawa; saved Classic and Legacy selections remain intact. The appearance menu displays both names, and switching in both directions updates the saved theme correctly. Package requirements, upgrade instructions, preview captions and configuration hashes are updated. No engine rebuild, ZIP, main changes or push.
+
+
+## Promote the default theme and refresh repository captures
+
+Promote the completed title animation and Chiikawa-default/Classic-label changes to main through a focused integration commit. Retain source artwork, generation prompts, browser comparisons and detailed journals on the feature branch. Main receives runtime PNG/Lua/configuration, required checks, release guidance and final native captures only.
+
+Capture current Chiikawa title, gameplay with the movie fallback, evaluation and replay using the existing Linux executable and an isolated synthetic chart. Refresh the README's gameplay GIF and linked silent MP4 so all displayed captures use the new appearance. Preserve original fonts, notes and judgments; use actual key events for live speed changes and replay viewing. Record source/runtime revisions, media hashes, capture settings and limits. Update README and guide links for main, avoiding local links to feature-only sources.
+
+Commit the reviewed capture/documentation checkpoint on the feature branch, copy the selected release paths onto an integration branch from main, run focused Lua checks, verify media/configuration hashes and local links, and fast-forward main. Merge the release baseline back into the feature branch while retaining its development materials. No Windows ZIP or remote publication is requested.

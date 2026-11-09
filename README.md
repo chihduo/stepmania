@@ -8,9 +8,9 @@ A community fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for 
 
 **Chiikawa is the default theme** for fresh installations, with pastel menus, a transparent dancing title illustration and a silent dance movie for songs without background artwork. The original appearance remains available as **Classic**. Existing saved theme choices are preserved.
 
-![Chiikawa gameplay with the dancing background movie, notes, life-history graph and speed display.](Docs/theme-preview/chiikawa/native/gameplay.png)
+![Chiikawa gameplay with the dancing background movie, notes, life-history graph and speed display.](Docs/media/gameplay.png)
 
-Actual Linux gameplay captured with the default Chiikawa theme. [Native capture details](Docs/theme-preview/chiikawa/native/README.md). The speed-control recordings and evaluation/replay examples below use Classic, the original theme. [Classic capture details](Docs/media/README.md).
+All gameplay, evaluation and replay captures below show the current Chiikawa theme, recorded on Linux with a synthetic demo chart. Gameplay and replay use the silent dancing background movie. [Capture details and media hashes](Docs/media/README.md).
 
 ## What this fork adds
 
@@ -34,7 +34,7 @@ For example, Up, Down, Down while holding Shift changes **1.0x → 1.1x → 1.0x
 
 ![Animated gameplay showing live speed changes, reset to 1.0x, and the life-history graph updating beneath the notes.](Docs/media/live-speed-demo.gif)
 
-[Open the 52-second silent gameplay video (MP4)](Docs/media/live-speed-demo.mp4), including both reset chords.
+[Open the 40-second silent gameplay video (MP4)](Docs/media/live-speed-demo.mp4), including both reset chords.
 
 These controls work during active local gameplay. They are disabled while paused and in the editor, attract-mode demonstration screens, calibration, and network play. Custom song scripts that use their own real-time clocks need separate verification. Supported single-player replays include the live rate-change timeline. See [the playback guide](Docs/LiveGameplayRate.md) for behavior and verification steps.
 
@@ -62,9 +62,11 @@ The fork includes a GitHub Actions pipeline that builds a **Windows x64 Release*
 
 ## Chiikawa theme
 
+![Chiikawa title menu with the dancing trio on three pastel pads.](Docs/theme-preview/chiikawa/native/title.png)
+
 **Chiikawa - StepMania 6** is selected automatically on fresh installations. Use **Options → Display Options → Appearance Options → Theme** to switch between its cream/pastel menus and **Classic**. Existing installations retain their saved selection. Song selection, gameplay, evaluation and replay screens choose from their own pools on entry and avoid an immediate repeat. The title menu instead shows the three characters dancing on transparent cartoon pads in a 3.2-second loop. The selected decoration stays fixed during songs, speed changes, pauses, and replay restarts. The original fonts, notes, judgments, and gameplay features are inherited.
 
-The eleven transparent decorations include new piano, drums, violin, flute, and saxophone scenes. Menu backgrounds and title dancers have optional motion, controlled by **Fancy UI Background**. [Preview the transparent title loop](Docs/theme-preview/chiikawa/title-dance/title-dance.gif). Songs without background artwork use a [30-second silent movie](Themes/chiikawa/Movies/ddr-trio-loop.mp4) of Chiikawa, Hachiware and Usagi dancing on DDR pads; static-background mode uses its still poster. Song images and scripted movies keep their usual precedence. [View the theme results](Docs/theme-preview/chiikawa/README.md), [see native screenshots](Docs/theme-preview/chiikawa/native/README.md), or read the [theme installation and customization guide](Themes/chiikawa/README.md). These are AI-generated fan illustrations. The complete replay-browser appearance requires a build containing the new theme hooks. Theme experiments and source media live on `feature/chiikawa-theme`; see the [development workflow](Docs/ChiikawaDevelopment.md).
+The eleven transparent decorations include new piano, drums, violin, flute, and saxophone scenes. Menu backgrounds and title dancers have optional motion, controlled by **Fancy UI Background**. [Preview the transparent title loop](Docs/media/title-dance.gif). Songs without background artwork use a [30-second silent movie](Themes/chiikawa/Movies/ddr-trio-loop.mp4) of Chiikawa, Hachiware and Usagi dancing on DDR pads; static-background mode uses its still poster. Song images and scripted movies keep their usual precedence. [View the theme results](Docs/theme-preview/chiikawa/README.md), [see native screenshots](Docs/theme-preview/chiikawa/native/README.md), or read the [theme installation and customization guide](Themes/chiikawa/README.md). These are AI-generated fan illustrations. The complete replay-browser appearance requires a build containing the new theme hooks. Theme experiments and source media live on `feature/chiikawa-theme`; see the [development workflow](Docs/ChiikawaDevelopment.md).
 
 ## Record and replay
 
@@ -89,7 +91,7 @@ Completed and failed plays can be watched from evaluation. Backing out saves an 
 
 Recorded speed changes apply automatically. Watching or restarting a replay adds no scores or plays to your history, and returning restores your previous settings and original results.
 
-![In-game replay with recorded judgments, notes, speed, and life history.](Docs/media/replay.png)
+![Chiikawa replay with recorded judgments, notes, speed, life history and the dancing movie background.](Docs/media/replay.png)
 
 Recordings are stored in **`Save/Replays/`** and require the matching installed song/chart and media. Keep this folder when updating the game. Courses, multiplayer, attacks, keysounds, and calibration are outside this first version. This is in-game playback; it does not export an MP4.
 

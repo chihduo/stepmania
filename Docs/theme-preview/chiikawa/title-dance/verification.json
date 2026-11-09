@@ -141,5 +141,7 @@
     "Windows x64 rendering not checked",
     "Native output and logs retained under ignored out/title-dance/",
     "No executable rebuild or ZIP"
-  ]
+  ],
+  "verification_revision": "b0e83d6ff7",
+  "historical_capture_note": "Native title.png hashes describe the title-animation checkpoint. The current README/title captures were refreshed on 2026-11-09; see Docs/media/manifest.json. Original verification captures remain under out/title-dance/."
 }

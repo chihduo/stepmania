@@ -289,7 +289,8 @@
     "script": "Themes/chiikawa/Scripts/07 TitleDance.lua",
     "duration_seconds": 3.2,
     "native_format": "transparent PNG sprite states plus Lua transforms",
-    "status": "feature branch only"
+    "status": "complete; ready for main promotion",
+    "implementation_commit": "b0e83d6ff7"
   },
   "default_theme": {
     "id": "chiikawa",
@@ -309,5 +310,7 @@
       "sha256": "b151a0a27404f89aba3416f4e636754c92be451d6a97ec3963915d18599588b7",
       "bytes": 57
     }
-  ]
+  ],
+  "theme_source_commit": "fdd9180efa",
+  "readme_media_manifest": "Docs/media/manifest.json"
 }

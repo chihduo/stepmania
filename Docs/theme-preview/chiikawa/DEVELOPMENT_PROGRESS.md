@@ -285,3 +285,20 @@ Native verification used the existing Linux executable in an isolated installati
 - Both runtime configuration hashes, all 17 media hashes, 155 local links and diff whitespace pass. Native captures, logs and the verification record remain under ignored `out/default-theme/`.
 
 No new engine or theme-logic tests were needed for this configuration-only change. The Windows package script's required-path lists were updated and checked against the existing install rules; PowerShell and Windows runtime checks were not run on this Linux host. Commit: `feat: make Chiikawa the default StepMania 6 theme [skip ci]`, on `feature/chiikawa-theme` only. Main remains at `eca4da9033`; no executable rebuild, ZIP or remote push.
+
+
+## Default-theme promotion and current README captures
+
+- [x] Confirm main is already an ancestor of the feature baseline; both worktrees are clean.
+- [x] Identify the reviewed title/default/Classic runtime changes and feature-only source assets.
+- [x] Capture Chiikawa gameplay, evaluation and replay; refresh the inline GIF and silent MP4.
+- [x] Update release-safe README/capture documentation and provenance.
+- [ ] Commit the feature checkpoint, selectively promote to main, verify and reconcile the feature baseline.
+
+Baseline: main `eca4da9033`; feature `fdd9180efa`. The user now explicitly authorizes main-branch promotion, replacing the earlier feature-only restriction for this finished release.
+
+Capture checkpoint: new unedited 1280×720 title, 0.9x gameplay, completed evaluation and 1.2x replay screenshots use runtime `fdd9180efa` and the existing FFmpeg-enabled Linux binary. The demo chart has no background, so the theme movie is visible at 45% brightness. The same synthetic 32-measure play supplies the new 40-second silent MP4 and 12.01-second, 96-frame GIF. The saved replay confirms all eight rate changes/reset events and completed status; evaluation reports 122 Flawless, six misses, max combo 59 and score 97,638,084.
+
+Validation: all PNGs decode and match their raw captures; the MP4 fully decodes with 960 H.264 frames and no audio; the new GIF decodes and loops. Native logs show FFmpeg movie playback in both gameplay and replay with no Lua errors. Inspected every screenshot and slowdown/reset GIF samples. All current media/runtime/configuration hashes and 94 local links in changed feature guides pass. Capture provenance is in `Docs/media/manifest.json`; intermediate media and scripts stay ignored under `out/readme-chiikawa/`. Native capture processes were stopped. Windows hardware and audible synchronization remain unverified.
+
+Prepared shared runtime guides and capture documentation with release-safe links. `Docs/media/title-dance.gif` is the completed transparent illustration preview; prompts, packing scripts and source atlases stay in the feature-only package. Main promotion is the remaining step.

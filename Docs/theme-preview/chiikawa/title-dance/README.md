@@ -1,6 +1,6 @@
 # Transparent title-menu dance loop
 
-Chiikawa, Hachiware and Usagi dance on three pastel cartoon DDR pads on the **right of the Game Start / Options title menu**. This feature revision lives only on `feature/chiikawa-theme`.
+Chiikawa, Hachiware and Usagi dance on three pastel cartoon DDR pads on the **right of the Game Start / Options title menu**. This development package stays on `feature/chiikawa-theme`; finished runtime files and previews are promoted separately to main.
 
 ![Transparent dancing trio](title-dance.gif)
 
@@ -40,4 +40,4 @@ Focused Lua checks cover all character poses, periodic motion, section/loop boun
 
 Native Linux verification covers both aspect ratios, moving and frozen dancers, Options and return, and Game Start navigation. The frozen illustration region is pixel-identical across captures 1.5 seconds apart; moving captures differ. The exported GIF's decoded alpha mask matches the corresponding rendered PNG at every frame, with no trails. The rendered start and wraparound frames are identical. See [preview-manifest.json](preview-manifest.json) for preview hashes and [verification.json](verification.json) for recorded evidence.
 
-Native captures use the existing Linux debug executable, software OpenGL and null audio in an isolated fixture. Windows x64 rendering has not been checked for this revision. Detailed native logs and intermediate captures remain under ignored `out/title-dance/`. No executable rebuild, Windows ZIP, main-branch commit or remote push is part of this change.
+Native captures use the existing Linux debug executable, software OpenGL and null audio in an isolated fixture. Windows x64 rendering has not been checked for this revision. Detailed native logs and intermediate captures remain under ignored `out/title-dance/`. The original title-animation checkpoint required no executable rebuild or Windows ZIP. Later main promotion is recorded in [the development progress](../DEVELOPMENT_PROGRESS.md).

@@ -1,35 +1,40 @@
 # Gameplay media
 
-These files are actual captures of Classic, this fork's original theme (named Default at capture time), recorded on **2026-11-07** at **1280 × 720** on Linux x86_64. The gameplay engine and theme render the notes, judgments, speed number, life history, and evaluation screen. The GIF and MP4 are trimmed/resized encodings of that recording.
+These gameplay, evaluation and replay captures show the **current default Chiikawa theme**, recorded on **2026-11-09** at **1280 × 720** on Linux x86_64. Original notes, judgments, speed text and the life graph appear over the silent dance movie. PNGs are unedited native captures; the gameplay GIF and MP4 are resized encodings of the same play.
 
 | File | Size and duration | Purpose |
 | --- | --- | --- |
-| [gameplay.png](gameplay.png) | 1280 × 720 | Gameplay with the current speed and life-history graph beneath the notes. |
-| [replay.png](replay.png) | 1280 × 720 | Recorded gameplay being watched, including judgments, a roll, the life graph, and the recorded 1.2x speed. |
-| [evaluation.png](evaluation.png) | 1280 × 720 | The completed life history on the evaluation screen. |
-| [live-speed-demo.gif](live-speed-demo.gif) | 800 × 450; 17 seconds; 2.9 MB | Inline preview of slowing down and resetting to 1.0x. |
-| [live-speed-demo.mp4](live-speed-demo.mp4) | 960 × 540; 52 seconds; 2.3 MB | Silent recording of increases, decreases, and both reset chords. |
+| [gameplay.png](gameplay.png) | 1280 × 720 | Movie background, persistent 0.9x speed and a life-history dip. |
+| [evaluation.png](evaluation.png) | 1280 × 720 | Cream evaluation layout, paired decoration and completed life history. |
+| [replay.png](replay.png) | 1280 × 720 | The same play viewed as a replay, with the movie and recorded 1.2x speed. |
+| [live-speed-demo.gif](live-speed-demo.gif) | 800 × 450; 12.01 seconds; 8.1 MB | Slowing to 0.9x, resetting to 1.0x and increasing to 1.1x. |
+| [live-speed-demo.mp4](live-speed-demo.mp4) | 960 × 540; 40 seconds; 4.3 MB | Silent recording of increases, decreases and both reset chords. |
+| [title-dance.gif](title-dance.gif) | 660 × 480; 3.2 seconds | Transparent illustration preview rendered from the native sprite poses and Lua motion. |
+
+[Actual title menu](../theme-preview/chiikawa/native/title.png) · [More native screens](../theme-preview/chiikawa/native/README.md) · [Media hashes and capture metadata](manifest.json)
 
 ## Capture setup
 
-This setup describes the live-speed gameplay/evaluation images and GIF/MP4. The replay screenshot has its own capture notes below.
+- **Theme:** runtime revision `fdd9180efa`, including the dancing title, Chiikawa defaults and Classic label, selectively promoted from the feature branch.
+- **Engine:** existing Linux debug build `StepMania5.1-git-09b8817104` dated 2026-11-08, with FFmpeg decoding. Its engine sources match this theme-only revision. The inherited version string remains visible in the title capture.
+- **Rendering:** Xvfb, Mesa software OpenGL and Null audio. Gameplay/replay use the theme movie at **45% brightness** because the chart has no background. Engine and theme files were not modified for capture.
+- **Chart:** an original generated **120 BPM, 32-measure dance-single** chart, **Live Speed Demo**, with taps and a synthetic WAV pulse track. No external song pack is used.
+- **Play:** one joined player, **1.5x note scroll**, FailOff, replay saving and built-in autoplay. Two brief F8 interruptions create life-history dips. The result is 122 Flawless judgments, six misses, max combo 59 and score 97,638,084.
+- **Controls:** actual X11 XTest Shift+arrow events. The saved replay confirms `1.0 → 1.1 → 1.2 → 1.1 → 1.0 → 0.9 → 1.0 → 1.1 → 1.0`, including both reset chords.
+- **Isolation:** a separate portable directory contains the synthetic chart, settings, logs and replay; no personal profile is used. Source video, scripts and logs remain under ignored `out/readme-chiikawa/` in the feature workspace.
 
-- **Build:** Linux Debug from source [`ed202f9327`](https://github.com/chihduo/stepmania/commit/ed202f932724d8b8f3124887c951f6dee71b09bc). Its gameplay code is the same as feature revision [`0535f3e9d9`](https://github.com/chihduo/stepmania/commit/0535f3e9d9b5ae3470d43d6b5d3ed4d778133e63); intervening commits update documentation.
-- **Rendering:** Xvfb and Mesa software OpenGL, with the bundled default theme and dance noteskin. Game code and theme files were not modified for the recording.
-- **Song:** an original generated 120 BPM, 32-measure dance-single chart named **Live Speed Demo**, with a synthetic WAV pulse track and a plain gradient background. No external song pack is needed for these media.
-- **Play:** one joined player, 1.5x note-scroll modifier, FailOff, and the built-in autoplay controller. Two brief pauses in autoplay produce the visible dips in life. The on-screen **AutoPlay** label remains visible.
-- **Controls:** actual Shift+arrow keyboard events sent through X11's XTest extension. The longer video shows Up/Right increases, Down/Left decreases, and both opposite-arrow reset chords.
-- **Isolation:** a separate portable game directory holds the demo chart, preferences, logs, and generated state. The capture does not use a personal player profile.
-
-The **1.5x** shown in evaluation is the note-scroll modifier; it is separate from the live playback multiplier at the bottom-left during gameplay. Live playback starts at 1.0x and changes during the recording.
-
-The capture is silent and uses the engine's Null sound driver. It demonstrates the rendered controls and graph, but does not verify audible synchronization, video-background synchronization, or Windows device behavior. The demo uses autoplay, whose usual score restrictions still apply; its evaluation image is not evidence of a saved human score. Normal score-saving checks and their limits are recorded in [the progress file](../../PROGRESS.md).
-
-The underlying StepMania theme and noteskin retain their original credits and [license notices](../Licenses.txt). The chart, pulse track, and neutral background were generated for this demonstration.
-
+The evaluation's **1.5x** is the note-scroll modifier, separate from live playback speed. The GIF covers seconds 18–30 at nominal eight frames per second; centisecond delay rounding gives 12.01 seconds. The silent MP4 retains the first 40 seconds at 24 frames per second.
 
 ## Replay screenshot
 
-`replay.png` was captured from Linux Debug build `b21530a9ad2398c86062146e8ab903a4ab5a2eb4` on the same date, using the actual replay viewer and default theme. It replays a 12-measure variant of the generated 120 BPM chart, with holds, rolls, mines, and lifts. The original recording used autoplay with brief misses and live speed changes; the viewer applies those recorded outcomes. The REPLAY label distinguishes it from a fresh play, and viewing does not create another score.
+`replay.png` shows the actual viewer opened with **F10** from the captured evaluation. It plays the same completed recording, with the saved judgments, speed timeline and life history. Its **REPLAY** label distinguishes it from a new play. The GIF/MP4 show the original play, not replay viewing.
 
-The screenshot is an unedited 1280 × 720 capture from the isolated `out/replay-tests/` fixture. The song uses the same original WAV/background assets described above. Null audio and disabled video decoding mean this screenshot verifies rendering, not audible/video synchronization or Windows behavior. The existing GIF/MP4 demonstrate live speed controls, not replay playback.
+## Verification and limits
+
+PNGs match their raw captures. The gameplay GIF has 96 decoded frames; the MP4 fully decodes to 960 H.264 frames with no audio. Native logs confirm FFmpeg loads the dance movie in gameplay and replay, with no Lua errors. All screenshots and representative slowdown/reset frames were inspected.
+
+The title GIF and [4:3 title capture](../theme-preview/chiikawa/native/title-4x3.png) were completed on 2026-11-08. The GIF is an isolated transparent animation preview; the title PNGs show the actual menu. Artwork sources and assembly tools remain on the [development branch](../ChiikawaDevelopment.md).
+
+Null audio and software rendering do not verify audible synchronization, physical controllers or Windows x64 behavior. Autoplay's usual score restrictions apply, so evaluation is not evidence of a saved human score. Earlier functional checks are recorded in [the progress file](../../PROGRESS.md).
+
+Theme, noteskin and generated fan-art credits remain in their guides and [license notices](../Licenses.txt). Earlier Classic-theme captures remain in Git history.
