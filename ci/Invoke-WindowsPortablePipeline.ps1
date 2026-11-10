@@ -60,7 +60,7 @@ $cmake = Get-Command cmake -ErrorAction Stop
 $buildPath = Get-RepositoryOutputPath -Path $BuildDirectory
 $outputPath = Get-RepositoryOutputPath -Path $OutputDirectory
 $stagingPath = Join-Path $outputPath "StepMania"
-$archivePath = Join-Path $outputPath "StepMania-5.1-windows-x64-portable.zip"
+$archivePath = Join-Path $outputPath "StepMania-6.0-windows-x64-portable.zip"
 $checksumPath = "$archivePath.sha256"
 
 New-Item -ItemType Directory -Path $buildPath -Force | Out-Null
@@ -135,7 +135,7 @@ if ($env:GITHUB_STEP_SUMMARY) {
 ## Windows portable build
 
 - Build: MSVC 2022, x64, static C/C++ runtime, Release
-- Automated test: portable layout, PE architecture, and runtime Lua export smoke test
+- Automated test: portable layout, x64 PE, 6.0 version metadata, and Chiikawa startup/Lua export
 - Archive: $(Split-Path $archivePath -Leaf)
 - SHA-256: $archiveHash
 "@

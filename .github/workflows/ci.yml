@@ -31,8 +31,8 @@ jobs:
         with:
           name: StepMania-windows-x64-${{ github.run_number }}.${{ github.run_attempt }}
           path: |
-            out/StepMania-5.1-windows-x64-portable.zip
-            out/StepMania-5.1-windows-x64-portable.zip.sha256
+            out/StepMania-6.0-windows-x64-portable.zip
+            out/StepMania-6.0-windows-x64-portable.zip.sha256
           if-no-files-found: error
           compression-level: 0
           retention-days: 30

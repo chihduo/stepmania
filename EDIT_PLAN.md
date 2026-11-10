@@ -215,3 +215,10 @@ Promote the finished transparent title loop, `Data/Defaults.ini` Chiikawa defaul
 Validate the selected release files against the feature snapshot, run the focused Lua checks, verify all release/media/configuration hashes and local links, and commit a focused release before fast-forwarding main. Reconcile main back into the feature branch. No Windows ZIP or remote push is requested.
 
 Completed: selected the finished runtime/default/Classic changes and final media from `56789e3115`, verified their equality and manifests, passed the three focused Lua checks and actual release-tree default startup, and checked 106 release links. Main receives one focused result commit; development materials remain on the feature branch.
+
+
+## Correct the Windows fork version and clarify theme upgrades
+
+Update the displayed/build/package version to 6.0 and Windows file metadata to match. Preserve the legacy application identifier so existing user-data locations remain readable. Extend the Windows smoke check to reject an old runtime version and to verify that a fresh installation actually selects Chiikawa. Explain how an upgraded installation retains Classic until the user selects Chiikawa, and how to detect a nested extraction or old shortcut. Validate the local build and real startup with fresh and saved theme settings, commit the fix, and produce a corrected Windows portable build.
+
+Completed: published the compatibility-preserving version fix as `8977aa3f0c`, verified native fresh/saved/switch behavior, and built the corrected Windows x64 ZIP in run `42825456584`. Windows metadata and runtime/default-theme checks, the downloaded SHA-256, all 28 release manifest entries, and full archive CRC pass.

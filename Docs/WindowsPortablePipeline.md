@@ -14,9 +14,11 @@ The single Windows job performs these stages in order:
 3. Install the executable, runtime DLLs, themes, noteskins, songs, and data into
    a clean staging tree.
 4. Add `Portable.ini`, which keeps user data inside the extracted tree.
-5. Validate the required portable layout and the executable's x64 PE headers.
+5. Validate the required portable layout, the executable's x64 PE headers,
+   and its Windows 6.0 file/product version metadata.
 6. Launch `StepMania.exe --ExportLuaInformation` with a 60-second timeout and
-   require a zero exit code plus valid generated XML.
+   require a zero exit code, valid generated XML reporting StepMania 6.0,
+   and a startup log showing Chiikawa selected without a saved theme override.
 7. Remove smoke-test state, create a ZIP archive, calculate its SHA-256 digest,
    and upload both files as one workflow artifact.
 
@@ -32,8 +34,8 @@ GitHub Actions page with `workflow_dispatch`.
 
 Download the artifact named `StepMania-windows-x64-<run>.<attempt>`. It contains:
 
-- `StepMania-5.1-windows-x64-portable.zip`
-- `StepMania-5.1-windows-x64-portable.zip.sha256`
+- `StepMania-6.0-windows-x64-portable.zip`
+- `StepMania-6.0-windows-x64-portable.zip.sha256`
 
 Extract the ZIP in the Windows 11 guest and launch
 `StepMania/Program/StepMania.exe`. Keep `Portable.ini` at the root of the

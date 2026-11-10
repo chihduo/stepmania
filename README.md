@@ -101,13 +101,17 @@ See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requiremen
 
 1. Open [Windows portable build and test](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3Amain) and select the latest successful run for **`main`** that contains an artifact.
 2. Download **`StepMania-windows-x64-<run>.<attempt>`** from the run's **Artifacts** section. GitHub may require you to sign in. Artifacts are retained for 30 days; if none remain, a repository maintainer can start a new run with **Run workflow**.
-3. Extract the downloaded artifact. It contains `StepMania-5.1-windows-x64-portable.zip` and its `.sha256` file. Extract that inner ZIP as well.
+3. Extract the downloaded artifact. It contains `StepMania-6.0-windows-x64-portable.zip` and its `.sha256` file. Extract that inner ZIP as well.
 4. Launch **`StepMania/Program/StepMania.exe`**. Keep the full folder together, including `Portable.ini`, which stores profiles and settings inside this portable installation.
 5. Add song packs under `StepMania/Songs/`, keeping the usual `Songs/<pack>/<song>/` structure. Chiikawa is selected by default; both **Chiikawa** and **Classic** include the life-history graph.
 
 ### Update an existing portable installation
 
 Close StepMania and back up the existing folder. Extract the new package elsewhere, then merge **`Program`**, **`Scripts`**, **`Themes`**, and **`BackgroundEffects`** into the existing game folder, replacing matching files. Also copy **`Data/Defaults.ini`** into the existing `Data` folder to install the new theme defaults. Updating **`Docs`** is optional. Existing saved theme choices take precedence; select **Chiikawa - StepMania 6** in Appearance Options to switch an older installation. The original theme is now labeled **Classic**, with its `Themes/default` folder retained.
+
+If the old appearance remains, open **Options → Display Options → Appearance Options → Theme**, choose **Chiikawa - StepMania 6**, and save/exit the options menu. If that choice is missing, check that `Themes/chiikawa/ThemeInfo.ini` is beside `Themes/default/ThemeInfo.ini` in the game folder containing `Program/StepMania.exe`; extract and copy the inner ZIP's contents rather than nesting another `StepMania` folder. Launch that executable directly to rule out an old shortcut. Keep `Save` intact.
+
+The executable now reports **6.0** plus its build commit on the title screen. Earlier fork ZIPs (including `d961b87`) still reported **5.1** even when they included Chiikawa. Non-portable user-data directory names retain `StepMania 5.1` for compatibility with existing profiles.
 
 Keep **`Save`**, **`Songs`**, **`Logs`**, **`Screenshots`**, and **`Portable.ini`**, along with any other personal content. `Save` contains settings, profiles, play history, and recordings in `Save/Replays/`. Back up custom theme/script edits before replacing matching files. Copy historical logs elsewhere before launching, since normal startup rewrites the standard log files.
 
