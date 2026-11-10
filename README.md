@@ -1,146 +1,118 @@
 # StepMania 6
 
-A community fork of [StepMania 5.1](https://github.com/stepmania/stepmania) for adjusting a song's speed while you play, with synchronized notes, music, and standard song videos. It also records and replays single-player songs, adds a live life-history graph to the bundled themes, and keeps your highlighted song selected when changing the song-wheel sort.
-
 [![Windows x64 build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/chihduo/stepmania/actions/workflows/ci.yml)
 
-[Get the Windows portable build](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3Amain) · [Playback controls](Docs/LiveGameplayRate.md) · [Record and replay](#record-and-replay) · [Life-history graph](Docs/LifeHistoryGraph.md)
+StepMania 6 is a rhythm game for playing and practicing dance charts with a keyboard or dance pad. Press the matching direction as each scrolling arrow reaches the target row. This independent community fork of [StepMania 5.1](https://github.com/stepmania/stepmania) adds live playback-speed controls, single-player recording and replay, and a life-history graph.
 
-**Chiikawa is the default theme** for fresh installations, with pastel menus, a transparent dancing title illustration and a silent dance movie for songs without background artwork. The original appearance remains available as **Classic**. Existing saved theme choices are preserved.
+The default **Chiikawa** interface has cream and pastel menus, character illustrations, and an animated title screen.
 
-![Chiikawa gameplay with the dancing background movie, notes, life-history graph and speed display.](Docs/media/gameplay.png)
+[Download for Windows x64](#install-on-windows-x64) · [Playback controls](#playback-controls) · [Record and replay](#record-and-replay) · [Build from source](#build-from-source)
 
-All gameplay, evaluation and replay captures below show the current Chiikawa theme, recorded on Linux with a synthetic demo chart. Gameplay and replay use the silent dancing background movie. [Capture details and media hashes](Docs/media/README.md).
+![Gameplay with notes, judgments, a persistent playback-speed display, and the life-history graph.](Docs/media/gameplay.png)
 
-## What this fork adds
+## Features
 
-### Change playback speed during a song
-
-Hold either **Shift** key and press an arrow:
-
-| Shortcut | Action |
-| --- | --- |
-| **Shift + Up** or **Shift + Right** | Increase playback speed by **0.1x** |
-| **Shift + Down** or **Shift + Left** | Decrease playback speed by **0.1x** |
-| **Shift + Up + Down** or **Shift + Left + Right** | Reset playback speed to **1.0x** |
-
-For example, Up, Down, Down while holding Shift changes **1.0x → 1.1x → 1.0x → 0.9x**. The supported range is **0.2x–3.0x**. Each new press changes speed once; holding a key does not repeat it. A reset takes effect when the second opposite arrow is pressed, in either order.
-
-- Notes, music, and standard song videos follow the same song clock. Visible note movement also follows the change with XMod, CMod, and MMod.
-- The latest speed stays at the **bottom-left** after the first adjustment, using the theme's FLAWLESS-style color, font, and glow.
-- Changes apply to the **current song only**. The original settings return on completion, failure, cancellation, retry, or advancing to another song in a course.
-- Ordinary arrows remain note inputs. Arrows used in a Shift shortcut are consumed until released, so tuning speed does not also hit a note.
-- Speed-adjusted plays use **normal scoring and saving rules**, including after a reset to 1.0x. A speed change alone does not disqualify a play or suppress high scores, awards, configured replay saving, or exports. Usual save settings and other eligibility rules, such as autoplay, still apply.
-
-![Animated gameplay showing live speed changes, reset to 1.0x, and the life-history graph updating beneath the notes.](Docs/media/live-speed-demo.gif)
-
-[Open the 40-second silent gameplay video (MP4)](Docs/media/live-speed-demo.mp4), including both reset chords.
-
-These controls work during active local gameplay. They are disabled while paused and in the editor, attract-mode demonstration screens, calibration, and network play. Custom song scripts that use their own real-time clocks need separate verification. Supported single-player replays include the live rate-change timeline. See [the playback guide](Docs/LiveGameplayRate.md) for behavior and verification steps.
-
-### See life history during and after play
-
-Both **Chiikawa** and **Classic** show a life-history graph automatically for single-player gameplay, evaluation, and evaluation summary.
-
-- It updates as life changes and keeps the whole elapsed play history in view.
-- It sits at the **bottom-left**, clear of the life bar, and draws **beneath notes, judgments, and other gameplay information**.
-- Its backing and colored fill are translucent; the white line and labels use **80% opacity**.
-- Its time axis follows elapsed play time, so changing speed does not stretch or rewind earlier history.
-- It supports P1-only and P2-only play. Two-player play, demonstration screens, and endless courses omit the graph.
-
-![Evaluation screen with the completed life-history graph at the bottom-left.](Docs/media/evaluation.png)
-
-Graph size, margins, and appearance can be adjusted through theme Lua and `metrics.ini` files without rebuilding the executable. See [the life-history guide](Docs/LifeHistoryGraph.md) for settings and verification steps.
-
-### Keep the same song when changing sort
-
-On the song-selection screen, **Left + Right** cycles the configured sort order. This fork fixes a timing issue where switching to Artist or another sort could move the selection to a neighboring song. The highlighted song is now preserved when it is available in the new sort, including when the two arrow presses land in different frames.
-
-### Download a Windows x64 portable build
-
-The fork includes a GitHub Actions pipeline that builds a **Windows x64 Release** package with the static C/C++ runtime. Each package is checked for its portable layout and x64 executable, then runs a startup test before being archived with a SHA-256 checksum. These automated checks do not replace in-game audio, video, and input verification.
-
-## Chiikawa theme
-
-![Chiikawa title menu with the dancing trio on three pastel pads.](Docs/theme-preview/chiikawa/native/title.png)
-
-**Chiikawa** is selected automatically on fresh installations. Use **Options → Display Options → Appearance Options → Theme** to switch between its cream/pastel menus and **Classic**. Existing installations retain their saved selection. Song selection, single-song evaluation and the replay browser choose from their own pools on entry and avoid an immediate repeat. Gameplay and replay playback use the song background or fallback movie/poster without additional character cutouts. The title menu instead shows the three characters dancing on transparent cartoon pads in a 3.2-second loop. The selected decoration stays fixed while its screen is open. The original fonts, notes, judgments, and gameplay features are inherited.
-
-The eleven transparent decorations include new piano, drums, violin, flute, and saxophone scenes. Menu backgrounds and title dancers have optional motion, controlled by **Fancy UI Background**. [Preview the transparent title loop](Docs/media/title-dance.gif). Songs without background artwork use a [30-second silent movie](Themes/chiikawa/Movies/ddr-trio-loop.mp4) of Chiikawa, Hachiware and Usagi dancing on DDR pads; static-background mode uses its still poster. Song images and scripted movies keep their usual precedence. [View the theme results](Docs/theme-preview/chiikawa/README.md), [see native screenshots](Docs/theme-preview/chiikawa/native/README.md), or read the [theme installation and customization guide](Themes/chiikawa/README.md). These are AI-generated fan illustrations. The complete replay-browser appearance requires a build containing the new theme hooks. Theme experiments and source media live on `feature/chiikawa-theme`; see the [development workflow](Docs/ChiikawaDevelopment.md).
-
-## Record and replay
-
-Record a regular single-player song and watch it again inside the game. Replays preserve the original judgments, score, combo, life history, and live speed changes. Both **P1-only** and **P2-only** play are supported.
-
-### Record a play
-
-Set **Save Replays → On** in song options, then play normally. Recording is off by default. Chiikawa and Classic show **Recording replay** near the bottom-right, and the existing Shift+arrow speed controls work as usual.
-
-Completed and failed plays can be watched from evaluation. Backing out saves an aborted recording that is available in the song-selection browser. The original play keeps its normal scoring and saving rules, including after speed changes.
-
-### Watch a recording
-
-- On **evaluation**, press **F10** to watch the play you just recorded.
-- On **song selection**, highlight the same song/chart and press **F10** to browse its recordings. Use Up/Down to choose one and Enter/Start to watch.
-
-| Replay control | Action |
-| --- | --- |
-| **Space** or **Start** | Pause/resume |
-| **R** | Restart from the beginning |
-| **Esc** or **Back** | Return to evaluation or the replay browser |
-
-Recorded speed changes apply automatically. Watching or restarting a replay adds no scores or plays to your history, and returning restores your previous settings and original results.
-
-![Chiikawa replay with recorded judgments, notes, speed, life history and the dancing movie background.](Docs/media/replay.png)
-
-Recordings are stored in **`Save/Replays/`** and require the matching installed song/chart and media. Keep this folder when updating the game. Courses, multiplayer, attacks, keysounds, and calibration are outside this first version. This is in-game playback; it does not export an MP4.
-
-See [the recording and replay guide](Docs/SinglePlayerReplays.md) for requirements, file limits, and verification.
+- **Adjust the tempo while playing.** Slow down a difficult passage or speed up a familiar chart while notes, music, and standard song videos stay synchronized.
+- **Record and review a performance.** Watch single-player recordings with their original judgments, score, combo, life history, and speed changes.
+- **Track your life meter.** Follow the live graph during a song and inspect the complete history on the results screen.
+- **Browse without losing your place.** Changing the song-selection sort keeps the highlighted song selected when it is available in the new sort.
 
 ## Install on Windows x64
 
-1. Open [Windows portable build and test](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3Amain) and select the latest successful run for **`main`** that contains an artifact.
-2. Download **`StepMania-windows-x64-<run>.<attempt>`** from the run's **Artifacts** section. GitHub may require you to sign in. Artifacts are retained for 30 days; if none remain, a repository maintainer can start a new run with **Run workflow**.
-3. Extract the downloaded artifact. It contains `StepMania-6.0-windows-x64-portable.zip` and its `.sha256` file. Extract that inner ZIP as well.
-4. Launch **`StepMania/Program/StepMania.exe`**. Keep the full folder together, including `Portable.ini`, which stores profiles and settings inside this portable installation.
-5. Add song packs under `StepMania/Songs/`, keeping the usual `Songs/<pack>/<song>/` structure. Chiikawa is selected by default; both **Chiikawa** and **Classic** include the life-history graph.
+1. Open [Windows portable builds](https://github.com/chihduo/stepmania/actions/workflows/ci.yml?query=branch%3Amain) and select a successful **main** run with a downloadable artifact.
+2. Download **StepMania-windows-x64-\<run\>.\<attempt\>** from its **Artifacts** section. GitHub may require you to sign in.
+3. Extract the download, then extract the `StepMania-6.0-windows-x64-portable.zip` inside it. A `.sha256` checksum file is included.
+4. Launch **`StepMania/Program/StepMania.exe`**. Keep the entire extracted folder together, including `Portable.ini`, which keeps settings and profiles inside this installation.
+5. Add song packs under **`StepMania/Songs/`**, using the structure `Songs/<pack>/<song>/`. Restart the game after adding songs.
+6. Open **Options** to configure your keyboard or dance pad, then choose **Game Start**, a song, and a difficulty.
 
-### Update an existing portable installation
+Each build corresponds to the commit shown on its workflow run. Download artifacts are retained for 30 days. If none are available, use the [source-build instructions](#build-from-source); repository maintainers can also start a build with **Run workflow**.
 
-Close StepMania and back up the existing folder. Extract the new package elsewhere, then merge **`Program`**, **`Scripts`**, **`Themes`**, and **`BackgroundEffects`** into the existing game folder, replacing matching files. Also copy **`Data/Defaults.ini`** into the existing `Data` folder to install the new theme defaults. Updating **`Docs`** is optional. Existing saved theme choices take precedence; select **Chiikawa** in Appearance Options to switch an older installation. The original theme is now labeled **Classic**, with its `Themes/default` folder retained.
+## Playback controls
 
-If the old appearance remains, open **Options → Display Options → Appearance Options → Theme**, choose **Chiikawa**, and save/exit the options menu. If that choice is missing, check that `Themes/chiikawa/ThemeInfo.ini` is beside `Themes/default/ThemeInfo.ini` in the game folder containing `Program/StepMania.exe`; extract and copy the inner ZIP's contents rather than nesting another `StepMania` folder. Launch that executable directly to rule out an old shortcut. Keep `Save` intact.
+During a song, hold either **Shift** key and press an arrow:
 
-The executable now reports **6.0** plus its build commit on the title screen. Earlier fork ZIPs (including `d961b87`) still reported **5.1** even when they included Chiikawa. Non-portable user-data directory names retain `StepMania 5.1` for compatibility with existing profiles.
+| Shortcut | Action |
+| --- | --- |
+| **Shift + Up** or **Shift + Right** | Increase speed by **0.1x** |
+| **Shift + Down** or **Shift + Left** | Decrease speed by **0.1x** |
+| **Shift + Up + Down** or **Shift + Left + Right** | Reset speed to **1.0x** |
 
-Keep **`Save`**, **`Songs`**, **`Logs`**, **`Screenshots`**, and **`Portable.ini`**, along with any other personal content. `Save` contains settings, profiles, play history, and recordings in `Save/Replays/`. Back up custom theme/script edits before replacing matching files. Copy historical logs elsewhere before launching, since normal startup rewrites the standard log files.
+The range is **0.2x–3.0x**. Each new press adjusts speed once; holding a key does not repeat it. The latest speed remains at the bottom-left after the first adjustment. Notes, music, and standard song videos follow the same song clock.
+
+Changes affect the **current play only**. Your original settings return when the play ends or restarts. Plays with adjusted speed follow the usual scoring, saving, and eligibility rules. Arrows used with Shift adjust speed without triggering notes, and ordinary arrows remain note inputs.
+
+![Gameplay demonstration of speed adjustments, reset shortcuts, and the updating life-history graph.](Docs/media/live-speed-demo.gif)
+
+[Watch the 40-second gameplay video](Docs/media/live-speed-demo.mp4). These controls apply during active local gameplay. See the [playback guide](Docs/LiveGameplayRate.md) for supported modes, scrolling modifiers, and details about custom song scripts.
+
+On **song selection**, press **Left + Right** to cycle the available sort orders while keeping your highlighted song selected.
+
+## Record and replay
+
+To record a regular single-player song, set **Save Replays → On** in song options, then play normally. Recording is off by default and supports either P1 or P2, with only one player joined. The **Recording replay** message confirms that a recording is underway.
+
+- On the **results screen**, press **F10** to watch the play you just recorded.
+- On **song selection**, highlight the same song and chart, then press **F10** to browse recordings. Use Up/Down to choose one and Enter/Start to watch.
+
+During playback:
+
+| Control | Action |
+| --- | --- |
+| **Space** or **Start** | Pause or resume |
+| **R** | Restart from the beginning |
+| **Esc** or **Back** | Return to results or the replay browser |
+
+The replay applies recorded judgments and speed changes automatically. Watching it does not add scores or play counts. Completed and failed plays can be watched from the results screen. Aborted recordings are available in the song-selection browser.
+
+![Replay playback showing recorded notes, judgments, score, and life history.](Docs/media/replay.png)
+
+Recordings are stored in **`Save/Replays/`** and require the matching installed song, chart, and media. They replay inside the game using those installed assets. Courses, multiplayer, attacks, keysound charts, and calibration are outside the supported recording modes. See the [recording and replay guide](Docs/SinglePlayerReplays.md) for the full requirements and file details.
+
+## Review your performance
+
+The **life-history graph** appears at the bottom-left during single-player gameplay and on the results screen. It updates as life changes and keeps the entire elapsed play in view, showing where life dropped or recovered. Its time axis follows elapsed play time even when you adjust speed.
+
+![Evaluation screen with judgments, score, combo, and the completed life-history graph.](Docs/media/evaluation.png)
+
+The graph supports P1-only and P2-only play. See the [life-history guide](Docs/LifeHistoryGraph.md) for layout settings and supported modes.
+
+## Appearance and backgrounds
+
+Songs use their own background images and videos. When no background artwork is available, a silent dancing-trio movie supplies the background; **Static Background** uses its still poster. Backgrounds play beneath the notes and gameplay information.
+
+Use **Options → Theme Options → Fancy UI Background** to enable or disable title and menu motion. For artwork, colors, layout, and other appearance settings, see the [Chiikawa customization guide](Themes/chiikawa/README.md).
+
+## Update a portable installation
+
+Close the game and back up your installation. Extract the new package into a separate folder, then copy **`Program/`**, **`Scripts/`**, **`Themes/`**, and **`BackgroundEffects/`** into your existing game folder, replacing matching files. Also copy **`Data/Defaults.ini`**. Updating **`Docs/`** is optional.
+
+Keep **`Save/`**, **`Songs/`**, **`Screenshots/`**, **`Logs/`**, and **`Portable.ini`**, along with any other personal content. `Save/` holds settings, profiles, play history, and recordings. Back up custom theme or script edits before replacing files. Archive any logs you want to retain, since normal startup rewrites the standard log files.
 
 ## Build from source
-
-Clone this fork's main branch:
 
 ```sh
 git clone --branch main https://github.com/chihduo/stepmania.git
 cd stepmania
 ```
 
-On Windows with Visual Studio 2022 C++ tools, CMake, Git, and PowerShell 7 installed, use the same pipeline as CI:
+On Windows, install Visual Studio 2022 with C++ tools, CMake, Git, and PowerShell 7, then run:
 
 ```powershell
 pwsh -File ci/Invoke-WindowsPortablePipeline.ps1
 ```
 
-The portable ZIP and checksum appear in `out/`. See [the Windows pipeline guide](Docs/WindowsPortablePipeline.md) for build and test details. The project also retains StepMania's Linux and macOS source-build support; see the [CMake guide](Build/README.md) and [build/install notes](Build/INSTALL.md).
+The pipeline builds an x64 Release executable, checks the portable layout and startup, and writes the ZIP and checksum to `out/`. See the [Windows build guide](Docs/WindowsPortablePipeline.md) for details. For Linux and macOS source builds, see the [CMake guide](Build/README.md) and [build/install notes](Build/INSTALL.md).
 
 ## Documentation and credits
 
-- [Live playback controls and regression checks](Docs/LiveGameplayRate.md)
-- [Single-player recording, replay controls, and checks](Docs/SinglePlayerReplays.md)
-- [Life-history layout, customization, and checks](Docs/LifeHistoryGraph.md)
-- [Windows portable build pipeline](Docs/WindowsPortablePipeline.md)
-- [Demo media and capture details](Docs/media/README.md)
-- [Revision progress and validation records](PROGRESS.md)
+- [Live playback controls](Docs/LiveGameplayRate.md)
+- [Single-player recording and replay](Docs/SinglePlayerReplays.md)
+- [Life-history graph](Docs/LifeHistoryGraph.md)
+- [Appearance and customization](Themes/chiikawa/README.md)
+- [Screenshots, videos, and capture details](Docs/media/README.md)
+- [Development progress and verification](PROGRESS.md)
 
-This is a community fork of [StepMania](https://github.com/stepmania/stepmania), built on the work of the StepMania team, the sm-ssc contributors, and the original theme and noteskin authors. Their credits and notices remain part of the project.
+StepMania 6 builds on the work of the StepMania team, the sm-ssc contributors, and the theme and noteskin authors. Chiikawa illustrations and movies are AI-generated fan artwork. Theme development sources are maintained separately; see the [branch workflow](Docs/ChiikawaDevelopment.md).
 
-See [the license notices](Docs/Licenses.txt) and [third-party notices](Docs/license-ext) for licensing details. Included songs retain their original non-commercial licensing; codec libraries such as MAD and FFmpeg have separate licensing terms.
+See the [project license notices](Docs/Licenses.txt) and [third-party notices](Docs/license-ext). Included songs and libraries retain their respective licensing terms.
