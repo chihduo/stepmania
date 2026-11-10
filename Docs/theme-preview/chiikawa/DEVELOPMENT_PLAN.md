@@ -154,3 +154,5 @@ Remove the additional gameplay cutout from the Chiikawa underlay and its obsolet
 Reproduce the overlap with a song-provided image, update the existing selection/layout checks, and verify native image/movie/fallback backgrounds plus replay playback and menu decorations. Update current guides and the release manifest, commit the feature checkpoint, selectively promote the completed result to main, and reconcile/publish the branches. No executable rebuild or new Windows ZIP is required.
 
 Implementation and verification complete: gameplay/replay omit the extra cutout; inherited functional actors and menu decorations remain. All focused and native checks pass. The finished runtime, checks, guides and manifest are ready for selective main promotion.
+
+Completed promotion and reconciliation: main `6fefd60c81` contains the reviewed result from `eb2cd3f52b`; the feature branch retains the development gallery, source assets and detailed evidence.

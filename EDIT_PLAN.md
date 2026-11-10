@@ -227,3 +227,10 @@ Completed: published the compatibility-preserving version fix as `8977aa3f0c`, v
 ## Simplify the theme display name
 
 Promote the completed display-name change from feature checkpoint `8dbfd4a8e1`: use **Chiikawa** in `ThemeInfo.ini`, current user guides and the release manifest. Keep the internal theme ID and saved selections compatible. Validate the configuration, focused theme check, selected release paths and links; commit the finished result and reconcile the feature baseline. No executable or ZIP rebuild is needed.
+
+
+## Keep song backgrounds unobstructed
+
+Promote the completed gameplay-decoration fix from feature checkpoint `eb2cd3f52b`. Remove the extra cutout from gameplay and replay playback while retaining the inherited screen filter and life graph, menu/evaluation artwork, and normal song/fallback background selection. Include the existing-check updates, current user guides and release manifest only. Verify release-path equality, focused Lua checks and links, then reconcile and publish the branches. Native image/movie/replay verification is complete on the feature branch; no executable or ZIP rebuild is needed.
+
+Completed: the reviewed release files match feature checkpoint `eb2cd3f52b`; all three focused Lua checks, 19 runtime media/configuration hashes, 59 release-document links and whitespace checks pass. The change is ready to publish with the native verification recorded above.

@@ -1,6 +1,6 @@
 # Chiikawa artwork preview for StepMania 6
 
-The finished title animation, Chiikawa default and Classic label are promoted to **main** in `d961b87fb9`. This branch retains the artwork sources and comparisons. [Current native gameplay, evaluation and replay captures](../../media/README.md) match that release.
+The finished title animation, Chiikawa default and Classic label are promoted to **main** in `d961b87fb9`. This branch retains the artwork sources and comparisons. [Current native gameplay, evaluation and replay captures](../../media/README.md) match that release. The gameplay-background fix is promoted in `6fefd60c81`: native gameplay and replay no longer add a separate cutout over song media. The gallery retains the earlier concept for comparison.
 
 **The title menu now has a transparent dancing-trio illustration.** [View its looping GIF](title-dance/title-dance.gif), [open the interactive animation preview](title-dance/preview.html), or [see the native title capture](native/title.png). All three characters dance on their own cartoon pads. Source drawings, prompts and build steps are in [title-dance/](title-dance/README.md).
 

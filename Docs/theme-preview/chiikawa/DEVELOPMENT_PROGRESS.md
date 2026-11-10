@@ -328,3 +328,5 @@ Validation passes:
 - All 19 released media/configuration hashes, 82 local documentation links, gallery JavaScript syntax and diff whitespace pass. Native game/display processes were stopped.
 
 Native verification uses Linux software OpenGL and Null audio; Windows hardware and audible synchronization were not retested. No executable rebuild or new Windows ZIP was needed. Selective main promotion follows this feature checkpoint.
+
+Completed selective promotion: main `6fefd60c81` contains the finished runtime fix, existing-check update, current guides and release manifest from feature checkpoint `eb2cd3f52b`. All three focused checks, 19 runtime hashes, 59 release links and exact selected-file comparisons pass in main. Reconciled the feature baseline, preserving its gallery README and source assets while adopting the final release manifest. No executable or ZIP rebuild was needed.
