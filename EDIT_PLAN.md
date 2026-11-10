@@ -241,3 +241,5 @@ Completed: the reviewed release files match feature checkpoint `eb2cd3f52b`; all
 Rewrite the repository README around what StepMania 6 does, how to install and start playing, live speed controls, recording/replay and performance review. Treat Chiikawa as the normal default interface, keep authentic gameplay media, and link to detailed customization rather than recounting theme migrations. Preserve data-safe update instructions, source builds and credits. Check feature/control accuracy, Markdown links and image references, then commit and publish the documentation checkpoint.
 
 Completed: rewrote the introduction and reader flow, retained current gameplay media and practical instructions, and validated links, anchors, image references, feature details and documentation-only scope.
+
+README image follow-up completed: use the existing title-menu capture as the opening screenshot and retain the animated gameplay demonstration. Verified both media references.

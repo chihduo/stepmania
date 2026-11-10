@@ -8,7 +8,7 @@ The default **Chiikawa** interface has cream and pastel menus, character illustr
 
 [Download for Windows x64](#install-on-windows-x64) · [Playback controls](#playback-controls) · [Record and replay](#record-and-replay) · [Build from source](#build-from-source)
 
-![Gameplay with notes, judgments, a persistent playback-speed display, and the life-history graph.](Docs/media/gameplay.png)
+![StepMania 6 title menu with the default Chiikawa interface and dancing trio.](Docs/theme-preview/chiikawa/native/title.png)
 
 ## Features
 
