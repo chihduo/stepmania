@@ -61,7 +61,7 @@ const screenNames = {title:'Title', select:'Song selection', game:'Gameplay', re
 const captions = {
   title: 'Title concept: original bitmap text with paired/group artwork and gentle background motion. Painted scene alternatives are static.',
   select: 'Selection concept: original bitmap text, clear focus, chart choice, and room for the selected character decoration.',
-  game: 'Gameplay concept: original note/receptor textures, FLAWLESS sprite, score/combo/rate fonts. Decoration stays still outside the note field; the graph is a layout sketch.',
+  game: 'Earlier gameplay concept: original note/receptor textures, FLAWLESS sprite, score/combo/rate fonts. The playable theme now omits this extra cutout so song media remains unobstructed; the graph is a layout sketch.',
   result: 'Evaluation concept: original bitmap fonts with supportive decoration clear of the result rows. Numbers are illustrative sample data.',
   replay: 'Replay concept: original Common Normal typography with the selected illustration. The native theme uses optional replay-widget styling hooks.'
 };

@@ -145,3 +145,12 @@ Completed: refreshed actual title/gameplay/evaluation/replay captures and gamepl
 Use `Chiikawa` as the display name in `ThemeInfo.ini`, the current installation/selection guides and the release manifest. Retain the internal `chiikawa` ID and existing StepMania 6 game branding. Validate the configuration, relevant Lua check and current links, then selectively promote the finished files to main and reconcile the feature branch. This text-only update needs no executable or ZIP rebuild.
 
 Completed: feature checkpoint `8dbfd4a8e1` was selectively promoted to main as `c274d020c3`; configuration, focused Lua checks, links and release-path equivalence pass. Reconciled the feature baseline with the published runtime name and guides.
+
+
+## Keep gameplay media clear of character decorations
+
+Remove the additional gameplay cutout from the Chiikawa underlay and its obsolete layout/message handling. Continue loading Classic's screen filter and life graph. Gameplay and replay playback should display their song background or fallback movie/poster without a separate character illustration. Keep random illustrations on selection, evaluation and the replay browser; retain older gallery concepts as labeled development comparisons.
+
+Reproduce the overlap with a song-provided image, update the existing selection/layout checks, and verify native image/movie/fallback backgrounds plus replay playback and menu decorations. Update current guides and the release manifest, commit the feature checkpoint, selectively promote the completed result to main, and reconcile/publish the branches. No executable rebuild or new Windows ZIP is required.
+
+Implementation and verification complete: gameplay/replay omit the extra cutout; inherited functional actors and menu decorations remain. All focused and native checks pass. The finished runtime, checks, guides and manifest are ready for selective main promotion.

@@ -311,3 +311,20 @@ Merged the main release baseline back into this feature branch, preserving its f
 ## Simplify the theme display name
 
 Synchronized main through `f2f8d5f616` to retain the corrected Windows 6.0 branding and upgrade guidance. Changed the theme's displayed name to **Chiikawa**, updated current user guides and the release manifest, and retained the internal `chiikawa` ID. Historical progress entries keep the names actually shown at the time. Validation passes: the INI and manifest agree on the display name and stable ID, the existing focused Lua theme check passes, all 49 local links in the updated guides resolve, and diff whitespace checks pass. Promoted only the finished runtime label, current guides and release manifest to main as `c274d020c3`, then reconciled that release baseline here. Development artwork and journals remain feature-only. No executable or ZIP rebuild was needed.
+
+
+## Gameplay background overlap
+
+The gameplay underlay instantiates `Chiikawa.Decoration("game")`, which is rendered after the engine song background. Its eligibility rule suppresses the cutout only when no song background image exists, leaving song images and scripted movies with cover art obscured. Replay playback inherits this same underlay. Main `c274d020c3` is already included in the feature baseline. An isolated reproduction and fix verification are prepared under `out/gameplay-background-layers/`.
+
+Removed the gameplay cutout actor while preserving Classic's screen filter and life graph. Deleted its unused gameplay layout and song-change visibility handler; selection, single-song evaluation and replay-browser decoration behavior remains intact. The title/game pools are retained for the older browser concepts, now labeled as such. Current user guides explain the two-file Windows update; the release manifest records `gameplay_cutouts: false`.
+
+Validation passes:
+
+- Reproduced the original cutout over a song-provided background before editing; before/after PNGs and logs are retained under `out/gameplay-background-layers/`.
+- All three focused Lua checks pass: selection/layout/gameplay suppression, title animation, and fallback movie behavior. The existing layout check now exercises suppression with and without song artwork for P1/P2 at both aspect ratios.
+- Eight native cases pass: song image, P2 image at 4:3, fallback movie, static poster, song-selection decoration, song-provided movie with cover art, evaluation decoration, and recorded movie replay. Separate frame comparisons confirm motion in both the song movie and replay. The screen filter, notes, judgments and life graph remain visible.
+- The initial isolated fixture omitted saved timing-option files and exposed warnings in inherited timing actors. Restored the complete synthetic UserPrefs, expanded the log check to include `Error playing command`, and reran all cases. Final logs contain no Lua command errors. No unrelated runtime code was changed.
+- All 19 released media/configuration hashes, 82 local documentation links, gallery JavaScript syntax and diff whitespace pass. Native game/display processes were stopped.
+
+Native verification uses Linux software OpenGL and Null audio; Windows hardware and audible synchronization were not retested. No executable rebuild or new Windows ZIP was needed. Selective main promotion follows this feature checkpoint.
