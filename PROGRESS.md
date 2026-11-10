@@ -595,3 +595,8 @@ Downloaded and verified [artifact StepMania-windows-x64-15.1](https://github.com
 - The same output directory retains the checksum file, workflow metadata/log, verification script and report.
 
 This checkpoint records the completed build; its executable/runtime files match the published implementation commit.
+
+
+## Chiikawa display name
+
+Promoted feature checkpoint `8dbfd4a8e1` so the theme selection menu and current guides use **Chiikawa**. Updated the release manifest's name and source revision. The internal `chiikawa` ID remains compatible with saved preferences. Configuration/manifest consistency, the existing focused Lua theme check, 49 local guide links and diff whitespace pass. This text-only update can be installed by copying `Themes/chiikawa/ThemeInfo.ini`; no executable rebuild or new ZIP is required.

@@ -222,3 +222,8 @@ Completed: selected the finished runtime/default/Classic changes and final media
 Update the displayed/build/package version to 6.0 and Windows file metadata to match. Preserve the legacy application identifier so existing user-data locations remain readable. Extend the Windows smoke check to reject an old runtime version and to verify that a fresh installation actually selects Chiikawa. Explain how an upgraded installation retains Classic until the user selects Chiikawa, and how to detect a nested extraction or old shortcut. Validate the local build and real startup with fresh and saved theme settings, commit the fix, and produce a corrected Windows portable build.
 
 Completed: published the compatibility-preserving version fix as `8977aa3f0c`, verified native fresh/saved/switch behavior, and built the corrected Windows x64 ZIP in run `42825456584`. Windows metadata and runtime/default-theme checks, the downloaded SHA-256, all 28 release manifest entries, and full archive CRC pass.
+
+
+## Simplify the theme display name
+
+Promote the completed display-name change from feature checkpoint `8dbfd4a8e1`: use **Chiikawa** in `ThemeInfo.ini`, current user guides and the release manifest. Keep the internal theme ID and saved selections compatible. Validate the configuration, focused theme check, selected release paths and links; commit the finished result and reconcile the feature baseline. No executable or ZIP rebuild is needed.

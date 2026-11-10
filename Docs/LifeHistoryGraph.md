@@ -10,7 +10,7 @@ The display is enabled automatically for exactly one human player and one enable
 
 ## In-game verification
 
-Use a build containing this change and select **Chiikawa - StepMania 6** or **Classic**.
+Use a build containing this change and select **Chiikawa** or **Classic**.
 
 1. Start a song with only P1 joined. Find the LIFE plot at the bottom-left, above the bottom status area and to the right of the life-meter frame. Hit some notes and miss others; the rightmost point and percentage should follow the life meter immediately.
 2. Adjust playback speed with Shift+arrows. Confirm that life history continues smoothly and elapsed time moves forward. If using a pause control, confirm the plot's time range stops advancing while paused.
