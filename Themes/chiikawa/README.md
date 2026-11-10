@@ -34,7 +34,7 @@ The selected decoration stays fixed while that screen is open. Moving the song w
 
 All eleven cutouts contain at least two recognizable characters. The five latest additions feature **piano, drums, violin, flute, and saxophone** with different poses and compositions. [View the included artwork](Art/README.md) or [see the native screens](../../Docs/theme-preview/chiikawa/native/README.md).
 
-Gameplay and replay playback add no separate character cutouts, keeping song images, song movies and the fallback movie/poster unobstructed. Notes, judgments, the screen filter and the life graph retain their normal layers. Single-player song evaluation uses the unused grade area; course/summary and multiplayer layouts keep their inherited presentation.
+Gameplay and replay playback add no separate character cutouts, keeping song images, song movies and the fallback movie/poster unobstructed. Notes, judgments, the screen filter and the life graph retain their normal layers. Single-player song evaluation fits an illustration up to 345 × 270 theme pixels beside the judgment panel, on the right for P1 and left for P2. Its width adapts to narrower screens while leaving space above the detail rows. Course/summary and multiplayer layouts keep their inherited presentation.
 
 To fix an older installation that shows characters over song backgrounds, close the game and replace [BGAnimations/ScreenGameplay underlay.lua](BGAnimations/ScreenGameplay%20underlay.lua) and [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua), then restart. This change needs no executable rebuild.
 

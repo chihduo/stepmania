@@ -54,7 +54,12 @@ function C.Layout(role)
 	if not player then return nil end
 	if role == "result" then
 		if GAMESTATE:IsCourseMode() then return nil end
-		return {x=cx+(player == PLAYER_1 and 320 or -320), y=300, width=230, height=180}
+		-- Fit beside the 400-pixel judgment panel and above the detail rows.
+		local panelHalfWidth, gap, edgeMargin = 200, 12, 16
+		local width = math.min(345, cx - panelHalfWidth - gap - edgeMargin)
+		if width <= 0 then return nil end
+		local offset = panelHalfWidth + gap + width/2
+		return {x=cx+(player == PLAYER_1 and offset or -offset), y=270, width=width, height=270}
 	end
 end
 

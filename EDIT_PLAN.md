@@ -243,3 +243,10 @@ Rewrite the repository README around what StepMania 6 does, how to install and s
 Completed: rewrote the introduction and reader flow, retained current gameplay media and practical instructions, and validated links, anchors, image references, feature details and documentation-only scope.
 
 README image follow-up completed: use the existing title-menu capture as the opening screenshot and retain the animated gameplay demonstration. Verified both media references.
+
+
+## Enlarge evaluation artwork
+
+Promote the verified illustration layout from feature checkpoint `4f6e010d8f`: increase the maximum box from 230 × 180 to 345 × 270, shift it upward/outward, and fit its width around the central judgment panel on narrower displays. Preserve mirrored P2 placement and single-player eligibility. Native P1/P2 checks at 16:9 and 4:3 are complete; verify the selected Lua/guide and release metadata, then reconcile and publish the branches. No executable or ZIP rebuild is needed.
+
+Completed: selected runtime/guide files match `4f6e010d8f`, the focused Lua layout check passes in main, and all 19 released media/configuration hashes remain unchanged.
