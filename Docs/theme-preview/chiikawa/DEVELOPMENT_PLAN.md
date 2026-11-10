@@ -143,3 +143,5 @@ Completed: refreshed actual title/gameplay/evaluation/replay captures and gamepl
 ## Simplify the theme display name
 
 Use `Chiikawa` as the display name in `ThemeInfo.ini`, the current installation/selection guides and the release manifest. Retain the internal `chiikawa` ID and existing StepMania 6 game branding. Validate the configuration, relevant Lua check and current links, then selectively promote the finished files to main and reconcile the feature branch. This text-only update needs no executable or ZIP rebuild.
+
+Completed: feature checkpoint `8dbfd4a8e1` was selectively promoted to main as `c274d020c3`; configuration, focused Lua checks, links and release-path equivalence pass. Reconciled the feature baseline with the published runtime name and guides.
