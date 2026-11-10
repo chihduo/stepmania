@@ -609,3 +609,8 @@ Promoted feature checkpoint `eb2cd3f52b`: gameplay and recorded playback no long
 All three focused Lua checks pass. Native Linux checks cover song images, song movies with cover art, fallback movie/poster settings, P1/P2 at 16:9/4:3, selection/evaluation decorations and recorded movie playback. Both movie frame comparisons show motion, final logs contain no Lua command errors, and visual inspection confirms the notes, judgments and life graph. Runtime media/configuration hashes are unchanged. Detailed evidence remains in the feature worktree under `out/gameplay-background-layers/`. Windows hardware and audible synchronization were not retested.
 
 Existing Windows installations can replace `Themes/chiikawa/BGAnimations/ScreenGameplay underlay.lua` and `Themes/chiikawa/Scripts/06 Chiikawa.lua`, then restart. No executable rebuild or new Windows ZIP was required.
+
+
+## README introduction for new players
+
+Rewrote the README as a product introduction: gameplay overview, feature summary, Windows setup, speed controls, recording/replay and performance review. Chiikawa is presented as the default interface; appearance settings occupy a short section linked to the full guide. Removed theme-migration comparisons, old executable-version explanations and detailed implementation history. Retained authentic gameplay/replay/evaluation media, saved-data preservation, source-build instructions and attribution. Validation passes: 21 local links, 5 section links and 4 nonempty media embeds resolve; all images have alt text and code fences are balanced. Cross-checked controls, recording scope, download names and defaults against the current guides/configuration. The diff contains only README and plan/progress documentation; no gameplay tests or build are needed.
