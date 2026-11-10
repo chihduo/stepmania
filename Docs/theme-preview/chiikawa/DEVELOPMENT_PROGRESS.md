@@ -330,3 +330,8 @@ Validation passes:
 Native verification uses Linux software OpenGL and Null audio; Windows hardware and audible synchronization were not retested. No executable rebuild or new Windows ZIP was needed. Selective main promotion follows this feature checkpoint.
 
 Completed selective promotion: main `6fefd60c81` contains the finished runtime fix, existing-check update, current guides and release manifest from feature checkpoint `eb2cd3f52b`. All three focused checks, 19 runtime hashes, 59 release links and exact selected-file comparisons pass in main. Reconciled the feature baseline, preserving its gallery README and source assets while adopting the final release manifest. No executable or ZIP rebuild was needed.
+
+
+## Larger evaluation illustration
+
+The current evaluation cutout uses a 230 × 180 box centered 320 pixels from the screen center at y=300. Prepared a 345 × 270 maximum box at y=270, with width limited by the space outside the judgment panel and mirrored placement for P2. This gives 1.5× scale on widescreen and a 252-pixel width on 4:3, without covering results or leaving the screen. The existing focused theme check passes. Four native evaluation captures (P1/P2 at 1280×720 and 960×720) were visually inspected: the saxophone pair and celebration trio remain clear of the banner, judgment rows, scores, detail rows and life graph. All native logs have zero Lua command errors; the synthetic game/display processes stopped cleanly. The 20 theme-guide links and diff whitespace checks pass. Evidence is retained under `out/evaluation-art-size/`. Native checks use Linux software OpenGL and Null audio.

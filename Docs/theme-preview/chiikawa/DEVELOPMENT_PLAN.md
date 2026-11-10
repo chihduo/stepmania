@@ -156,3 +156,10 @@ Reproduce the overlap with a song-provided image, update the existing selection/
 Implementation and verification complete: gameplay/replay omit the extra cutout; inherited functional actors and menu decorations remain. All focused and native checks pass. The finished runtime, checks, guides and manifest are ready for selective main promotion.
 
 Completed promotion and reconciliation: main `6fefd60c81` contains the reviewed result from `eb2cd3f52b`; the feature branch retains the development gallery, source assets and detailed evidence.
+
+
+## Enlarge the evaluation illustration
+
+Increase the evaluation illustration from a 230 × 180 box to at most 345 × 270 theme pixels. Move it upward and outward, retaining a 12-pixel gap beside the 400-pixel judgment panel and a 16-pixel minimum screen-edge margin. Fit the width on 4:3 displays and mirror the placement for P2. Keep single-player eligibility and random artwork selection. Run the existing theme check and inspect native P1/P2 results at 16:9 and 4:3, then promote the finished Lua/documentation change and reconcile the branches. No executable or ZIP rebuild is needed.
+
+Implementation and native verification are complete. The existing selection/layout check and both player/aspect-ratio combinations pass; the runtime Lua and guide are ready for selective main promotion.
