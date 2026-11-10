@@ -138,3 +138,8 @@ Capture current Chiikawa title, gameplay with the movie fallback, evaluation and
 Commit the reviewed capture/documentation checkpoint on the feature branch, copy the selected release paths onto an integration branch from main, run focused Lua checks, verify media/configuration hashes and local links, and fast-forward main. Merge the release baseline back into the feature branch while retaining its development materials. No Windows ZIP or remote publication is requested.
 
 Completed: refreshed actual title/gameplay/evaluation/replay captures and gameplay media in `56789e3115`, selectively promoted the final theme/default/Classic files and docs to main as `d961b87fb9`, passed release-tree checks and native default startup, and reconciled the feature baseline while retaining development sources.
+
+
+## Simplify the theme display name
+
+Use `Chiikawa` as the display name in `ThemeInfo.ini`, the current installation/selection guides and the release manifest. Retain the internal `chiikawa` ID and existing StepMania 6 game branding. Validate the configuration, relevant Lua check and current links, then selectively promote the finished files to main and reconcile the feature branch. This text-only update needs no executable or ZIP rebuild.

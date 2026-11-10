@@ -306,3 +306,8 @@ Prepared shared runtime guides and capture documentation with release-safe links
 Completed promotion: feature capture checkpoint `56789e3115`; main release `d961b87fb9`. Main contains the finished title/default/Classic revision, current README media, checks and release docs. The three focused Lua checks pass from the release tree; all 42 selected runtime/check files match the feature snapshot, all output/configuration hashes match, and 106 release links resolve. An isolated main-tree startup with no saved/forced theme renders Chiikawa's title without Lua errors.
 
 Merged the main release baseline back into this feature branch, preserving its full gallery, prompts, original movies, source atlases, scripts and detailed journals. Resolved the preview README to retain feature comparisons with a release note, and adopted main's final release manifest. No engine rebuild, Windows ZIP or remote push.
+
+
+## Simplify the theme display name
+
+Synchronized main through `f2f8d5f616` to retain the corrected Windows 6.0 branding and upgrade guidance. Changed the theme's displayed name to **Chiikawa**, updated current user guides and the release manifest, and retained the internal `chiikawa` ID. Historical progress entries keep the names actually shown at the time. Validation passes: the INI and manifest agree on the display name and stable ID, the existing focused Lua theme check passes, all 49 local links in the updated guides resolve, and diff whitespace checks pass. Selective main promotion follows this checkpoint.

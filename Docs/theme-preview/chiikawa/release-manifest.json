@@ -294,7 +294,7 @@
   },
   "default_theme": {
     "id": "chiikawa",
-    "display_name": "Chiikawa - StepMania 6",
+    "display_name": "Chiikawa",
     "existing_saved_choices": "preserved",
     "classic_theme_id": "default",
     "classic_display_name": "Classic"

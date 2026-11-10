@@ -4,7 +4,7 @@ The default StepMania 6 theme, with cream and pastel menus, gentle menu motion, 
 
 ## Default theme and switching
 
-Fresh installations select **Chiikawa - StepMania 6** automatically through [Data/Defaults.ini](../../Data/Defaults.ini). Existing installations keep their saved theme choice. To switch, choose **Options → Display Options → Appearance Options → Theme → Chiikawa - StepMania 6**, then save/exit that menu. Choose **Classic** there to use the original appearance.
+Fresh installations select **Chiikawa** automatically through [Data/Defaults.ini](../../Data/Defaults.ini). Existing installations keep their saved theme choice. To switch, choose **Options → Display Options → Appearance Options → Theme → Chiikawa**, then save/exit that menu. Choose **Classic** there to use the original appearance.
 
 Keep this folder named **`Themes/chiikawa`**, alongside `Themes/default` and `Themes/_fallback`. The original theme is labeled **Classic** but retains its internal `default` directory for inheritance and compatibility with saved `Theme=default` settings. Existing songs, profiles, logs and recordings remain in their usual folders.
 
