@@ -616,3 +616,10 @@ Existing Windows installations can replace `Themes/chiikawa/BGAnimations/ScreenG
 Rewrote the README as a product introduction: gameplay overview, feature summary, Windows setup, speed controls, recording/replay and performance review. Chiikawa is presented as the default interface; appearance settings occupy a short section linked to the full guide. Removed theme-migration comparisons, old executable-version explanations and detailed implementation history. Retained authentic gameplay/replay/evaluation media, saved-data preservation, source-build instructions and attribution. Validation passes: 21 local links, 5 section links and 4 nonempty media embeds resolve; all images have alt text and code fences are balanced. Cross-checked controls, recording scope, download names and defaults against the current guides/configuration. The diff contains only README and plan/progress documentation; no gameplay tests or build are needed.
 
 Replaced the opening gameplay screenshot with the existing native title-menu capture and descriptive alt text. The animated gameplay demo remains in the playback-controls section. Both media paths resolve; only documentation changed.
+
+
+## Larger evaluation decoration
+
+Promoted feature checkpoint `4f6e010d8f`. Evaluation illustrations are 1.5× their previous size on widescreen, using a maximum 345 × 270 box at y=270. A 12-pixel gap beside the judgment panel and 16-pixel outer margin constrain width to 252 on 4:3; P2 placement mirrors P1. Native Linux captures for both players and aspect ratios show clear banners, judgment rows, scores, details and life history, with no Lua command errors. The existing theme-layout check and all 20 guide links pass. Evidence is under the feature worktree’s `out/evaluation-art-size/`.
+
+Existing installations can copy `Themes/chiikawa/Scripts/06 Chiikawa.lua` and restart. No executable rebuild or new Windows ZIP was required.
