@@ -311,7 +311,8 @@
       "bytes": 57
     }
   ],
-  "theme_source_commit": "8dbfd4a8e1",
+  "theme_source_commit": "eb2cd3f52b",
   "readme_media_manifest": "Docs/media/manifest.json",
-  "promoted_feature_commit": "8dbfd4a8e1"
+  "promoted_feature_commit": "eb2cd3f52b",
+  "gameplay_cutouts": false
 }

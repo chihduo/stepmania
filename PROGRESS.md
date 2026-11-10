@@ -600,3 +600,12 @@ This checkpoint records the completed build; its executable/runtime files match 
 ## Chiikawa display name
 
 Promoted feature checkpoint `8dbfd4a8e1` so the theme selection menu and current guides use **Chiikawa**. Updated the release manifest's name and source revision. The internal `chiikawa` ID remains compatible with saved preferences. Configuration/manifest consistency, the existing focused Lua theme check, 49 local guide links and diff whitespace pass. This text-only update can be installed by copying `Themes/chiikawa/ThemeInfo.ini`; no executable rebuild or new ZIP is required.
+
+
+## Gameplay decoration overlap fixed
+
+Promoted feature checkpoint `eb2cd3f52b`: gameplay and recorded playback no longer place an extra character cutout over song images, song movies or the fallback movie/poster. Classic's screen filter and life graph remain inherited. Selection, evaluation and replay-browser illustrations keep their existing behavior. Updated installation guidance, regression expectations and release provenance; older gallery concepts stay on the feature branch.
+
+All three focused Lua checks pass. Native Linux checks cover song images, song movies with cover art, fallback movie/poster settings, P1/P2 at 16:9/4:3, selection/evaluation decorations and recorded movie playback. Both movie frame comparisons show motion, final logs contain no Lua command errors, and visual inspection confirms the notes, judgments and life graph. Runtime media/configuration hashes are unchanged. Detailed evidence remains in the feature worktree under `out/gameplay-background-layers/`. Windows hardware and audible synchronization were not retested.
+
+Existing Windows installations can replace `Themes/chiikawa/BGAnimations/ScreenGameplay underlay.lua` and `Themes/chiikawa/Scripts/06 Chiikawa.lua`, then restart. No executable rebuild or new Windows ZIP was required.

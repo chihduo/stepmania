@@ -2,6 +2,8 @@
 Chiikawa = {}
 local C = Chiikawa
 C.ArtPath = "/Themes/chiikawa/Art/"
+-- Title/game pools remain available for the historical browser concepts.
+-- Runtime cutouts are used only on selection, evaluation and the replay browser.
 C.Pools = {
 	title = {"12-acoustic-duet", "01-character-trio", "11-listening-together", "14-piano-duet", "15-drum-circle", "16-violin-serenade", "17-flute-practice", "18-saxophone-swing"},
 	select = {"11-listening-together", "12-acoustic-duet", "01-character-trio", "14-piano-duet", "15-drum-circle", "16-violin-serenade", "17-flute-practice", "18-saxophone-swing"},
@@ -41,7 +43,8 @@ local function singlePlayer()
 end
 
 -- Coordinates use the theme's virtual 720-pixel height at either aspect ratio.
--- Crowded fields deliberately get no character decoration.
+-- Gameplay uses only song media or the fallback movie/poster, with no cutout.
+-- Crowded evaluation fields also omit character decoration.
 function C.Layout(role)
 	local w, h, cx, cy = SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_CENTER_X, SCREEN_CENTER_Y
 	if role == "title" then return {x=w*.73, y=h*.59, width=w*.43, height=h*.51} end
@@ -53,42 +56,22 @@ function C.Layout(role)
 		if GAMESTATE:IsCourseMode() then return nil end
 		return {x=cx+(player == PLAYER_1 and 320 or -320), y=300, width=230, height=180}
 	end
-	if role == "game" then
-		-- The fallback movie/poster already contains the trio. Do not put a
-		-- second character cutout over it, including during course changes.
-		local song = GAMESTATE:GetCurrentSong()
-		if song and not song:HasBackground() then return nil end
-		local style = GAMESTATE:GetCurrentStyle()
-		if not style or style:GetStyleType() ~= "StyleType_OnePlayerOneSide"
-			or style:ColumnsPerPlayer() > 4 or Center1Player() then return nil end
-		return {x=w*(player == PLAYER_1 and .75 or .25), y=280, width=math.min(330,w*.32), height=220}
-	end
 end
 
 function C.Decoration(role)
-	local selected = false
 	return Def.Sprite {
 		Name="ChiikawaDecoration",
 		InitCommand=function(self) self:visible(false) end,
 		-- On runs at visible entry, not preloading. It also runs on cached re-entry.
 		-- No beat, update, rate-change, pause or wheel-change handler can reroll it.
 		OnCommand=function(self)
-			selected = false
 			local box = C.Layout(role)
 			self:visible(box ~= nil)
 			if not box then return end
 			local name = choose(role, C.Pools[role])
 			self:Load(C.ArtPath .. name .. ".png")
-			selected = true
 			self:scaletofit(-box.width/2,-box.height/2,box.width/2,box.height/2):xy(box.x,box.y)
 			Trace("[Chiikawa] " .. role .. " artwork: " .. name)
-		end,
-		CurrentSongChangedMessageCommand=function(self)
-			if role == "game" then
-				-- A course may change backgrounds without reopening the screen.
-				-- Hide/show the existing choice without choosing new artwork.
-				self:visible(selected and C.Layout(role) ~= nil)
-			end
 		end,
 	}
 end

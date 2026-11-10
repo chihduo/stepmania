@@ -22,20 +22,21 @@ The right side of the **Game Start / Options** title menu shows Chiikawa, Hachiw
 
 ## Random per screen
 
-A curated illustration is chosen each time song selection, gameplay, single-song evaluation, or the replay browser opens. Consecutive visits to the same screen category avoid its previous illustration. The memory lasts until theme reload or game exit. The title menu always uses the dancing trio described above.
+A curated illustration is chosen each time song selection, single-song evaluation, or the replay browser opens. Consecutive visits to the same screen category avoid its previous illustration. The memory lasts until theme reload or game exit. The title menu always uses the dancing trio described above.
 
-The selected decoration stays fixed while that screen is open. Moving the song wheel, changing playback speed, pausing gameplay, or pausing/restarting a replay does not reroll it. Returning from a replay to the existing browser keeps the browser's current choice; closing and reopening the browser chooses again. These cutouts are static. The separate gameplay fallback movie animates the dancing trio.
+The selected decoration stays fixed while that screen is open. Moving the song wheel does not reroll it. Returning from a replay to the existing browser keeps the browser's current choice; closing and reopening the browser chooses again. These cutouts are static. The separate gameplay fallback movie animates the dancing trio.
 
 | Screen | Eligible decorations |
 | --- | --- |
 | Song selection | Welcoming trio, Listening together, Acoustic duet, Piano duet, Drum circle, Violin serenade, Flute practice, Saxophone swing |
-| Gameplay with song artwork | Resting pair, Listening together, Piano duet, Violin serenade, Flute practice |
 | Single-song evaluation | Celebration trio, Shared jump, Drum circle, Saxophone swing |
 | Replay browser | Resting pair, Listening together, Acoustic duet, Piano duet, Violin serenade, Flute practice |
 
 All eleven cutouts contain at least two recognizable characters. The five latest additions feature **piano, drums, violin, flute, and saxophone** with different poses and compositions. [View the included artwork](Art/README.md) or [see the native screens](../../Docs/theme-preview/chiikawa/native/README.md).
 
-Gameplay cutouts are omitted for songs without a background image, since the fallback movie/poster already contains the trio. Other gameplay art uses the empty side of a one-player, non-centered, one-side field with at most four columns. It moves left for P2, above the life graph and clear of the life bar. Two-player, centered, double/shared-side, wider-column, and demonstration fields omit characters. Single-song evaluation uses the unused grade area; course/summary layouts keep their inherited presentation.
+Gameplay and replay playback add no separate character cutouts, keeping song images, song movies and the fallback movie/poster unobstructed. Notes, judgments, the screen filter and the life graph retain their normal layers. Single-player song evaluation uses the unused grade area; course/summary and multiplayer layouts keep their inherited presentation.
+
+To fix an older installation that shows characters over song backgrounds, close the game and replace [BGAnimations/ScreenGameplay underlay.lua](BGAnimations/ScreenGameplay%20underlay.lua) and [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua), then restart. This change needs no executable rebuild.
 
 ## Dancing-trio gameplay background
 
@@ -49,7 +50,7 @@ To add this movie to an existing portable installation, close the game and copy 
 
 ## Customize or maintain
 
-- [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua) defines `Pools`, placement in `Layout`, and the menu background. Change these Lua values without recompiling. Keep each pool nonempty and use PNG filenames from `Art/` without the extension.
+- [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua) defines `Pools`, placement in `Layout`, and the menu background. Active cutout pools are `select`, `result` and `replay`; the title/game entries are retained for older gallery concepts. Change these Lua values without recompiling. Keep each pool nonempty and use PNG filenames from `Art/` without the extension.
 - The private selector avoids using or reseeding `math.random`. This keeps decoration choices separate from gameplay randomness and recorded outcomes.
 - The random-decoration underlays select art in `OnCommand`, after preloading. Functional gameplay/evaluation actors are loaded from Classic (`Themes/default`) explicitly, so the life graph and other behavior remain inherited.
 - [metrics.ini](metrics.ini) sets `Background/FallbackMovie` to the MP4 path. Set it to `""` to keep the poster for all missing-art songs; an absent movie file also falls back to the poster. [BackgroundEffects/StretchNormal.lua](../../BackgroundEffects/StretchNormal.lua) applies this optional metric while retaining the normal music clock and focus handlers.
@@ -67,5 +68,7 @@ The local Linux build and focused Lua selection/layout checks pass. Isolated nat
 The dance movie additionally passes full decoding and exact frame-preservation checks, plus native Linux playback with FFmpeg enabled. Native checks cover looping, live rate changes, gameplay/replay pause and resume, replay restart, still-poster settings, own-art/scripted-video precedence, centered/P2 layouts and the original default-theme fallback.
 
 The title animation passes periodicity, pose coverage, RNG isolation, lifecycle and layout checks. Native Linux captures confirm moving/still modes, cached title returns and menu navigation at 16:9 and 4:3. The transparent GIF contains 96 frames totaling 3.2 seconds, and its rendered loop endpoint matches its start exactly.
+
+The gameplay-decoration fix was checked with song-provided images and scripted movies, fallback movie/poster settings, P1/P2 at 16:9/4:3, and recorded movie playback. Selection and evaluation still display their illustrations, and the final native logs have no Lua command errors.
 
 Windows x64 rendering, audible audio/video synchronization, controller play and unusual song scripts still need checking on the next Windows build. The Linux fixture uses software OpenGL and null audio; it cannot verify those behaviors. Existing default-theme dialogs and functional panels remain inherited.

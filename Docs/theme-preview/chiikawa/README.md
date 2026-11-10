@@ -11,7 +11,7 @@ Chiikawa is the default StepMania 6 theme for new installations. The original ap
 - [Released asset hashes and provenance](release-manifest.json)
 - [Per-screen illustration pools](artwork-pools.json)
 
-The title menu shows all three characters dancing on transparent cartoon pads in a 3.2-second loop. **Fancy UI Background → Off** freezes the dancers and menu motion. Other decorated screens keep their curated random pools.
+The title menu shows all three characters dancing on transparent cartoon pads in a 3.2-second loop. **Fancy UI Background → Off** freezes the dancers and menu motion. Song selection, single-song evaluation and the replay browser keep their curated random pools. Gameplay and replay playback add no extra character cutouts over song images, song movies or fallback media. The title/game entries in the pool file are retained for older gallery comparisons.
 
 The gameplay movie is 1280×720 at 24 fps, with 720 video frames and no audio track. Song-supplied backgrounds keep their normal precedence, and static mode uses the matching poster. The theme preserves the original fonts, notes, judgments and gameplay features.
 
