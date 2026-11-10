@@ -85,7 +85,15 @@ finally {
     $stream.Dispose()
 }
 
-Write-Host "Portable layout and x64 PE validation passed."
+$fileVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($executablePath)
+if (
+    $fileVersion.FileMajorPart -ne 6 -or $fileVersion.FileMinorPart -ne 0 `
+    -or $fileVersion.ProductMajorPart -ne 6 -or $fileVersion.ProductMinorPart -ne 0
+) {
+    throw "StepMania.exe has unexpected Windows version metadata: $($fileVersion.FileVersion)"
+}
+
+Write-Host "Portable layout, x64 PE, and Windows 6.0 version validation passed."
 
 $smokeXmlPath = Join-Path $portablePath "Lua.xml"
 $runtimeGeneratedPaths = @(
@@ -110,7 +118,7 @@ $smokeSavePath = Join-Path $portablePath "Save"
 New-Item -ItemType Directory -Path $smokeSavePath -Force | Out-Null
 [System.IO.File]::WriteAllText(
     (Join-Path $smokeSavePath "Preferences.ini"),
-    "[Options]`nShowLoadingWindow=0`n",
+    "[Options]`nShowLoadingWindow=0`nLogToDisk=1`nForceLogFlush=1`n",
     [System.Text.UTF8Encoding]::new($false)
 )
 
@@ -150,7 +158,21 @@ try {
         throw "The generated Lua.xml has an unexpected schema or no populated Version element."
     }
 
-    Write-Host "Runtime smoke test passed: $($versionNode.InnerText)"
+    if ($versionNode.InnerText -notmatch '^StepMania6\.0(?:[.-]|$)') {
+        throw "The runtime still reports an unexpected version: $($versionNode.InnerText)"
+    }
+
+    # The smoke preferences deliberately omit Theme. Check what startup selected
+    # rather than only checking that the Chiikawa files were packaged.
+    $runtimeLog = Get-Content -LiteralPath (Join-Path $portablePath "Logs/log.txt") -Raw
+    $themeLoads = [regex]::Matches(
+        $runtimeLog, 'ThemeManager::SwitchThemeAndLanguage: "([^"]+)"'
+    )
+    if ($themeLoads.Count -eq 0 -or $themeLoads[$themeLoads.Count - 1].Groups[1].Value -ne "chiikawa") {
+        throw "A fresh portable installation did not start with the Chiikawa theme."
+    }
+
+    Write-Host "Runtime smoke test passed: $($versionNode.InnerText); fresh default theme: chiikawa"
 }
 finally {
     if ($null -ne $process -and -not $process.HasExited) {

@@ -16,6 +16,8 @@
  * As an example, use "StepMania4" here, not "StepMania".
  * It would cause a conflict with older versions such as StepMania 3.X.
  */
+// Retain the existing user-data directories and application identity on upgrade.
+// The displayed fork version is defined separately in CMake/SMDefs.cmake.
 #define PRODUCT_ID_BARE StepMania 5.1
 
 // These cannot be #undef'd so make them unlikely to conflict with anything

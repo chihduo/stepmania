@@ -578,3 +578,10 @@ Release verification passes:
 - All 106 local links in changed release guides resolve, and diff whitespace checks pass. Source illustrations, prompts, original movies, browser comparisons and detailed development journals are absent from the release tree.
 
 Promoted source checkpoint: `56789e3115`. The focused release commit is `feat: make Chiikawa the main default and refresh README captures [skip ci]`. The feature branch is reconciled after main advances. Linux native verification uses software OpenGL and Null audio; Windows hardware, physical controls and audible synchronization remain unverified. No executable rebuild, Windows ZIP or remote push is part of this promotion.
+
+
+## Windows version and saved-theme diagnosis
+
+The delivered `d961b87` Windows executable reports `StepMania5.1-git-d961b87`: the README/theme logo was renamed but CMake's executable version and portable ZIP name were still inherited. `Data/Defaults.ini` selects Chiikawa on fresh installs; a valid saved `Theme=default` continues to select the original theme, now labeled Classic. The user-data identifier must remain `StepMania 5.1` because non-portable saves use that directory.
+
+Prepared the 6.0 runtime/package and Windows metadata correction, a Windows startup assertion for the default Chiikawa theme, and upgrade troubleshooting that preserves Save. Local validation passes: the Linux Debug build succeeds; actual rendered startup selects Chiikawa with fresh settings, preserves saved Classic, and saves a menu-driven switch from Classic to Chiikawa. All three runs report `StepMania6.0` and have no Lua errors. The title screenshot visually confirms the 6.0 label. Evidence is isolated under `out/version6-native/`; build logs are `out/version6-{configure,build}.log`. Changed documentation links resolve and diff whitespace checks pass. The corrected Windows build is pending.
