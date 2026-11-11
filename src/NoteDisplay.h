@@ -185,7 +185,10 @@ public:
 
 	bool IsOnScreen( float fBeat, int iCol, int iDrawDistanceAfterTargetsPixels, int iDrawDistanceBeforeTargetsPixels ) const;
 
-	bool DrawHoldsInRange(const NoteFieldRenderArgs& field_args,
+	bool DrawHoldBodiesInRange(const NoteFieldRenderArgs& field_args,
+		const NoteColumnRenderArgs& column_args,
+		const vector<NoteData::TrackMap::const_iterator>& tap_set);
+	bool DrawHoldHeadsInRange(const NoteFieldRenderArgs& field_args,
 		const NoteColumnRenderArgs& column_args,
 		const vector<NoteData::TrackMap::const_iterator>& tap_set);
 	bool DrawTapsInRange(const NoteFieldRenderArgs& field_args,
@@ -211,12 +214,15 @@ public:
 	void DrawHold(const TapNote& tn, const NoteFieldRenderArgs& field_args,
 		const NoteColumnRenderArgs& column_args, int iRow, bool bIsBeingHeld,
 		const HoldNoteResult &Result,
-		bool bIsAddition, float fPercentFadeToFail);
+		bool bIsAddition, float fPercentFadeToFail, bool draw_head);
 
 	bool DrawHoldHeadForTapsOnSameRow() const;
 	bool DrawRollHeadForTapsOnSameRow() const;
 
 private:
+	bool DrawHoldsInRange(const NoteFieldRenderArgs& field_args,
+		const NoteColumnRenderArgs& column_args,
+		const vector<NoteData::TrackMap::const_iterator>& tap_set, bool draw_heads);
 	void SetActiveFrame( float fNoteBeat, Actor &actorToSet, float fAnimationLength, bool bVivid );
 	Actor *GetTapActor( NoteColorActor &nca, NotePart part, float fNoteBeat );
 	Actor *GetHoldActor( NoteColorActor nca[NUM_HoldType][NUM_ActiveType], NotePart part, float fNoteBeat, bool bIsRoll, bool bIsBeingHeld );

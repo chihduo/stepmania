@@ -255,3 +255,10 @@ Completed: selected runtime/guide files match `4f6e010d8f`, the focused Lua layo
 ## Readable gameplay timing labels
 
 Promote the verified shared-theme change from `951d424e85`: remove the small gameplay accuracy readout and draw per-lane timing offsets in the overlay above the score frame. Preserve their existing receptor positions and animations. Completed native Linux checks cover both players, 16:9/4:3, centered/reverse/Mini, timing off, Blind, Classic, evaluation and replay/restart/return. No executable or ZIP rebuild.
+
+
+## Keep consecutive hold heads visible
+
+Reproduce closely spaced same-lane holds/rolls in a private native fixture. Split engine rendering into a pass for all visible hold bodies/tails and a subsequent pass for their heads, preserving reverse/active/fade transforms and noteskin flags. Build the Linux executable and compare paused before/after gameplay, including reverse, active/missed holds, both rendering modes and replay. Keep this engine fix on main; record verification and commit at completion. A Windows executable rebuild is required, but no ZIP is requested.
+
+Completed: split hold/roll rendering into bodies/tails followed by heads across all note owners in each column. The Linux debug build and eight native scenarios pass, including recorded playback and return. A pixel check rejects the original occluded heads and passes the corrected normal/fast rendering in all four lanes. No Windows ZIP was built.
