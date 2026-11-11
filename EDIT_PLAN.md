@@ -262,3 +262,10 @@ Promote the verified shared-theme change from `951d424e85`: remove the small gam
 Reproduce closely spaced same-lane holds/rolls in a private native fixture. Split engine rendering into a pass for all visible hold bodies/tails and a subsequent pass for their heads, preserving reverse/active/fade transforms and noteskin flags. Build the Linux executable and compare paused before/after gameplay, including reverse, active/missed holds, both rendering modes and replay. Keep this engine fix on main; record verification and commit at completion. A Windows executable rebuild is required, but no ZIP is requested.
 
 Completed: split hold/roll rendering into bodies/tails followed by heads across all note owners in each column. The Linux debug build and eight native scenarios pass, including recorded playback and return. A pixel check rejects the original occluded heads and passes the corrected normal/fast rendering in all four lanes. No Windows ZIP was built.
+
+
+## Windows executable with the hold-visibility fix
+
+Build published engine/runtime revision `69772bd100` with the Windows x64 Release workflow. Require portable layout, x64 PE, 6.0 version and fresh Chiikawa startup checks. Download the package, verify its checksum/CRC and current theme/media contents, and provide the updated executable plus portable ZIP. Keep saved user data out of the package. Record the finished build without changing its runtime sources.
+
+Completed: Windows workflow #16 (`43066153222`) successfully built `69772bd100`. Windows x64/6.0 metadata, fresh Chiikawa startup, package checksum/CRC, 28 manifest entries and current theme Lua checks pass. Downloaded the portable ZIP and extracted Program files; this completion record changes no runtime source.

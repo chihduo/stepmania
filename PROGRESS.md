@@ -645,3 +645,16 @@ Validation completed with the rebuilt Linux Debug executable:
 - The build succeeds with existing deprecation warnings; diff whitespace passes. Captures, private chart, scripts, logs, binary/source hashes and verification records are under ignored `out/hold-note-layers/`. Native game/Xvfb processes stopped. Tests use Linux software OpenGL and Null audio; Windows rendering was not retested.
 
 This is an engine change and requires a rebuilt Windows executable. No theme asset edits or new Windows ZIP were needed for this verification.
+
+
+## Windows executable updated with hold visibility fix
+
+[Workflow #16](https://github.com/chihduo/stepmania/actions/runs/43066153222) built `69772bd100f38e482cb3daaa7ce83bd597b07283` successfully in 6m47s using MSVC 2022 x64 Release. Windows layout, x64 PE and 6.0 file/product metadata checks pass. The startup smoke test reports `StepMania6.0-git-69772bd; fresh default theme: chiikawa`.
+
+Downloaded and verified [artifact StepMania-windows-x64-16.1](https://github.com/chihduo/stepmania/actions/runs/43066153222/artifacts/13875908360). SHA-256, full archive CRC, embedded build identity, all 28 released media/configuration entries and the current timing-label/gameplay/evaluation Lua files match. The ZIP contains no smoke-test Save/Logs/Cache files or feature-only source assets.
+
+- ZIP: `out/windows-x64-69772bd100-43066153222/StepMania-6.0-windows-x64-portable.zip` (128,834,011 bytes).
+- SHA-256: `0224241e1fff295164089f68e87f72f879657d4bcb0cc43b0e55edb630e17a1c`.
+- The same directory contains extracted `StepMania/Program/` files, the checksum, CI logs/metadata and local verification reports.
+
+Compared with Windows build #15, only `Program/StepMania.exe` and `Program/StepMania.vdi` changed within Program; bundled DLLs match. Replace `Program/` and `Themes/` from the ZIP to apply the engine fix and all subsequent theme changes while preserving personal data. Windows graphics/controller play was not exercised by the startup smoke test; native rendering checks for the fix are recorded in the preceding section.
