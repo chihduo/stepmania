@@ -466,9 +466,23 @@ bool NoteDisplay::IsOnScreen( float fBeat, int iCol, int iDrawDistanceAfterTarge
 	return true;
 }
 
-bool NoteDisplay::DrawHoldsInRange(const NoteFieldRenderArgs& field_args,
+bool NoteDisplay::DrawHoldBodiesInRange(const NoteFieldRenderArgs& field_args,
 	const NoteColumnRenderArgs& column_args,
 	const vector<NoteData::TrackMap::const_iterator>& tap_set)
+{
+	return DrawHoldsInRange(field_args, column_args, tap_set, false);
+}
+
+bool NoteDisplay::DrawHoldHeadsInRange(const NoteFieldRenderArgs& field_args,
+	const NoteColumnRenderArgs& column_args,
+	const vector<NoteData::TrackMap::const_iterator>& tap_set)
+{
+	return DrawHoldsInRange(field_args, column_args, tap_set, true);
+}
+
+bool NoteDisplay::DrawHoldsInRange(const NoteFieldRenderArgs& field_args,
+	const NoteColumnRenderArgs& column_args,
+	const vector<NoteData::TrackMap::const_iterator>& tap_set, bool draw_heads)
 {
 	bool any_upcoming = false;
 	for(vector<NoteData::TrackMap::const_iterator>::const_reverse_iterator tapit=
@@ -507,7 +521,7 @@ bool NoteDisplay::DrawHoldsInRange(const NoteFieldRenderArgs& field_args,
 		bool is_addition = (tn.source == TapNoteSource_Addition);
 		const bool hold_ghost_showing = tn.HoldResult.bActive  &&  tn.HoldResult.fLife > 0;
 		const bool is_holding = tn.HoldResult.bHeld;
-		if(hold_ghost_showing)
+		if(hold_ghost_showing && !draw_heads)
 		{
 			field_args.ghost_row->SetHoldShowing(column_args.column, tn);
 		}
@@ -523,7 +537,7 @@ bool NoteDisplay::DrawHoldsInRange(const NoteFieldRenderArgs& field_args,
 
 		DrawHold(tn, field_args, column_args, start_row, is_holding, result,
 			is_addition,
-			in_selection_range ? field_args.selection_glow : field_args.fail_fade);
+			in_selection_range ? field_args.selection_glow : field_args.fail_fade, draw_heads);
 
 		bool note_upcoming = NoteRowToBeat(start_row) >
 			m_pPlayerState->GetDisplayedPosition().m_fSongBeat;
@@ -1161,7 +1175,7 @@ void NoteDisplay::DrawHoldBody(const TapNote& tn,
 void NoteDisplay::DrawHold(const TapNote& tn,
 	const NoteFieldRenderArgs& field_args,
 	const NoteColumnRenderArgs& column_args, int iRow, bool bIsBeingHeld,
-	const HoldNoteResult &Result, bool bIsAddition, float fPercentFadeToFail)
+	const HoldNoteResult &Result, bool bIsAddition, float fPercentFadeToFail, bool draw_head)
 {
 	int iEndRow = iRow + tn.iDuration;
 	float top_beat= NoteRowToVisibleBeat(m_pPlayerState, iRow);
@@ -1207,36 +1221,18 @@ void NoteDisplay::DrawHold(const TapNote& tn,
 
 	bool bFlipHeadAndTail = bReverse && cache->m_bFlipHeadAndTailWhenReverse;
 
-	/* The body and caps should have no overlap, so their order doesn't matter.
-	 * Draw the head last, so it appears on top. */
 	float fBeat = NoteRowToBeat(iRow);
-	// Side note:  I don't know why these two checks were commented out and I
-	// didn't bother to update them when rewriting the arguments that are
-	// passed to the note drawing functions. -Kyz
-	/*
-	if( !cache->m_bHoldHeadIsAboveWavyParts )
+	if( !draw_head )
 	{
-		Actor *pActor = GetHoldActor( m_HoldHead, NotePart_HoldHead, NoteRowToBeat(iRow), tn.subType == TapNoteSubType_Roll, bIsBeingHeld );
-		DrawActor( tn, pActor, NotePart_HoldHead, iCol, bFlipHeadAndTail ? fEndYOffset : fStartYOffset, fBeat, bIsAddition, fPercentFadeToFail, fReverseOffsetPixels, fColorScale, fDrawDistanceAfterTargetsPixels, fDrawDistanceBeforeTargetsPixels, fFadeInPercentOfDrawFar );
-	}
-	if( !cache->m_bHoldTailIsAboveWavyParts )
-	{
-		Actor *pActor = GetHoldActor( m_HoldTail, NotePart_HoldTail, NoteRowToBeat(iRow), tn.subType == TapNoteSubType_Roll, bIsBeingHeld );
-		DrawActor( tn, pActor, NotePart_HoldTail, iCol, bFlipHeadAndTail ? fStartYOffset : fEndYOffset, fBeat, bIsAddition, fPercentFadeToFail, fReverseOffsetPixels, fColorScale, fDrawDistanceAfterTargetsPixels, fDrawDistanceBeforeTargetsPixels, fFadeInPercentOfDrawFar );
-	}
-	*/
+		DrawHoldBody(tn, field_args, column_args, fBeat, bIsBeingHeld, fYHead, fYTail, fPercentFadeToFail, fColorScale, top_beat, bottom_beat);
 
-	DrawHoldBody(tn, field_args, column_args, fBeat, bIsBeingHeld, fYHead, fYTail, fPercentFadeToFail, fColorScale, top_beat, bottom_beat);
-
-	/* These set the texture mode themselves. */
-	// this part was modified in pumpmania, where it flips the draw order
-	// of the head and tail. Perhaps make this a theme/noteskin metric? -aj
-	if( cache->m_bHoldTailIsAboveWavyParts )
-	{
-		Actor *pActor = GetHoldActor( m_HoldTail, NotePart_HoldTail, NoteRowToBeat(iRow), tn.subType == TapNoteSubType_Roll, bIsBeingHeld );
-		DrawActor(tn, pActor, NotePart_HoldTail, field_args, column_args, bFlipHeadAndTail ? fStartYOffset : fEndYOffset, fBeat, bIsAddition, fPercentFadeToFail, fColorScale, false);
+		if( cache->m_bHoldTailIsAboveWavyParts )
+		{
+			Actor *pActor = GetHoldActor( m_HoldTail, NotePart_HoldTail, NoteRowToBeat(iRow), tn.subType == TapNoteSubType_Roll, bIsBeingHeld );
+			DrawActor(tn, pActor, NotePart_HoldTail, field_args, column_args, bFlipHeadAndTail ? fStartYOffset : fEndYOffset, fBeat, bIsAddition, fPercentFadeToFail, fColorScale, false);
+		}
 	}
-	if( cache->m_bHoldHeadIsAboveWavyParts )
+	else if( cache->m_bHoldHeadIsAboveWavyParts )
 	{
 		Actor *pActor = GetHoldActor( m_HoldHead, NotePart_HoldHead, NoteRowToBeat(iRow), tn.subType == TapNoteSubType_Roll, bIsBeingHeld );
 		DrawActor(tn, pActor, NotePart_HoldHead, field_args, column_args, bFlipHeadAndTail ? fEndYOffset : fStartYOffset, fBeat, bIsAddition, fPercentFadeToFail, fColorScale, bIsBeingHeld);
@@ -1575,8 +1571,13 @@ void NoteColumnRenderer::DrawPrimitives()
 		DTS_INNER(pn, tap_set, draw_func, m_displays[pn]); \
 	}
 
-	DRAW_TAP_SET(holds, DrawHoldsInRange);
-	DTS_INNER(PLAYER_INVALID, holds, DrawHoldsInRange, m_displays[PLAYER_INVALID]);
+	// Finish every hold/roll trail before drawing any heads. Drawing complete
+	// holds back-to-front lets an earlier tail cover the next hold's head.
+	// Keep these passes outside the player loop for shared/routine columns.
+	DRAW_TAP_SET(holds, DrawHoldBodiesInRange);
+	DTS_INNER(PLAYER_INVALID, holds, DrawHoldBodiesInRange, m_displays[PLAYER_INVALID]);
+	DRAW_TAP_SET(holds, DrawHoldHeadsInRange);
+	DTS_INNER(PLAYER_INVALID, holds, DrawHoldHeadsInRange, m_displays[PLAYER_INVALID]);
 	DRAW_TAP_SET(taps, DrawTapsInRange);
 	DTS_INNER(PLAYER_INVALID, taps, DrawTapsInRange, m_displays[PLAYER_INVALID]);
 #undef DTS_INNER

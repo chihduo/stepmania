@@ -630,3 +630,18 @@ Existing installations can copy `Themes/chiikawa/Scripts/06 Chiikawa.lua` and re
 Removed the small gameplay accuracy readout. Per-lane millisecond labels now render in front of the score frame through overlay proxies, preserving player/judgment transforms and the original label updates. Native Linux gameplay and replay checks pass, including P2, centered 4:3, reverse/Mini, timing off and Blind; evaluation accuracy remains visible. Logs contain no Lua command errors. The focused Lua check, 22 guide links and 19 release asset/configuration hashes pass.
 
 Existing Windows installations need `Themes/default/BGAnimations/ScreenGameplay overlay/default.lua` and `Themes/default/Graphics/Player judgment/default.lua`, followed by a restart. Chiikawa inherits these Classic actors. No executable rebuild or Windows ZIP; Windows rendering was not retested. Detailed evidence stays on the feature branch.
+
+
+## Consecutive hold visibility
+
+The renderer visits holds from later rows to earlier rows and draws each body, tail and head together. Consequently, an earlier body or bottom cap can cover a later head when holds are close together. Preparing a two-pass correction at the column level so bodies/tails for all note owners precede hold heads, while preserving the existing tap pass. Native fixtures and the original executable are kept under ignored `out/hold-note-layers/`.
+
+Implemented two hold-rendering passes in `NoteDisplay`: draw every visible hold/roll body and tail first, then their heads, followed by the existing tap pass. The passes include all player-owned and unassigned notes before advancing to heads. Hold-ghost state is updated once per frame; existing visibility, noteskin flags, reverse/active positioning, fading and scoring logic are retained.
+
+Validation completed with the rebuilt Linux Debug executable:
+
+- Reproduced the original defect with 0.75x scroll and holds ending one sixteenth before the next hold. Before/after captures pause at beat 6 of the same chart. All four later heads are mostly hidden before the fix and fully recognizable afterward. An image-based check finds 0% red head-center coverage in the original, versus 83–87% with corrected normal/fast rendering; its pass threshold is 75%.
+- Native checks pass for normal and fast rendering, reverse, active and missed holds, P2 at 4:3 with Mini/Bumpy depth effects, and the Delta noteskin. A completed play records 48/48 holds, 16/16 rolls and the expected 100,000,000 score. Recorded playback shows the corrected hold heads, and returning restores evaluation. All final logs have no Lua command errors.
+- The build succeeds with existing deprecation warnings; diff whitespace passes. Captures, private chart, scripts, logs, binary/source hashes and verification records are under ignored `out/hold-note-layers/`. Native game/Xvfb processes stopped. Tests use Linux software OpenGL and Null audio; Windows rendering was not retested.
+
+This is an engine change and requires a rebuilt Windows executable. No theme asset edits or new Windows ZIP were needed for this verification.
