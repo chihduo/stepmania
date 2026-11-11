@@ -91,6 +91,7 @@ end
 
 local t = Def.ActorFrame {};
 t[#t+1] = Def.ActorFrame {
+	Name = "JudgmentFeedback";
 	laneTiming;
 	LoadActor(THEME:GetPathG("Judgment","Normal")) .. {
 		Name="Judgment";

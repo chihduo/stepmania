@@ -165,3 +165,10 @@ Increase the evaluation illustration from a 230 × 180 box to at most 345 × 270
 Implementation and native verification are complete. The existing selection/layout check and both player/aspect-ratio combinations pass; the runtime Lua and guide are ready for selective main promotion.
 
 Completed: feature checkpoint `4f6e010d8f` was selectively promoted to main as `1430b3ad3c`. The runtime Lua and guide match the feature snapshot, the focused theme check passes on main, and all 19 released media/configuration hashes remain unchanged. Reconciled the main release baseline here while retaining development assets. No executable or ZIP rebuild was needed.
+
+
+## Keep gameplay timing offsets above the score
+
+Remove the small persistent gameplay accuracy readout. Draw the existing per-lane millisecond labels in the gameplay overlay using an ActorProxy, preserving their player/judgment transforms, animation and Blind behavior. The statistics and evaluation accuracy remain available. Change the shared Classic actors inherited by Chiikawa, verify native P1/P2, centered/4:3, reverse and disabled timing/Blind cases, then selectively promote the completed runtime files and user guidance to main. No executable rebuild or Windows ZIP is needed.
+
+Implementation and verification complete: the original timing actors are drawn once through the overlay, and the gameplay accuracy actor is removed. Native checks cover P1/P2, centered 4:3, reverse with Mini, timing off, Blind, Classic, evaluation, replay, restart and return. The focused Lua check, 22 guide links, all 19 released media/configuration hashes and diff whitespace pass. Ready for selective main promotion.

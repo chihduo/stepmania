@@ -228,35 +228,39 @@ t.InitCommand=cmd(SetUpdateFunction,UpdateTime);
 		};
 	};
 	
-	-- Persistent whole-song timing accuracy, positioned beneath each score.
+	-- Draw only the lane offsets above the score, keeping their player/judgment
+	-- transforms and animations. The original labels still receive judgments.
 	for pn in ivalues(GAMESTATE:GetHumanPlayers()) do
 		local timingPlayer = pn
-		local playerName = ToEnumShortString(timingPlayer)
-		t[#t+1] = Def.BitmapText {
-			Name = "TimingAccuracy" .. playerName,
-			Font = "Common Condensed",
-			InitCommand = function(self)
-				self:x(THEME:GetMetric("ScreenGameplay", "Score" .. playerName .. "X"))
-				self:y(THEME:GetMetric("ScreenGameplay", "Score" .. playerName .. "Y") + 24)
-				self:zoom(0.55):shadowlength(1):strokecolor(Color("Outline"))
-				self:diffuse(ColorLightTone(PlayerColor(timingPlayer))):visible(false)
+		t[#t+1] = Def.ActorFrame {
+			Name = "TimingOffsets" .. ToEnumShortString(timingPlayer),
+			BeginCommand = function(self)
+				local playerActor = SCREENMAN:GetTopScreen():GetChild("Player" .. ToEnumShortString(timingPlayer))
+				local judgment = playerActor and playerActor:GetChild("Judgment")
+				local feedback = judgment and judgment:GetChild("JudgmentFeedback")
+				local offsets = feedback and feedback:GetChild("LaneTiming")
+				if not offsets then self:visible(false); return end
+
+				self:SetFakeParent(playerActor)
+				local judgmentTransform = self:GetChild("JudgmentTransform")
+				judgmentTransform:SetFakeParent(judgment)
+				local feedbackTransform = judgmentTransform:GetChild("FeedbackTransform")
+				feedbackTransform:SetFakeParent(feedback)
+				feedbackTransform:GetChild("Offsets"):SetTarget(offsets)
+				offsets:visible(false) -- ActorProxy draws them once, in this overlay.
+
+				-- Player normally suppresses judgment drawing when Blind is enabled.
+				local options = GAMESTATE:GetPlayerState(timingPlayer):GetPlayerOptions("ModsLevel_Current")
+				self:SetUpdateFunction(function(actor) actor:visible(options:Blind() <= 0) end)
 			end,
-			OnCommand = cmd(playcommand,"Update"),
-			UpdateCommand = function(self)
-				local hasTiming = TimingStats.IsEnabled(timingPlayer)
-					and TimingStats.GetCount(timingPlayer) > 0
-				self:visible(hasTiming)
-				if hasTiming then
-					self:settext(TimingStats.FormatAccuracy(
-						TimingStats.GetAccuracyPercent(timingPlayer)))
-				end
-			end,
-			TimingStatsUpdatedMessageCommand = function(self, param)
-				if param and param.Player == timingPlayer then
-					self:playcommand("Update")
-				end
-			end,
-			OffCommand = cmd(linear,0.2;diffusealpha,0),
+			OffCommand = function(self) self:SetUpdateFunction(nil) end,
+			Def.ActorFrame {
+				Name = "JudgmentTransform",
+				Def.ActorFrame {
+					Name = "FeedbackTransform",
+					Def.ActorProxy { Name = "Offsets" },
+				},
+			},
 		}
 	end
 

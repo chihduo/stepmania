@@ -38,6 +38,12 @@ Gameplay and replay playback add no separate character cutouts, keeping song ima
 
 To fix an older installation that shows characters over song backgrounds, close the game and replace [BGAnimations/ScreenGameplay underlay.lua](BGAnimations/ScreenGameplay%20underlay.lua) and [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua), then restart. This change needs no executable rebuild.
 
+## Gameplay timing feedback
+
+With Pro Timing enabled, each tap's millisecond offset appears above its receptor (below it with reverse scrolling) and is drawn in front of the score bar. The small gameplay accuracy readout is removed; whole-song accuracy remains on the evaluation screen.
+
+For this update, close the game, replace [Themes/default/BGAnimations/ScreenGameplay overlay/default.lua](../default/BGAnimations/ScreenGameplay%20overlay/default.lua) and [Themes/default/Graphics/Player judgment/default.lua](../default/Graphics/Player%20judgment/default.lua), then restart. Chiikawa inherits these shared Classic actors. No executable rebuild is needed.
+
 ## Dancing-trio gameplay background
 
 When a song has no background image, the theme can use a **30-second silent loop** of Chiikawa, Hachiware and Usagi dancing on DDR pads. It combines the three supplied clips in order, without re-encoding, at 1280×720 and 24 fps. [Preview the MP4](Movies/ddr-trio-loop.mp4) or see the [development branch](../../Docs/ChiikawaDevelopment.md) for source clips and the assembly recipe.
