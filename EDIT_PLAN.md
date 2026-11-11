@@ -250,3 +250,8 @@ README image follow-up completed: use the existing title-menu capture as the ope
 Promote the verified illustration layout from feature checkpoint `4f6e010d8f`: increase the maximum box from 230 × 180 to 345 × 270, shift it upward/outward, and fit its width around the central judgment panel on narrower displays. Preserve mirrored P2 placement and single-player eligibility. Native P1/P2 checks at 16:9 and 4:3 are complete; verify the selected Lua/guide and release metadata, then reconcile and publish the branches. No executable or ZIP rebuild is needed.
 
 Completed: selected runtime/guide files match `4f6e010d8f`, the focused Lua layout check passes in main, and all 19 released media/configuration hashes remain unchanged.
+
+
+## Readable gameplay timing labels
+
+Promote the verified shared-theme change from `951d424e85`: remove the small gameplay accuracy readout and draw per-lane timing offsets in the overlay above the score frame. Preserve their existing receptor positions and animations. Completed native Linux checks cover both players, 16:9/4:3, centered/reverse/Mini, timing off, Blind, Classic, evaluation and replay/restart/return. No executable or ZIP rebuild.
