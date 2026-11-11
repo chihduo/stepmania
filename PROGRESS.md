@@ -623,3 +623,10 @@ Replaced the opening gameplay screenshot with the existing native title-menu cap
 Promoted feature checkpoint `4f6e010d8f`. Evaluation illustrations are 1.5× their previous size on widescreen, using a maximum 345 × 270 box at y=270. A 12-pixel gap beside the judgment panel and 16-pixel outer margin constrain width to 252 on 4:3; P2 placement mirrors P1. Native Linux captures for both players and aspect ratios show clear banners, judgment rows, scores, details and life history, with no Lua command errors. The existing theme-layout check and all 20 guide links pass. Evidence is under the feature worktree’s `out/evaluation-art-size/`.
 
 Existing installations can copy `Themes/chiikawa/Scripts/06 Chiikawa.lua` and restart. No executable rebuild or new Windows ZIP was required.
+
+
+## Gameplay timing display fix
+
+Removed the small gameplay accuracy readout. Per-lane millisecond labels now render in front of the score frame through overlay proxies, preserving player/judgment transforms and the original label updates. Native Linux gameplay and replay checks pass, including P2, centered 4:3, reverse/Mini, timing off and Blind; evaluation accuracy remains visible. Logs contain no Lua command errors. The focused Lua check, 22 guide links and 19 release asset/configuration hashes pass.
+
+Existing Windows installations need `Themes/default/BGAnimations/ScreenGameplay overlay/default.lua` and `Themes/default/Graphics/Player judgment/default.lua`, followed by a restart. Chiikawa inherits these Classic actors. No executable rebuild or Windows ZIP; Windows rendering was not retested. Detailed evidence stays on the feature branch.
