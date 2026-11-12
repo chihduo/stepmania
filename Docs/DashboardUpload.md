@@ -41,7 +41,8 @@ Your dashboard repository needs the new importer and publication workflow. See
    in Windows Credential Manager, associated with your Windows user account.
 4. Select **Upload / Retry**. The first upload imports the available historical
    profile, per-play logs, song details and small banner copies. Later uploads
-   transfer only new or changed files.
+   transfer only new or changed files. The first large import can take several
+   minutes; write requests are paced to respect GitHub limits.
 
 Settings are read when the game starts. Moving the portable game to another PC
 requires setting the credential again. An expired or revoked token can be

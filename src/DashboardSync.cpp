@@ -141,6 +141,23 @@ static const std::map<RString, std::set<RString>>& Children()
 		{"HighScoreForASongAndSteps",Words("Song Steps HighScore")}
 	}; return allowed;
 }
+// Match the dashboard's legacy XML reader: replace invalid UTF-8 and drop
+// XML-forbidden controls without modifying the player's original files.
+static RString ExportText(const RString& text)
+{
+    RString out;
+    for(unsigned at=0;at<text.size();)
+    {
+        unsigned begin=at;
+        wchar_t ch;
+        if(!utf8_to_wchar_ec(text,at,ch)) { out += "\xef\xbf\xbd"; continue; }
+        unsigned char first=static_cast<unsigned char>(text[begin]);
+        if(first<32 && first!=9 && first!=10 && first!=13) continue;
+        // Keep the original bytes: wchar_t is only 16 bits on Windows.
+        out.append(text,begin,at-begin);
+    }
+    return out;
+}
 static XNode* Clean(const XNode& source)
 {
 	auto* dest = new XNode(source.GetName());
@@ -151,10 +168,10 @@ static XNode* Clean(const XNode& source)
 	auto a=attrs.find(source.GetName());
 	if(a!=attrs.end()) for(const auto& key: a->second)
 	{
-		RString value; if(source.GetAttrValue(key,value)) dest->AppendAttr(key,value);
+		RString value; if(source.GetAttrValue(key,value)) dest->AppendAttr(key,ExportText(value));
 	}
 	RString text; source.GetTextValue(text);
-	if(!text.empty()) dest->AppendAttr(XNode::TEXT_ATTRIBUTE,text);
+	if(!text.empty()) dest->AppendAttr(XNode::TEXT_ATTRIBUTE,ExportText(text));
 	auto allowed=Children().find(source.GetName());
 	if(allowed!=Children().end())
 	{
@@ -188,7 +205,7 @@ Snapshot Capture()
 	for(const auto& dir: played)
 	{
 		Song* song=SONGMAN->GetSongFromDir(dir); if(!song) continue;
-		Json::Value m; m["dir"]=dir; m["title"]=song->GetDisplayMainTitle(); m["artist"]=song->GetDisplayArtist();
+		Json::Value m; m["dir"]=ExportText(dir); m["title"]=ExportText(song->GetDisplayMainTitle()); m["artist"]=ExportText(song->GetDisplayArtist());
 		m["source_banner"]=song->GetBannerPath(); // Local only; removed before export.
 		m["charts"]=Json::Value(Json::arrayValue);
 		for(Steps* steps: song->GetAllSteps())
@@ -230,7 +247,7 @@ void Export(Snapshot& s,const Progress& progress,const std::atomic<bool>& cancel
 		FOREACH_CONST_Child(recent, record)
 		{
 			const XNode* hs=record->GetChild("HighScore"); if(!hs) continue;
-			RString who,guid; hs->GetChildValue("PlayerGuid",who); hs->GetChildValue("Guid",guid);
+			RString who,guid; hs->GetChildValue("PlayerGuid",who); hs->GetChildValue("Guid",guid); guid=ExportText(guid);
 			if(!s.machine && who!=s.guid) { ++skipped; continue; }
 			std::unique_ptr<XNode> clean(Clean(*record));
 			if(guid.empty()) { guid="legacy-"+Hash(XmlFileUtil::GetXML(clean.get())); clean->GetChild("HighScore")->AppendChild("Guid",guid); }
@@ -403,7 +420,9 @@ RString Publish(const Snapshot& s,const Request& request,const Progress& progres
 		dispatch["client_payload"]["data_branch"]=s.settings.branch;
 		dispatch["client_payload"]["data_revision"]=head;
 		dispatch["client_payload"]["profile"]=s.guid;
-		call("POST","/dispatches",dispatch);
+        try { call("POST","/dispatches",dispatch); }
+        catch(const std::exception& e)
+        { throw std::runtime_error("Upload accepted, but publication could not be started.\n"+RString(e.what())); }
 		return head;
 	}
 	throw std::runtime_error("The data branch changed during upload. Select Retry; no plays were discarded.");
@@ -496,7 +515,18 @@ void Job::Run(Snapshot s)
 		Export(s,progress,m_Cancel);
 #ifdef _WIN32
 		RString token=ReadCredential(s.settings);
-		Request request=[&](const RString& method,const RString& path,const RString& body) { return Http(method,path,body,token); };
+		// GitHub applies secondary write limits. A first historical import can
+        // require hundreds of tree requests; pace them so it can finish.
+        auto nextWrite=std::chrono::steady_clock::now();
+        Request request=[&](const RString& method,const RString& path,const RString& body) {
+            if(method!="GET")
+            {
+                while(std::chrono::steady_clock::now()<nextWrite)
+                { CheckCancel(m_Cancel); std::this_thread::sleep_for(std::chrono::milliseconds(100)); }
+                nextWrite=std::chrono::steady_clock::now()+std::chrono::milliseconds(1200);
+            }
+            return Http(method,path,body,token);
+        };
 		RString revision;
 		try { revision=Publish(s,request,progress,m_Cancel); }
 		catch(...) { std::fill(token.begin(),token.end(),'\0'); throw; }
