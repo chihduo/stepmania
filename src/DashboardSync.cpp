@@ -403,7 +403,9 @@ RString Publish(const Snapshot& s,const Request& request,const Progress& progres
 		dispatch["client_payload"]["data_branch"]=s.settings.branch;
 		dispatch["client_payload"]["data_revision"]=head;
 		dispatch["client_payload"]["profile"]=s.guid;
-		call("POST","/dispatches",dispatch);
+        try { call("POST","/dispatches",dispatch); }
+        catch(const std::exception& e)
+        { throw std::runtime_error("Upload accepted, but publication could not be started.\n"+RString(e.what())); }
 		return head;
 	}
 	throw std::runtime_error("The data branch changed during upload. Select Retry; no plays were discarded.");
@@ -496,7 +498,18 @@ void Job::Run(Snapshot s)
 		Export(s,progress,m_Cancel);
 #ifdef _WIN32
 		RString token=ReadCredential(s.settings);
-		Request request=[&](const RString& method,const RString& path,const RString& body) { return Http(method,path,body,token); };
+		// GitHub applies secondary write limits. A first historical import can
+        // require hundreds of tree requests; pace them so it can finish.
+        auto nextWrite=std::chrono::steady_clock::now();
+        Request request=[&](const RString& method,const RString& path,const RString& body) {
+            if(method!="GET")
+            {
+                while(std::chrono::steady_clock::now()<nextWrite)
+                { CheckCancel(m_Cancel); std::this_thread::sleep_for(std::chrono::milliseconds(100)); }
+                nextWrite=std::chrono::steady_clock::now()+std::chrono::milliseconds(1200);
+            }
+            return Http(method,path,body,token);
+        };
 		RString revision;
 		try { revision=Publish(s,request,progress,m_Cancel); }
 		catch(...) { std::fill(token.begin(),token.end(),'\0'); throw; }
