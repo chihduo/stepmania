@@ -681,3 +681,11 @@ Final runtime revision: `f77f87a76d`. Windows x64 workflow #19 (`43253427102`) c
 The dashboard repository is published at `a56b081`. Actions bootstrap `43251375360` migrated the live site without changing its 7,131-play data or any of its 1,356 website assets, including 1,353 banner images. Four sampled live banners and the data JSON also match. Pages now uses Actions and permits the trusted main workflow; gh-pages remains as a rollback snapshot. Hosted importer checks pass at `43254295118`.
 
 The player's first upload still requires their matching Windows profile, retained Upload history, and repository-scoped token entered locally in the game. No personal token or new play data was supplied here. The completed code, integration guides and native evidence are available; final downloaded ZIP verification is being recorded separately.
+
+
+Final package verification passes: the downloaded ZIP matches its CI SHA-256, all archive entries pass CRC checks, the new upload screen/menu/guide match the release sources after Windows line-ending normalization, and all 19 release manifest entries match (two existing INI files differ only in line endings). The package contains no Save, Logs, Cache or Screenshots directories. Windows CI confirms `StepMania6.0-git-f77f87a`, x64 PE/version metadata and fresh Chiikawa startup.
+
+- ZIP: `out/windows-x64-f77f87a76d-43253427102/StepMania-6.0-windows-x64-portable.zip` (128,915,844 bytes).
+- SHA-256: `e03361321b7df1469a5e270e7d7b21edaf6efa55630c9f97f6f5b009170773fd`.
+- GitHub artifact: `StepMania-windows-x64-19.1`, ID `13960947152`, workflow `43253427102`.
+- The same output directory holds CI logs, smoke results, artifact metadata and the local verification report. The first real upload remains a player-side setup/verification step; it requires the matching saved profile/history and a token stored locally in Windows Credential Manager.
