@@ -14,6 +14,7 @@ The default **Chiikawa** interface has cream and pastel menus, character illustr
 
 - **Adjust the tempo while playing.** Slow down a difficult passage or speed up a familiar chart while notes, music, and standard song videos stay synchronized.
 - **Record and review a performance.** Watch single-player recordings with their original judgments, score, combo, life history, and speed changes.
+- **Publish your play statistics.** Upload records and banner thumbnails from the title menu to a GitHub Pages dashboard.
 - **Track your life meter.** Follow the live graph during a song and inspect the complete history on the results screen.
 - **Browse without losing your place.** Changing the song-selection sort keeps the highlighted song selected when it is available in the new sort.
 
@@ -47,6 +48,14 @@ Changes affect the **current play only**. Your original settings return when the
 [Watch the 40-second gameplay video](Docs/media/live-speed-demo.mp4). These controls apply during active local gameplay. See the [playback guide](Docs/LiveGameplayRate.md) for supported modes, scrolling modifiers, and details about custom song scripts.
 
 On **song selection**, press **Left + Right** to cycle the available sort orders while keeping your highlighted song selected.
+
+## Online play statistics
+
+Choose **Upload Statistics** on the title menu to send new play records and banner
+thumbnails to your [online dashboard](https://github.com/chihduo/stepmania-dashboard).
+GitHub Actions calculates the statistics and updates GitHub Pages. Uploads are
+manual, and Windows stores the connection token in Credential Manager.
+See [dashboard setup and history preservation](Docs/DashboardUpload.md).
 
 ## Record and replay
 

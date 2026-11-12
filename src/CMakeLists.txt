@@ -511,6 +511,8 @@ if(WIN32)
               "${LIB_AVUTIL}")
 
   list(APPEND SMDATA_LINK_LIB
+              "winhttp.lib"
+              "advapi32.lib"
               "dbghelp.lib"
               "setupapi.lib"
               "hid.lib")
