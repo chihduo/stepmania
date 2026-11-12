@@ -658,3 +658,8 @@ Downloaded and verified [artifact StepMania-windows-x64-16.1](https://github.com
 - The same directory contains extracted `StepMania/Program/` files, the checksum, CI logs/metadata and local verification reports.
 
 Compared with Windows build #15, only `Program/StepMania.exe` and `Program/StepMania.vdi` changed within Program; bundled DLLs match. Replace `Program/` and `Themes/` from the ZIP to apply the engine fix and all subsequent theme changes while preserving personal data. Windows graphics/controller play was not exercised by the startup smoke test; native rendering checks for the fix are recorded in the preceding section.
+
+
+## Manual dashboard upload
+
+Planning checkpoint: inspected both repositories, statistics export identifiers, profile selection, title-menu hooks and the current gh-pages deployment. Manual upload is confirmed; implementation and verification are starting. The existing published snapshot contains 7,131 lifetime plays and its raw source history is not tracked. Full migration must validate the matching historical Save data before replacing the live site.

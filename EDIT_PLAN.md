@@ -269,3 +269,8 @@ Completed: split hold/roll rendering into bodies/tails followed by heads across 
 Build published engine/runtime revision `69772bd100` with the Windows x64 Release workflow. Require portable layout, x64 PE, 6.0 version and fresh Chiikawa startup checks. Download the package, verify its checksum/CRC and current theme/media contents, and provide the updated executable plus portable ZIP. Keep saved user data out of the package. Record the finished build without changing its runtime sources.
 
 Completed: Windows workflow #16 (`43066153222`) successfully built `69772bd100`. Windows x64/6.0 metadata, fresh Chiikawa startup, package checksum/CRC, 28 manifest entries and current theme Lua checks pass. Downloaded the portable ZIP and extracted Program files; this completion record changes no runtime source.
+
+
+## Manual dashboard upload
+
+Implement the approved title-menu-only GitHub Pages integration, following [the implementation plan](Docs/DashboardIntegrationPlan.md). Separate data from code, preserve existing history, reuse the Python dashboard calculations in Actions, and keep credentials in Windows Credential Manager. Commit importer/workflow, engine, UI and validation checkpoints.
