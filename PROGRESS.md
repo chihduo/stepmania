@@ -658,3 +658,13 @@ Downloaded and verified [artifact StepMania-windows-x64-16.1](https://github.com
 - The same directory contains extracted `StepMania/Program/` files, the checksum, CI logs/metadata and local verification reports.
 
 Compared with Windows build #15, only `Program/StepMania.exe` and `Program/StepMania.vdi` changed within Program; bundled DLLs match. Replace `Program/` and `Themes/` from the ZIP to apply the engine fix and all subsequent theme changes while preserving personal data. Windows graphics/controller play was not exercised by the startup smoke test; native rendering checks for the fix are recorded in the preceding section.
+
+
+## Manual dashboard upload
+
+Planning checkpoint: inspected both repositories, statistics export identifiers, profile selection, title-menu hooks and the current gh-pages deployment. Manual upload is confirmed; implementation and verification are starting. The existing published snapshot contains 7,131 lifetime plays and its raw source history is not tracked. Full migration must validate the matching historical Save data before replacing the live site.
+
+
+Implementation checkpoint: added explicit dashboard preferences, allowlisted profile/event/metadata export, content-addressed banner envelopes, a persistent outbox, GitHub tree/commit/ref upload with conflict handling, Windows WinHTTP and Credential Manager support, and the title-menu upload/status screen. Only selecting the screen starts work. Repeated already-published data skips rebuilding; accepted-but-unpublished batches can be dispatched again. The engine uses existing score/log records without changing rate/replay scoring.
+
+Validation passes: Linux Debug build; engine tests against an in-memory GitHub API for GUID/profile/privacy filtering, repeat uploads, failed dispatch, ref conflicts, regressed totals, immutable event conflicts, denied credentials and cancellation; native export accepted by the Python importer; native title selection, return, setup screen at 16:9/4:3, and Linux export. Native testing found and fixed the missing title-menu translation. Theme colors are verified in the feature worktree and await focused promotion. The dashboard's nine importer tests pass locally and on GitHub (run 43249599943). Windows compilation and real-user first upload are not yet verified.
