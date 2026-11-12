@@ -350,3 +350,10 @@ Verification: visually inspected the before/after P1 capture and six additional 
 The existing focused theme Lua check, 22 guide links, all 19 released asset/configuration hashes and diff whitespace pass. Captures, logs, fixture scripts and `verification.json` remain under ignored `out/gameplay-timing-layers/`. Checks use the existing Linux executable, software OpenGL and Null audio; Windows rendering was not retested. Game/Xvfb processes were stopped. The theme guide identifies the two shared Lua files needed for an existing Windows installation. No executable rebuild or Windows ZIP.
 
 Selective release completed: feature implementation `951d424e85`, main promotion `3441e4b14e`. All three selected runtime/guide files match exactly, and main passes the focused theme check, all 19 asset/configuration hashes, 22 guide links and whitespace validation. Adopted the release manifest and main completion entries while preserving theme development sources and native fixture evidence. No build or ZIP was required.
+
+
+## Manual dashboard upload
+
+Prepared matching cream background, brown headings/status, mint actions and muted help for ScreenDashboardUpload. The screen inherits the existing theme fonts. Native verification is next; no artwork or generation assets change.
+
+Native verification passes for the title-menu option, screen entry/return, missing-configuration guidance at 16:9 and 4:3, and Linux export status. The shared engine/menu changes are in main checkpoint d616b5e4e2. Evidence is under the main worktree’s ignored out/dashboard-sync directory. No artwork changed.

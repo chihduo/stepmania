@@ -174,3 +174,8 @@ Remove the small persistent gameplay accuracy readout. Draw the existing per-lan
 Implementation and verification complete: the original timing actors are drawn once through the overlay, and the gameplay accuracy actor is removed. Native checks cover P1/P2, centered 4:3, reverse with Mini, timing off, Blind, Classic, evaluation, replay, restart and return. The focused Lua check, 22 guide links, all 19 released media/configuration hashes and diff whitespace pass. Ready for selective main promotion.
 
 Completed promotion: main `3441e4b14e` contains the reviewed runtime/guide files from feature checkpoint `951d424e85`, the release manifest and concise completion entries. Main passes exact selected-file comparisons, the focused Lua check, all 19 asset/configuration hashes and 22 guide links. Reconciled the release baseline here, retaining feature development assets.
+
+
+## Manual dashboard upload
+
+Add cream and pastel styling for the inherited manual dashboard upload screen. Keep upload logic and credentials in the engine, with the shared title-menu hook. Verify wide and 4:3 layouts before promotion.
