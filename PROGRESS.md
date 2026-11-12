@@ -674,3 +674,10 @@ Promoted only the verified runtime metrics from Chiikawa checkpoint 6715745330. 
 Windows build 43251169504 successfully compiled the native WinHTTP/Credential Manager implementation and passed the executable/version/portable checks. Final review added pacing for GitHub write requests so a large first import stays below secondary write limits, and an explicit accepted-upload message when publication dispatch fails. A final Windows rebuild verifies that small follow-up.
 
 Contract review also covers malformed legacy UTF-8 and XML control characters: the export normalizes them like the dashboard’s existing reader while leaving the original files untouched. The engine test verifies valid UTF-8 and escaped ampersands.
+
+
+Final runtime revision: `f77f87a76d`. Windows x64 workflow #19 (`43253427102`) completed successfully. The expanded engine contract test now includes bitmap-loader initialization and an actual PNG banner; its exported profile, play, song metadata, escaped ampersands, Unicode/legacy text and image all pass through the Python dashboard builder. The added test changes no runtime code.
+
+The dashboard repository is published at `a56b081`. Actions bootstrap `43251375360` migrated the live site without changing its 7,131-play data or any of its 1,356 website assets, including 1,353 banner images. Four sampled live banners and the data JSON also match. Pages now uses Actions and permits the trusted main workflow; gh-pages remains as a rollback snapshot. Hosted importer checks pass at `43254295118`.
+
+The player's first upload still requires their matching Windows profile, retained Upload history, and repository-scoped token entered locally in the game. No personal token or new play data was supplied here. The completed code, integration guides and native evidence are available; final downloaded ZIP verification is being recorded separately.

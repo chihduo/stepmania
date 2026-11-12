@@ -1,6 +1,7 @@
 // Real serializer/filesystem and an in-memory GitHub API. Never contacts GitHub.
 #include "global.h"
 #include "DashboardSync.h"
+#include "ActorUtil.h"
 #include "CryptManager.h"
 #include "LuaManager.h"
 #include "RageFile.h"
@@ -70,21 +71,25 @@ int main(int argc,char** argv)
 {
 	assert(argc==2);RageThreadRegister reg("Dashboard test");SetCommandlineArguments(argc,argv);
 	HOOKS=ArchHooks::Create();HOOKS->Init();LUA=new LuaManager;
-	FILEMAN=new RageFileManager(argv[0]);FILEMAN->Mount("dir",argv[1],"/");LOG=new RageLog;LOG->SetLogToDisk(false);CRYPTMAN=new CryptManager;
+	FILEMAN=new RageFileManager(argv[0]);FILEMAN->Mount("dir",argv[1],"/");LOG=new RageLog;LOG->SetLogToDisk(false);CRYPTMAN=new CryptManager;ActorUtil::InitFileTypeLists();
 	for(const RString& s:{RString(),RString("a"),RString("ab"),RString("abc"),RString("\0\xff",2)}) assert(Unbase64(Base64(s))==s);
 	assert(Hash("abc")=="ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 	XNode original;RString error;
-	XmlFileUtil::Load(&original,"<Stats><GeneralData><Guid>0123456789abcdef</Guid><NumTotalSongsPlayed>2</NumTotalSongsPlayed><DisplayName>A &amp; B \xf0\x9f\x8e\xb5 \xff</DisplayName><Secret>password</Secret></GeneralData><UserTable><key>private</key></UserTable></Stats>",error);
+	XmlFileUtil::Load(&original,"<Stats><GeneralData><Guid>0123456789abcdef</Guid><NumTotalSongsPlayed>2</NumTotalSongsPlayed><DisplayName>A &amp; B \xf0\x9f\x8e\xb5 \xff</DisplayName><Secret>password</Secret></GeneralData><UserTable><key>private</key></UserTable><SongScores><Song Dir=\"Songs/Test/Song/\"><Steps StepsType=\"dance-single\" Difficulty=\"Hard\"><HighScoreList><NumTimesPlayed>2</NumTimesPlayed></HighScoreList></Steps></Song></SongScores></Stats>",error);
 	RString sanitized=Sanitize(original);assert(utf8_is_valid(sanitized));assert(sanitized.find("\xf0\x9f\x8e\xb5")!=RString::npos);assert(sanitized.find("A &amp; B")!=RString::npos);assert(sanitized.find("password")==RString::npos && sanitized.find("UserTable")==RString::npos);
 	Snapshot s;s.settings.enabled=true;s.settings.repository="test/dashboard";s.settings.branch="dashboard-data";s.settings.profile="local:00000000";s.settings.credential="test";
 	s.guid="0123456789abcdef";s.name="Player";s.stats=sanitized;s.songs=Json::Value(Json::arrayValue);
 	RString event="<Stats><RecentSongScores><HighScoreForASongAndSteps><Song Dir=\"Songs/Test/Song/\"/><Steps StepsType=\"dance-single\" Difficulty=\"Hard\"/><HighScore><Guid>one</Guid><PlayerGuid>0123456789abcdef</PlayerGuid><DateTime>2026-11-12 12:00:00</DateTime><Score>123</Score><Name>private</Name></HighScore></HighScoreForASongAndSteps></RecentSongScores></Stats>";
 	write("/Save/Upload/one.xml",event);write("/Save/Upload/copy.xml",event);
 	RString other=event;other.Replace("0123456789abcdef","ffffffffffffffff");write("/Save/Upload/other.xml",other);
+    write("/Save/test-banner.png",Unbase64("iVBORw0KGgoAAAANSUhEUgAAACAAAAAICAIAAAAX52r4AAAAGUlEQVR4nGP8f+A0Ay0BE01NH7Vg1AKqAADJIQKaMYnVZAAAAABJRU5ErkJggg=="));
+    Json::Value song;song["dir"]="Songs/Test/Song/";song["title"]="Example";song["artist"]="Artist";
+    song["source_banner"]="/Save/test-banner.png";song["charts"]=Json::Value(Json::arrayValue);s.songs.append(song);
 	s.logs={"/Save/Upload/one.xml","/Save/Upload/copy.xml","/Save/Upload/other.xml"};
 	std::atomic<bool> cancel(false);auto progress=[](const RString&){};
 	Export(s,progress,cancel);
-	assert(s.files.size()==3); // snapshot, single unique play, manifest
+	assert(s.files.size()==5); // snapshot, single unique play, manifest, metadata, banner
+    assert(s.files.count("profiles/"+s.guid+"/songs/"+Hash("Songs/Test/Song/")+".json"));
 	RString eventPath="profiles/"+s.guid+"/events/"+Hash("one")+".xml";
 	assert(read(s.files.at(eventPath)).find("private")==RString::npos);
     if(const char* target=std::getenv("DASHBOARD_CONTRACT_EXPORT"))
