@@ -672,3 +672,5 @@ Validation passes: Linux Debug build; engine tests against an in-memory GitHub A
 Promoted only the verified runtime metrics from Chiikawa checkpoint 6715745330. The upload screen uses the original theme font with cream, brown and mint colors. Detailed theme planning remains on the feature branch; no generation assets were imported.
 
 Windows build 43251169504 successfully compiled the native WinHTTP/Credential Manager implementation and passed the executable/version/portable checks. Final review added pacing for GitHub write requests so a large first import stays below secondary write limits, and an explicit accepted-upload message when publication dispatch fails. A final Windows rebuild verifies that small follow-up.
+
+Contract review also covers malformed legacy UTF-8 and XML control characters: the export normalizes them like the dashboard’s existing reader while leaving the original files untouched. The engine test verifies valid UTF-8 and escaped ampersands.

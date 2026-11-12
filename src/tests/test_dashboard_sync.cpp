@@ -74,8 +74,8 @@ int main(int argc,char** argv)
 	for(const RString& s:{RString(),RString("a"),RString("ab"),RString("abc"),RString("\0\xff",2)}) assert(Unbase64(Base64(s))==s);
 	assert(Hash("abc")=="ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 	XNode original;RString error;
-	XmlFileUtil::Load(&original,"<Stats><GeneralData><Guid>0123456789abcdef</Guid><NumTotalSongsPlayed>2</NumTotalSongsPlayed><Secret>password</Secret></GeneralData><UserTable><key>private</key></UserTable></Stats>",error);
-	RString sanitized=Sanitize(original);assert(sanitized.find("password")==RString::npos && sanitized.find("UserTable")==RString::npos);
+	XmlFileUtil::Load(&original,"<Stats><GeneralData><Guid>0123456789abcdef</Guid><NumTotalSongsPlayed>2</NumTotalSongsPlayed><DisplayName>A &amp; B \xf0\x9f\x8e\xb5 \xff</DisplayName><Secret>password</Secret></GeneralData><UserTable><key>private</key></UserTable></Stats>",error);
+	RString sanitized=Sanitize(original);assert(utf8_is_valid(sanitized));assert(sanitized.find("\xf0\x9f\x8e\xb5")!=RString::npos);assert(sanitized.find("A &amp; B")!=RString::npos);assert(sanitized.find("password")==RString::npos && sanitized.find("UserTable")==RString::npos);
 	Snapshot s;s.settings.enabled=true;s.settings.repository="test/dashboard";s.settings.branch="dashboard-data";s.settings.profile="local:00000000";s.settings.credential="test";
 	s.guid="0123456789abcdef";s.name="Player";s.stats=sanitized;s.songs=Json::Value(Json::arrayValue);
 	RString event="<Stats><RecentSongScores><HighScoreForASongAndSteps><Song Dir=\"Songs/Test/Song/\"/><Steps StepsType=\"dance-single\" Difficulty=\"Hard\"/><HighScore><Guid>one</Guid><PlayerGuid>0123456789abcdef</PlayerGuid><DateTime>2026-11-12 12:00:00</DateTime><Score>123</Score><Name>private</Name></HighScore></HighScoreForASongAndSteps></RecentSongScores></Stats>";
