@@ -274,3 +274,5 @@ Completed: Windows workflow #16 (`43066153222`) successfully built `69772bd100`.
 ## Manual dashboard upload
 
 Implement the approved title-menu-only GitHub Pages integration, following [the implementation plan](Docs/DashboardIntegrationPlan.md). Separate data from code, preserve existing history, reuse the Python dashboard calculations in Actions, and keep credentials in Windows Credential Manager. Commit importer/workflow, engine, UI and validation checkpoints.
+
+Completed the manual-upload engine, dashboard importer/workflow, Chiikawa screen promotion, setup documentation and tested history-preserving Pages migration. Linux engine/native/contract checks and Windows x64 build #19 pass. The first real Windows profile upload requires the player’s local configuration and credential.
