@@ -504,8 +504,10 @@ bool SaveCredential(const RString& token,RString& error)
 #endif
 }
 Job::~Job() { m_Cancel=true; if(m_Thread.joinable()) m_Thread.join(); }
-RString Job::Status() const { std::lock_guard<std::mutex> lock(m_Mutex); return m_Status; }
-void Job::SetStatus(const RString& text) { std::lock_guard<std::mutex> lock(m_Mutex); m_Status=text; }
+RString Job::Status() const { return GetStatus().text; }
+StatusReport Job::GetStatus() const { std::lock_guard<std::mutex> lock(m_Mutex); return m_Status; }
+void Job::SetStatus(const RString& text, StatusKind kind)
+{ std::lock_guard<std::mutex> lock(m_Mutex); m_Status.text=text; m_Status.kind=kind; }
 bool Job::Start()
 {
 	if(m_Busy) return false;
@@ -513,11 +515,11 @@ bool Job::Start()
 	try
 	{
 		Snapshot snapshot=Capture(); m_Cancel=false; m_Busy=true;
-		SetStatus("Preparing statistics for "+snapshot.name+"...");
+		SetStatus("Preparing upload...\nProfile: "+(snapshot.name.empty()?RString(snapshot.machine?"Machine profile":"Selected local profile"):snapshot.name));
 		m_Thread=std::thread(&Job::Run,this,std::move(snapshot));
 		return true;
 	}
-	catch(const std::exception& e) { m_Busy=false; SetStatus(e.what()); return false; }
+	catch(const std::exception& e) { m_Busy=false; SetStatus(e.what(), StatusKind::Error); return false; }
 }
 void Job::Run(Snapshot s)
 {
@@ -544,9 +546,10 @@ void Job::Run(Snapshot s)
 		try { revision=Publish(s,request,progress,m_Cancel); }
 		catch(...) { std::fill(token.begin(),token.end(),'\0'); throw; }
 		std::fill(token.begin(),token.end(),'\0');
-		if(revision.empty()) { m_Busy=false; return; }
+		if(revision.empty()) { SetStatus(Status(), StatusKind::Success); m_Busy=false; return; }
 		SetStatus("Upload accepted. GitHub is building the dashboard.\nYou may return to the menu; publication continues online.");
 		// Public workflow status does not require Actions permission on the token.
+		bool finished=false;
 		for(int poll=0;poll<40;++poll)
 		{
 			for(int tick=0;tick<100;++tick) { if(m_Cancel) break; std::this_thread::sleep_for(std::chrono::milliseconds(100)); }
@@ -554,27 +557,27 @@ void Job::Run(Snapshot s)
 			Response response=Http("GET","/repos/"+s.settings.repository+"/actions/workflows/dashboard-sync.yml/runs?event=repository_dispatch&per_page=20","","");
 			if(response.code!=200) continue;
 			Json::Value runs=Parse(response.body);
-			bool finished=false;
 			for(const auto& run:runs["workflow_runs"])
 			{
 				if(run.get("display_title","").asString()!="Dashboard upload "+revision) continue;
 				if(run["status"].asString()!="completed") break;
 				if(run["conclusion"].asString()=="success")
 				{
-					SetStatus("Dashboard published successfully.");
+					SetStatus("Dashboard published successfully.", StatusKind::Success);
 					Json::Value state=Parse(Read(ROOT+"last-upload.json")); state["published"]=true; state["published_at"]=run["updated_at"];
 					Write(ROOT+"last-upload.json",Json(state));
 				}
-				else SetStatus("Upload accepted, but dashboard publication did not finish.\nOpen Build Log for details, then select Retry.");
+				else SetStatus("Dashboard publication needs attention.\nUpload accepted, but publication did not finish. Open Build Log for details, then select Retry.", StatusKind::Warning);
 				finished=true; break;
 			}
 			if(finished) break;
 		}
+		if(!finished) SetStatus("Publication not yet confirmed.\nUpload accepted. Open Build Log to check progress; GitHub may still be building the dashboard.", StatusKind::Warning);
 #else
-		SetStatus("Statistics exported to Save/Dashboard/outbox.\nIntegrated GitHub upload currently requires Windows.");
+		SetStatus("Statistics exported locally.\nSaved to Save/Dashboard/outbox. Integrated GitHub upload currently requires Windows.", StatusKind::Warning);
 #endif
 	}
-	catch(const std::exception& e) { SetStatus(e.what()); }
+	catch(const std::exception& e) { SetStatus(e.what(), m_Cancel ? StatusKind::Warning : StatusKind::Error); }
 	m_Busy=false;
 }
 }

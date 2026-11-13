@@ -92,9 +92,11 @@ int main(int argc,char** argv)
 		Job job;
 		assert(!job.Start() && !job.Busy());
 		assert(job.Status().find("DashboardEnabled=1")!=RString::npos);
+		assert(job.GetStatus().kind==StatusKind::Error);
 		IPreference::GetPreferenceByName("DashboardEnabled")->FromString("1");
 		assert(!job.Start() && !job.Busy());
 		assert(job.Status().find("DashboardRepository=")!=RString::npos);
+		assert(job.GetStatus().kind==StatusKind::Error);
 		IPreference::GetPreferenceByName("DashboardEnabled")->LoadDefault();
 	}
 	for(const RString& s:{RString(),RString("a"),RString("ab"),RString("abc"),RString("\0\xff",2)}) assert(Unbase64(Base64(s))==s);

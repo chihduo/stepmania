@@ -42,6 +42,13 @@ void Export(Snapshot& snapshot, const Progress& progress, const std::atomic<bool
 RString Publish(const Snapshot& snapshot, const Request& request, const Progress& progress,
 	const std::atomic<bool>& cancel); // Testable GitHub protocol, no platform dependencies.
 
+enum class StatusKind { Progress, Success, Warning, Error };
+struct StatusReport
+{
+	RString text;
+	StatusKind kind = StatusKind::Progress;
+};
+
 class Job
 {
 public:
@@ -50,13 +57,14 @@ public:
 	void Cancel() { m_Cancel = true; }
 	bool Busy() const { return m_Busy; }
 	RString Status() const;
+	StatusReport GetStatus() const;
 private:
-	void SetStatus(const RString& text);
+	void SetStatus(const RString& text, StatusKind kind = StatusKind::Progress);
 	void Run(Snapshot snapshot);
 	std::thread m_Thread;
 	std::atomic<bool> m_Busy{false}, m_Cancel{false};
 	mutable std::mutex m_Mutex;
-	RString m_Status;
+	StatusReport m_Status;
 };
 }
 #endif

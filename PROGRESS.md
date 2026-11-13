@@ -706,3 +706,10 @@ Windows build #20 (43468764239) successfully built runtime revision efd31f4371. 
 - Compared with build #19, only Program/StepMania.exe, Program/StepMania.vdi and Docs/DashboardUpload.md changed. Replace Program/ and optionally Docs/; retain Save/ and the existing Windows credential.
 
 The correction exposes configuration and browser errors; it does not enable uploads or choose a profile automatically. The existing executable can upload after the required Preferences.ini settings are supplied and the game restarted. The reported Windows installation and its actual token/upload remain unavailable for direct verification.
+
+
+## Readable upload menu and status
+
+Confirmed the title menu uses Roboto Condensed Bold 48px at 1.0 selected and 0.75 otherwise, while the upload menu used Common Normal 24px at 0.65. Preparing separate action actors and a large status headline with severity colors, shadow, and wrapped detail text.
+
+The rebuilt Linux engine and uploader tests pass, including typed setup errors. Native verification passed 18 cases: exact title-menu font-height/focus-scale equality, all four status colors, 16:9/4:3 text bounds, token dialog return/cancellation, missing configuration, exact browser destinations, browser failure, repeated exports, and busy/cancel/return warnings. A temporary delay in the private fixture’s export writes exercised actual running/cancelling jobs; browser launches were intercepted and no data was uploaded. All three focused Lua checks pass. Theme styling and final capture promotion follow this engine checkpoint.
