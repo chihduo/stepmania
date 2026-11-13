@@ -57,9 +57,16 @@ above, and restart it. **DashboardRepository** must be `owner/repository`, for
 example `chihduo/stepmania-dashboard`, without a URL prefix. The two browser
 options need this setting even when uploading is disabled.
 
+The options use the title menu’s bold font and selected/unselected sizes. A large
+status headline has a shadow and distinct colors: blue for progress, green for
+success, amber for warnings, and rose for errors in Chiikawa. Explanations wrap
+beneath the headline without covering the menu.
+
 The upload screen displays setup errors and retains the result of token entry.
 **Upload / Retry** reports whether an upload is already running or could not
-start. Browser actions report missing repository settings or a failure to launch
+start. Attempting to change the token during an upload, or choosing another
+option while returning to the title menu, shows a warning in the status area.
+Browser actions report missing repository settings or a failure to launch
 the browser, with the destination address for manual use. If a browser opens
 behind a full-screen game, switch to it with **Alt+Tab**.
 

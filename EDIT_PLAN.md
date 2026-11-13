@@ -285,3 +285,8 @@ Reproduce the reported inactive actions after token entry in a private native fi
 Implemented and verified the feedback correction in the native Linux UI and engine tests. The original behavior is reproducible with default connection settings; no input lock was found on return from the token dialog. Preparing the Windows package and final upgrade guidance.
 
 Completed and published runtime fix efd31f4371. Windows build #20, startup checks, downloaded ZIP verification and all 14 native menu cases pass. Only Program/ and the optional setup guide differ from the previous package.
+
+
+## Readable upload menu and status
+
+Match the title menu with individual bold action rows and selected/unselected sizing. Separate a large, colored, shadowed status headline from readable details; distinguish progress, success, warnings and errors. Make every unavailable activation report its reason, including busy and leaving states. Develop Chiikawa styling on its feature branch, verify native widescreen/4:3 layouts and action feedback, then selectively promote completed runtime files and documentation.
