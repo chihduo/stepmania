@@ -4,6 +4,7 @@
 #include "ActorUtil.h"
 #include "CryptManager.h"
 #include "LuaManager.h"
+#include "Preference.h"
 #include "RageFile.h"
 #include "RageFileManager.h"
 #include "RageLog.h"
@@ -72,6 +73,30 @@ int main(int argc,char** argv)
 	assert(argc==2);RageThreadRegister reg("Dashboard test");SetCommandlineArguments(argc,argv);
 	HOOKS=ArchHooks::Create();HOOKS->Init();LUA=new LuaManager;
 	FILEMAN=new RageFileManager(argv[0]);FILEMAN->Mount("dir",argv[1],"/");LOG=new RageLog;LOG->SetLogToDisk(false);CRYPTMAN=new CryptManager;ActorUtil::InitFileTypeLists();
+	// Missing setup must give actionable errors rather than silently ignoring a selection.
+	Settings links; links.repository="test/dashboard";
+	assert(WebURL(links,false)=="https://test.github.io/dashboard/");
+	assert(WebURL(links,true)=="https://github.com/test/dashboard/actions/workflows/dashboard-sync.yml");
+	for(const RString& invalid:{RString(),RString("test"),RString("https://github.com/test/dashboard"),RString("test/dashboard/extra"),RString("test/dashboard?query")})
+	{
+		links.repository=invalid;
+		for(bool buildLog:{false,true})
+		{
+			bool rejected=false;
+			try { WebURL(links,buildLog); }
+			catch(const std::exception& e) { rejected=RString(e.what()).find("DashboardRepository=")!=RString::npos; }
+			assert(rejected);
+		}
+	}
+	{
+		Job job;
+		assert(!job.Start() && !job.Busy());
+		assert(job.Status().find("DashboardEnabled=1")!=RString::npos);
+		IPreference::GetPreferenceByName("DashboardEnabled")->FromString("1");
+		assert(!job.Start() && !job.Busy());
+		assert(job.Status().find("DashboardRepository=")!=RString::npos);
+		IPreference::GetPreferenceByName("DashboardEnabled")->LoadDefault();
+	}
 	for(const RString& s:{RString(),RString("a"),RString("ab"),RString("abc"),RString("\0\xff",2)}) assert(Unbase64(Base64(s))==s);
 	assert(Hash("abc")=="ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 	XNode original;RString error;
@@ -118,6 +143,6 @@ int main(int argc,char** argv)
 	server.deny=true;caught=false;try { Publish(s,req,progress,cancel); } catch(const std::exception&) { caught=true; }assert(caught && server.head==head);server.deny=false;
 	cancel=true;caught=false;try { Publish(s,req,progress,cancel); } catch(const std::exception&) { caught=true; }assert(caught && server.head==head);
 	// Cross-language fixture kept outside the temporary test root when requested.
-	std::cout<<"PASS: export privacy/profile filtering, GUID preservation, repeat/dispatch retry, atomic conflicts, regression, auth and cancellation."<<std::endl;
+	std::cout<<"PASS: setup/retry feedback, validated browser URLs, export privacy/profile filtering, GUID preservation, repeat/dispatch retry, atomic conflicts, regression, auth and cancellation."<<std::endl;
 	return 0;
 }

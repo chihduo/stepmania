@@ -689,3 +689,20 @@ Final package verification passes: the downloaded ZIP matches its CI SHA-256, al
 - SHA-256: `e03361321b7df1469a5e270e7d7b21edaf6efa55630c9f97f6f5b009170773fd`.
 - GitHub artifact: `StepMania-windows-x64-19.1`, ID `13960947152`, workflow `43253427102`.
 - The same output directory holds CI logs, smoke results, artifact metadata and the local verification report. The first real upload remains a player-side setup/verification step; it requires the matching saved profile/history and a token stored locally in Windows Credential Manager.
+
+
+## Dashboard menu feedback
+
+Investigation found that blank DashboardRepository makes both browser actions return silently, while Upload / Retry repeats the unchanged setup error when uploads are disabled. Saving the token does not set the connection preferences. Reproducing the dialog/menu path and adding visible action feedback before packaging the correction.
+
+Reproduced the same symptoms in the original executable using disabled uploads and an empty repository. The token dialog returned normally. Added persistent token/action results, setup instructions with restart guidance, validation for both browser destinations, browser failure URLs, and explicit busy/retry feedback. Long status messages wrap to the available width. Connection preferences remain separate from token storage.
+
+The Linux build and focused engine tests pass, including invalid/missing repository values, startup failure and retry, plus the existing export/publication suite. Native keyboard checks pass for dialog submission/cancellation, disabled uploads, both missing-repository actions, exact browser-hook URLs, failed browser launch, repeated exports and retry after the dialog, Back, and 16:9/4:3 layout. Browser hooks were intercepted and no test records or credentials were uploaded. Evidence is under ignored out/dashboard-menu/. Actual Windows token storage/upload was not exercised; the Windows package check follows.
+
+Windows build #20 (43468764239) successfully built runtime revision efd31f4371. The x64/6.0 metadata and startup smoke test pass, reporting StepMania6.0-git-efd31f4 with Chiikawa. All 14 native menu cases also pass against the final source. Downloaded artifact StepMania-windows-x64-20.1 (14059309878); checksum, full ZIP CRC, executable build identity, updated guide and all 20 release entries pass, accounting for the existing Windows INI line endings.
+
+- ZIP: `out/windows-x64-efd31f4371-43468764239/StepMania-6.0-windows-x64-portable.zip` (128917316 bytes).
+- SHA-256: `cfccdaf31150b4af3655fcfa76f09548b6052bf97fa2aeda25cb4f50cf25f020`.
+- Compared with build #19, only Program/StepMania.exe, Program/StepMania.vdi and Docs/DashboardUpload.md changed. Replace Program/ and optionally Docs/; retain Save/ and the existing Windows credential.
+
+The correction exposes configuration and browser errors; it does not enable uploads or choose a profile automatically. The existing executable can upload after the required Preferences.ini settings are supplied and the game restarted. The reported Windows installation and its actual token/upload remain unavailable for direct verification.
