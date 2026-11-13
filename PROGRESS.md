@@ -717,3 +717,27 @@ The rebuilt Linux engine and uploader tests pass, including typed setup errors. 
 Promoted verified theme checkpoint dfba79087a with title-menu-sized action fonts, a blue/green/amber/rose status headline and shadow, readable details, and a final native screenshot. The shared engine checkpoint is 7c8b62f24f. Only the completed runtime aliases/metrics, user guides, native capture and release manifest are promoted; detailed fixtures and journals remain on the feature branch.
 
 The user requested that the Windows build wait. Cancelled workflow 43474967953; GitHub confirms the run is cancelled with zero artifacts. No new Windows ZIP was produced or downloaded. The source/UI revision remains committed and published at 9ea3fa6163, with 18 native Linux cases, engine tests, focused Lua checks, release-path equality and guide links verified. Do not start another Windows build until the user requests it.
+
+## First Windows dashboard upload investigation
+
+Run 43470498036 accepted data revision 27a1d0ea34ac2eda56ba72950837e9860f38aad7
+but rejected a legacy calibration entry at Themes/default/Other/. Dashboard
+checkpoint a48c704 accepts safe calibration paths only in cumulative snapshots,
+keeps their existing exclusion from song rankings, and passes 15 regression tests.
+A full local import now reveals omitted historical logs: 827 uploaded versus
+5,918 already published. The unchanged live dashboard remains protected. Older
+retained scores lack PlayerGuid; local-profile uploads filter such logs, so the
+local pending.json counter and older source logs are needed to confirm ownership
+and completeness before publication can proceed.
+
+Also found and corrected the native metadata lookup: serialized SongID paths omit
+the leading slash expected by SongManager. Resolve through SongID::ToSong(), as
+the profile system does, to export titles, charts and banners. The local Linux
+build and isolated native capture/import pass: a real loaded song exports the
+correct title, artist, Hard/9 chart and hashed PNG; the importer preserves totals,
+excludes the calibration entry from rankings, and verifies the banner bytes.
+The fixture also confirms that an unrelated ID and an empty PlayerGuid are both
+excluded and counted in pending.json. Evidence: out/dashboard-repair/verification.json.
+Dashboard hosted checks pass in run 43477814383. No real data was uploaded by the
+fixture; no Windows build was run. Publication remains blocked pending the older
+source logs/counter, and the existing live site's data hash is unchanged.

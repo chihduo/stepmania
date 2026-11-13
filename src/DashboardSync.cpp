@@ -19,6 +19,7 @@
 #include "Song.h"
 #include "SongManager.h"
 #include "SongCacheIndex.h"
+#include "SongUtil.h"
 #include "Steps.h"
 #include "XmlFile.h"
 #include "XmlFileUtil.h"
@@ -206,17 +207,20 @@ Snapshot Capture()
 	Require(std::regex_match(out.guid,std::regex("[A-Za-z0-9-]{8,64}")), "This profile has an invalid identifier.");
 	std::unique_ptr<XNode> node(p->SaveStatsXmlCreateNode());
 	out.stats=Sanitize(*node);
-	std::set<RString> played;
+	std::set<SongID> played;
 	const XNode* songScores=node->GetChild("SongScores");
 	if(songScores)
 	{
 		FOREACH_CONST_Child(songScores, songNode)
-		{ RString dir; songNode->GetAttrValue("Dir",dir); played.insert(dir); }
+		{ SongID id; id.LoadFromNode(songNode); played.insert(id); }
 	}
 	out.songs=Json::Value(Json::arrayValue);
-	for(const auto& dir: played)
+	for(const auto& id: played)
 	{
-		Song* song=SONGMAN->GetSongFromDir(dir); if(!song) continue;
+		// Profile IDs omit the leading slash used by the loaded-song index.
+		// Use the same resolution as the rest of the profile system.
+		Song* song=id.ToSong(); if(!song) continue;
+		const RString dir=id.ToString();
 		Json::Value m; m["dir"]=ExportText(dir); m["title"]=ExportText(song->GetDisplayMainTitle()); m["artist"]=ExportText(song->GetDisplayArtist());
 		m["source_banner"]=song->GetBannerPath(); // Local only; removed before export.
 		m["charts"]=Json::Value(Json::arrayValue);

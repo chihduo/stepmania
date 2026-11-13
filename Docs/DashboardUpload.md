@@ -110,6 +110,14 @@ history fails validation and leaves the existing website intact. Restore the
 matching `Save/LocalProfiles/<id>` and `Save/Upload` backup, then retry. Keeping just
 Stats.xml preserves aggregate scores but cannot recover a deleted per-play log.
 
+If the log reports fewer uploaded play records, also check
+`skipped_other_profiles` in `Save/Dashboard/pending.json`. Local-profile uploads
+exclude records with a different **or empty** PlayerGuid. Older saves may contain
+scores without this field even though their totals were copied into the selected
+profile. Check the PlayerGuid in an older `Save/Upload/*.xml` before assuming those
+files are missing. Retain the originals; changing to the machine profile does not
+resolve the existing dashboard's profile-identity requirement.
+
 Use **Open Dashboard** to view the result, or **Open Build Log** to investigate a
 publication failure. These buttons use the standard GitHub Pages repository URL.
 A GitHub rate-limit or permission error leaves the local data intact; resolve the
