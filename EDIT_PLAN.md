@@ -283,3 +283,5 @@ Completed the manual-upload engine, dashboard importer/workflow, Chiikawa screen
 Reproduce the reported inactive actions after token entry in a private native fixture. Verify missing connection settings and return from the token dialog, make setup/browser/busy failures visible, preserve credential storage and title-menu-only uploads, and add focused regression checks. Build and verify the corrected Windows executable, then commit and publish the completed fix.
 
 Implemented and verified the feedback correction in the native Linux UI and engine tests. The original behavior is reproducible with default connection settings; no input lock was found on return from the token dialog. Preparing the Windows package and final upgrade guidance.
+
+Completed and published runtime fix efd31f4371. Windows build #20, startup checks, downloaded ZIP verification and all 14 native menu cases pass. Only Program/ and the optional setup guide differ from the previous package.
