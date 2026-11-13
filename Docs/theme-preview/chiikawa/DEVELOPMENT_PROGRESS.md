@@ -357,3 +357,12 @@ Selective release completed: feature implementation `951d424e85`, main promotion
 Prepared matching cream background, brown headings/status, mint actions and muted help for ScreenDashboardUpload. The screen inherits the existing theme fonts. Native verification is next; no artwork or generation assets change.
 
 Native verification passes for the title-menu option, screen entry/return, missing-configuration guidance at 16:9 and 4:3, and Linux export status. The shared engine/menu changes are in main checkpoint d616b5e4e2. Evidence is under the main worktree’s ignored out/dashboard-sync directory. No artwork changed.
+
+
+## Readable dashboard upload screen
+
+Merged the current main engine/menu baseline. The upload options were approximately one third of the selected title-menu text size and all status text shared one small actor. Implementing theme styling alongside separate engine action rows and status headline/details.
+
+The rebuilt Linux engine and uploader tests pass, including typed setup errors. Native verification passed 18 cases: exact title-menu font-height/focus-scale equality, all four status colors, 16:9/4:3 text bounds, token dialog return/cancellation, missing configuration, exact browser destinations, browser failure, repeated exports, and busy/cancel/return warnings. A temporary delay in the private fixture’s export writes exercised actual running/cancelling jobs; browser launches were intercepted and no data was uploaded. All three focused Lua checks pass. Detailed scripts, measured text geometry, captures and logs are under ignored out/dashboard-visual/. Debugger attachment was unavailable, so a private export-write delay exercised the busy/cancel cases instead. No production test hooks were added.
+
+Completed the font aliases and Chiikawa status/focus colors. Native checks confirm 48px bold source-font equality with the title menu, selected zoom 1.0, unselected zoom 0.75, all four severity colors, wrapped details and non-overlapping rows at 16:9/4:3. All 18 action/layout cases and the three focused Lua checks pass. Added the final unedited native upload capture and user guidance; ready for selective promotion with the shared engine checkpoint.
