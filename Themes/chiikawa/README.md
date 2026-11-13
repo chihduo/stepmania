@@ -54,6 +54,14 @@ Song-supplied images, scripted movies and the engine's configured random-backgro
 
 To add this movie to an existing portable installation, close the game and copy **`Themes/chiikawa/`** and **`BackgroundEffects/StretchNormal.lua`** from this revision into the same relative locations. Keep `Themes/default` and `Themes/_fallback`. This movie change does not require recompiling the existing Windows executable. Saved settings, songs and recordings stay in their current folders; no new ZIP has been built for this revision.
 
+## Upload Statistics
+
+The upload menu uses the title menu’s bold font, with a larger selected option.
+A prominent status headline uses a soft shadow and blue for progress, green for
+success, amber for warnings, or rose for errors. Details wrap beneath it, and
+unavailable actions explain why they cannot proceed. See the
+[connection setup guide](../../Docs/DashboardUpload.md).
+
 ## Customize or maintain
 
 - [Scripts/06 Chiikawa.lua](Scripts/06%20Chiikawa.lua) defines `Pools`, placement in `Layout`, and the menu background. Active cutout pools are `select`, `result` and `replay`; the title/game entries are retained for older gallery concepts. Change these Lua values without recompiling. Keep each pool nonempty and use PNG filenames from `Art/` without the extension.

@@ -6,6 +6,15 @@ These are actual StepMania screens showing the [finished Chiikawa theme](../READ
 
 The title illustration loops on the right of the original menu. [View the transparent looping GIF](../../../media/title-dance.gif) or the [4:3 native title capture](title-4x3.png). **Fancy UI Background → Off** freezes the dancers in a neutral pose. The 4:3 capture is from the title-animation verification on 2026-11-08.
 
+![Upload Statistics with title-menu-sized options and a prominent blue progress headline](dashboard-upload.png)
+
+The upload-screen capture was added on **2026-11-14** using StepMania 6.0 and an
+isolated local export with controlled transfer latency. Options match the title
+menu’s bold font and focus sizes. Status headlines use a shadow and distinct
+progress, success, warning and error colors, with explanations beneath them.
+Native checks cover widescreen and 4:3 layouts; no personal statistics were
+uploaded for these captures.
+
 ![P1 song selection with a flute duet and the unused P2 difficulty pane hidden](selection.png)
 
 ![Dancing-trio movie beneath original notes, judgments, graph and the persistent 0.9x display](gameplay.png)
