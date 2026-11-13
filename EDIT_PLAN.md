@@ -276,3 +276,10 @@ Completed: Windows workflow #16 (`43066153222`) successfully built `69772bd100`.
 Implement the approved title-menu-only GitHub Pages integration, following [the implementation plan](Docs/DashboardIntegrationPlan.md). Separate data from code, preserve existing history, reuse the Python dashboard calculations in Actions, and keep credentials in Windows Credential Manager. Commit importer/workflow, engine, UI and validation checkpoints.
 
 Completed the manual-upload engine, dashboard importer/workflow, Chiikawa screen promotion, setup documentation and tested history-preserving Pages migration. Linux engine/native/contract checks and Windows x64 build #19 pass. The first real Windows profile upload requires the player’s local configuration and credential.
+
+
+## Dashboard menu feedback
+
+Reproduce the reported inactive actions after token entry in a private native fixture. Verify missing connection settings and return from the token dialog, make setup/browser/busy failures visible, preserve credential storage and title-menu-only uploads, and add focused regression checks. Build and verify the corrected Windows executable, then commit and publish the completed fix.
+
+Implemented and verified the feedback correction in the native Linux UI and engine tests. The original behavior is reproducible with default connection settings; no input lock was found on return from the token dialog. Preparing the Windows package and final upgrade guidance.

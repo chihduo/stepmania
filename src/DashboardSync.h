@@ -31,6 +31,7 @@ using Request = std::function<Response(const RString&, const RString&, const RSt
 using Progress = std::function<void(const RString&)>;
 Settings GetSettings();
 RString ProfileChoices();
+RString WebURL(const Settings& settings, bool buildLog);
 bool SaveCredential(const RString& token, RString& error);
 RString Hash(const RString& data);
 RString Base64(const RString& data);
@@ -45,7 +46,7 @@ class Job
 {
 public:
 	~Job();
-	void Start();
+	bool Start(); // False if busy or setup validation failed; Status explains failures.
 	void Cancel() { m_Cancel = true; }
 	bool Busy() const { return m_Busy; }
 	RString Status() const;

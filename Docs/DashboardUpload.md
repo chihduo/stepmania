@@ -49,6 +49,20 @@ requires setting the credential again. An expired or revoked token can be
 replaced using **Set GitHub Token**. To remove it, delete the corresponding
 Generic Credential in Windows Credential Manager.
 
+## If menu actions appear to do nothing
+
+Saving a token is only the authentication step. It does not enable uploading or
+set the repository/profile. Close the game, complete the Preferences.ini settings
+above, and restart it. **DashboardRepository** must be `owner/repository`, for
+example `chihduo/stepmania-dashboard`, without a URL prefix. The two browser
+options need this setting even when uploading is disabled.
+
+The upload screen displays setup errors and retains the result of token entry.
+**Upload / Retry** reports whether an upload is already running or could not
+start. Browser actions report missing repository settings or a failure to launch
+the browser, with the destination address for manual use. If a browser opens
+behind a full-screen game, switch to it with **Alt+Tab**.
+
 ## What gets uploaded
 
 The selected profile's cumulative totals and score lists come from its current

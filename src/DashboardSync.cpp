@@ -107,10 +107,22 @@ Settings GetSettings()
 	Settings s; s.enabled=enabled.Get(); s.repository=repository.Get();
 	s.branch=branch.Get(); s.profile=profile.Get(); s.credential=credential.Get(); return s;
 }
+static void ValidateRepository(const RString& value)
+{
+	Require(std::regex_match(value, std::regex("[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+")),
+		"Set DashboardRepository=owner/repository in Save/Preferences.ini, then restart the game.\nSee Docs/DashboardUpload.md for the connection settings.");
+}
+RString WebURL(const Settings& s, bool buildLog)
+{
+	ValidateRepository(s.repository);
+	if(buildLog) return "https://github.com/"+s.repository+"/actions/workflows/dashboard-sync.yml";
+	size_t slash=s.repository.find('/');
+	return "https://"+s.repository.substr(0,slash)+".github.io/"+s.repository.substr(slash+1)+"/";
+}
 static void ValidateSettings(const Settings& s)
 {
-	Require(s.enabled, "Set DashboardEnabled=1 in Save/Preferences.ini to enable uploads.");
-	Require(std::regex_match(s.repository, std::regex("[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+")), "Set DashboardRepository=owner/repository in Save/Preferences.ini.");
+	Require(s.enabled, "Uploads are disabled.\nSet DashboardEnabled=1 in Save/Preferences.ini, then restart the game.\nSaving a token does not configure the connection; see Docs/DashboardUpload.md.");
+	ValidateRepository(s.repository);
 	Require(std::regex_match(s.branch, std::regex("[A-Za-z0-9_-][A-Za-z0-9_-]{0,63}")) && s.branch!="main" && s.branch!="master" && s.branch!="gh-pages", "Choose a separate DashboardDataBranch, such as dashboard-data.");
 	Require(!s.credential.empty() && s.credential.size()<128, "Set a valid DashboardCredentialKey.");
 }
@@ -494,17 +506,18 @@ bool SaveCredential(const RString& token,RString& error)
 Job::~Job() { m_Cancel=true; if(m_Thread.joinable()) m_Thread.join(); }
 RString Job::Status() const { std::lock_guard<std::mutex> lock(m_Mutex); return m_Status; }
 void Job::SetStatus(const RString& text) { std::lock_guard<std::mutex> lock(m_Mutex); m_Status=text; }
-void Job::Start()
+bool Job::Start()
 {
-	if(m_Busy) return;
+	if(m_Busy) return false;
 	if(m_Thread.joinable()) m_Thread.join();
 	try
 	{
 		Snapshot snapshot=Capture(); m_Cancel=false; m_Busy=true;
 		SetStatus("Preparing statistics for "+snapshot.name+"...");
 		m_Thread=std::thread(&Job::Run,this,std::move(snapshot));
+		return true;
 	}
-	catch(const std::exception& e) { m_Busy=false; SetStatus(e.what()); }
+	catch(const std::exception& e) { m_Busy=false; SetStatus(e.what()); return false; }
 }
 void Job::Run(Snapshot s)
 {

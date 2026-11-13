@@ -689,3 +689,12 @@ Final package verification passes: the downloaded ZIP matches its CI SHA-256, al
 - SHA-256: `e03361321b7df1469a5e270e7d7b21edaf6efa55630c9f97f6f5b009170773fd`.
 - GitHub artifact: `StepMania-windows-x64-19.1`, ID `13960947152`, workflow `43253427102`.
 - The same output directory holds CI logs, smoke results, artifact metadata and the local verification report. The first real upload remains a player-side setup/verification step; it requires the matching saved profile/history and a token stored locally in Windows Credential Manager.
+
+
+## Dashboard menu feedback
+
+Investigation found that blank DashboardRepository makes both browser actions return silently, while Upload / Retry repeats the unchanged setup error when uploads are disabled. Saving the token does not set the connection preferences. Reproducing the dialog/menu path and adding visible action feedback before packaging the correction.
+
+Reproduced the same symptoms in the original executable using disabled uploads and an empty repository. The token dialog returned normally. Added persistent token/action results, setup instructions with restart guidance, validation for both browser destinations, browser failure URLs, and explicit busy/retry feedback. Long status messages wrap to the available width. Connection preferences remain separate from token storage.
+
+The Linux build and focused engine tests pass, including invalid/missing repository values, startup failure and retry, plus the existing export/publication suite. Native keyboard checks pass for dialog submission/cancellation, disabled uploads, both missing-repository actions, exact browser-hook URLs, failed browser launch, repeated exports and retry after the dialog, Back, and 16:9/4:3 layout. Browser hooks were intercepted and no test records or credentials were uploaded. Evidence is under ignored out/dashboard-menu/. Actual Windows token storage/upload was not exercised; the Windows package check follows.

@@ -18,6 +18,7 @@ private:
 	Dashboard::Job m_Job;
 	Quad m_Backdrop;
 	BitmapText m_Title,m_Status,m_Actions,m_Help;
+	RString m_Feedback;
 	int m_Selection=0;
 	float m_StartDelay=.25f;
 	bool m_Started=false,m_Leaving=false;
