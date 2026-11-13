@@ -290,3 +290,5 @@ Completed and published runtime fix efd31f4371. Windows build #20, startup check
 ## Readable upload menu and status
 
 Match the title menu with individual bold action rows and selected/unselected sizing. Separate a large, colored, shadowed status headline from readable details; distinguish progress, success, warnings and errors. Make every unavailable activation report its reason, including busy and leaving states. Develop Chiikawa styling on its feature branch, verify native widescreen/4:3 layouts and action feedback, then selectively promote completed runtime files and documentation.
+
+Promoted verified theme checkpoint dfba79087a with title-menu-sized action fonts, a blue/green/amber/rose status headline and shadow, readable details, and a final native screenshot. The shared engine checkpoint is 7c8b62f24f. Only the completed runtime aliases/metrics, user guides, native capture and release manifest are promoted; detailed fixtures and journals remain on the feature branch.

@@ -311,8 +311,25 @@
       "bytes": 57
     }
   ],
-  "theme_source_commit": "951d424e85",
+  "theme_source_commit": "dfba79087a",
   "readme_media_manifest": "Docs/media/manifest.json",
-  "promoted_feature_commit": "951d424e85",
-  "gameplay_cutouts": false
+  "promoted_feature_commit": "dfba79087a",
+  "gameplay_cutouts": false,
+  "dashboard_upload": {
+    "theme_source_commit": "dfba79087a",
+    "engine_source_commit": "7c8b62f24f",
+    "action_font": "_roboto condensed Bold 48px",
+    "selected_zoom": 1.0,
+    "unselected_zoom": 0.75,
+    "status_zoom": 0.9,
+    "status_shadow_pixels": 2,
+    "status_colors": {
+      "progress": "#2c7593",
+      "success": "#347a61",
+      "warning": "#98601d",
+      "error": "#b13e60"
+    },
+    "native_capture": "Docs/theme-preview/chiikawa/native/dashboard-upload.png",
+    "capture_sha256": "95567a9558885353d7587904286bf8afee14b3f4fa53c5d87925aba07907e435"
+  }
 }
