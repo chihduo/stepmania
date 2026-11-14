@@ -44,3 +44,12 @@ the original archive and verify an output archive containing corrected logs.
 Validate the corrected history through the existing exporter/importer before
 handing it back for local replacement. No new game preference or Windows build
 is required for this migration. Keep personal logs and work files untracked.
+
+## Missing dashboard banners
+
+Audit the public dashboard against the supplied Windows game folder, including
+Cache/Banner and archived Songs 2 packs. Fix the native cache-directory lookup
+and verify recovery when the original image is absent. Prepare a separate,
+reviewable metadata/banner backfill from exact song matches, preserving play
+records and existing published images. Keep missing media distinguishable from
+lookup failures. Do not build Windows or start an automatic data upload.

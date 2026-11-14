@@ -756,3 +756,25 @@ importer passes the full published-history checks and produces 7,249 lifetime
 plays and 6,030 song event records locally. The user will merge the repaired logs
 into Save/Upload and select Upload/Retry. No real data was uploaded during this
 verification, no new preference was added, and no Windows build was run.
+
+## Dashboard banner recovery
+
+The first repaired-log upload published successfully in dashboard run 43550339204.
+The site has 1,110 songs without banners and 29 missing images among the latest
+150 plays. Its upload contains no song metadata yet; the SongID lookup fix has
+not yet been packaged in a new Windows build. Fixed a second lookup defect:
+the exporter now uses ImageCache's Cache/Banner directory. The Linux build and
+native uploader test pass, including recovery with only a cached image available.
+
+Audited the supplied Windows folder and exact matching Songs 2 archive paths.
+Prepared `/tmp/StepMania-dashboard-banner-repair.zip` with 354 recovered images:
+341 banners (including two video stills), nine backgrounds, and four jackets.
+313 recoveries come from Songs 2. All 29 missing recent-play images are restored;
+756 older entries lack matching folders or usable artwork. The ZIP includes an
+unresolved-song list and source report, and changes only dashboard outbox copies.
+
+The current uploader retains the patch. Full importer checks pass with all 6,030
+original event files, every score list, totals, and existing banners unchanged.
+The mounted game was read only and no data was published. The dashboard builder
+also now detects Cache/Banner while retaining support for staged Cache/Banners;
+all 20 Python tests pass. No Windows build was run.

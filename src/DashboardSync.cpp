@@ -282,7 +282,7 @@ void Export(Snapshot& s,const Progress& progress,const std::atomic<bool>& cancel
 		if(!source.empty())
 		{
 			RString err; RageSurface* surface=nullptr;
-			RString cached=SongCacheIndex::GetCacheFilePath("Banners",source);
+			RString cached=SongCacheIndex::GetCacheFilePath("Banner",source);
 			if(FILEMAN->IsAFile(cached)) surface=RageSurfaceUtils::LoadSurface(cached);
 			if(!surface && FILEMAN->IsAFile(source))
 			{

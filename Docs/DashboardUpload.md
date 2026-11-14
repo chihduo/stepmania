@@ -83,6 +83,12 @@ images when available, with ordinary image files as a fallback. Movie banners
 without a cached still use the dashboard placeholder or a previously published
 thumbnail; song movies and audio are never uploaded.
 
+The engine's image cache directory is `Cache/Banner` (singular). Historical songs
+that were moved or removed can keep their already uploaded metadata and images.
+A verified banner backfill can be merged into `Save/Dashboard/outbox` and sent
+with the next **Upload / Retry**, without changing play logs or cumulative scores.
+Missing original artwork still needs a matching backup or a suitable song image.
+
 The data branch stores statistics under `profiles/<guid>/` and content-addressed
 banner envelopes under `banners/`. GitHub Actions verifies and converts the banner
 envelopes into ordinary PNGs at the website's `/banners/` URLs. A repository's data
