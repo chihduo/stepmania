@@ -197,3 +197,10 @@ Capture before/after native gameplay and inspect Normal/Lower, both players, cen
 Completed implementation and verification: both normal-scroll anchors are 24 theme pixels lower; reverse anchors remain unchanged. Native checks cover Normal/Lower, P1/P2, centered 4:3, reverse with Mini and Classic. The shared helper, current guide and unedited native screenshot are ready for focused main promotion.
 
 Completed selective release: main `0c1c14a949` contains the verified helper, guide, final native capture and release metadata from `440122a288`. All four selected paths match the feature checkpoint exactly; the main theme check and new script/capture hashes pass. Reconciled the release baseline while retaining detailed development material. Windows builds remain deferred.
+
+
+## Readable profile editor
+
+Reproduce Options → Profiles → Edit with an isolated synthetic profile. Adapt the inherited editor's white labels, values, numeric keypad and help text to Chiikawa's cream background using a small theme wrapper; retain its input and save handlers and original fonts. Use mint/pink selection colors and identify the edited profile by name. Verify native 16:9/4:3, numeric-entry confirmation/cancellation, boolean changes and return/persistence, then selectively promote the finished theme files, guide and capture. No Windows build or ZIP.
+
+Completed: the editor wrapper recolors labels, values, keypad, cursors and inactive-menu overlay, identifies the profile, and leaves the fallback handlers intact. Native widescreen/4:3 input, cancellation, save/reload and identity/song-count checks pass. Final theme files, guide and unedited screenshot are ready for selective promotion.

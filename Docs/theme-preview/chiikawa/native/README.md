@@ -15,6 +15,15 @@ progress, success, warning and error colors, with explanations beneath them.
 Native checks cover widescreen and 4:3 layouts; no personal statistics were
 uploaded for these captures.
 
+![Profile editor with the profile name and dark labels on cream](profile-edit.png)
+
+The **2026-11-15** profile-editor capture uses an isolated Test Player profile.
+Chiikawa recolors the inherited personal-settings editor and numeric keypad for
+readability, adds the profile name, and preserves the existing input/save handlers.
+Native verification covers 16:9/4:3, numeric confirmation/cancellation, boolean
+changes and persistence after restarting. This is the **Edit** action under
+**Options → Profiles**, rather than a play-history screen.
+
 ![P1 song selection with a flute duet and the unused P2 difficulty pane hidden](selection.png)
 
 ![Dancing-trio movie beneath original notes, judgments, graph and the persistent 0.9x display](gameplay.png)

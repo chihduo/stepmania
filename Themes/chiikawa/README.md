@@ -56,6 +56,12 @@ Song-supplied images, scripted movies and the engine's configured random-backgro
 
 To add this movie to an existing portable installation, close the game and copy **`Themes/chiikawa/`** and **`BackgroundEffects/StretchNormal.lua`** from this revision into the same relative locations. Keep `Themes/default` and `Themes/_fallback`. This movie change does not require recompiling the existing Windows executable. Saved settings, songs and recordings stay in their current folders; no new ZIP has been built for this revision.
 
+## Profiles
+
+**Options → Profiles** lists local profiles. A **P1** label beside a name marks the default profile for player 1; select a profile and choose **Set P1** to change that assignment. **Edit** contains personal and calorie-calculation settings, including weight and birth year. It does not display individual play records.
+
+The editor shows the profile name and uses dark text on cream, with mint selection highlighting and a pink numeric-keypad cursor. Its existing editing and saving behavior is retained. To update an older installation, close the game and copy [BGAnimations/ScreenOptionsCustomizeProfile overlay.lua](BGAnimations/ScreenOptionsCustomizeProfile%20overlay.lua) and [metrics.ini](metrics.ini) into `Themes/chiikawa/`, preserving their relative paths, then restart. No executable rebuild is needed.
+
 ## Upload Statistics
 
 The upload menu uses the title menu’s bold font, with a larger selected option.
