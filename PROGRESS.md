@@ -759,7 +759,9 @@ verification, no new preference was added, and no Windows build was run.
 
 ## Dashboard banner recovery
 
-The first repaired-log upload published successfully in dashboard run 43550339204.
+Dashboard run 43550339204 published successfully. The user subsequently clarified
+that the separate play-log repair ZIP had not been installed; this run does not
+confirm application of that repair.
 The site has 1,110 songs without banners and 29 missing images among the latest
 150 plays. Its upload contains no song metadata yet; the SongID lookup fix has
 not yet been packaged in a new Windows build. Fixed a second lookup defect:
@@ -783,3 +785,10 @@ all 20 Python tests pass. No Windows build was run.
 ## Receptor spacing below the score
 
 Promoted the completed layout change from Chiikawa checkpoint `440122a288`: Normal -144 → -120 and Lower -125 → -101, with reverse anchors unchanged. Timing labels follow the receptor metrics automatically. Native Linux verification passes Normal/Lower, P1/P2, centered 4:3, reverse with 50% Mini and Classic, with no Lua command errors. Existing focused Lua checks, script syntax, 19 released runtime hashes and 41 documentation links pass. The native preview and theme guide include the one-file update procedure. No executable rebuild, Windows build or ZIP.
+
+
+## Readable profile editor
+
+Promoted Chiikawa checkpoint `1a2637a9ca`. Reproduced white text on cream in Options → Profiles → Edit; the wrapper now styles labels, values, keypad, cursors and dimmer, identifies the profile, and retains the fallback input/save handlers. Native 16:9/4:3 checks confirm numeric editing/cancellation, boolean changes and save/reload while preserving the synthetic profile's GUID and song count. Lua/theme checks, 19 asset hashes, 44 guide links and diff whitespace pass. The release includes a final native capture and two-file update instructions. No executable or Windows ZIP was built.
+
+The user's actual missing-play-record report remains unresolved pending current Windows Save/Logs. The user confirmed the historical log-repair ZIP was never applied. The only patch installed in the supplied Windows folder added 706 dashboard outbox files and overwrote no existing files; no local profile or play-log repair was installed there.
