@@ -195,3 +195,5 @@ Lower the normal-scroll receptor row by 24 theme pixels in the shared gameplay p
 Capture before/after native gameplay and inspect Normal/Lower, both players, centered 4:3, reverse/Mini and Classic layouts. Run the existing focused Lua checks, document the theme-file update, and selectively promote the completed runtime helper, guide and final verification capture to main. Keep detailed fixtures and journals here. No Windows build or ZIP.
 
 Completed implementation and verification: both normal-scroll anchors are 24 theme pixels lower; reverse anchors remain unchanged. Native checks cover Normal/Lower, P1/P2, centered 4:3, reverse with Mini and Classic. The shared helper, current guide and unedited native screenshot are ready for focused main promotion.
+
+Completed selective release: main `0c1c14a949` contains the verified helper, guide, final native capture and release metadata from `440122a288`. All four selected paths match the feature checkpoint exactly; the main theme check and new script/capture hashes pass. Reconciled the release baseline while retaining detailed development material. Windows builds remain deferred.

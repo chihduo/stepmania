@@ -294,3 +294,8 @@ Match the title menu with individual bold action rows and selected/unselected si
 Promoted verified theme checkpoint dfba79087a with title-menu-sized action fonts, a blue/green/amber/rose status headline and shadow, readable details, and a final native screenshot. The shared engine checkpoint is 7c8b62f24f. Only the completed runtime aliases/metrics, user guides, native capture and release manifest are promoted; detailed fixtures and journals remain on the feature branch.
 
 The user requested that the Windows build wait. Cancelled workflow 43474967953; GitHub confirms the run is cancelled with zero artifacts. No new Windows ZIP was produced or downloaded. The source/UI revision remains committed and published at 9ea3fa6163, with 18 native Linux cases, engine tests, focused Lua checks, release-path equality and guide links verified. Do not start another Windows build until the user requests it.
+
+
+## Receptor spacing below the score
+
+Completed: promote the verified shared-theme helper from `440122a288`. Lower the normal-scroll receptor row by 24 theme pixels in both Note Positions settings so its timing labels clear the score bar. Reverse anchors retain their positions. Include the update guide, final native capture and release manifest; keep detailed fixtures and journals on the feature branch. No Windows build or ZIP.

@@ -778,3 +778,8 @@ original event files, every score list, totals, and existing banners unchanged.
 The mounted game was read only and no data was published. The dashboard builder
 also now detects Cache/Banner while retaining support for staged Cache/Banners;
 all 20 Python tests pass. No Windows build was run.
+
+
+## Receptor spacing below the score
+
+Promoted the completed layout change from Chiikawa checkpoint `440122a288`: Normal -144 → -120 and Lower -125 → -101, with reverse anchors unchanged. Timing labels follow the receptor metrics automatically. Native Linux verification passes Normal/Lower, P1/P2, centered 4:3, reverse with 50% Mini and Classic, with no Lua command errors. Existing focused Lua checks, script syntax, 19 released runtime hashes and 41 documentation links pass. The native preview and theme guide include the one-file update procedure. No executable rebuild, Windows build or ZIP.
