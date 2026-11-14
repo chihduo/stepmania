@@ -186,3 +186,12 @@ Add cream and pastel styling for the inherited manual dashboard upload screen. K
 Use the title menu’s Roboto Condensed Bold 48px font and its 1.0/0.75 focus sizes for upload actions. Give the status headline a visible shadow and distinct blue, green, amber and rose colors for progress, success, warning and error. Keep details brown on cream and place the larger action rows below the status area. Verify actual native 16:9/4:3 screens, theme command colors, action warnings and title-menu text-size equality; promote only finished font aliases, metrics, user guidance and a final screenshot.
 
 Completed the font aliases and Chiikawa status/focus colors. Native checks confirm 48px bold source-font equality with the title menu, selected zoom 1.0, unselected zoom 0.75, all four severity colors, wrapped details and non-overlapping rows at 16:9/4:3. All 18 action/layout cases and the three focused Lua checks pass. Added the final unedited native upload capture and user guidance; ready for selective promotion with the shared engine checkpoint.
+
+
+## Separate receptor timing labels from the score
+
+Lower the normal-scroll receptor row by 24 theme pixels in the shared gameplay position helper inherited by Chiikawa. Apply the same downward shift to both Normal and Lower note-position preferences, retaining their existing difference and the reverse-scroll anchors. The lane-offset labels already use these metrics, so they should follow the arrows without separate positioning changes.
+
+Capture before/after native gameplay and inspect Normal/Lower, both players, centered 4:3, reverse/Mini and Classic layouts. Run the existing focused Lua checks, document the theme-file update, and selectively promote the completed runtime helper, guide and final verification capture to main. Keep detailed fixtures and journals here. No Windows build or ZIP.
+
+Completed implementation and verification: both normal-scroll anchors are 24 theme pixels lower; reverse anchors remain unchanged. Native checks cover Normal/Lower, P1/P2, centered 4:3, reverse with Mini and Classic. The shared helper, current guide and unedited native screenshot are ready for focused main promotion.

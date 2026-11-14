@@ -21,6 +21,15 @@ uploaded for these captures.
 
 Gameplay uses the **silent dancing background movie**, with 45% background brightness and a background-free synthetic chart. This image shows 0.9x playback after a brief autoplay interruption produces a visible life-history dip. [Watch the 40-second control demonstration](../../../media/live-speed-demo.mp4) or [the full 30-second background movie](../../../../Themes/chiikawa/Movies/ddr-trio-loop.mp4).
 
+![Per-lane timing labels separated from the score bar above the lowered receptor row](gameplay-timing.png)
+
+The **2026-11-14** timing-layout capture shows the top receptor row moved down by
+24 theme pixels (36 screen pixels at 720p). The timing labels follow the arrows,
+leaving a visible gap below the score bar. This applies to both Normal and Lower
+note positions in Chiikawa and Classic; reverse-scroll anchors are unchanged.
+This unedited native capture uses the synthetic Timing Layers chart, autoplay,
+Pro Timing, and the existing Linux StepMania 6.0 executable.
+
 ![Chiikawa evaluation with the completed life graph and paired character decoration](../../../media/evaluation.png)
 
 ![Chiikawa replay applying the recorded speed and judgments over the dance movie](../../../media/replay.png)
