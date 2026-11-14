@@ -25,3 +25,31 @@ Uploads start only from **Upload Statistics** on the title menu. Windows x64 is 
 ## Validation
 
 Use importer fixtures for malformed/duplicate/wrong-profile input, repeated imports, cumulative totals, missing historical records and banners. Exercise engine export and uploader state transitions with focused tests and a native UI smoke check. Run the Windows workflow for compilation, package checks and executable startup. Publishing personal source history requires the user's matching local Save data; never substitute test plays for that history.
+
+## First Windows upload follow-up
+
+Accept old calibration entries in cumulative profiles without weakening song-path
+or published-history checks. Reproduce the actual uploaded revision, distinguish
+omitted legacy logs from missing files, and retain the old site until complete
+history passes. Resolve native song metadata through SongID so serialized paths
+find the loaded songs and banners. Verify the native export/import locally and
+commit with CI skipped; Windows builds remain deferred at the user's request.
+
+## Machine-to-local profile history
+
+The user confirmed sole ownership of all plays and supplied `/tmp/StepMania 5.rar`.
+Migrate its play logs directly by assigning each record's PlayerGuid to the named
+profile, keeping individual event Guid values and score data unchanged. Retain
+the original archive and verify an output archive containing corrected logs.
+Validate the corrected history through the existing exporter/importer before
+handing it back for local replacement. No new game preference or Windows build
+is required for this migration. Keep personal logs and work files untracked.
+
+## Missing dashboard banners
+
+Audit the public dashboard against the supplied Windows game folder, including
+Cache/Banner and archived Songs 2 packs. Fix the native cache-directory lookup
+and verify recovery when the original image is absent. Prepare a separate,
+reviewable metadata/banner backfill from exact song matches, preserving play
+records and existing published images. Keep missing media distinguishable from
+lookup failures. Do not build Windows or start an automatic data upload.

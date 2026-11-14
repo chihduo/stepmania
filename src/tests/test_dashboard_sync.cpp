@@ -9,6 +9,10 @@
 #include "RageFileManager.h"
 #include "RageLog.h"
 #include "RageThreads.h"
+#include "RageSurface.h"
+#include "RageSurface_Load.h"
+#include "RageSurfaceUtils.h"
+#include "SongCacheIndex.h"
 #include "RageUtil.h"
 #include "XmlFile.h"
 #include "XmlFileUtil.h"
@@ -144,7 +148,27 @@ int main(int argc,char** argv)
 	write("/Save/second.xml",event+" ");caught=false;try { Publish(s,req,progress,cancel); } catch(const std::exception&) { caught=true; }assert(caught && server.head==head);
 	server.deny=true;caught=false;try { Publish(s,req,progress,cancel); } catch(const std::exception&) { caught=true; }assert(caught && server.head==head);server.deny=false;
 	cancel=true;caught=false;try { Publish(s,req,progress,cancel); } catch(const std::exception&) { caught=true; }assert(caught && server.head==head);
+	// A banner can survive only in the engine's singular Cache/Banner directory.
+	// Use a fresh profile so an earlier export cannot hide a failed cache lookup.
+	{
+		Snapshot cached=s;cached.files.clear();cached.logs.clear();cached.guid="abcdef0123456789";
+		cached.stats.Replace(s.guid,cached.guid);cached.songs=Json::Value(Json::arrayValue);
+		Json::Value item=song;item["source_banner"]="/Songs/Test/Song/cache-only.png";
+		cached.songs.append(item);
+		RString loadError;
+		std::unique_ptr<RageSurface> surface(RageSurfaceUtils::LoadFile("/Save/test-banner.png",loadError));
+		assert(surface && loadError.empty());
+		assert(!FILEMAN->IsAFile(item["source_banner"].asString()));
+		assert(RageSurfaceUtils::SaveSurface(surface.get(),SongCacheIndex::GetCacheFilePath("Banner",item["source_banner"].asString())));
+		cancel=false;Export(cached,progress,cancel);
+		RString path="profiles/"+cached.guid+"/songs/"+Hash("Songs/Test/Song/")+".json";
+		RString banner=parse(read(cached.files.at(path)))["banner"].asString();
+		assert(!banner.empty());
+		RString envelope=banner.substr(0,banner.size()-4)+".json";
+		assert(cached.files.count(envelope));
+		assert(!Unbase64(parse(read(cached.files.at(envelope)))["png_base64"].asString()).empty());
+	}
 	// Cross-language fixture kept outside the temporary test root when requested.
-	std::cout<<"PASS: setup/retry feedback, validated browser URLs, export privacy/profile filtering, GUID preservation, repeat/dispatch retry, atomic conflicts, regression, auth and cancellation."<<std::endl;
+	std::cout<<"PASS: setup/retry feedback, validated browser URLs, export privacy/profile filtering, cached banner recovery, GUID preservation, repeat/dispatch retry, atomic conflicts, regression, auth and cancellation."<<std::endl;
 	return 0;
 }

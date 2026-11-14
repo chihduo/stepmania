@@ -715,3 +715,66 @@ Confirmed the title menu uses Roboto Condensed Bold 48px at 1.0 selected and 0.7
 The rebuilt Linux engine and uploader tests pass, including typed setup errors. Native verification passed 18 cases: exact title-menu font-height/focus-scale equality, all four status colors, 16:9/4:3 text bounds, token dialog return/cancellation, missing configuration, exact browser destinations, browser failure, repeated exports, and busy/cancel/return warnings. A temporary delay in the private fixture’s export writes exercised actual running/cancelling jobs; browser launches were intercepted and no data was uploaded. All three focused Lua checks pass. Theme styling and final capture promotion follow this engine checkpoint.
 
 Promoted verified theme checkpoint dfba79087a with title-menu-sized action fonts, a blue/green/amber/rose status headline and shadow, readable details, and a final native screenshot. The shared engine checkpoint is 7c8b62f24f. Only the completed runtime aliases/metrics, user guides, native capture and release manifest are promoted; detailed fixtures and journals remain on the feature branch.
+
+The user requested that the Windows build wait. Cancelled workflow 43474967953; GitHub confirms the run is cancelled with zero artifacts. No new Windows ZIP was produced or downloaded. The source/UI revision remains committed and published at 9ea3fa6163, with 18 native Linux cases, engine tests, focused Lua checks, release-path equality and guide links verified. Do not start another Windows build until the user requests it.
+
+## First Windows dashboard upload investigation
+
+Run 43470498036 accepted data revision 27a1d0ea34ac2eda56ba72950837e9860f38aad7
+but rejected a legacy calibration entry at Themes/default/Other/. Dashboard
+checkpoint a48c704 accepts safe calibration paths only in cumulative snapshots,
+keeps their existing exclusion from song rankings, and passes 15 regression tests.
+A full local import now reveals omitted historical logs: 827 uploaded versus
+5,918 already published. The unchanged live dashboard remains protected. Older
+retained scores lack PlayerGuid; local-profile uploads filter such logs, so the
+local pending.json counter and older source logs are needed to confirm ownership
+and completeness before publication can proceed.
+
+Also found and corrected the native metadata lookup: serialized SongID paths omit
+the leading slash expected by SongManager. Resolve through SongID::ToSong(), as
+the profile system does, to export titles, charts and banners. The local Linux
+build and isolated native capture/import pass: a real loaded song exports the
+correct title, artist, Hard/9 chart and hashed PNG; the importer preserves totals,
+excludes the calibration entry from rankings, and verifies the banner bytes.
+The fixture also confirms that an unrelated ID and an empty PlayerGuid are both
+excluded and counted in pending.json. Evidence: out/dashboard-repair/verification.json.
+Dashboard hosted checks pass in run 43477814383. No real data was uploaded by the
+fixture; no Windows build was run. Publication remains blocked pending the older
+source logs/counter, and the existing live site's data hash is unchanged.
+
+## Migrate the owner's older machine-profile play logs
+
+The user confirmed sole ownership and provided `/tmp/StepMania 5.rar` for direct
+repair. Updated only blank PlayerGuid fields in 5,203 song logs and 160 course
+logs. All 6,190 unique event IDs, every other byte, and the original archive are
+preserved. Packaged all 6,309 active Upload XML files with instructions and a
+hash report in `/tmp/StepMania-play-logs-repaired.zip`; ZIP verification passes.
+
+The existing native exporter accepts all 6,030 song plays with zero skipped
+records; all 827 previously uploaded events remain byte-identical. The dashboard
+importer passes the full published-history checks and produces 7,249 lifetime
+plays and 6,030 song event records locally. The user will merge the repaired logs
+into Save/Upload and select Upload/Retry. No real data was uploaded during this
+verification, no new preference was added, and no Windows build was run.
+
+## Dashboard banner recovery
+
+The first repaired-log upload published successfully in dashboard run 43550339204.
+The site has 1,110 songs without banners and 29 missing images among the latest
+150 plays. Its upload contains no song metadata yet; the SongID lookup fix has
+not yet been packaged in a new Windows build. Fixed a second lookup defect:
+the exporter now uses ImageCache's Cache/Banner directory. The Linux build and
+native uploader test pass, including recovery with only a cached image available.
+
+Audited the supplied Windows folder and exact matching Songs 2 archive paths.
+Prepared `/tmp/StepMania-dashboard-banner-repair.zip` with 354 recovered images:
+341 banners (including two video stills), nine backgrounds, and four jackets.
+313 recoveries come from Songs 2. All 29 missing recent-play images are restored;
+756 older entries lack matching folders or usable artwork. The ZIP includes an
+unresolved-song list and source report, and changes only dashboard outbox copies.
+
+The current uploader retains the patch. Full importer checks pass with all 6,030
+original event files, every score list, totals, and existing banners unchanged.
+The mounted game was read only and no data was published. The dashboard builder
+also now detects Cache/Banner while retaining support for staged Cache/Banners;
+all 20 Python tests pass. No Windows build was run.

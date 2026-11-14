@@ -83,6 +83,12 @@ images when available, with ordinary image files as a fallback. Movie banners
 without a cached still use the dashboard placeholder or a previously published
 thumbnail; song movies and audio are never uploaded.
 
+The engine's image cache directory is `Cache/Banner` (singular). Historical songs
+that were moved or removed can keep their already uploaded metadata and images.
+A verified banner backfill can be merged into `Save/Dashboard/outbox` and sent
+with the next **Upload / Retry**, without changing play logs or cumulative scores.
+Missing original artwork still needs a matching backup or a suitable song image.
+
 The data branch stores statistics under `profiles/<guid>/` and content-addressed
 banner envelopes under `banners/`. GitHub Actions verifies and converts the banner
 envelopes into ordinary PNGs at the website's `/banners/` URLs. A repository's data
@@ -109,6 +115,22 @@ A different profile, reduced lifetime/song totals, or missing daily/monthly play
 history fails validation and leaves the existing website intact. Restore the
 matching `Save/LocalProfiles/<id>` and `Save/Upload` backup, then retry. Keeping just
 Stats.xml preserves aggregate scores but cannot recover a deleted per-play log.
+
+If the log reports fewer uploaded play records, also check
+`skipped_other_profiles` in `Save/Dashboard/pending.json`. Local-profile uploads
+exclude records with a different **or empty** PlayerGuid. Older saves may contain
+scores without this field even though their totals were copied into the selected
+profile. Check the PlayerGuid in an older `Save/Upload/*.xml` before assuming those
+files are missing. Retain the originals; changing to the machine profile does not
+resolve the existing dashboard's profile-identity requirement.
+
+For a confirmed sole-player migration from the machine profile, the older logs'
+empty PlayerGuid fields can be assigned to the named profile after backing up
+the originals. Use the profile's `GeneralData/Guid` from its Stats.xml; this is
+not its folder name. Preserve each play's separate `HighScore/Guid`, StageGuid,
+timestamp and score fields. All event GUIDs must stay unique. Corrected logs
+work with the existing uploader; no additional preference is needed. Merge
+replacement files into `Save/Upload`, keep newer logs, then select Upload / Retry.
 
 Use **Open Dashboard** to view the result, or **Open Build Log** to investigate a
 publication failure. These buttons use the standard GitHub Pages repository URL.
