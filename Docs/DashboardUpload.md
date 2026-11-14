@@ -118,6 +118,14 @@ profile. Check the PlayerGuid in an older `Save/Upload/*.xml` before assuming th
 files are missing. Retain the originals; changing to the machine profile does not
 resolve the existing dashboard's profile-identity requirement.
 
+For a confirmed sole-player migration from the machine profile, the older logs'
+empty PlayerGuid fields can be assigned to the named profile after backing up
+the originals. Use the profile's `GeneralData/Guid` from its Stats.xml; this is
+not its folder name. Preserve each play's separate `HighScore/Guid`, StageGuid,
+timestamp and score fields. All event GUIDs must stay unique. Corrected logs
+work with the existing uploader; no additional preference is needed. Merge
+replacement files into `Save/Upload`, keep newer logs, then select Upload / Retry.
+
 Use **Open Dashboard** to view the result, or **Open Build Log** to investigate a
 publication failure. These buttons use the standard GitHub Pages repository URL.
 A GitHub rate-limit or permission error leaves the local data intact; resolve the

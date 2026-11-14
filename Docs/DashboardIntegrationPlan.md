@@ -34,3 +34,13 @@ omitted legacy logs from missing files, and retain the old site until complete
 history passes. Resolve native song metadata through SongID so serialized paths
 find the loaded songs and banners. Verify the native export/import locally and
 commit with CI skipped; Windows builds remain deferred at the user's request.
+
+## Machine-to-local profile history
+
+The user confirmed sole ownership of all plays and supplied `/tmp/StepMania 5.rar`.
+Migrate its play logs directly by assigning each record's PlayerGuid to the named
+profile, keeping individual event Guid values and score data unchanged. Retain
+the original archive and verify an output archive containing corrected logs.
+Validate the corrected history through the existing exporter/importer before
+handing it back for local replacement. No new game preference or Windows build
+is required for this migration. Keep personal logs and work files untracked.

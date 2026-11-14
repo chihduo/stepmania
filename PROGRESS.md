@@ -741,3 +741,18 @@ excluded and counted in pending.json. Evidence: out/dashboard-repair/verificatio
 Dashboard hosted checks pass in run 43477814383. No real data was uploaded by the
 fixture; no Windows build was run. Publication remains blocked pending the older
 source logs/counter, and the existing live site's data hash is unchanged.
+
+## Migrate the owner's older machine-profile play logs
+
+The user confirmed sole ownership and provided `/tmp/StepMania 5.rar` for direct
+repair. Updated only blank PlayerGuid fields in 5,203 song logs and 160 course
+logs. All 6,190 unique event IDs, every other byte, and the original archive are
+preserved. Packaged all 6,309 active Upload XML files with instructions and a
+hash report in `/tmp/StepMania-play-logs-repaired.zip`; ZIP verification passes.
+
+The existing native exporter accepts all 6,030 song plays with zero skipped
+records; all 827 previously uploaded events remain byte-identical. The dashboard
+importer passes the full published-history checks and produces 7,249 lifetime
+plays and 6,030 song event records locally. The user will merge the repaired logs
+into Save/Upload and select Upload/Retry. No real data was uploaded during this
+verification, no new preference was added, and no Windows build was run.
