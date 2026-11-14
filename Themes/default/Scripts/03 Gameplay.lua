@@ -4,11 +4,11 @@
 -- at this moment right now -freem
 
 -- for example, not every theme wants to worry about custom receptor positions.
+-- Lower the normal-scroll row by 24 theme pixels so per-lane timing labels
+-- clear the score bar. Preserve the Normal/Lower spacing and reverse positions.
 local tNotePositions = {
-	-- StepMania 3.9/4.0
-	Normal = { -144, 144, },
-	-- ITG
-	Lower = { -125, 145, }
+	Normal = { -120, 144, },
+	Lower = { -101, 145, }
 }
 
 function GetTapPosition( sType )

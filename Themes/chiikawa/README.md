@@ -40,9 +40,11 @@ To fix an older installation that shows characters over song backgrounds, close 
 
 ## Gameplay timing feedback
 
-With Pro Timing enabled, each tap's millisecond offset appears above its receptor (below it with reverse scrolling) and is drawn in front of the score bar. The small gameplay accuracy readout is removed; whole-song accuracy remains on the evaluation screen.
+With Pro Timing enabled, each tap's millisecond offset appears above its receptor (below it with reverse scrolling). The top receptor row sits 24 theme pixels lower to leave space for the labels below the score bar in both **Note Positions → Normal** and **Lower**. This is about 36 screen pixels at 720p. Reverse-scroll positions are unchanged. The small gameplay accuracy readout is removed; whole-song accuracy remains on the evaluation screen.
 
-For this update, close the game, replace [Themes/default/BGAnimations/ScreenGameplay overlay/default.lua](../default/BGAnimations/ScreenGameplay%20overlay/default.lua) and [Themes/default/Graphics/Player judgment/default.lua](../default/Graphics/Player%20judgment/default.lua), then restart. Chiikawa inherits these shared Classic actors. No executable rebuild is needed.
+For the receptor-position update, close the game and replace [Themes/default/Scripts/03 Gameplay.lua](../default/Scripts/03%20Gameplay.lua), then restart. Chiikawa and Classic use this shared helper; no executable rebuild is needed.
+
+For the earlier timing-overlay update, close the game, replace [Themes/default/BGAnimations/ScreenGameplay overlay/default.lua](../default/BGAnimations/ScreenGameplay%20overlay/default.lua) and [Themes/default/Graphics/Player judgment/default.lua](../default/Graphics/Player%20judgment/default.lua), then restart. Chiikawa inherits these shared Classic actors. No executable rebuild is needed.
 
 ## Dancing-trio gameplay background
 

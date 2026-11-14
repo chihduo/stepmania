@@ -311,9 +311,9 @@
       "bytes": 57
     }
   ],
-  "theme_source_commit": "dfba79087a",
+  "theme_source_commit": "440122a288",
   "readme_media_manifest": "Docs/media/manifest.json",
-  "promoted_feature_commit": "dfba79087a",
+  "promoted_feature_commit": "440122a288",
   "gameplay_cutouts": false,
   "dashboard_upload": {
     "theme_source_commit": "dfba79087a",
@@ -331,5 +331,22 @@
     },
     "native_capture": "Docs/theme-preview/chiikawa/native/dashboard-upload.png",
     "capture_sha256": "95567a9558885353d7587904286bf8afee14b3f4fa53c5d87925aba07907e435"
+  },
+  "gameplay_timing": {
+    "theme_source_commit": "440122a288",
+    "position_script": "Themes/default/Scripts/03 Gameplay.lua",
+    "position_script_sha256": "e996b49d2c5896396eee1dc2a66606e099b038cb005fadc2490f61056d4c7bb0",
+    "normal_scroll_shift_theme_pixels": 24,
+    "standard_y": {
+      "Normal": -120,
+      "Lower": -101
+    },
+    "reverse_y": {
+      "Normal": 144,
+      "Lower": 145
+    },
+    "native_capture": "Docs/theme-preview/chiikawa/native/gameplay-timing.png",
+    "capture_sha256": "781cd2b2eaeaa802385bf3f9f6ef37469fae2a314991c5388e2f54a6d3fd10fd",
+    "verification": "Native Linux: Normal/Lower, P1/P2, centered 4:3, reverse with Mini, and Classic. No Windows build."
   }
 }
