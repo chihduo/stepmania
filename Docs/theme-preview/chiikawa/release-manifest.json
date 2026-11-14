@@ -311,9 +311,9 @@
       "bytes": 57
     }
   ],
-  "theme_source_commit": "440122a288",
+  "theme_source_commit": "1a2637a9ca",
   "readme_media_manifest": "Docs/media/manifest.json",
-  "promoted_feature_commit": "440122a288",
+  "promoted_feature_commit": "1a2637a9ca",
   "gameplay_cutouts": false,
   "dashboard_upload": {
     "theme_source_commit": "dfba79087a",
@@ -348,5 +348,23 @@
     "native_capture": "Docs/theme-preview/chiikawa/native/gameplay-timing.png",
     "capture_sha256": "781cd2b2eaeaa802385bf3f9f6ef37469fae2a314991c5388e2f54a6d3fd10fd",
     "verification": "Native Linux: Normal/Lower, P1/P2, centered 4:3, reverse with Mini, and Classic. No Windows build."
+  },
+  "profile_editor": {
+    "theme_source_commit": "1a2637a9ca",
+    "runtime_files": [
+      {
+        "file": "Themes/chiikawa/BGAnimations/ScreenOptionsCustomizeProfile overlay.lua",
+        "sha256": "01091672f98acfa1044ed2f53947b13ae8f56119475eedad2af09b6245d4e22a",
+        "bytes": 1250
+      },
+      {
+        "file": "Themes/chiikawa/metrics.ini",
+        "sha256": "cfffac750c6fda14c8a0ad3bac53cd013a326b26311bac58528e775494a47015",
+        "bytes": 1482
+      }
+    ],
+    "native_capture": "Docs/theme-preview/chiikawa/native/profile-edit.png",
+    "capture_sha256": "c05778dcfc9b72d7c514130b3cd31fa6bf20998f77a6a68061e1e4e9990d1fe3",
+    "verification": "Native Linux: 16:9/4:3, numeric confirmation/cancellation, boolean changes, save/reload, unchanged profile identity and song count. No Windows build."
   }
 }

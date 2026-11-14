@@ -299,3 +299,8 @@ The user requested that the Windows build wait. Cancelled workflow 43474967953; 
 ## Receptor spacing below the score
 
 Completed: promote the verified shared-theme helper from `440122a288`. Lower the normal-scroll receptor row by 24 theme pixels in both Note Positions settings so its timing labels clear the score bar. Reverse anchors retain their positions. Include the update guide, final native capture and release manifest; keep detailed fixtures and journals on the feature branch. No Windows build or ZIP.
+
+
+## Readable profile editor
+
+Completed: promote `1a2637a9ca` with dark profile-editor/keypad text, mint/pink cursors, a cream inactive-menu overlay, readable help and the edited profile's name. Retain inherited input/save behavior. Native 16:9/4:3 editing, cancellation and save/reload checks pass. Include the guide and final preview; no Windows build or ZIP.
